@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -13,7 +16,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile.index');
+        $profile = Auth::user();
+
+        return view('profile.index', ['profile' => $profile]);
     }
 
     /**
@@ -59,6 +64,13 @@ class ProfileController extends Controller
         //
     }
 
+    public function edit2()
+    {
+        $user = Auth::user();
+        // return $user;
+        return view('profile.edit', ['user' => $user]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -66,10 +78,33 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+        $validate = $request->validate([
+            'name' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
+            'username' => 'required|min:5|alpha_num|'. Rule::unique('users')->ignore($user->id),
+            'email' => 'required|min:7|email|'. Rule::unique('users')->ignore($user->id),
+            'phone' => 'required|min:9|numeric',
+            'address' => 'required|min:7|string',
+            'gender' => 'required|in:female,male',
+            'level' => 'required|in:owner,admin,cashier,waiter,customer',
+            'status' => 'required|in:active,nonactive',
+        ]);
+        $user = Auth::user();
+        $edit = User::where('id', $user->id)->update([
+            'name' => $request['name'],
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+            'gender' => $request['gender'],
+            'level' => $request['level'],
+            'status' => $request['status'],
+        ]);
+        return redirect()->route('profile.index')->with('status', 'Profile Updated !');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -77,8 +112,12 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $user = Auth::user();
+        $delete = User::find($user->id);
+        $delete->delete();
+        
+        return redirect()->route('login')->with('status', 'Profile deleted and unregistered !');
     }
 }

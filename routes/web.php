@@ -20,4 +20,7 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 // Profile
-Route::resource('/dashboard/profile', 'ProfileController');
+Route::get('/dashboard/profile', 'ProfileController@index')->name('profile.index');
+Route::get('/dashboard/profile/edit', 'ProfileController@edit2')->name('profile.edit');
+Route::patch('/dashboard/profile', 'ProfileController@update')->name('profile.update');
+Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.delete');
