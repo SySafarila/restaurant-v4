@@ -54,7 +54,7 @@
                             <tr>
                                 <td>Phone</td>
                                 <td>
-                                    <input id="phone" type="text" class="form-control form-control-sm @error('phone') is-invalid @enderror" name="phone" value="{{ $user->phone }}" required autocomplete="phone" autofocus>
+                                    <input id="phone" type="number" class="form-control form-control-sm @error('phone') is-invalid @enderror" name="phone" value="{{ $user->phone }}" required autocomplete="phone" autofocus>
 
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
