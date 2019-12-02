@@ -89,8 +89,8 @@ class ProfileController extends Controller
         $validate = $request->validate([
             'name' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
             'username' => 'required|min:5|alpha_num|'. Rule::unique('users')->ignore($user->id),
-            'email' => 'required|min:7|email|'. Rule::unique('users')->ignore($user->id),
-            'phone' => 'required|digits_between:10,13|numeric',
+            'email' => 'required|min:13|email|'. Rule::unique('users')->ignore($user->id),
+            'phone' => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($user->id),
             'address' => 'required|min:7|string',
             'gender' => 'required|in:female,male',
             'level' => 'required|in:owner,admin,cashier,waiter,customer',
