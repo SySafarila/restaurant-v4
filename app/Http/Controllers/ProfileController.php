@@ -90,7 +90,7 @@ class ProfileController extends Controller
             'name' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
             'username' => 'required|min:5|alpha_num|'. Rule::unique('users')->ignore($user->id),
             'email' => 'required|min:7|email|'. Rule::unique('users')->ignore($user->id),
-            'phone' => 'required|min:9|numeric',
+            'phone' => 'required|digits_between:10,13|numeric',
             'address' => 'required|min:7|string',
             'gender' => 'required|in:female,male',
             'level' => 'required|in:owner,admin,cashier,waiter,customer',
