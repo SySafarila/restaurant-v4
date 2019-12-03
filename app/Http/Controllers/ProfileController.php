@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -108,6 +109,27 @@ class ProfileController extends Controller
             'status' => $request['status'],
         ]);
         return redirect()->route('profile.index')->with('status', 'Profile Updated !');
+    }
+
+    public function editpassword()
+    {
+        $user = Auth::user();
+
+        return view('profile.editpassword', ['user' => $user]);
+    }
+
+    public function updatepassword(Request $request)
+    {
+        $user = Auth::user();
+
+        $validate = $request->validate([
+            'password' => ['required', 'string', 'min:8']
+        ]);
+        
+        $edit = User::where('id', $user->id)->update([
+            'password' => Hash::make($request['password'])
+        ]);
+        return redirect()->route('profile.index')->with('status', 'Password Updated !');
     }
 
 

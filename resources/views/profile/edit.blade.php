@@ -130,7 +130,7 @@
                             <button type="submit" class="btn btn-sm btn-outline-success mx-1">Edit Profile</button>
                         </div>
                         <div class="text-center mt-3">
-                            <a href="#" class="text-decoration-none">Change Password</a>
+                            <a href="{{ route('profile.editpassword')}}" class="text-decoration-none">Change Password</a>
                         </div>
                     </form>
                     
