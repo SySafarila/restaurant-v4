@@ -8,12 +8,24 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <form action="{{ route('profile.updatepassword') }}" method="POST">
+                    <form action="{{ route('profile.updatelogin') }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <table class="table table-bordered">
                             <tr>
-                                <td>New Password</td>
+                                <td>New Email</td>
+                                <td>
+                                    <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus>
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>New / Old Password</td>
                                 <td>
                                     <input id="password" type="password" class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
@@ -24,12 +36,12 @@
                                     @enderror
                                 </td>
                             </tr>
-                            {{-- <tr>
-                                <td>Confirm New Password</td>
+                            <tr>
+                                <td>Confirm Password</td>
                                 <td>
                                     <input id="password-confirm" type="password" class="form-control form-control-sm" name="password_confirmation" required autocomplete="new-password">
                                 </td>
-                            </tr> --}}
+                            </tr>
                         </table>
                         <div class="d-flex justify-content-center">
                             <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-danger mx-1">Cancel</a>

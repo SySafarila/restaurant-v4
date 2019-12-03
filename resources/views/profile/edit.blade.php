@@ -42,7 +42,7 @@
                             <tr>
                                 <td>Email</td>
                                 <td class="text-lowecase">
-                                    <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" disabled autocomplete="email" autofocus>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@
                             <button type="submit" class="btn btn-sm btn-outline-success mx-1">Edit Profile</button>
                         </div>
                         <div class="text-center mt-3">
-                            <a href="{{ route('profile.editpassword')}}" class="text-decoration-none">Change Password</a>
+                            <a href="{{ route('profile.editlogin')}}" class="text-decoration-none">Change Login Information</a>
                         </div>
                     </form>
                     

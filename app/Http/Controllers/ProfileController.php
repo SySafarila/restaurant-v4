@@ -90,7 +90,6 @@ class ProfileController extends Controller
         $validate = $request->validate([
             'name' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
             'username' => 'required|min:5|alpha_num|'. Rule::unique('users')->ignore($user->id),
-            'email' => 'required|min:13|email|'. Rule::unique('users')->ignore($user->id),
             'phone' => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($user->id),
             'address' => 'required|min:7|string',
             'gender' => 'required|in:female,male',
@@ -101,7 +100,6 @@ class ProfileController extends Controller
         $edit = User::where('id', $user->id)->update([
             'name' => $request['name'],
             'username' => $request['username'],
-            'email' => $request['email'],
             'phone' => $request['phone'],
             'address' => $request['address'],
             'gender' => $request['gender'],
@@ -111,25 +109,27 @@ class ProfileController extends Controller
         return redirect()->route('profile.index')->with('status', 'Profile Updated !');
     }
 
-    public function editpassword()
+    public function editlogin()
     {
         $user = Auth::user();
 
-        return view('profile.editpassword', ['user' => $user]);
+        return view('profile.editlogin', ['user' => $user]);
     }
 
-    public function updatepassword(Request $request)
+    public function updatelogin(Request $request)
     {
         $user = Auth::user();
 
         $validate = $request->validate([
-            'password' => ['required', 'string', 'min:8']
+            'email' => 'required|min:13|email|'. Rule::unique('users')->ignore($user->id),
+            'password' => 'required|string|min:8|confirmed'
         ]);
         
         $edit = User::where('id', $user->id)->update([
-            'password' => Hash::make($request['password'])
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
-        return redirect()->route('profile.index')->with('status', 'Password Updated !');
+        return redirect()->route('profile.index')->with('status', 'Login Information Updated !');
     }
 
 
