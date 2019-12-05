@@ -30,8 +30,13 @@
                             <tr>
                                 <td class="align-middle">Username</td>
                                 <td class="text-lowecase">
-                                    <input id="username" type="text" class="form-control form-control-sm @error('username') is-invalid @enderror" name="username" value="{{ $user->username }}" required autocomplete="username" autofocus>
-
+                                    {{-- <input id="username" type="text" class="form-control form-control-sm @error('username') is-invalid @enderror" name="username" value="{{ $user->username }}" required autocomplete="username" autofocus> --}}
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                          <div class="input-group-text">@</div>
+                                        </div>
+                                        <input id="username" type="text" class="form-control form-control-sm @error('username') is-invalid @enderror" name="username" value="{{ $user->username }}" required autocomplete="username" autofocus>
+                                    </div>
                                     @error('username')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -42,8 +47,10 @@
                             <tr>
                                 <td class="align-middle">Email</td>
                                 <td class="text-lowecase">
-                                    <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" disabled autocomplete="email" autofocus>
-
+                                    <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror mt-1" name="email" value="{{ $user->email }}" disabled autocomplete="email" autofocus>
+                                    <small class="form-text">
+                                        <a href="{{ route('profile.editlogin') }}" class="text-decoration-none text-danger">* Click here to edit Your email</a>
+                                    </small>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
