@@ -87,8 +87,8 @@
                                 <td class="text-capitalize">
                                     <select id="gender" class="form-control form-control-sm @error('gender') is-invalid @enderror" name="gender" value="{{ $user->gender }}" required autocomplete="gender" autofocus>
                                         <option value="{{ $user->gender }}" selected>- DEFAULT -</option>
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
                                     </select>
 
                                     @error('gender')
@@ -103,11 +103,11 @@
                                 <td class="text-capitalize">
                                     <select class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" value="{{ $user->level }}" disabled autocomplete="level" autofocus>
                                         <option value="{{ $user->level }}" selected>- DEFAULT -</option>
-                                        <option value="owner">Owner</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="cashier">Cashier</option>
-                                        <option value="waiter">Waiter</option>
-                                        <option value="customer">Customer</option>
+                                        <option value="Owner">Owner</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Cashier">Cashier</option>
+                                        <option value="Waiter">Waiter</option>
+                                        <option value="Customer">Customer</option>
                                     </select>
                                     @error('level')
                                         <span class="invalid-feedback" role="alert">
@@ -121,8 +121,8 @@
                                 <td class="text-capitalize">
                                     <select class="form-control form-control-sm @error('status') is-invalid @enderror" name="status" value="{{ $user->status }}" disabled autocomplete="status" autofocus>
                                         <option value="{{ $user->status }}" selected>- DEFAULT -</option>
-                                        <option value="active">Active</option>
-                                        <option value="nonactive">Nonactive</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Nonactive">Nonactive</option>
                                     </select>
                                     @error('status')
                                         <span class="invalid-feedback" role="alert">
