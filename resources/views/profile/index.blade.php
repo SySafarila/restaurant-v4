@@ -50,7 +50,7 @@
                         </tr>
                         <tr>
                             <td>Status</td>
-                            <td class="text-capitalize"><span class="badge @if($profile->status == 'active') badge-success @else badge-secondary @endif">{{ $profile->status }}</span></td>
+                            <td class="text-capitalize"><span class="badge @if($profile->status == 'Active') badge-success @else badge-secondary @endif">{{ $profile->status }}</span></td>
                         </tr>
                     </table>
                     <div class="d-flex justify-content-center">

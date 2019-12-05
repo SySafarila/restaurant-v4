@@ -86,7 +86,7 @@
                                 <td class="align-middle">Gender</td>
                                 <td class="text-capitalize">
                                     <select id="gender" class="form-control form-control-sm @error('gender') is-invalid @enderror" name="gender" value="{{ $user->gender }}" required autocomplete="gender" autofocus>
-                                        <option value="{{ $user->gender }}" selected>- DEFAULT -</option>
+                                        <option value="{{ $user->gender }}" selected>{{ $user->gender }} ( Default )</option>
                                         <option value="Female">Female</option>
                                         <option value="Male">Male</option>
                                     </select>
@@ -102,7 +102,7 @@
                                 <td class="align-middle">Level</td>
                                 <td class="text-capitalize">
                                     <select class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" value="{{ $user->level }}" disabled autocomplete="level" autofocus>
-                                        <option value="{{ $user->level }}" selected>- DEFAULT -</option>
+                                        <option value="{{ $user->level }}" selected>{{ $user->level }} ( Default )</option>
                                         <option value="Owner">Owner</option>
                                         <option value="Admin">Admin</option>
                                         <option value="Cashier">Cashier</option>
@@ -120,7 +120,7 @@
                                 <td class="align-middle">Status</td>
                                 <td class="text-capitalize">
                                     <select class="form-control form-control-sm @error('status') is-invalid @enderror" name="status" value="{{ $user->status }}" disabled autocomplete="status" autofocus>
-                                        <option value="{{ $user->status }}" selected>- DEFAULT -</option>
+                                        <option value="{{ $user->status }}" selected>{{ $user->status }} ( Default )</option>
                                         <option value="Active">Active</option>
                                         <option value="Nonactive">Nonactive</option>
                                     </select>

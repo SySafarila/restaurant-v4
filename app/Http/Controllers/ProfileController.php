@@ -92,7 +92,7 @@ class ProfileController extends Controller
             'username' => 'required|min:5|alpha_num|'. Rule::unique('users')->ignore($user->id),
             'phone' => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($user->id),
             'address' => 'required|min:7|string',
-            'gender' => 'required|in:female,male',
+            'gender' => 'required|in:Female,Male',
             // 'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
             // 'status' => 'required|in:Active,Nonactive',
         ]);
