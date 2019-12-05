@@ -13,7 +13,7 @@
                         @method('PATCH')
                         <table class="table table-bordered">
                             <tr>
-                                <td>New Email</td>
+                                <td class="align-middle">New Email</td>
                                 <td>
                                     <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus>
 
@@ -25,7 +25,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>New / Old Password</td>
+                                <td class="align-middle">New / Old Password</td>
                                 <td>
                                     <input id="password" type="password" class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
@@ -37,7 +37,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Confirm Password</td>
+                                <td class="align-middle">Confirm Password</td>
                                 <td>
                                     <input id="password-confirm" type="password" class="form-control form-control-sm" name="password_confirmation" required autocomplete="new-password">
                                 </td>

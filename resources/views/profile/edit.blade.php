@@ -16,7 +16,7 @@
                                 <td colspan="2" class="text-center">Profile</td>
                             </tr>
                             <tr>
-                                <td>Name</td>
+                                <td class="align-middle">Name</td>
                                 <td class="text-capitalize">
                                     <input id="name" type="text" class="form-control form-control-sm @error('phone') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
@@ -28,7 +28,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Username</td>
+                                <td class="align-middle">Username</td>
                                 <td class="text-lowecase">
                                     <input id="username" type="text" class="form-control form-control-sm @error('username') is-invalid @enderror" name="username" value="{{ $user->username }}" required autocomplete="username" autofocus>
 
@@ -40,7 +40,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Email</td>
+                                <td class="align-middle">Email</td>
                                 <td class="text-lowecase">
                                     <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" disabled autocomplete="email" autofocus>
 
@@ -52,7 +52,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Phone</td>
+                                <td class="align-middle">Phone</td>
                                 <td>
                                     <input id="phone" type="number" class="form-control form-control-sm @error('phone') is-invalid @enderror" name="phone" value="{{ $user->phone }}" required autocomplete="phone" autofocus>
 
@@ -64,7 +64,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Address</td>
+                                <td class="align-middle">Address</td>
                                 <td class="text-capitalize">
                                     <textarea id="address" class="form-control form-control-sm @error('address') is-invalid @enderror" name="address" value="{{ $user->address }}" required autocomplete="address" autofocus>{{ $user->address }}</textarea>
 
@@ -76,7 +76,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Gender</td>
+                                <td class="align-middle">Gender</td>
                                 <td class="text-capitalize">
                                     <select id="gender" class="form-control form-control-sm @error('gender') is-invalid @enderror" name="gender" value="{{ $user->gender }}" required autocomplete="gender" autofocus>
                                         <option value="{{ $user->gender }}" selected>- DEFAULT -</option>
@@ -92,7 +92,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Level</td>
+                                <td class="align-middle">Level</td>
                                 <td class="text-capitalize">
                                     <select class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" value="{{ $user->level }}" disabled autocomplete="level" autofocus>
                                         <option value="{{ $user->level }}" selected>- DEFAULT -</option>
@@ -110,7 +110,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Status</td>
+                                <td class="align-middle">Status</td>
                                 <td class="text-capitalize">
                                     <select class="form-control form-control-sm @error('status') is-invalid @enderror" name="status" value="{{ $user->status }}" disabled autocomplete="status" autofocus>
                                         <option value="{{ $user->status }}" selected>- DEFAULT -</option>
