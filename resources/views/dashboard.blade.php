@@ -16,7 +16,31 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @if (Auth::user()->status == 'Active')
+                        @if (Auth::user()->level == 'Owner')
+                            Hi Owner
+                        @else
+                            @if (Auth::user()->level == 'Admin')
+                                Hi Admin
+                            @else
+                                @if (Auth::user()->level == 'Cashier')
+                                    Hi Cashier
+                                @else
+                                    @if (Auth::user()->level == 'Waiter')
+                                        Hi Waiter
+                                    @else
+                                        @if (Auth::user()->level == 'Customer')
+                                            Hi Customer
+                                        @else
+                                            
+                                        @endif
+                                    @endif
+                                @endif
+                            @endif
+                        @endif
+                    @else
+                        Hi <b>{{ Auth::user()->name }}</b>, You're nonactive as <b>{{ Auth::user()->level }}</b>
+                    @endif
                 </div>
             </div>
         </div>
