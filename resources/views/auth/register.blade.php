@@ -87,8 +87,8 @@
                             <div class="col-md-6">
                                 <select id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" autofocus>
                                     <option value="" selected>- Select Gender -</option>
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
                                 </select>
 
                                 @error('gender')
@@ -105,11 +105,11 @@
                             <div class="col-md-6">
                                 <select id="level" type="text" class="form-control @error('level') is-invalid @enderror" name="level" value="{{ old('level') }}" required autocomplete="level" autofocus>
                                     <option value="" selected>- Select Level -</option>
-                                    <option value="owner">Owner</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="cashier">Cashier</option>
-                                    <option value="waiter">Waiter</option>
-                                    <option value="customer">Customer</option>
+                                    <option value="Owner">Owner</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Cashier">Cashier</option>
+                                    <option value="Waiter">Waiter</option>
+                                    <option value="Customer">Customer</option>
                                 </select>
 
                                 @error('level')
@@ -126,8 +126,8 @@
                             <div class="col-md-6">
                                 <select id="status" type="text" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" required autocomplete="status" autofocus>
                                     <option value="" selected>- Select Status -</option>
-                                    <option value="active">Active</option>
-                                    <option value="nonactive">Nonactive</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Nonactive">Nonactive</option>
                                 </select>
 
                                 @error('status')
