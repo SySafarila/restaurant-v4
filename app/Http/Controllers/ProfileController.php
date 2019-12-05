@@ -93,8 +93,8 @@ class ProfileController extends Controller
             'phone' => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($user->id),
             'address' => 'required|min:7|string',
             'gender' => 'required|in:female,male',
-            // 'level' => 'required|in:owner,admin,cashier,waiter,customer',
-            // 'status' => 'required|in:active,nonactive',
+            // 'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
+            // 'status' => 'required|in:Active,Nonactive',
         ]);
         $user = Auth::user();
         $edit = User::where('id', $user->id)->update([

@@ -54,9 +54,9 @@ class RegisterController extends Controller
             'email' => 'required|min:13|email|unique:users',
             'phone' => 'required|digits_between:10,13|numeric|unique:users',
             'address' => 'required|min:7|string',
-            'gender' => 'required|in:female,male',
-            'level' => 'required|in:owner,admin,cashier,waiter,customer',
-            'status' => 'required|in:active,nonactive',
+            'gender' => 'required|in:Female,Male',
+            'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
+            'status' => 'required|in:Active,Nonactive',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
