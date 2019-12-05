@@ -21,49 +21,53 @@
                             Hi Owner
                         @else
                             @if (Auth::user()->level == 'Admin')
-                                <div class="col-md-4 col-6 mb-4">
-                                    <div class="card ">
-                                        <div class="card-header">Header</div>
-                                        <div class="card-body">
-                                        <h5 class="card-title">Light card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="stretched-link"></a>
+                                <div class="col-md-4 col-12 mb-1">
+                                    <div class="card mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-4">
+                                                <img src="http://www.attachmax.com/p/2018/12/restaurant-menu-design-free-psd-free-photoshop-downloads-pertaining-to-menu-cover-design-templates-600x600.jpg" class="card-img h-100" alt="...">
+                                            </div>
+                                            <div class="col-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Menus</h5>
+                                                <p class="card-text">Add, edit, or delete menus.</p>
+                                                {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-6 mb-4">
-                                    <div class="card ">
-                                        <div class="card-header">Header</div>
-                                        <div class="card-body">
-                                        <h5 class="card-title">Light card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                <div class="col-md-4 col-12 mb-1">
+                                    <div class="card mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-4">
+                                                <img src="http://www.attachmax.com/p/2018/12/restaurant-menu-design-free-psd-free-photoshop-downloads-pertaining-to-menu-cover-design-templates-600x600.jpg" class="card-img h-100" alt="...">
+                                            </div>
+                                            <div class="col-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Users</h5>
+                                                <p class="card-text">Show, edit, or delete users.</p>
+                                                {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-6 mb-4">
-                                    <div class="card ">
-                                        <div class="card-header">Header</div>
-                                        <div class="card-body">
-                                        <h5 class="card-title">Light card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-6 mb-4">
-                                    <div class="card ">
-                                        <div class="card-header">Header</div>
-                                        <div class="card-body">
-                                        <h5 class="card-title">Light card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-6 mb-4">
-                                    <div class="card ">
-                                        <div class="card-header">Header</div>
-                                        <div class="card-body">
-                                        <h5 class="card-title">Light card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                <div class="col-md-4 col-12 mb-1">
+                                    <div class="card mb-3">
+                                        <div class="row no-gutters">
+                                            <div class="col-4">
+                                                <img src="http://www.attachmax.com/p/2018/12/restaurant-menu-design-free-psd-free-photoshop-downloads-pertaining-to-menu-cover-design-templates-600x600.jpg" class="card-img h-100" alt="...">
+                                            </div>
+                                            <div class="col-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Employees</h5>
+                                                <p class="card-text">Show, edit, or delete Employeessssssssssssssssssssssssssssssssssssssssssssssssssssssssss.</p>
+                                                {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
