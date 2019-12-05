@@ -94,7 +94,7 @@
                             <tr>
                                 <td>Level</td>
                                 <td class="text-capitalize">
-                                    <select class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" value="{{ $user->level }}" required autocomplete="level" autofocus>
+                                    <select class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" value="{{ $user->level }}" disabled autocomplete="level" autofocus>
                                         <option value="{{ $user->level }}" selected>- DEFAULT -</option>
                                         <option value="owner">Owner</option>
                                         <option value="admin">Admin</option>
@@ -112,7 +112,7 @@
                             <tr>
                                 <td>Status</td>
                                 <td class="text-capitalize">
-                                    <select class="form-control form-control-sm @error('status') is-invalid @enderror" name="status" value="{{ $user->status }}" required autocomplete="status" autofocus>
+                                    <select class="form-control form-control-sm @error('status') is-invalid @enderror" name="status" value="{{ $user->status }}" disabled autocomplete="status" autofocus>
                                         <option value="{{ $user->status }}" selected>- DEFAULT -</option>
                                         <option value="active">Active</option>
                                         <option value="nonactive">Nonactive</option>
