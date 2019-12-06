@@ -18,9 +18,34 @@
 
                     @if (Auth::user()->status == 'Active')
                         @if (Auth::user()->level == 'Owner')
-                            Hi Owner
+                        {{-- OWNER PAGE --}}
+                            <div class="col-md-4 col-12 mb-4">
+                                <div class="card">
+                                    <a href="#" class="card-body text-decoration-none">
+                                        <h5 class="card-title text-dark">Employees Panel</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12 mb-4">
+                                <div class="card">
+                                    <a href="#" class="card-body text-decoration-none">
+                                        <h5 class="card-title text-dark">Transactions Panel</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12 mb-4">
+                                <div class="card">
+                                    <a href="#" class="card-body text-decoration-none">
+                                        <h5 class="card-title text-dark">Menus Panel</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                    </a>
+                                </div>
+                            </div>
                         @else
                             @if (Auth::user()->level == 'Admin')
+                            {{-- ADMIN PAGE --}}
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="#" class="card-body text-decoration-none">
@@ -32,7 +57,7 @@
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="#" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark">Menus Panel</h5>
+                                            <h5 class="card-title text-dark">Users Panel</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
                                         </a>
                                     </div>
@@ -40,7 +65,7 @@
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="#" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark">Menus Panel</h5>
+                                            <h5 class="card-title text-dark">Employees Panel</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
                                         </a>
                                     </div>
@@ -48,20 +73,61 @@
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="#" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark">Menus Panel</h5>
+                                            <h5 class="card-title text-dark">Transactions Panel</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12 mb-4">
+                                    <div class="card">
+                                        <a href="#" class="card-body text-decoration-none">
+                                            <h5 class="card-title text-dark">Orders Panel</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
                                         </a>
                                     </div>
                                 </div>
                             @else
                                 @if (Auth::user()->level == 'Cashier')
-                                    Hi Cashier
+                                {{-- CASHIER PAGE --}}
+                                    <div class="col-md-4 col-12 mb-4">
+                                        <div class="card">
+                                            <a href="#" class="card-body text-decoration-none">
+                                                <h5 class="card-title text-dark">Orders Panel</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12 mb-4">
+                                        <div class="card">
+                                            <a href="#" class="card-body text-decoration-none">
+                                                <h5 class="card-title text-dark">Transactions Panel</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                            </a>
+                                        </div>
+                                    </div>
                                 @else
                                     @if (Auth::user()->level == 'Waiter')
+                                    {{-- WAITER PAGE --}}
                                         Hi Waiter
                                     @else
                                         @if (Auth::user()->level == 'Customer')
-                                            Hi Customer
+                                        {{-- CUSTOMER PAGE --}}
+                                            <div class="col-md-4 col-12 mb-4">
+                                                <div class="card">
+                                                    <a href="#" class="card-body text-decoration-none">
+                                                        <h5 class="card-title text-dark">Orders Panel</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-12 mb-4">
+                                                <div class="card">
+                                                    <a href="#" class="card-body text-decoration-none">
+                                                        <h5 class="card-title text-dark">Transactions Panel</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         @else
                                             
                                         @endif
