@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', '| Dashboard')
+{{-- @section('title', '| Dashboard') --}}
+
+@section('title')
+    | Dashboard - {{ Auth::user()->level }}
+@endsection
 
 @section('content')
 <div class="container">
