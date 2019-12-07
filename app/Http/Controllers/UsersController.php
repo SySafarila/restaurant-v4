@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,10 +19,16 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('name', 'asc')->get();
-        $number = 1;
+        if (Auth::user()->level == 'Admin') {
+            $users = User::orderBy('name', 'asc')->get();
+            $number = 1;
 
-        return view('users.index', ['users' => $users, 'number' => $number]);
+            return view('users.index', ['users' => $users, 'number' => $number]);
+        } else {
+            return redirect()->route('dashboard');
+        }
+        
+        
     }
 
     /**
