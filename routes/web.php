@@ -26,3 +26,7 @@ Route::patch('/dashboard/profile', 'ProfileController@update')->name('profile.up
 Route::get('/dashboard/profile/login/edit', 'ProfileController@editlogin')->name('profile.editlogin')->middleware(['password.confirm']);
 Route::patch('/dashboard/profile/updatelogin', 'ProfileController@updatelogin')->name('profile.updatelogin');
 Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.delete');
+
+// Users
+Route::get('/dashboard/users', 'UsersController@index')->name('users.index');
+Route::get('/dashboard/user/{id}', 'UsersController@show')->name('users.show');

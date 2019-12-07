@@ -14,7 +14,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('name', 'asc')->get();
+        $number = 1;
+
+        return view('users.index', ['users' => $users, 'number' => $number]);
     }
 
     /**
@@ -46,7 +49,12 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        // return $user;
+        // dd($user);
+
+        return view('users.show', ['user' => $user]);
     }
 
     /**

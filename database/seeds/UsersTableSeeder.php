@@ -17,9 +17,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'sysafarila@gmail.com',
             'phone' => '082117694132',
             'address' => 'Cianjur, Warungkondang, Bunikasih',
-            'gender' => 'male',
-            'level' => 'admin',
-            'status' => 'active',
+            'gender' => 'Male',
+            'level' => 'Admin',
+            'status' => 'Active',
             'password' => Hash::make('08052001'),
         ]);
         //php artisan db:seed --class=UsersTableSeeder
