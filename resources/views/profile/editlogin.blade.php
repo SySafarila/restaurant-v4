@@ -28,7 +28,9 @@
                                 <td class="align-middle">New / Old Password</td>
                                 <td>
                                     <input id="password" type="password" class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                    <small class="form-text text-danger">
+                                        * Required for confirmation
+                                    </small>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -40,6 +42,9 @@
                                 <td class="align-middle">Confirm Password</td>
                                 <td>
                                     <input id="password-confirm" type="password" class="form-control form-control-sm" name="password_confirmation" required autocomplete="new-password">
+                                    <small class="form-text text-danger">
+                                        * Required for confirmation
+                                    </small>
                                 </td>
                             </tr>
                         </table>

@@ -47,7 +47,7 @@
                         </tr>
                         <tr>
                             <td>Level</td>
-                            <td class="text-capitalize">{{ $user->level }}</td>
+                            <td class="text-capitalize"><span class="badge {{ $badge }}">{{ $user->level }}</span></td>
                         </tr>
                         <tr>
                             <td>Status</td>

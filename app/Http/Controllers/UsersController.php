@@ -62,10 +62,16 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
+        if ($user->level == 'Admin') {
+            $badge = 'badge-success';
+        } else {
+            $badge = 'badge-secondary';
+        }
+        
         // return $user;
         // dd($user);
 
-        return view('users.show', ['user' => $user]);
+        return view('users.show', ['user' => $user, 'badge' => $badge]);
     }
 
     /**

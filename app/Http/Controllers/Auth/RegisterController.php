@@ -55,8 +55,8 @@ class RegisterController extends Controller
             'phone' => 'required|digits_between:10,13|numeric|unique:users',
             'address' => 'required|min:7|string',
             'gender' => 'required|in:Female,Male',
-            'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
-            'status' => 'required|in:Active,Nonactive',
+            // 'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
+            // 'status' => 'required|in:Active,Nonactive',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -75,8 +75,8 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'address' => $data['address'],
             'gender' => $data['gender'],
-            'level' => $data['level'],
-            'status' => $data['status'],
+            'level' => 'Customer',
+            'status' => 'Active',
             'password' => Hash::make($data['password']),
         ]);
     }
