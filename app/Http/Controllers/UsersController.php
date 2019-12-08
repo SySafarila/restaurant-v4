@@ -25,7 +25,15 @@ class UsersController extends Controller
 
             return view('users.index', ['users' => $users, 'number' => $number]);
         } else {
-            return redirect()->route('dashboard');
+            if (Auth::user()->level == 'Owner') {
+                $users = User::orderBy('name', 'asc')->get();
+                $number = 1;
+
+                return view('users.index', ['users' => $users, 'number' => $number]);
+            } else {
+                return redirect()->route('dashboard')->with('status-denied', 'Access Denied For Admin Panel');
+            }
+            
         }
         
         
