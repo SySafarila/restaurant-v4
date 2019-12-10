@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', '| Profile')
+@section('title',)
+    | User - {{ '@' . $user->username }}
+@endsection
 
 @section('content')
 <div class="container">
