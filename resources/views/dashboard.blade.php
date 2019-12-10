@@ -9,7 +9,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-            @if (session('status-denied'))
+        @if (session('status-denied'))
             <div class="alert alert-danger" role="alert">
                 {{ session('status-denied') }}
             </div>
