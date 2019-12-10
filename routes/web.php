@@ -30,3 +30,5 @@ Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.
 // Users
 Route::get('/dashboard/users', 'UsersController@index')->name('users.index');
 Route::get('/dashboard/user/{id}', 'UsersController@show')->name('users.show');
+Route::get('/dashboard/user/{id}/edit', 'UsersController@edit')->name('users.edit');
+Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->name('users.delete');
