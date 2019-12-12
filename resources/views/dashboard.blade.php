@@ -3,7 +3,7 @@
 {{-- @section('title', '| Dashboard') --}}
 
 @section('title')
-    | Dashboard - {{ Auth::user()->level }}
+    | {{ Auth::user()->level }}
 @endsection
 
 @section('content')
