@@ -10,7 +10,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <form action="#" method="POST">
+                    <form action="{{ route('users.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <table class="table table-bordered">
@@ -50,8 +50,8 @@
                                 <td class="align-middle">Email</td>
                                 <td class="text-lowecase">
                                     <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror mt-1" name="email" value="{{ $user->email }}" disabled autocomplete="email" autofocus>
-                                    <small class="form-text">
-                                        <a href="{{ route('profile.editlogin') }}" class="text-decoration-none text-danger">* Click here to edit Your email</a>
+                                    <small class="form-text text-danger">
+                                        * Only <b>{{ '@' . $user->username }}</b> can edit this field
                                     </small>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -103,8 +103,8 @@
                             <tr>
                                 <td class="align-middle">Level</td>
                                 <td class="text-capitalize">
-                                    <select class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" value="{{ $user->level }}" disabled autocomplete="level" autofocus>
-                                        <option value="{{ $user->level }}" selected>You can't edit this field</option>
+                                    <select class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" value="{{ $user->level }}" required autocomplete="level" autofocus>
+                                        <option value="{{ $user->level }}" selected>{{ $user->level }} (Default)</option>
                                         <option value="Owner">Owner</option>
                                         <option value="Admin">Admin</option>
                                         <option value="Cashier">Cashier</option>
@@ -121,8 +121,8 @@
                             <tr>
                                 <td class="align-middle">Status</td>
                                 <td class="text-capitalize">
-                                    <select class="form-control form-control-sm @error('status') is-invalid @enderror" name="status" value="{{ $user->status }}" disabled autocomplete="status" autofocus>
-                                        <option value="{{ $user->status }}" selected>You can't edit this field</option>
+                                    <select class="form-control form-control-sm @error('status') is-invalid @enderror" name="status" value="{{ $user->status }}" required autocomplete="status" autofocus>
+                                        <option value="{{ $user->status }}" selected>{{ $user->status }} (Default)</option>
                                         <option value="Active">Active</option>
                                         <option value="Nonactive">Nonactive</option>
                                     </select>

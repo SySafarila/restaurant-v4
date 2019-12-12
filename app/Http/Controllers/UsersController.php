@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -104,7 +105,27 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
+            'username' => 'required|min:5|alpha_num|'. Rule::unique('users')->ignore($id),
+            'phone' => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($id),
+            'address' => 'required|min:7|string',
+            'gender' => 'required|in:Female,Male',
+            'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
+            'status' => 'required|in:Active,Nonactive',
+        ]);
+        $user = Auth::user();
+        $edit = User::where('id', $id)->update([
+            'name' => ucwords($request['name']), //uppercase for each word
+            'username' => strtolower($request['username']), //lowercase for each word
+            'phone' => $request['phone'],
+            'address' => ucwords($request['address']), //uppercase for each word
+            'gender' => $request['gender'],
+            'level' => $request['level'],
+            'status' => $request['status'],
+        ]);
+
+        return redirect()->route('users.show', $id)->with('status', 'User updated !');
     }
 
     /**
