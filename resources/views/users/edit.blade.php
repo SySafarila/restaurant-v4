@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title',)
-    | User - Edit - {{ '@' . $user->username }}
+    | Edit {{ '@' . $user->username }}
 @endsection
 
 @section('content')

@@ -107,7 +107,7 @@ class UsersController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
-            'username' => 'required|min:5|alpha_num|'. Rule::unique('users')->ignore($id),
+            'username' => 'required|min:5|regex:[^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$]|'. Rule::unique('users')->ignore($id),
             'phone' => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($id),
             'address' => 'required|min:7|string',
             'gender' => 'required|in:Female,Male',
