@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->longText('address');
-            $table->enum('gender', ['female', 'male']);
-            $table->enum('level', ['owner', 'admin', 'cashier', 'waiter', 'customer']);
-            $table->enum('status', ['active', 'nonactive']);
+            $table->enum('gender', ['Female', 'Male']);
+            $table->enum('level', ['Owner', 'Admin', 'Cashier', 'Waiter', 'Customer']);
+            $table->enum('status', ['Active', 'Nonactive']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

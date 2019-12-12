@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -49,14 +49,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
-            'username' => ['required', 'alpha_num', 'max:255', 'min:5', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255','min:7', 'unique:users'],
-            'phone' => ['required', 'numeric', 'min:9'],
-            'address' => ['required', 'string', 'min:7'],
-            'gender' => ['required', 'in:female,male'],
-            'level' => ['required', 'in:owner,admin,cashier,waiter,customer'],
-            'status' => ['required', 'in:active,nonactive'],
+            'name' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
+            'username' => 'required|min:5|regex:[^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$]|unique:users',
+            'email' => 'required|min:13|email|unique:users',
+            'phone' => 'required|digits_between:10,13|numeric|unique:users',
+            'address' => 'required|min:7|string',
+            'gender' => 'required|in:Female,Male',
+            // 'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
+            // 'status' => 'required|in:Active,Nonactive',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -69,14 +69,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'username' => $data['username'],
-            'email' => $data['email'],
+            'name' => ucwords($data['name']), //uppercase for each word
+            'username' => strtolower($data['username']), //lowercase for each word
+            'email' => strtolower($data['email']), //lowercase for each word
             'phone' => $data['phone'],
-            'address' => $data['address'],
-            'gender' => $data['gender'],
-            'level' => $data['level'],
-            'status' => $data['status'],
+            'address' => ucwords($data['address']), //uppercase for each word
+            'gender' => ucwords($data['gender']),
+            'level' => 'Customer',
+            'status' => 'Active',
             'password' => Hash::make($data['password']),
         ]);
     }
