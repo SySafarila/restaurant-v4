@@ -13,10 +13,12 @@
                         @method('PATCH')
                         <table class="table table-bordered">
                             <tr>
-                                <td class="align-middle">New Email</td>
+                                <td class="align-middle">New / Old Email</td>
                                 <td>
                                     <input id="email" type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus>
-
+                                    <small class="form-text text-danger">
+                                        * Required
+                                    </small>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -29,7 +31,7 @@
                                 <td>
                                     <input id="password" type="password" class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                     <small class="form-text text-danger">
-                                        * Required for confirmation
+                                        * Required
                                     </small>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -43,7 +45,7 @@
                                 <td>
                                     <input id="password-confirm" type="password" class="form-control form-control-sm" name="password_confirmation" required autocomplete="new-password">
                                     <small class="form-text text-danger">
-                                        * Required for confirmation
+                                        * Required
                                     </small>
                                 </td>
                             </tr>
