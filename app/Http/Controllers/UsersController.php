@@ -120,9 +120,9 @@ class UsersController extends Controller
             'username' => strtolower($request['username']), //lowercase for each word
             'phone' => $request['phone'],
             'address' => ucwords($request['address']), //uppercase for each word
-            'gender' => $request['gender'],
-            'level' => $request['level'],
-            'status' => $request['status'],
+            'gender' => ucwords($request['gender']),
+            'level' => ucwords($request['level']),
+            'status' => ucwords($request['status']),
         ]);
 
         return redirect()->route('users.show', $id)->with('status', 'User updated !');
