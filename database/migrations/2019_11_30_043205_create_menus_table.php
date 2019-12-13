@@ -17,6 +17,7 @@ class CreateMenusTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->longText('description');
+            $table->string('price');
             $table->longText('img');
             $table->string('stock');
             $table->enum('status', ['Available', 'Unavailable']);
