@@ -15,11 +15,11 @@ class CreateMenusTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->longText('img');
             $table->string('name');
             $table->longText('description');
+            $table->longText('img');
             $table->string('stock');
-            $table->enum('status', ['available', 'unavailable']);
+            $table->enum('status', ['Available', 'Unavailable']);
             $table->timestamps();
         });
 
