@@ -33,12 +33,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('menus.index') }}" class="nav-link {{ Request::is('dashboard/menus') ? 'active' : '' }}">Menus</a>
-                        </li>
+                        @if (Auth::user())
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('menus.index') }}" class="nav-link {{ Request::is('dashboard/menus') ? 'active' : '' }}">Menus</a>
+                            </li>
+                        @endif
                     </ul>
 
                     {{-- center navbar --}}
