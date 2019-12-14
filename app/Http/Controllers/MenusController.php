@@ -14,7 +14,7 @@ class MenusController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
+        $menus = Menu::orderBy('name', 'asc')->get();
         $number = 1;
 
         // dd($menus);
@@ -40,7 +40,25 @@ class MenusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'name'        => 'string|min:5|required',
+            'description' => 'string|min:10|required',
+            'price'       => 'numeric|digits_between:3,7|required',
+            'img'         => 'string|required',
+            'stock'       => 'numeric|digits_between:1,7|required',
+            'status'      => 'in:Available,Unavailable|required'
+        ]);
+
+        Menu::create([
+            'name'        => ucwords($request['name']),
+            'description' => strtoupper($request['description']),
+            'price'       => $request['price'],
+            'img'         => $request['img'],
+            'stock'       => $request['stock'],
+            'status'      => ucwords($request['status'])
+        ]);
+
+        return ('stored !');
     }
 
     /**
