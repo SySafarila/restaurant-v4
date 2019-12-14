@@ -12,7 +12,7 @@
         @endif
         @foreach ($menus as $menu)
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card mb-4 shadow-sm">
                 <img src="{{ $menu->img }}" alt="Failed" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{{ $menu->name }}</h5>
