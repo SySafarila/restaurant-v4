@@ -46,7 +46,9 @@
                     {{-- center navbar --}}
 
                     <ul class="navbar-nav mx-auto">
-
+                        <li class="nav-item">
+                            <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -62,14 +64,16 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Orders <span class="badge badge-secondary align-middle">3</span></a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link {{ Request::is('dashboard/profile') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <span class="badge badge-dark">6</span> {{ '@' . Auth::user()->username }} <span class="caret"></span>
+                                    {{ '@' . Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="{{ route('profile.index') }}" class="dropdown-item">My Profile</a>
-                                    <a href="#" class="dropdown-item">Orders <span class="badge badge-dark">6</span></a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
