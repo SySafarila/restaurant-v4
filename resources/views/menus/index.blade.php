@@ -81,9 +81,9 @@
             <div class="card mb-4 shadow-sm">
                 <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $menu->name }}</h5>
+                    <a href="{{ route('menus.show', $menu->id) }}" class="card-title h5">{{ $menu->name }}</a>
                     <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p>
-                    <p class="card-text">{{ 'Rp ' . number_format($menu->price) . '-,' }} | {{ 'Stock : ' . $menu->stock}}</p>
+                    <p class="card-text">{{ 'Rp ' . number_format($menu->price) }} | {{ 'Stock : ' . $menu->stock}}</p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
                             <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
@@ -92,7 +92,7 @@
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
                             {{-- <a href="{{ route('menus.destroy', $menu->id) }}" class="btn btn-sm btn-danger">Delete</a> --}}
-                            <a href="#" class="btn btn-sm btn-success">Edit</a>
+                            <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     @endif
                 </div>
