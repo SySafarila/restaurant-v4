@@ -47,22 +47,22 @@ class MenusController extends Controller
         $validate = $request->validate([
             'name'        => 'string|min:5|required',
             'description' => 'string|min:10|required',
-            'price'       => 'numeric|digits_between:3,7|required',
+            'price'       => 'numeric|digits_between:3,9999|required',
             'img'         => 'string|required',
-            'stock'       => 'numeric|digits_between:1,7|required',
+            'stock'       => 'numeric|digits_between:1,9999|required',
             'status'      => 'in:Available,Unavailable|required'
         ]);
 
         Menu::create([
             'name'        => ucwords($request['name']),
-            'description' => strtoupper($request['description']),
+            'description' => ucwords($request['description']),
             'price'       => $request['price'],
             'img'         => $request['img'],
             'stock'       => $request['stock'],
             'status'      => ucwords($request['status'])
         ]);
 
-        return ('stored !');
+        return redirect()->route('menus.index')->with('status', 'Menu added !');
     }
 
     /**
@@ -105,8 +105,11 @@ class MenusController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menu $menu)
+    public function destroy($id)
     {
-        //
+        $menu = Menu::findOrFail($id);
+        $menu->delete();
+
+        return redirect()->route('menus.index')->with('status', 'Menu deleted !');
     }
 }

@@ -36,3 +36,5 @@ Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->name('users.d
 
 // Menus
 Route::get('/dashboard/menus', 'MenusController@index')->name('menus.index');
+Route::post('/dashboard/menus', 'MenusController@store')->name('menus.store');
+Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->name('menus.destroy');
