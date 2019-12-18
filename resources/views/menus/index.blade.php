@@ -83,7 +83,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $menu->name }}</h5>
                     <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p>
-                    <p class="card-text">{{ 'Rp. ' . $menu->price }} | {{ 'Stock : ' . $menu->stock}}</p>
+                    <p class="card-text">{{ 'Rp ' . number_format($menu->price) . '-,' }} | {{ 'Stock : ' . $menu->stock}}</p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
                             <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
