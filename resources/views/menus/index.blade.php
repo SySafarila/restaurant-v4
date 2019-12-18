@@ -5,8 +5,11 @@
 @section('content')
 <div class="container">
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
     <div class="row justify-content-center">
@@ -14,7 +17,7 @@
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Add Menus</h5>
+                        <h5 class="card-title text-center">Add Menu</h5>
                         <form action="{{ route('menus.store') }}" method="post">
                             @csrf
                             @method('POST')
@@ -24,7 +27,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            <textarea name="description" value="{{ old('description') }}" id="" class="form-control form-control-sm mb-1 @error('description') is-invalid @enderror" placeholder="Description" required>{{ old('description') }}</textarea>
+                            <textarea rows="5" name="description" value="{{ old('description') }}" id="" class="form-control form-control-sm mb-1 @error('description') is-invalid @enderror" placeholder="Description" required>{{ old('description') }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -44,7 +47,7 @@
                             @enderror
                             <div class="form-row" style="margin-bottom:-12px;">
                                 <div class="form-group col">
-                                    <input type="number" name="stock" value="{{ old('stock') }}" id="" class="form-control form-control-sm @error('stock') is-invalid @enderror" placeholder="stock" required>
+                                    <input type="number" name="stock" value="{{ old('stock') }}" id="" class="form-control form-control-sm @error('stock') is-invalid @enderror" placeholder="Stock" required>
                                         @error('stock')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -64,7 +67,10 @@
                                         @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-success btn-block">Add</button>
+                            <div class="row justify-content-center">
+                                <button type="submit" class="btn btn-sm btn-success mr-2 col-5">Add</button>
+                                <button type="reset" class="btn btn-sm btn-danger ml-2 col-5">Cancel</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -73,11 +79,11 @@
         @foreach ($menus as $menu)
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                {{-- <img src="{{ $menu->img }}" alt="Failed" class="card-img-top"> --}}
+                <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{{ $menu->name }}</h5>
-                    <p class="card-text">{{ $menu->description }}</p>
-                    <p class="card-text">{{ 'Rp' . $menu->price }} | {{ 'Stock : ' . $menu->stock}}</p>
+                    <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p>
+                    <p class="card-text">{{ 'Rp. ' . $menu->price }} | {{ 'Stock : ' . $menu->stock}}</p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
                             <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
