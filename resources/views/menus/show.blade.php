@@ -30,6 +30,15 @@
                             {{-- <a href="{{ route('menus.destroy', $menu->id) }}" class="btn btn-sm btn-danger">Delete</a> --}}
                             <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
                         </div>
+                    @else
+                    <form action="#" method="post">
+                        @csrf
+                        <input type="hidden" name="" value="{{ $menu->id }}">
+                        <div class="row px-3">
+                            <input type="number" name="quantity" id="" class="form-control form-control-sm col" placeholder="Quantity">
+                            <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
+                        </div>
+                    </form>
                     @endif
                 </div>
             </div>

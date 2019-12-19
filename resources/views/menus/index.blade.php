@@ -67,10 +67,10 @@
                                         @enderror
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <button type="submit" class="btn btn-sm btn-success mr-2 col-5">Add</button>
-                                <button type="reset" class="btn btn-sm btn-danger ml-2 col-5">Cancel</button>
-                            </div>
+                            {{-- <div class="row"> --}}
+                                <button type="submit" class="btn btn-sm btn-success btn-block" style="margin-bottom:-4px;" >Add</button>
+                                <button type="reset" class="btn btn-sm btn-danger btn-block">Reset</button>
+                            {{-- </div> --}}
                         </form>
                     </div>
                 </div>
@@ -91,6 +91,15 @@
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
                             </div>
+                        @else
+                            <form action="#" method="post">
+                                @csrf
+                                <input type="hidden" name="" value="{{ $menu->id }}">
+                                <div class="row px-3">
+                                    <input type="number" name="quantity" id="" class="form-control form-control-sm col" placeholder="Quantity">
+                                    <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
+                                </div>
+                            </form>
                         @endif
                     </div>
                 </div>
