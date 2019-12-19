@@ -78,7 +78,7 @@
                                     {{ '@' . Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right mb-2" aria-labelledby="navbarDropdown">
                                     <a href="{{ route('profile.index') }}" class="dropdown-item">My Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -92,7 +92,7 @@
                                 </div>
                             </li>
                             {{-- mobile --}}
-                            <li class="nav-item d-sm-block d-md-none mt-2">
+                            <li class="nav-item d-sm-block d-md-none">
                                 {{-- <form action="#" method="get"> --}}
                                     <div class="d-flex">
                                         <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
