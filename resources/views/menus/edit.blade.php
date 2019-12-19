@@ -14,7 +14,7 @@
     @endif
     <div class="row justify-content-center">
         @if (Auth::user()->level == 'Admin')
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title text-center">Add Menu</h5>
@@ -27,7 +27,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            <textarea rows="5" name="description" value="" id="" class="form-control form-control-sm mb-1 @error('description') is-invalid @enderror" placeholder="Description" required>{{ $menu->description }}</textarea>
+                            <textarea rows="10" name="description" value="" id="" class="form-control form-control-sm mb-1 @error('description') is-invalid @enderror" placeholder="Description" required>{{ $menu->description }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

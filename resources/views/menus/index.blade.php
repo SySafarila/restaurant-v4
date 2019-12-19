@@ -86,13 +86,12 @@
                     <p class="card-text">{{ 'Rp ' . number_format($menu->price) }} | {{ 'Stock : ' . $menu->stock}}</p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
+                            <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
                             <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
-                            {{-- <a href="{{ route('menus.destroy', $menu->id) }}" class="btn btn-sm btn-danger">Delete</a> --}}
-                            <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     @endif
                 </div>
