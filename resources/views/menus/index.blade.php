@@ -13,8 +13,8 @@
         </div>
     @endif
     <div class="row justify-content-center">
-        @if (Auth::user()->level == 'Admin')
-            <div class="col-md-4">
+        <div class="card-columns mx-3">
+            @if (Auth::user()->level == 'Admin')
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title text-center">Add Menu</h5>
@@ -74,30 +74,28 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        @endif
-        @foreach ($menus as $menu)
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
-                <div class="card-body">
-                    <a href="{{ route('menus.show', $menu->id) }}" class="card-title h5 text-success text-decoration-none">{{ $menu->name }}</a>
-                    <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p>
-                    <p class="card-text">{{ 'Rp ' . number_format($menu->price) }} | {{ 'Stock : ' . $menu->stock}}</p>
-                    @if (Auth::user()->level == 'Admin')
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
-                            <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                            </form>
-                        </div>
-                    @endif
+            @endif
+            @foreach ($menus as $menu)
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
+                    <div class="card-body">
+                        <a href="{{ route('menus.show', $menu->id) }}" class="card-title h5 text-success text-decoration-none">{{ $menu->name }}</a>
+                        <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p>
+                        <p class="card-text">{{ 'Rp ' . number_format($menu->price) }} | {{ 'Stock : ' . $menu->stock}}</p>
+                        @if (Auth::user()->level == 'Admin')
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
+                                <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
 </div>
 @endsection
