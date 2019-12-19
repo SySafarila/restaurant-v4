@@ -45,7 +45,7 @@
 
                     {{-- center navbar --}}
                     @if (Auth::user())
-                    <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav mx-auto d-none d-md-block">
                         <li class="nav-item">
                             {{-- <form action="#" method="get"> --}}
                                 <div class="d-flex">
@@ -90,6 +90,15 @@
                                         @csrf
                                     </form>
                                 </div>
+                            </li>
+                            {{-- mobile --}}
+                            <li class="nav-item d-sm-block d-md-none mt-2">
+                                {{-- <form action="#" method="get"> --}}
+                                    <div class="d-flex">
+                                        <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
+                                        <button type="submit" class="btn btn-sm btn-success ml-1">Search</button>
+                                    </div>
+                                {{-- </form> --}}
                             </li>
                         @endguest
                     </ul>
