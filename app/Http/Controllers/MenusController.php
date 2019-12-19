@@ -75,7 +75,7 @@ class MenusController extends Controller
     {
         $menu = Menu::findOrFail($id);
 
-        return $menu;
+        // return $menu;
 
         return view('menus.show', ['menu' => $menu]);
     }
@@ -90,7 +90,7 @@ class MenusController extends Controller
     {
         $menu = Menu::findOrFail($id);
 
-        return $menu;
+        // return $menu;
 
         return view('menus.edit', ['menu' => $menu]);
     }

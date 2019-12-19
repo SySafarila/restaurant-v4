@@ -44,12 +44,18 @@
                     </ul>
 
                     {{-- center navbar --}}
-
+                    @if (Auth::user())
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
+                            {{-- <form action="#" method="get"> --}}
+                                <div class="d-flex">
+                                    <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
+                                    <button type="submit" class="btn btn-sm btn-success ml-1">Search</button>
+                                </div>
+                            {{-- </form> --}}
                         </li>
                     </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
