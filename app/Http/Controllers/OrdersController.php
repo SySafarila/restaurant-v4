@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,10 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user()->id;
+        $orders = User::findOrFail($user)->orders;
+
+        return $orders;
     }
 
     /**
@@ -39,8 +43,9 @@ class OrdersController extends Controller
     {
         // Validation
         $validation = $request->validate([
-            'menu'     => 'numeric|exists:menus,id',
-            'quantity' => 'numeric|min:1|max:10000'
+            'menu'     => 'numeric|exists:menus,id|required',
+            'quantity' => 'numeric|min:1|max:10000|required',
+            'status'   => 'in:Pending,Cooking,Success|required'
         ]);
 
         // Parameter for input to database

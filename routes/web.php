@@ -43,4 +43,5 @@ Route::post('/dashboard/menus', 'MenusController@store')->name('menus.store');
 Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->name('menus.destroy');
 
 // Orders
+Route::get('/dashboard/orders', 'OrdersController@index')->name('orders.index');
 Route::post('/dashboard/orders', 'OrdersController@store')->name('orders.store');
