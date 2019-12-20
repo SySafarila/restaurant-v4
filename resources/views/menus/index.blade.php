@@ -92,14 +92,19 @@
                                 </form>
                             </div>
                         @else
-                            <form action="{{ route('orders.store') }}" method="post">
+                            {{-- <form action="{{ route('orders.store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="menu" value="{{ $menu->id }}">
                                 <div class="row px-3">
-                                    <input type="number" name="quantity" class="form-control form-control-sm col" placeholder="Quantity">
+                                    <input type="text" name="quantity" class="form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity">
                                     <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
+                                        @error('quantity')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                 </div>
-                            </form>
+                            </form> --}}
                         @endif
                     </div>
                 </div>

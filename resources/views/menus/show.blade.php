@@ -31,12 +31,17 @@
                             <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     @else
-                    <form action="#" method="post">
+                    <form action="{{ route('orders.store') }}" method="post">
                         @csrf
-                        <input type="hidden" name="" value="{{ $menu->id }}">
+                        <input type="hidden" name="menu" value="{{ $menu->id }}">
                         <div class="row px-3">
-                            <input type="number" name="quantity" id="" class="form-control form-control-sm col" placeholder="Quantity">
+                            <input type="numeric" name="quantity" class="form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity">
                             <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
+                                @error('quantity')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                     </form>
                     @endif

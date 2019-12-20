@@ -39,7 +39,7 @@ class OrdersController extends Controller
     {
         $validation = $request->validate([
             'menu' => 'numeric|exists:menus,id',
-            'quantity' => 'numeric|min:1|digits_between:1,999999'
+            'quantity' => 'numeric|min:1|max:10000'
         ]);
         $user = Auth::user();
 
