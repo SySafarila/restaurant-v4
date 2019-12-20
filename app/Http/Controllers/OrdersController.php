@@ -19,7 +19,7 @@ class OrdersController extends Controller
     {
         $number = 1;
         $user   = Auth::user()->id;
-        $orders = User::find($user)->orders;
+        $orders = User::find($user)->orders->where('status', 'Pending');
 
         // return $orders;
 
@@ -49,7 +49,6 @@ class OrdersController extends Controller
         $validation = $request->validate([
             'menu'     => 'numeric|exists:menus,id|required',
             'quantity' => 'numeric|min:1|max:10000|required',
-            'status'   => 'in:Pending,Cooking,Success|required'
         ]);
 
         // Parameter for input to database
