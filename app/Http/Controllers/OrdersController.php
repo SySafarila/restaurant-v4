@@ -17,7 +17,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->id;
+        $user   = Auth::user()->id;
         $orders = User::findOrFail($user)->orders;
 
         return $orders;
