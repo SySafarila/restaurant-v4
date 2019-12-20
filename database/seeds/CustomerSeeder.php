@@ -15,12 +15,12 @@ class CustomerSeeder extends Seeder
             'name' => 'Customer',
             'username' => 'customer',
             'email' => 'customer@gmail.com',
-            'phone' => '082100000000',
+            'phone' => '082100000001',
             'address' => 'Sillicon Valley, Internet',
             'gender' => 'Male',
             'level' => 'Customer',
             'status' => 'Active',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('customer'),
         ]);
         //php artisan db:seed --class=CustomerSeeder
     }

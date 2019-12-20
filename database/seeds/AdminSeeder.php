@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             'gender' => 'Male',
             'level' => 'Admin',
             'status' => 'Active',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('admin'),
         ]);
         //php artisan db:seed --class=AdminSeeder
     }
