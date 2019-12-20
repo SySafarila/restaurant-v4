@@ -92,11 +92,12 @@
                                 </form>
                             </div>
                         @else
-                            <form action="#" method="post">
+                            <form action="{{ route('orders.store') }}" method="post">
                                 @csrf
-                                <input type="hidden" name="" value="{{ $menu->id }}">
+                                <input type="hidden" name="menu" value="{{ Crypt::encryptString($menu->id) }}">
+                                <input type="hidden" name="user" value="{{ Crypt::encryptString(Auth::user()->id) }}">
                                 <div class="row px-3">
-                                    <input type="number" name="quantity" id="" class="form-control form-control-sm col" placeholder="Quantity">
+                                    <input type="number" name="quantity" class="form-control form-control-sm col" placeholder="Quantity">
                                     <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
                                 </div>
                             </form>

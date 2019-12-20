@@ -41,3 +41,6 @@ Route::patch('/dashboard/menu/{id}', 'MenusController@update')->name('menus.upda
 Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->name('menus.edit');
 Route::post('/dashboard/menus', 'MenusController@store')->name('menus.store');
 Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->name('menus.destroy');
+
+// Orders
+Route::post('/dashboard/orders', 'OrdersController@store')->name('orders.store');
