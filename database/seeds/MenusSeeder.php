@@ -16,10 +16,10 @@ class MenusSeeder extends Seeder
         foreach (range(1,20) as $index)
         {
 	        DB::table('menus')->insert([
-	            'name' => $faker->text($maxNbChars = 20),
-                'description' => $faker->text($maxNbChars = 100),
+	            'name' => 'Nasi Goreng',
+                'description' => 'lorem ipsum dolor sit amet bla bla bla bla bla blablabla bla',
                 'price' => 10000,
-                'img' => $faker->imageUrl($width = 640, $height = 480),
+                'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSTX80vgg6_6gwliroivmk4Vtqx3p11E1XC4Qb-hVyg6YIag-DD',
                 'stock' => 99,
                 'status' => 'Available',
             ]);
