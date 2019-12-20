@@ -17,11 +17,17 @@ class OrdersController extends Controller
      */
     public function index()
     {
+        $number = 1;
         $user   = Auth::user()->id;
-        $orders = User::findOrFail($user)->orders;
-        $menus   = Menu::findOrFail($orders);
+        $orders = User::find($user)->orders;
 
-        return $menus;
+        // Total
+        //
+
+        // return $total;
+
+
+        return view('orders.index', ['number' => $number, 'orders' => $orders]);
     }
 
     /**
