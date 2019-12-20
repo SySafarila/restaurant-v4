@@ -37,25 +37,26 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+        // Validation
         $validation = $request->validate([
             'menu' => 'numeric|exists:menus,id',
             'quantity' => 'numeric|min:1|max:10000'
         ]);
 
-        $user = Auth::user();
-
+        // Parameter for input to database
+        $user_id = Auth::user()->id;
         $menu_id = $request['menu'];
-
-        $menu = Menu::findOrFail($menu_id);
-
         $quantity = $request['quantity'];
+        $price = Menu::findOrFail($menu_id)->price;
+        $total = $price * $quantity;
 
+        // Input to database
         $order = Order::create([
-            'user_id' => $user->id,
+            'user_id' => $user_id,
             'menu_id' => $menu_id,
-            'quantity' => $request['quantity'],
-            'price' => $menu->price,
-            'total' => $menu->price * $quantity ,
+            'quantity' => $quantity,
+            'price' => $price,
+            'total' => $total,
         ]);
 
         return ('added');
