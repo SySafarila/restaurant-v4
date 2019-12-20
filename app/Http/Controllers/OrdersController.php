@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
@@ -35,11 +37,19 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Crypt::decryptString($request['user']);
-        $menu = Crypt::decryptString($request['menu']);
-        $quantity = $request['quantity'];
+        $validation = $request->validate([
+            'menu' => 'numeric|exists:menus,id',
+            'quantity' => 'numeric|min:1|digits_between:1,999999'
+        ]);
+        $user = Auth::user();
 
-        return 'Menu id : ' . $menu . ' user id : ' . $user . ' Quantity : ' . $quantity;
+        $order = Order::create([
+            'user_id' => $user->id,
+            'menu_id' => $request['menu'],
+            'quantity' => $request['quantity'],
+        ]);
+
+        return $order;
     }
 
     /**

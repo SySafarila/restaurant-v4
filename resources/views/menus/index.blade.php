@@ -94,8 +94,7 @@
                         @else
                             <form action="{{ route('orders.store') }}" method="post">
                                 @csrf
-                                <input type="hidden" name="menu" value="{{ Crypt::encryptString($menu->id) }}">
-                                <input type="hidden" name="user" value="{{ Crypt::encryptString(Auth::user()->id) }}">
+                                <input type="hidden" name="menu" value="{{ $menu->id }}">
                                 <div class="row px-3">
                                     <input type="number" name="quantity" class="form-control form-control-sm col" placeholder="Quantity">
                                     <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
