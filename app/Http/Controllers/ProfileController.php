@@ -88,21 +88,21 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $validate = $request->validate([
-            'name' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
+            'name'     => 'required|min:3|regex:/^[\pL\s\-]+$/u',
             'username' => 'required|min:5|regex:[^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$]|'. Rule::unique('users')->ignore($user->id),
-            'phone' => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($user->id),
-            'address' => 'required|min:7|string',
-            'gender' => 'required|in:Female,Male',
+            'phone'    => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($user->id),
+            'address'  => 'required|min:7|string',
+            'gender'   => 'required|in:Female,Male',
             // 'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
             // 'status' => 'required|in:Active,Nonactive',
         ]);
         $user = Auth::user();
         $edit = User::where('id', $user->id)->update([
-            'name' => ucwords($request['name']), //uppercase for each word
+            'name'     => ucwords($request['name']), //uppercase for each word
             'username' => strtolower($request['username']), //lowercase for each word
-            'phone' => $request['phone'],
-            'address' => ucwords($request['address']), //uppercase for each word
-            'gender' => $request['gender'],
+            'phone'    => $request['phone'],
+            'address'  => ucwords($request['address']), //uppercase for each word
+            'gender'   => $request['gender'],
             // 'level' => $request['level'],
             // 'status' => $request['status'],
         ]);
@@ -121,12 +121,12 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $validate = $request->validate([
-            'email' => 'required|min:13|email|'. Rule::unique('users')->ignore($user->id),
+            'email'    => 'required|min:13|email|'. Rule::unique('users')->ignore($user->id),
             'password' => 'required|string|min:8|confirmed'
         ]);
         
         $edit = User::where('id', $user->id)->update([
-            'email' => strtolower($request['email']),
+            'email'    => strtolower($request['email']),
             'password' => Hash::make($request['password']),
         ]);
         return redirect()->route('profile.index')->with('status', 'Login Information Updated !');
@@ -141,7 +141,7 @@ class ProfileController extends Controller
      */
     public function destroy()
     {
-        $user = Auth::user();
+        $user   = Auth::user();
         $delete = User::find($user->id);
         $delete->delete();
         

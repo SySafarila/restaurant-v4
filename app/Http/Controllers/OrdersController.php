@@ -39,26 +39,26 @@ class OrdersController extends Controller
     {
         // Validation
         $validation = $request->validate([
-            'menu' => 'numeric|exists:menus,id',
+            'menu'     => 'numeric|exists:menus,id',
             'quantity' => 'numeric|min:1|max:10000'
         ]);
 
         // Parameter for input to database
-        $user_id = Auth::user()->id;
-        $menu_id = $request['menu'];
+        $user_id  = Auth::user()->id;
+        $menu_id  = $request['menu'];
         $quantity = $request['quantity'];
-        $price = Menu::findOrFail($menu_id)->price;
-        $total = $price * $quantity;
-        $status = 'Pending';
+        $price    = Menu::findOrFail($menu_id)->price;
+        $total    = $price * $quantity;
+        $status   = 'Pending';
 
         // Input to database
         $order = Order::create([
-            'user_id' => $user_id,
-            'menu_id' => $menu_id,
+            'user_id'  => $user_id,
+            'menu_id'  => $menu_id,
             'quantity' => $quantity,
-            'price' => $price,
-            'total' => $total,
-            'status' => $status,
+            'price'    => $price,
+            'total'    => $total,
+            'status'   => $status,
         ]);
 
         return redirect()->route('menus.index')->with('status', 'Added to Orders');

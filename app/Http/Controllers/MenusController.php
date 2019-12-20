@@ -18,7 +18,7 @@ class MenusController extends Controller
      */
     public function index()
     {
-        $menus = Menu::orderBy('name', 'asc')->get();
+        $menus  = Menu::orderBy('name', 'asc')->get();
         $number = 1;
 
         // dd($menus);
