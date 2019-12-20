@@ -19,8 +19,9 @@ class OrdersController extends Controller
     {
         $user   = Auth::user()->id;
         $orders = User::findOrFail($user)->orders;
+        $menus   = Menu::findOrFail($orders);
 
-        return $orders;
+        return $menus;
     }
 
     /**
