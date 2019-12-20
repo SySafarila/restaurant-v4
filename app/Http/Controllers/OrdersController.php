@@ -49,6 +49,7 @@ class OrdersController extends Controller
         $quantity = $request['quantity'];
         $price = Menu::findOrFail($menu_id)->price;
         $total = $price * $quantity;
+        $status = 'Pending';
 
         // Input to database
         $order = Order::create([
@@ -57,9 +58,10 @@ class OrdersController extends Controller
             'quantity' => $quantity,
             'price' => $price,
             'total' => $total,
+            'status' => $status,
         ]);
 
-        return ('added');
+        return redirect()->route('menus.index')->with('status', 'Added to Orders');
     }
 
     /**
