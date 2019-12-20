@@ -28,13 +28,13 @@
                                         <td class="text-center">{{ $number++ }}</td>
                                         <td>{{ $order->menu->name }}</td>
                                         <td class="text-center">{{ $order->quantity }}</td>
-                                        <td class="text-center">{{ $order->menu->price }}</td>
-                                        <td class="text-center">{{ $order->menu->price * $order->quantity }}</td>
+                                        <td class="text-center">{{ number_format($order->menu->price) }}</td>
+                                        <td class="text-center">{{ number_format($order->menu->price * $order->quantity) }}</td>
                                     </tr>
                                 @endforeach
                                     <tr>
                                         <td colspan="4" class="text-center">Total</td>
-                                        <td class="text-center">{{ __('asd') }}</td>
+                                        <td class="text-center">{{ number_format($orders->sum('total')) }}</td>
                                     </tr>
                             </tbody>
                         </table>

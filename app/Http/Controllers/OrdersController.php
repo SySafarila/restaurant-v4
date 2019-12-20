@@ -21,10 +21,7 @@ class OrdersController extends Controller
         $user   = Auth::user()->id;
         $orders = User::find($user)->orders;
 
-        // Total
-        //
-
-        // return $total;
+        // return $orders;
 
 
         return view('orders.index', ['number' => $number, 'orders' => $orders]);
