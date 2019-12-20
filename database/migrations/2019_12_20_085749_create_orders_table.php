@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->longText('user_id');
             $table->longText('menu_id');
             $table->longText('quantity');
+            $table->integer('price');
+            $table->integer('total');
             $table->timestamps();
         });
     }
