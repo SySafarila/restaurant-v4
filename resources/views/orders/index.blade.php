@@ -32,10 +32,16 @@
                                         <td class="text-center">{{ number_format($order->menu->price * $order->quantity) }}</td>
                                     </tr>
                                 @endforeach
-                                    <tr>
-                                        <td colspan="4" class="text-center">Total</td>
-                                        <td class="text-center">{{ number_format($orders->sum('total')) }}</td>
-                                    </tr>
+                                @if ($orders->sum('total') < 1)
+                                <tr>
+                                    <td colspan="5" class="text-center">Empty</td>
+                                </tr>
+                                @else
+                                <tr>
+                                    <td colspan="4" class="text-center">Total</td>
+                                    <td class="text-center">{{ number_format($orders->sum('total')) }}</td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
