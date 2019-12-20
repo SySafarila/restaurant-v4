@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Menu;
 use App\Order;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
@@ -41,15 +41,24 @@ class OrdersController extends Controller
             'menu' => 'numeric|exists:menus,id',
             'quantity' => 'numeric|min:1|max:10000'
         ]);
+
         $user = Auth::user();
+
+        $menu_id = $request['menu'];
+
+        $menu = Menu::findOrFail($menu_id);
+
+        $quantity = $request['quantity'];
 
         $order = Order::create([
             'user_id' => $user->id,
-            'menu_id' => $request['menu'],
+            'menu_id' => $menu_id,
             'quantity' => $request['quantity'],
+            'price' => $menu->price,
+            'total' => $menu->price * $quantity ,
         ]);
 
-        return $order;
+        return ('added');
     }
 
     /**

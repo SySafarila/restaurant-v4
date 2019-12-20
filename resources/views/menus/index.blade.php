@@ -79,7 +79,7 @@
                 <div class="card mb-4 shadow-sm">
                     <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
                     <div class="card-body">
-                        <a href="{{ route('menus.show', $menu->id) }}" class="card-title h5 text-success text-decoration-none">{{ $menu->name }}</a>
+                        <a href="{{ route('menus.show', $menu->id) }}" class="card-title h5 text-success text-decoration-none stretched-link">{{ $menu->name }}</a>
                         <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p>
                         <p class="card-text">{{ 'Rp ' . number_format($menu->price) }} | {{ 'Stock : ' . $menu->stock}}</p>
                         @if (Auth::user()->level == 'Admin')

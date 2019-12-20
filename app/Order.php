@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'menu_id', 'quantity'];
+    protected $fillable = ['user_id', 'menu_id', 'quantity', 'price', 'total'];
 
     // Relationship
     public function user()
