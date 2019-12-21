@@ -71,7 +71,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Orders <span class="badge badge-secondary align-middle">1</span></a>
+                                <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('dashboard/orders') ? 'active' : '' }}">My Orders</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link {{ Request::is('dashboard/profile') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

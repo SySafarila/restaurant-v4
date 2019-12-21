@@ -14,11 +14,11 @@
                             <thead>
                                 <tr>
                                     <div class="row">
-                                        <th class="text-center" style="width:10%;">No</th>
+                                        <th class="text-center">No</th>
                                         <th>Name</th>
-                                        <th class="text-center" style="width:10%;">Quantity</th>
-                                        <th class="text-center" style="width:10%;">Price</th>
-                                        <th class="text-center" style="width:10%;">Total</th>
+                                        <th class="text-center">Quantity</th>
+                                        <th class="text-center">Price</th>
+                                        <th class="text-center">Total</th>
                                     </div>
                                 </tr>
                             </thead>
@@ -38,8 +38,8 @@
                                 </tr>
                                 @else
                                 <tr>
-                                    <td colspan="4" class="text-center">Total</td>
-                                    <td class="text-center">{{ number_format($orders->sum('total')) }}</td>
+                                    <td colspan="4" class="text-center align-middle">Total ( Rp )</td>
+                                    <td class="text-center align-middle">{{ number_format($orders->sum('total')) }}</td>
                                 </tr>
                                 @endif
                             </tbody>
