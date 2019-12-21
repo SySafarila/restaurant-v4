@@ -69,7 +69,7 @@ class OrdersController extends Controller
             'status'   => $status,
         ]);
 
-        return redirect()->route('menus.index')->with('status', 'Added to Orders');
+        return redirect()->route('menus.index')->with('status', 'Added to ');
     }
 
     /**
