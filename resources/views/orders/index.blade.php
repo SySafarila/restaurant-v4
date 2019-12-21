@@ -25,11 +25,11 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                     <tr>
-                                        <td class="text-center">{{ $number++ }}</td>
-                                        <td>{{ $order->menu->name }}</td>
-                                        <td class="text-center">{{ $order->quantity }}</td>
-                                        <td class="text-center">{{ number_format($order->menu->price) }}</td>
-                                        <td class="text-center">{{ number_format($order->menu->price * $order->quantity) }}</td>
+                                        <td class="text-center align-middle">{{ $number++ }}</td>
+                                        <td class="align-middle">{{ $order->menu->name }}</td>
+                                        <td class="text-center align-middle">{{ $order->quantity }}</td>
+                                        <td class="text-center align-middle">{{ number_format($order->menu->price) }}</td>
+                                        <td class="text-center align-middle">{{ number_format($order->menu->price * $order->quantity) }}</td>
                                     </tr>
                                 @endforeach
                                 @if ($orders->sum('total') < 1)
