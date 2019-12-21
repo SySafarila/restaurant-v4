@@ -17,7 +17,7 @@
             <div class="card mb-4 shadow-sm">
                 <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $menu->name }}</h5>
+                    <h5 class="card-title text-success">{{ $menu->name }}</h5>
                     <p class="card-text">{{ $menu->description }}</p>
                     <p class="card-text">{{ 'Rp ' . number_format($menu->price) }} | {{ 'Stock : ' . $menu->stock}}</p>
                     @if (Auth::user()->level == 'Admin')
