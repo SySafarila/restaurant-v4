@@ -119,4 +119,12 @@ class OrdersController extends Controller
 
         return redirect()->route('orders.index')->with('status', 'Orders deleted');
     }
+
+    public function destroyOne($id)
+    {
+        $user   = Auth::user()->id;
+        $orders = Order::where('user_id', $user)->where('status', 'Pending')->where('id', $id)->delete();
+
+        return redirect()->route('orders.index')->with('status', 'Order deleted');
+    }
 }

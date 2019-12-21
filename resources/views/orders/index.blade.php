@@ -7,11 +7,15 @@
 @section('content')
     <div class="container">
         @if (session('status'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('status') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-sm-12">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         @endif
         <div class="row justify-content-center">
@@ -33,7 +37,16 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td class="text-center align-middle">{{ $number++ }}</td>
-                                            <td class="align-middle">{{ $order->menu->name }}</td>
+                                            <td class="align-middle">
+                                                {{ $order->menu->name }} - <a class="text-danger text-decoration-none" href="{{ route('orders.destroyOne', $order->id) }}" onclick="event.preventDefault(); document.getElementById('orders.destroyOne').submit();">{{ __('Delete') }}</a>
+                                                <form id="orders.destroyOne" action="{{ route('orders.destroyOne', $order->id) }}" method="post" class="d-none">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <div class="d-flex justify-content-center">
+                                                        <button class="btn btn-sm btn-outline-danger" type="submit">destroyOne</button>
+                                                    </div>
+                                                </form>
+                                            </td>
                                             <td class="text-center align-middle">{{ $order->quantity }}</td>
                                             <td class="text-center align-middle">{{ number_format($order->menu->price) }}</td>
                                             <td class="text-center align-middle">{{ number_format($order->menu->price * $order->quantity) }}</td>
