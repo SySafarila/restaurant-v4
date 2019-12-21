@@ -62,7 +62,7 @@ class MenusController extends Controller
             'status'      => ucwords($request['status'])
         ]);
 
-        return redirect()->route('menus.index')->with('status', 'Menu added !');
+        return redirect()->route('menus.index')->with('status_menu', 'Menu added !');
     }
 
     /**
@@ -122,7 +122,7 @@ class MenusController extends Controller
             'status'      => ucwords($request['status'])
         ]);
 
-        return redirect()->route('menus.index')->with('status', 'Menu edited !');
+        return redirect()->route('menus.index')->with('status_menu', 'Menu edited !');
     }
 
     /**

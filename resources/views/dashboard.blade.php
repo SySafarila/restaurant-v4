@@ -68,40 +68,40 @@
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="{{ route('menus.index') }}" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark">Menus Panel</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                            <h5 class="card-title text-dark">Menus List</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Organizer Foods, Drinks, Desserts, Cakes, Etc</h6>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="{{ route('users.index') }}" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark">Users Panel</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                            <h5 class="card-title text-dark">Users List</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Organizer Users</h6>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="#" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark">Employees Panel</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                            <h5 class="card-title text-dark">Employees List</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Organizer Employees</h6>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="#" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark">Transactions Panel</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                            <h5 class="card-title text-dark">Transactions List</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Organizer Transactions</h6>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card">
                                         <a href="{{ route('orders.index') }}" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark">Orders Panel</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                            <h5 class="card-title text-dark">Orders List</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Organizer Orders</h6>
                                         </a>
                                     </div>
                                 </div>
@@ -134,29 +134,27 @@
                                             <div class="col-md-4 col-12 mb-4">
                                                 <div class="card">
                                                     <a href="{{ route('menus.index') }}" class="card-body text-decoration-none">
-                                                        <h5 class="card-title text-dark">Menus Panel</h5>
-                                                        <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                                        <h5 class="card-title text-dark">Menus List</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">Foods, Drinks, Desserts, Cakes, Etc.</h6>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 col-12 mb-4">
                                                 <div class="card">
                                                     <a href="{{ route('orders.index') }}" class="card-body text-decoration-none">
-                                                        <h5 class="card-title text-dark">Orders Panel</h5>
-                                                        <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                                        <h5 class="card-title text-dark">My Orders</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">Pending, Cooking, Success</h6>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 col-12 mb-4">
                                                 <div class="card">
                                                     <a href="#" class="card-body text-decoration-none">
-                                                        <h5 class="card-title text-dark">Transactions Panel</h5>
-                                                        <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                                        <h5 class="card-title text-dark">Transactions List</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">Invoices</h6>
                                                     </a>
                                                 </div>
                                             </div>
-                                        @else
-                                            
                                         @endif
                                     @endif
                                 @endif
