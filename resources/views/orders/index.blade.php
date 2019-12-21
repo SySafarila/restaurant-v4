@@ -26,13 +26,13 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <div class="row">
+                                        {{-- <div class="row"> --}}
                                             <th class="text-center">No</th>
-                                            <th class="text-left col-6">Name</th>
+                                            <th class="text-left" style="min-width:160px;">Name</th>
                                             <th class="text-center">Quantity</th>
                                             <th class="text-center">Price</th>
                                             <th class="text-center">Total</th>
-                                        </div>
+                                        {{-- </div> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
