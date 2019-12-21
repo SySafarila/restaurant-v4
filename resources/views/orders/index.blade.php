@@ -14,10 +14,10 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">No</th>
+                                        <th class="text-center" style="width:25px;">No</th>
                                         <th>Name</th>
-                                        <th class="text-center">Quantity</th>
-                                        <th class="text-center">Price</th>
+                                        <th class="text-center" style="width:25px;">Quantity</th>
+                                        <th class="text-center" style="width:25px;">Price</th>
                                         <th class="text-center">Total</th>
                                     </tr>
                                 </thead>
@@ -37,8 +37,8 @@
                                     </tr>
                                     @else
                                     <tr>
-                                        <td colspan="4" class="text-center align-middle">Total ( Rp )</td>
-                                        <td class="text-center align-middle">{{ number_format($orders->sum('total')) }}</td>
+                                        <td colspan="4" class="text-center align-middle font-weight-bold text-success">Total ( Rp )</td>
+                                        <td class="text-center align-middle text-success font-weight-bold">{{ number_format($orders->sum('total')) }}</td>
                                     </tr>
                                     @endif
                                 </tbody>
@@ -46,14 +46,14 @@
                         </div>
                         @if (count($orders) < 1)
                         <div class="d-flex justify-content-center">
-                            <a href="{{ route('menus.index') }}" class="btn btn-sm btn-success">Go to Menus</a>
+                            <a href="{{ route('menus.index') }}" class="btn btn-sm btn-success">Order Now</a>
                         </div>
                         @else
                             <form action="{{ route('orders.destroy') }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-sm btn-danger" type="submit">Empty Orders</button>
+                                    <button class="btn btn-sm btn-outline-danger" type="submit">Empty Orders</button>
                                 </div>
                             </form>
                         @endif
