@@ -44,6 +44,19 @@
                                 @endif
                             </tbody>
                         </table>
+                        @if (count($orders) < 1)
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('menus.index') }}" class="btn btn-sm btn-success">Go to Menus</a>
+                        </div>
+                        @else
+                            <form action="{{ route('orders.destroy') }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-sm btn-danger" type="submit">Empty Orders</button>
+                                </div>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>

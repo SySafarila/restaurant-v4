@@ -112,8 +112,11 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $user   = Auth::user()->id;
+        $orders = Order::where('user_id', $user)->where('status', 'Pending')->delete();
+
+        return redirect()->route('orders.index')->with('status', 'Orders deleted');
     }
 }
