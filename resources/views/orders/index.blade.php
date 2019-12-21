@@ -20,17 +20,19 @@
         @endif
         <div class="row justify-content-center">
             <div class="col-md-9 col-sm-12">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="width:25px;">No</th>
-                                        <th>Name</th>
-                                        <th class="text-center" style="width:25px;">Quantity</th>
-                                        <th class="text-center" style="width:25px;">Price</th>
-                                        <th class="text-center">Total</th>
+                                        <div class="row">
+                                            <th class="text-center">No</th>
+                                            <th class="text-left col-6">Name</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Total</th>
+                                        </div>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +40,7 @@
                                         <tr>
                                             <td class="text-center align-middle">{{ $number++ }}</td>
                                             <td class="align-middle">
-                                                {{ $order->menu->name }} - <a class="text-danger text-decoration-none" href="{{ route('orders.destroyOne', $order->id) }}" onclick="event.preventDefault(); document.getElementById('orders.destroyOne').submit();">{{ __('Delete') }}</a>
+                                                {{ $order->menu->name }} <a class="text-decoration-none badge badge-danger align-middle" href="{{ route('orders.destroyOne', $order->id) }}" onclick="event.preventDefault(); document.getElementById('orders.destroyOne').submit();">{{ __('Delete') }}</a>
                                                 <form id="orders.destroyOne" action="{{ route('orders.destroyOne', $order->id) }}" method="post" class="d-none">
                                                     @csrf
                                                     @method('delete')

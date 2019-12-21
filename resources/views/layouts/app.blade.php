@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Restaurant V4
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,8 @@
                         <li class="nav-item">
                             {{-- <form action="#" method="get"> --}}
                                 <div class="d-flex">
-                                    <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
+                                    <input type="text" name="" id="" class="form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
+                                    <input type="text" name="" id="" class="form-control form-control-sm d-none d-lg-block" placeholder="What are you looking for ?">
                                     <button type="submit" class="btn btn-sm btn-success ml-1">Search</button>
                                 </div>
                             {{-- </form> --}}
