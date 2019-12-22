@@ -142,7 +142,7 @@
                                             <div class="col-md-4 col-12 mb-4">
                                                 <div class="card shadow-sm">
                                                     <a href="{{ route('orders.index') }}" class="card-body text-decoration-none">
-                                                        <h5 class="card-title text-dark">My Orders</h5>
+                                                        <h5 class="card-title text-dark">My Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->count() }}</span></h5>
                                                         <h6 class="card-subtitle mb-2 text-muted">Pending, Cooking, Success</h6>
                                                     </a>
                                                 </div>
