@@ -154,4 +154,13 @@ class OrdersController extends Controller
     {
         return redirect()->route('orders.index')->with('status_warning', 'Redirected');
     }
+    
+    public function invoices()
+    {
+        $number = 1;
+        $user = Auth::user()->id;
+        $invoices = User::find($user)->orders->where('status', 'Success');
+
+        return view('invoices.index', ['invoices' => $invoices, 'number' => $number]);
+    }
 }

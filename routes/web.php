@@ -51,3 +51,6 @@ Route::get('/dashboard/order/{id}/edit', 'OrdersController@edit')->name('orders.
 Route::patch('/dashboard/order/{id}', 'OrdersController@update')->name('orders.update');
 Route::get('/dashboard/order/{id}', 'OrdersController@show')->name('orders.show');
 Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redirect');
+
+// Invoices
+Route::get('/dashboard/invoices', 'OrdersController@invoices')->name('orders.invoices');

@@ -132,13 +132,13 @@
                                     <div class="card shadow-sm">
                                         <a href="{{ route('orders.index') }}" class="card-body text-decoration-none">
                                             <h5 class="card-title text-dark">My Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Pending, Cooking, Success</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted">Pending, Cooking</h6>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card shadow-sm">
-                                        <a href="#" class="card-body text-decoration-none">
+                                        <a href="{{ route('orders.invoices') }}" class="card-body text-decoration-none">
                                             <h5 class="card-title text-dark">Transactions List</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">Invoices</h6>
                                         </a>

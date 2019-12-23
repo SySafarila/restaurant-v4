@@ -82,7 +82,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right mb-1" aria-labelledby="navbarDropdown">
                                     <a href="{{ route('profile.index') }}" class="dropdown-item">My Profile</a>
-                                    <a href="#" class="dropdown-item">Invoices</a>
+                                    <a href="{{ route('orders.invoices') }}" class="dropdown-item">Invoices</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
