@@ -20,10 +20,10 @@
         @endif
         <div class="row justify-content-center">
             <div class="col-md-9 col-sm-12">
-                <div class="card shadow-sm">
-                    <div class="card-body">
+                {{-- <div class="card shadow-sm"> --}}
+                    {{-- <div class="card-body"> --}}
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered shadow-sm">
                                 <thead>
                                     <tr>
                                         <th colspan="5" class="text-center">Pending</th>
@@ -72,18 +72,18 @@
                         </div>
                         @if (count($orders) < 1)
                         <div class="d-flex justify-content-center">
-                            <a href="{{ route('menus.index') }}" class="btn btn-sm btn-success">Order Now</a>
-                        </div>
+                            <a href="{{ route('menus.index') }}" class="btn btn-sm btn-success mb-3">Order Now</a>
+                        {{-- </div> --}}
                         @else
                             <form action="{{ route('orders.destroy') }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-sm btn-outline-danger" type="submit">Empty Orders</button>
+                                    <button class="btn btn-sm btn-outline-danger mb-3" type="submit">Empty Orders</button>
                                 </div>
                             </form>
                         @endif
-                    </div>
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
