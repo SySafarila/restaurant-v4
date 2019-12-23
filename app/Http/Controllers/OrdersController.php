@@ -99,7 +99,8 @@ class OrdersController extends Controller
         $user = Auth::user()->id;
         $order = Order::where('id', $id)->where('user_id', $user)->firstOrFail();
 
-        return $order;
+        // return $order;
+        return view('orders.edit', ['order' => $order]);
     }
 
     /**
