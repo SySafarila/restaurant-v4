@@ -25,13 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $orders = User::find(Auth::user()->id)->orders;
-
-        $count = count($orders);
-
-        // return $count;
-
-
-        return view('dashboard', ['count' => $count]);
+        return view('dashboard');
     }
 }

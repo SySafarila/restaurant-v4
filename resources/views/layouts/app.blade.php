@@ -19,11 +19,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-white">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+            <div class="container-fluid">
+                <a class="navbar-brand text-success" href="{{ url('/') }}">
                     Restaurant V4
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -50,7 +50,8 @@
                             {{-- <form action="#" method="get"> --}}
                                 <div class="d-flex">
                                     <input type="text" name="" id="" class="form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
-                                    <input type="text" name="" id="" class="form-control form-control-sm d-none d-lg-block" placeholder="What are you looking for ?">
+                                    <input type="text" name="" id="" class="form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
+                                    <input type="text" name="" id="" class="form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
                                     <button type="submit" class="btn btn-sm btn-success ml-1">Search</button>
                                 </div>
                             {{-- </form> --}}
@@ -72,7 +73,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('dashboard/orders') ? 'active' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->count() }}</span></a>
+                                <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('dashboard/orders') ? 'active' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is('dashboard/profile') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

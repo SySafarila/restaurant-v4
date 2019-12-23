@@ -26,6 +26,9 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th colspan="5" class="text-center">Pending</th>
+                                    </tr>
+                                    <tr>
                                         {{-- <div class="row"> --}}
                                             <th class="text-center">No</th>
                                             <th class="text-left" style="min-width:160px;">Name</th>
