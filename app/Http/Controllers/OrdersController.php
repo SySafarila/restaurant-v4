@@ -85,7 +85,7 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->route('orders.index')->with('status_warning', 'Redirected');
     }
 
     /**
@@ -148,5 +148,10 @@ class OrdersController extends Controller
         $orders = Order::where('user_id', $user)->where('status', 'Pending')->where('id', $id)->delete();
 
         return redirect()->route('orders.index')->with('status', 'Order deleted');
+    }
+
+    public function redirect()
+    {
+        return redirect()->route('orders.index')->with('status_warning', 'Redirected');
     }
 }

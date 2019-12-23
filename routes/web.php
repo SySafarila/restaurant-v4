@@ -48,5 +48,6 @@ Route::post('/dashboard/orders', 'OrdersController@store')->name('orders.store')
 Route::delete('/dashboard/orders', 'OrdersController@destroy')->name('orders.destroy');
 Route::delete('/dashboard/orders/{id}', 'OrdersController@destroyOne')->name('orders.destroyOne');
 Route::get('/dashboard/order/{id}/edit', 'OrdersController@edit')->name('orders.edit');
-Route::redirect('/dashboard/order/{id}', '/dashboard/orders');
 Route::patch('/dashboard/order/{id}', 'OrdersController@update')->name('orders.update');
+Route::get('/dashboard/order/{id}', 'OrdersController@show')->name('orders.show');
+Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redirect');

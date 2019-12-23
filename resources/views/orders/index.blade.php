@@ -18,6 +18,18 @@
                 </div>
             </div>
         @endif
+        @if (session('status_warning'))
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-sm-12">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ session('status_warning') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-9 col-sm-12">
                 {{-- <div class="card shadow-sm"> --}}
