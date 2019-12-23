@@ -47,3 +47,4 @@ Route::get('/dashboard/orders', 'OrdersController@index')->name('orders.index');
 Route::post('/dashboard/orders', 'OrdersController@store')->name('orders.store');
 Route::delete('/dashboard/orders', 'OrdersController@destroy')->name('orders.destroy');
 Route::delete('/dashboard/orders/{id}', 'OrdersController@destroyOne')->name('orders.destroyOne');
+Route::get('/dashboard/order/{id}', 'OrdersController@edit')->name('orders.edit');
