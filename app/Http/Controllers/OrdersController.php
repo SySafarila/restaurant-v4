@@ -112,7 +112,20 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'menu'     => 'numeric|exists:menus,id|required',
+            'quantity' => 'numeric|min:1|max:10000|required',
+        ]);
+
+        $menu_id = $request['menu'];
+        $price = Menu::findOrFail($menu_id)->price;
+
+        $edit = Order::where('id', $id)->update([
+            'quantity' => $request['quantity'],
+            'total' => $price * $request['quantity'],
+        ]);
+
+        return redirect()->route('orders.index')->with('status', 'Order Updated !');
     }
 
     /**
