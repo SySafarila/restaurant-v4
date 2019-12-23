@@ -43,7 +43,7 @@
                                         <tr>
                                             <td class="text-center align-middle">{{ $number++ }}</td>
                                             <td class="align-middle">
-                                                {{ $order->menu->name }} <a class="text-decoration-none badge badge-danger align-middle" href="{{ route('orders.destroyOne', $order->id) }}" onclick="event.preventDefault(); document.getElementById('orders.destroyOne').submit();">{{ __('Delete') }}</a>
+                                                {{ $order->menu->name }} <a href="#" class="badge badge-success">Edit</a> <a class="text-decoration-none badge badge-danger align-middle" href="{{ route('orders.destroyOne', $order->id) }}" onclick="event.preventDefault(); document.getElementById('orders.destroyOne').submit();">{{ __('Delete') }}</a>
                                                 <form id="orders.destroyOne" action="{{ route('orders.destroyOne', $order->id) }}" method="post" class="d-none">
                                                     @csrf
                                                     @method('delete')
