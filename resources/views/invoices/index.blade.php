@@ -50,12 +50,17 @@
                             @foreach ($invoices as $invoice)
                                 <tr>
                                     <td class="align-middle text-center">{{ $number++ }}</td>
-                                    <td class="align-middle">{{ $invoice->menu->name }}</td>
+                                    <td class="align-middle">{{ $invoice->menu->name }} @if($invoice->status == 'Cooking') <span class="badge badge-warning">{{ $invoice->status }}</span>@else <span class="badge badge-success">{{ $invoice->status }}</span> @endif</td>
                                     <td class="align-middle text-center">{{ $invoice->quantity }}</td>
                                     <td class="align-middle text-center">{{ number_format($invoice->price) }}</td>
                                     <td class="align-middle text-center font-weight-bold text-success">{{ number_format($invoice->total) }}</td>
                                 </tr>
                             @endforeach
+                            {{-- @if (count($invoices) < 1)
+                            <tr>
+                                <th class="align-middle text-center text-danger" colspan="5">Empty</th>
+                            </tr>
+                            @endif --}}
                         </tbody>
                     </table>
                 </div>

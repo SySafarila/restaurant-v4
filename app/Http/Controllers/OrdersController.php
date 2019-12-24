@@ -158,8 +158,9 @@ class OrdersController extends Controller
     public function invoices()
     {
         $number = 1;
-        $user = Auth::user()->id;
-        $invoices = User::find($user)->orders->where('status', 'Success');
+        $invoices = Auth::user()->orders->where('status', ['Success', 'Cooking'])->get();
+
+        return $invoices;
 
         return view('invoices.index', ['invoices' => $invoices, 'number' => $number]);
     }
