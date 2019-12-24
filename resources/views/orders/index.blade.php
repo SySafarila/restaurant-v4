@@ -55,9 +55,11 @@
                                         <tr>
                                             <td class="text-center align-middle">{{ $number++ }}</td>
                                             <td class="align-middle">
-                                                {{ $order->menu->name }}
+                                                {{ $order->menu->name }} <span class="badge @if($order->status == 'Pending') badge-warning @else badge-primary @endif">@if($order->status == 'Pending') Pending @else Cooking @endif</span>
                                                 <br>
+                                                @if ($order->status == 'Pending')
                                                 <a href="{{ route('orders.edit', $order->id) }}" class="badge badge-success">Edit</a> <a class="text-decoration-none badge badge-danger align-middle" href="{{ route('orders.destroyOne', $order->id) }}" onclick="event.preventDefault(); document.getElementById('orders.destroyOne').submit();">{{ __('Delete') }}</a>
+                                                @endif
                                                 <form id="orders.destroyOne" action="{{ route('orders.destroyOne', $order->id) }}" method="post" class="d-none">
                                                     @csrf
                                                     @method('delete')
