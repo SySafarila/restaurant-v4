@@ -75,10 +75,8 @@
                                         @enderror
                                 </div>
                             </div>
-                            {{-- <div class="row"> --}}
                                 <button type="submit" class="btn btn-sm btn-success btn-block" style="margin-bottom:-4px;" >Add</button>
                                 <button type="reset" class="btn btn-sm btn-danger btn-block">Reset</button>
-                            {{-- </div> --}}
                         </form>
                     </div>
                 </div>
@@ -100,19 +98,6 @@
                                 </form>
                             </div>
                         @else
-                            {{-- <form action="{{ route('orders.store') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="menu" value="{{ $menu->id }}">
-                                <div class="row px-3">
-                                    <input type="text" name="quantity" class="form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity">
-                                    <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
-                                        @error('quantity')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                </div>
-                            </form> --}}
                         @endif
                     </div>
                 </div>

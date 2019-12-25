@@ -56,11 +56,11 @@
                                     <td class="align-middle text-center font-weight-bold text-success">{{ number_format($invoice->total) }}</td>
                                 </tr>
                             @endforeach
-                            {{-- @if (count($invoices) < 1)
+                            @if (count($invoices) < 1)
                             <tr>
-                                <th class="align-middle text-center text-danger" colspan="5">Empty</th>
+                                <th class="align-middle text-center text-danger" colspan="5">Invoices Is Empty</th>
                             </tr>
-                            @endif --}}
+                            @endif
                         </tbody>
                     </table>
                 </div>
