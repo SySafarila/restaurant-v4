@@ -123,7 +123,7 @@
                                 <div class="col-md-4 col-12 mb-4">
                                     <div class="card shadow-sm">
                                         <a href="{{ route('menus.index') }}" class="card-body text-decoration-none">
-                                            <h5 class="card-title text-dark"><i class="material-icons align-middle" style="font-size:20px;padding-bottom:5px;">menu_book</i> Menus List</h5>
+                                            <h5 class="card-title text-dark"><i class="material-icons align-middle text-success" style="font-size:20px;padding-bottom:5px;">menu_book</i> Menus List</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">Foods, Drinks, Desserts, Cakes, Etc.</h6>
                                         </a>
                                     </div>

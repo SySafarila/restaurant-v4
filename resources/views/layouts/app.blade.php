@@ -81,12 +81,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right mb-1" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('profile.index') }}" class="dropdown-item">My Profile</a>
-                                    <a href="{{ route('orders.invoices') }}" class="dropdown-item">Invoices</a>
+                                    <a href="{{ route('profile.index') }}" class="dropdown-item {{ Request::is('dashboard/profile') ? 'active' : '' }}">My Profile</a>
+                                    <a href="{{ route('orders.invoices') }}" class="dropdown-item {{ Request::is('dashboard/invoices') ? 'active' : '' }}">Invoices</a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">power_settings_new</i> {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
