@@ -86,7 +86,7 @@
             @foreach ($menus as $menu)
             <div class="col-sm-12 col-md-6 col-lg-3 d-flex">
                 <div class="card mb-4 shadow-sm">
-                    <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top mx-auto">
+                    <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top mx-auto" style="max-height:20px;">
                     <div class="card-body">
                         <a href="{{ route('menus.show', $menu->id) }}" class="card-title h5 text-success text-uppercase text-decoration-none @if(Auth::user()->level == 'Customer') stretched-link @else   @endif">{{ $menu->name }}</a>
                         <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p>
