@@ -21,8 +21,9 @@
         </div>
     @endif
     <div class="row justify-content-center">
-        <div class="card-deck mx-3">
+        <div class="card-deck justify-content-center">
             @if (Auth::user()->level == 'Admin')
+            <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title text-center">Add Menu</h5>
@@ -80,9 +81,10 @@
                         </form>
                     </div>
                 </div>
+            </div>
             @endif
             @foreach ($menus as $menu)
-            <div class="col">
+            <div class="col-sm-12 col-md-6 col-lg-3 d-flex">
                 <div class="card mb-4 shadow-sm">
                     <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top mx-auto">
                     <div class="card-body">
