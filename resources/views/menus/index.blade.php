@@ -3,7 +3,7 @@
 @section('title', '| Menus')
 
 @section('content')
-<div class="container">
+<div class="container px-3 px-md-0">
     @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status') }} <a href="{{ route('orders.index') }}" class="alert-link">Orders</a>
@@ -21,7 +21,7 @@
         </div>
     @endif
     <div class="row justify-content-center">
-        {{-- <div class="card-deck justify-content-center"> --}}
+        {{-- <div class="card-columns justify-content-center"> --}}
             @if (Auth::user()->level == 'Admin')
             <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="card mb-4 shadow-sm">
@@ -84,9 +84,9 @@
             </div>
             @endif
             @foreach ($menus as $menu)
-            <div class="col-6 col-lg-3 d-flex">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top mx-auto">
+            <div class="col-6 col-lg-3 d-flex p-1">
+                <div class="card mb-0 shadow-sm">
+                    <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="img-thumbnail border-0 p-0 rounded-0" style="width:auto; height:auto;">
                     <div class="card-body px-2 py-1">
                         <a href="{{ route('menus.show', $menu->id) }}" class="card-title h6 text-dark font-weight-bold text-decoration-none @if(Auth::user()->level == 'Customer') stretched-link @else   @endif">{{ $menu->name }}</a>
                         {{-- <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p> --}}
