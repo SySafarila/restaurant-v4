@@ -28,6 +28,14 @@ class MenusSeeder extends Seeder
                 'stock' => 99,
                 'status' => 'Available',
             ]);
+            DB::table('menus')->insert([
+	            'name' => 'Ayam Goreng',
+                'description' => 'Ayam goreng Nusantara adalah hidangan Asia Tenggara yang merupakan ayam yang digoreng dalam minyak goreng. Dalam dunia internasional, istilah ayam goreng merujuk kepada ayam goreng gaya Nusantara.',
+                'price' => 7000,
+                'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlvKNW2zD499zD07wjjbswL4CTes8BR9ChlECDTzgQXoEsz3nR',
+                'stock' => 99,
+                'status' => 'Available',
+            ]);
             //php artisan db:seed --class=MenusSeeder
     }
 }
