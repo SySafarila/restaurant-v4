@@ -49,13 +49,13 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-3 col-lg-3 d-sm-none d-none d-md-block">
-            <ul class="list-group">
-                <li class="list-group-item bg-success text-white">List Orders <span class="float-right mt-1 badge badge-pill align-middle badge-light">{{ Auth::user()->orders->count() }}</span></li>
+            <ul class="list-group shadow-sm">
+                <li class="list-group-item bg-success text-white p-2">List Orders <span class="float-right mt-1 badge badge-pill align-middle badge-light">{{ Auth::user()->orders->count() }}</span></li>
                 @if (Auth::user()->orders->count() < 1)
-                <li class="list-group-item text-center">Empty</li>
+                <li class="list-group-item text-center p-2">Empty</li>
                 @else
                     @foreach (Auth::user()->orders as $order)
-                    <li class="list-group-item">{{ $order->menu->name }} <span class="badge badge-pill align-middle badge-success">{{ $order->quantity }}</span></li>
+                    <li class="list-group-item p-2">{{ $order->menu->name }} <span class="badge badge-pill align-middle badge-success">{{ $order->quantity }}</span></li>
                     @endforeach
                 @endif
             </ul>

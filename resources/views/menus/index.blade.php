@@ -90,7 +90,7 @@
                     <div class="card-body px-2 py-1">
                         <a href="{{ route('menus.show', $menu->id) }}" class="card-title h6 text-dark font-weight-bold text-decoration-none @if(Auth::user()->level == 'Customer') stretched-link @else   @endif">{{ $menu->name }}</a>
                         {{-- <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p> --}}
-                        <p class="card-text font-weight-bold text-orange text-left">{{ 'Rp ' . number_format($menu->price) }}</p>
+                        <p class="card-text font-weight-bold text-orange text-left">{{ 'Rp ' . number_format($menu->price,0,0,'.') }}</p>
                         @if (Auth::user()->level == 'Admin')
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
