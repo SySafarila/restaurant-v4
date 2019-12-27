@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+/* Material Icons  */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 .my-font{
     font-family: 'Pacifico';
+}
+
+.text-orange{
+    color: #FA591D;
 }

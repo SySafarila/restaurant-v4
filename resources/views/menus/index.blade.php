@@ -3,7 +3,7 @@
 @section('title', '| Menus')
 
 @section('content')
-<div class="container">
+<div class="container px-4 px-md-0">
     @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status') }} <a href="{{ route('orders.index') }}" class="alert-link">Orders</a>
@@ -21,8 +21,9 @@
         </div>
     @endif
     <div class="row justify-content-center">
-        <div class="card-columns mx-3">
+        {{-- <div class="card-columns justify-content-center"> --}}
             @if (Auth::user()->level == 'Admin')
+            <div class="col-6 col-md-3 col-lg-3 d-flex p-1">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title text-center">Add Menu</h5>
@@ -75,21 +76,21 @@
                                         @enderror
                                 </div>
                             </div>
-                            {{-- <div class="row"> --}}
                                 <button type="submit" class="btn btn-sm btn-success btn-block" style="margin-bottom:-4px;" >Add</button>
                                 <button type="reset" class="btn btn-sm btn-danger btn-block">Reset</button>
-                            {{-- </div> --}}
                         </form>
                     </div>
                 </div>
+            </div>
             @endif
             @foreach ($menus as $menu)
-                <div class="card mb-4 shadow-sm">
-                    <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
-                    <div class="card-body">
-                        <a href="{{ route('menus.show', $menu->id) }}" class="card-title h5 text-success text-uppercase text-decoration-none @if(Auth::user()->level == 'Customer') stretched-link @else   @endif">{{ $menu->name }}</a>
-                        <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p>
-                        <p class="card-text font-weight-bold text-success text-center">{{ 'Rp ' . number_format($menu->price) }}</p>
+            <div class="col-6 col-md-3 col-lg-3 d-flex p-1">
+                <div class="card mb-0 shadow-sm">
+                    <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="img-thumbnail border-0 p-0 rounded-0" style="width:auto; height:auto;">
+                    <div class="card-body px-2 py-1">
+                        <a href="{{ route('menus.show', $menu->id) }}" class="card-title h6 text-dark font-weight-bold text-decoration-none @if(Auth::user()->level == 'Customer') stretched-link @else   @endif">{{ $menu->name }}</a>
+                        {{-- <p class="card-text">{{ Str::limit( $menu->description, 80, ' . . .' ) }}</p> --}}
+                        <p class="card-text font-weight-bold text-orange text-left">{{ 'Rp ' . number_format($menu->price,0,0,'.') }}</p>
                         @if (Auth::user()->level == 'Admin')
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
@@ -100,24 +101,12 @@
                                 </form>
                             </div>
                         @else
-                            {{-- <form action="{{ route('orders.store') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="menu" value="{{ $menu->id }}">
-                                <div class="row px-3">
-                                    <input type="text" name="quantity" class="form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity">
-                                    <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
-                                        @error('quantity')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                </div>
-                            </form> --}}
                         @endif
                     </div>
                 </div>
+            </div>
             @endforeach
-        </div>
+        {{-- </div> --}}
     </div>
 </div>
 @endsection

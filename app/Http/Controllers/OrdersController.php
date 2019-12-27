@@ -23,8 +23,9 @@ class OrdersController extends Controller
     public function index()
     {
         $number = 1;
-        $user   = Auth::user()->id;
-        $orders = User::find($user)->orders->where('status', 'Pending');
+        $user   = Auth::user();
+        // $orders = User::find($user)->orders->where('status', 'Pending');
+        $orders = Order::where('user_id', $user->id)->latest()->get()->whereNotIn('status', 'Success');
 
         // return $orders;
 
@@ -97,7 +98,7 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $user = Auth::user()->id;
-        $order = Order::where('id', $id)->where('user_id', $user)->firstOrFail();
+        $order = Order::where('id', $id)->where('user_id', $user)->where('status', 'Pending')->firstOrFail();
 
         // return $order;
         return view('orders.edit', ['order' => $order]);
@@ -153,5 +154,17 @@ class OrdersController extends Controller
     public function redirect()
     {
         return redirect()->route('orders.index')->with('status_warning', 'Redirected');
+    }
+    
+    public function invoices()
+    {
+        $number = 1;
+        $user = Auth::user();
+        $invoices = Order::where('user_id', $user->id)->latest()->get()->where('status', 'Success');
+        // $invoices = Order::where('user_id', $user->id)->latest()->get();
+
+        // return $invoices;
+
+        return view('invoices.index', ['invoices' => $invoices, 'number' => $number]);
     }
 }

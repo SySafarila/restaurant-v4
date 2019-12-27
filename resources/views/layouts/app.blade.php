@@ -27,7 +27,7 @@
                     Restaurant v4
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="material-icons">menu_open</span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -52,7 +52,7 @@
                                     <input type="text" name="" id="" class="form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
                                     <input type="text" name="" id="" class="form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
                                     <input type="text" name="" id="" class="form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
-                                    <button type="submit" class="btn btn-sm btn-success ml-1">Search</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                 </div>
                             {{-- </form> --}}
                         </li>
@@ -81,12 +81,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right mb-1" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('profile.index') }}" class="dropdown-item">My Profile</a>
-                                    <a href="#" class="dropdown-item">Invoices</a>
+                                    <a href="{{ route('profile.index') }}" class="dropdown-item {{ Request::is('dashboard/profile') ? 'active' : '' }}">My Profile</a>
+                                    <a href="{{ route('orders.invoices') }}" class="dropdown-item {{ Request::is('dashboard/invoices') ? 'active' : '' }}">Invoices</a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">power_settings_new</i> {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -99,7 +100,7 @@
                                 {{-- <form action="#" method="get"> --}}
                                     <div class="d-flex">
                                         <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
-                                        <button type="submit" class="btn btn-sm btn-success ml-1">Search</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                     </div>
                                 {{-- </form> --}}
                             </li>
@@ -109,7 +110,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-3 py-md-2 py-lg-3">
             @yield('content')
         </main>
     </div>
