@@ -52,7 +52,7 @@
                                     <input type="text" name="" id="" class="form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
                                     <input type="text" name="" id="" class="form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
                                     <input type="text" name="" id="" class="form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
-                                    <button type="submit" class="btn btn-sm btn-success ml-1">Search</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                 </div>
                             {{-- </form> --}}
                         </li>
@@ -100,7 +100,7 @@
                                 {{-- <form action="#" method="get"> --}}
                                     <div class="d-flex">
                                         <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
-                                        <button type="submit" class="btn btn-sm btn-success ml-1">Search</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                     </div>
                                 {{-- </form> --}}
                             </li>
