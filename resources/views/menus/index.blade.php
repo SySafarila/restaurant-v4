@@ -3,7 +3,7 @@
 @section('title', '| Menus')
 
 @section('content')
-<div class="container px-3 px-md-0">
+<div class="container px-4 px-md-0">
     @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status') }} <a href="{{ route('orders.index') }}" class="alert-link">Orders</a>

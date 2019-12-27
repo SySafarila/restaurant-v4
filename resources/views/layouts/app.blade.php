@@ -110,7 +110,7 @@
             </div>
         </nav>
 
-        <main class="py-2 py-md-2 py-lg-3">
+        <main class="py-3 py-md-2 py-lg-3">
             @yield('content')
         </main>
     </div>
