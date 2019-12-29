@@ -42,11 +42,11 @@
                                     </tr>
                                     <tr>
                                         {{-- <div class="row"> --}}
-                                            <th class="text-center">No</th>
-                                            <th class="text-left" style="min-width:160px;">Name</th>
-                                            <th class="text-center">Quantity</th>
-                                            <th class="text-center">Price</th>
-                                            <th class="text-center">Total</th>
+                                            <th class="text-center" scope="col">No</th>
+                                            <th class="text-left" scope="col">Name</th>
+                                            <th class="text-center" scope="col">Quantity</th>
+                                            <th class="text-center" scope="col">Price</th>
+                                            <th class="text-center" scope="col">Total</th>
                                         {{-- </div> --}}
                                     </tr>
                                 </thead>
@@ -54,7 +54,7 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td class="text-center align-middle">{{ $number++ }}</td>
-                                            <td class="align-middle">
+                                            <td class="align-middle text-nowrap">
                                                 {{ $order->menu->name }} <span class="badge @if($order->status == 'Pending') badge-warning @else badge-primary @endif">@if($order->status == 'Pending') Pending @else Cooking @endif</span>
                                                 <br>
                                                 @if ($order->status == 'Pending')
@@ -69,8 +69,8 @@
                                                 </form>
                                             </td>
                                             <td class="text-center align-middle">{{ $order->quantity }}</td>
-                                            <td class="text-center align-middle">{{ number_format($order->menu->price) }}</td>
-                                            <td class="text-center align-middle">{{ number_format($order->menu->price * $order->quantity) }}</td>
+                                            <td class="text-center align-middle">{{ number_format($order->menu->price, 0, 0, '.') }}</td>
+                                            <td class="text-center align-middle">{{ number_format($order->menu->price * $order->quantity, 0, 0, '.') }}</td>
                                         </tr>
                                     @endforeach
                                     @if ($orders->sum('total') < 1)
@@ -80,7 +80,7 @@
                                     @else
                                     <tr>
                                         <td colspan="4" class="text-center align-middle font-weight-bold text-success">Total ( Rp )</td>
-                                        <td class="text-center align-middle text-success font-weight-bold">{{ number_format($orders->sum('total')) }}</td>
+                                        <td class="text-center align-middle text-success font-weight-bold">{{ number_format($orders->sum('total'), 0, 0, '.') }}</td>
                                     </tr>
                                     @endif
                                 </tbody>
