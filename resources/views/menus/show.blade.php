@@ -16,6 +16,12 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb p-0 bg-transparent">
+                  <li class="breadcrumb-item"><a href="{{ route('menus.index') }}" class="text-decoration-none text-success">Menus</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
+                </ol>
+              </nav>
             <div class="card mb-4 shadow-sm">
                 <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
                 <div class="card-body">
@@ -49,18 +55,6 @@
                     @endif
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-3 col-lg-3 d-sm-none d-none d-md-block">
-            <ul class="list-group shadow-sm">
-                <li class="list-group-item bg-success text-white p-2">List Orders <span class="float-right mt-1 badge badge-pill align-middle badge-light">{{ Auth::user()->orders->count() }}</span></li>
-                @if (Auth::user()->orders->count() < 1)
-                <li class="list-group-item text-center p-2">Empty</li>
-                @else
-                    @foreach (Auth::user()->orders as $order)
-                    <li class="list-group-item p-2">{{ $order->menu->name }} <span class="badge badge-pill align-middle badge-success">{{ $order->quantity }}</span></li>
-                    @endforeach
-                @endif
-            </ul>
         </div>
     </div>
 </div>
