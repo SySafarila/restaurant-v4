@@ -18,7 +18,7 @@
                 <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-success">{{ $menu->name }}</h5>
-                    <p class="card-text">{{ $menu->description }}</p>
+                    <p class="card-text">{!! nl2br(e($menu->description)) !!}</p>
                     <p class="card-text">{{ 'Rp ' . number_format($menu->price) }} | {{ 'Stock : ' . $menu->stock}}</p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
