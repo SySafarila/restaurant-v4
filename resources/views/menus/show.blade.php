@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', '| Menus')
+@section('title')
+    | {{ $menu->name }}
+@endsection
 
 @section('content')
 <div class="container">
@@ -17,9 +19,9 @@
             <div class="card mb-4 shadow-sm">
                 <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title text-success">{{ $menu->name }}</h5>
+                    <h5 class="card-title text-success font-weight-bold">{{ $menu->name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }} | {{ $menu->status }} : {{ $menu->stock }}</h6>
                     <p class="card-text">{!! nl2br(e($menu->description)) !!}</p>
-                    <p class="card-text">{{ 'Rp ' . number_format($menu->price) }} | {{ 'Stock : ' . $menu->stock}}</p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
                             <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
@@ -35,8 +37,8 @@
                         @csrf
                         <input type="hidden" name="menu" value="{{ $menu->id }}">
                         <div class="row px-3">
-                            <input type="number" name="quantity" class="form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity">
-                            <button type="submit" class="btn btn-sm btn-success ml-1">Order</button>
+                            <input type="number" name="quantity" class="rounded-pill form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity">
+                            <button type="submit" class="rounded-pill btn btn-sm btn-success ml-1 material-icons">add_shopping_cart</button>
                             @error('quantity')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
