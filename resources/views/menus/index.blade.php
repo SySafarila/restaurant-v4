@@ -92,7 +92,7 @@
                 <img src="{{ $menu->img }}" class="card-img-top" alt="{{ $menu->name }}">
                 <div class="card-body">
                     <h5 class="card-title"><a href="{{ route('menus.show', $menu->id) }}" class="text-decoration-none text-success font-weight-bold">{{ $menu->name }}</a></h5>
-                    <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price) }}</h6>
+                    <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }}</h6>
                     <p class="card-text">{{ Str::limit($menu->description, 50) }}</p>
                     @if (Auth::user()->level == 'Admin')
                         <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-block btn-success my-1">Edit</a>
