@@ -136,6 +136,6 @@ class MenusController extends Controller
         $menu = Menu::findOrFail($id);
         $menu->delete();
 
-        return redirect()->route('menus.index')->with('status', 'Menu deleted !');
+        return redirect()->route('menus.index')->with('status_menu', 'Menu deleted !');
     }
 }

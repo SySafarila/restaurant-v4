@@ -4,6 +4,26 @@
 
 @section('content')
 <div class="container">
+    @if (session('status'))
+    <div class="mx-3">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status') }} <a href="{{ route('orders.index') }}" class="alert-link text-decoration-none">Orders</a>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    @endif
+    @if (session('status_menu'))
+    <div class="mx-3">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status_menu') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    @endif
     <div class="card-group">
         @if (Auth::user()->level == 'Admin')
         <div class="col-12 col-md-3 py-0 pb-md-4">
