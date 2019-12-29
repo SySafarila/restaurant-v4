@@ -49,9 +49,9 @@
                         <li class="nav-item">
                             {{-- <form action="#" method="get"> --}}
                                 <div class="d-flex">
-                                    <input type="text" name="" id="" class="rounded-pill form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
-                                    <input type="text" name="" id="" class="rounded-pill form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
-                                    <input type="text" name="" id="" class="rounded-pill form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
+                                    <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
+                                    <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
+                                    <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
                                     <button type="submit" class="rounded-pill btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                 </div>
                             {{-- </form> --}}
@@ -110,9 +110,15 @@
             </div>
         </nav>
 
-        <main class="py-3 py-md-2 py-lg-3">
+        <main class="py-3">
             @yield('content')
         </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted text-center">&copy; <a href="http://instagram.com/sysafarila" target="_blank" class="text-decoration-none text-muted">SySafarila <i class="material-icons align-middle pb-1" style="font-size:13px;">launch</i></a></p>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

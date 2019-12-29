@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <th class="text-center">No</th>
-                                <th class="text-left" style="min-width:160px;">Name</th>
+                                <th class="text-left">Name</th>
                                 <th class="text-center">Quantity</th>
                                 <th class="text-center">Price</th>
                                 <th class="text-center">Total</th>
