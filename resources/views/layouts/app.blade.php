@@ -26,7 +26,7 @@
                 <a class="navbar-brand text-success my-font" href="{{ url('/') }}">
                     Restaurant v4
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="material-icons">menu_open</span>
                 </button>
 
@@ -49,10 +49,10 @@
                         <li class="nav-item">
                             {{-- <form action="#" method="get"> --}}
                                 <div class="d-flex">
-                                    <input type="text" name="" id="" class="form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
-                                    <input type="text" name="" id="" class="form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
-                                    <input type="text" name="" id="" class="form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
-                                    <button type="submit" class="btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
+                                    <input type="text" name="" id="" class="rounded-pill form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
+                                    <input type="text" name="" id="" class="rounded-pill form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
+                                    <input type="text" name="" id="" class="rounded-pill form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
+                                    <button type="submit" class="rounded-pill btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                 </div>
                             {{-- </form> --}}
                         </li>
@@ -99,8 +99,8 @@
                             <li class="nav-item d-sm-block d-md-none mt-2">
                                 {{-- <form action="#" method="get"> --}}
                                     <div class="d-flex">
-                                        <input type="text" name="" id="" class="form-control form-control-sm" placeholder="What are you looking for ?">
-                                        <button type="submit" class="btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
+                                        <input type="text" name="" id="" class="rounded-pill form-control form-control-sm" placeholder="What are you looking for ?">
+                                        <button type="submit" class="rounded-pill btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                     </div>
                                 {{-- </form> --}}
                             </li>
