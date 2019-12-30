@@ -66,9 +66,9 @@ class OrdersController extends Controller
         $status   = 'Pending';
 
         // Check
-        $cek_order = Order::where(['user_id' => $user_id, 'menu_id' => $menu_id, 'status' => $status])->get();
+        $cek_order    = Order::where(['user_id' => $user_id, 'menu_id' => $menu_id, 'status' => $status])->get();
         $cek_quantity = Order::where(['user_id' => $user_id, 'menu_id' => $menu_id, 'status' => $status])->firstOrFail('quantity');
-        $cek_total = Order::where(['user_id' => $user_id, 'menu_id' => $menu_id, 'status' => $status])->firstOrFail('total');
+        $cek_total    = Order::where(['user_id' => $user_id, 'menu_id' => $menu_id, 'status' => $status])->firstOrFail('total');
 
         // Conditionals
         if (count($cek_order)) {
@@ -112,7 +112,7 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user  = Auth::user()->id;
         $order = Order::where('id', $id)->where('user_id', $user)->where('status', 'Pending')->firstOrFail();
 
         // return $order;
