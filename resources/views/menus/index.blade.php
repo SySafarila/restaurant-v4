@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     @if (session('status'))
-    <div class="mx-3">
+    <div class="mx-md-2">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status') }} <a href="{{ route('orders.index') }}" class="alert-link text-decoration-none">Orders</a>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -15,7 +15,7 @@
     </div>
     @endif
     @if (session('status_menu'))
-    <div class="mx-3">
+    <div class="mx-md-2">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status_menu') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -24,9 +24,9 @@
         </div>
     </div>
     @endif
-    <div class="card-group">
+    <div class="card-group justify-content-center">
         @if (Auth::user()->level == 'Admin')
-        <div class="col-12 col-md-3 py-0 pb-md-4">
+        <div class="col-12 col-md-3 pb-md-3 px-0 px-md-2">
             <div class="card mb-3 h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title text-center">Add Menu</h5>
@@ -87,7 +87,7 @@
         </div>
         @endif
         @foreach ($menus as $menu)
-        <div class="col-12 col-md-3 py-0 pb-md-4">
+        <div class="col-12 col-md-3 pb-md-3 px-0 px-md-2">
             <div class="card mb-3 h-100 shadow-sm">
                 <img src="{{ $menu->img }}" class="card-img-top" alt="{{ $menu->name }}">
                 <div class="card-body">
