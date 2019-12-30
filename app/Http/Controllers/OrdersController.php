@@ -66,16 +66,44 @@ class OrdersController extends Controller
         $status   = 'Pending';
 
         // Input to database
-        $order = Order::create([
-            'user_id'  => $user_id,
-            'menu_id'  => $menu_id,
-            'quantity' => $quantity,
-            'price'    => $price,
-            'total'    => $total,
-            'status'   => $status,
+        
+        $check = Order::where([
+            'user_id' => $user_id,
+            'menu_id' => $menu_id,
+            'status' => 'Pending'
         ]);
 
-        return redirect()->route('menus.index')->with('status', 'Added to ');
+        // return $check->first('quantity')->quantity;
+        // Conditionals
+        if ($check->count() == 1) {
+            Order::where([
+                'user_id' => $user_id,
+                'menu_id' => $menu_id,
+                'status' => 'Pending',
+            ])->update([
+                'quantity' => Order::where([
+                    'user_id' => $user_id,
+                    'menu_id' => $menu_id,
+                    'status' => 'Pending',
+                ])->first('quantity')->quantity + $request['quantity'],
+                'total' => Order::where([
+                    'user_id' => $user_id,
+                    'menu_id' => $menu_id,
+                    'status' => 'Pending',
+                ])->first('total')->total + $total,
+            ]);
+            return redirect()->route('menus.index')->with('status', 'Success added to current ');
+        } else {
+            Order::create([
+                'user_id'  => $user_id,
+                'menu_id'  => $menu_id,
+                'quantity' => $quantity,
+                'price'    => $price,
+                'total'    => $total,
+                'status'   => $status,
+            ]);
+            return redirect()->route('menus.index')->with('status', 'Success add a new ');
+        }
     }
 
     /**
