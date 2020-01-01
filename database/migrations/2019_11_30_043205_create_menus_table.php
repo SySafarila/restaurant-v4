@@ -22,6 +22,7 @@ class CreateMenusTable extends Migration
             $table->string('stock');
             $table->enum('status', ['Available', 'Unavailable']);
             $table->timestamps();
+            $table->softDeletes();
         });
 
     }

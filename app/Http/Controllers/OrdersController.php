@@ -27,8 +27,7 @@ class OrdersController extends Controller
         // $orders = User::find($user)->orders->where('status', 'Pending');
         $orders = Order::where('user_id', $user->id)->latest()->get()->whereNotIn('status', 'Success');
 
-        // return $orders;
-
+        // return $orders->first()->menu->name;
 
         return view('orders.index', ['number' => $number, 'orders' => $orders]);
     }
