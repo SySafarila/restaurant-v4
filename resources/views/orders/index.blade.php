@@ -85,6 +85,7 @@
                                     @endif
                                 </tbody>
                             </table>
+                            <p class="text-center text-muted">If several Orders disappear, it means the Order has been deleted by the Admin</p>
                         </div>
                         @if (count($orders) < 1)
                         <div class="d-flex justify-content-center">

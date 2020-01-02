@@ -23,7 +23,7 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/dashboard/profile', 'ProfileController@index')->name('profile.index');
 Route::get('/dashboard/profile/edit', 'ProfileController@edit2')->name('profile.edit');
 Route::patch('/dashboard/profile', 'ProfileController@update')->name('profile.update');
-Route::get('/dashboard/profile/login/edit', 'ProfileController@editlogin')->name('profile.editlogin')->middleware(['password.confirm']);
+Route::get('/dashboard/profile/login/edit', 'ProfileController@editlogin')->name('profile.editlogin')->middleware(['auth', 'password.confirm']);
 Route::patch('/dashboard/profile/updatelogin', 'ProfileController@updatelogin')->name('profile.updatelogin');
 Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.delete');
 

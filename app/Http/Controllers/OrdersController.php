@@ -27,8 +27,7 @@ class OrdersController extends Controller
         // $orders = User::find($user)->orders->where('status', 'Pending');
         $orders = Order::where('user_id', $user->id)->latest()->get()->whereNotIn('status', 'Success');
 
-        // return $orders;
-
+        // return $orders->first()->menu->name;
 
         return view('orders.index', ['number' => $number, 'orders' => $orders]);
     }
@@ -66,16 +65,44 @@ class OrdersController extends Controller
         $status   = 'Pending';
 
         // Input to database
-        $order = Order::create([
-            'user_id'  => $user_id,
-            'menu_id'  => $menu_id,
-            'quantity' => $quantity,
-            'price'    => $price,
-            'total'    => $total,
-            'status'   => $status,
+        
+        $check = Order::where([
+            'user_id' => $user_id,
+            'menu_id' => $menu_id,
+            'status' => 'Pending'
         ]);
 
-        return redirect()->route('menus.index')->with('status', 'Added to ');
+        // return $check->first('quantity')->quantity;
+        // Conditionals
+        if ($check->count() == 1) {
+            Order::where([
+                'user_id' => $user_id,
+                'menu_id' => $menu_id,
+                'status' => 'Pending',
+            ])->update([
+                'quantity' => Order::where([
+                    'user_id' => $user_id,
+                    'menu_id' => $menu_id,
+                    'status' => 'Pending',
+                ])->first('quantity')->quantity + $request['quantity'],
+                'total' => Order::where([
+                    'user_id' => $user_id,
+                    'menu_id' => $menu_id,
+                    'status' => 'Pending',
+                ])->first('total')->total + $total,
+            ]);
+            return redirect()->route('menus.index')->with('status', 'Success added to current ');
+        } else {
+            Order::create([
+                'user_id'  => $user_id,
+                'menu_id'  => $menu_id,
+                'quantity' => $quantity,
+                'price'    => $price,
+                'total'    => $total,
+                'status'   => $status,
+            ]);
+            return redirect()->route('menus.index')->with('status', 'Success add a new ');
+        }
     }
 
     /**
@@ -97,7 +124,7 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user  = Auth::user()->id;
         $order = Order::where('id', $id)->where('user_id', $user)->where('status', 'Pending')->firstOrFail();
 
         // return $order;
