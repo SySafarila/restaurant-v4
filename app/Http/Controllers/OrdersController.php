@@ -182,16 +182,4 @@ class OrdersController extends Controller
     {
         return redirect()->route('orders.index')->with('status_warning', 'Redirected');
     }
-    
-    public function invoices()
-    {
-        $number   = 1;
-        $user     = Auth::user();
-        $invoices = Order::where('user_id', $user->id)->latest()->get()->where('status', 'Success');
-        // $invoices = Order::where('user_id', $user->id)->latest()->get();
-
-        // return $invoices;
-
-        return view('invoices.index', ['invoices' => $invoices, 'number' => $number]);
-    }
 }

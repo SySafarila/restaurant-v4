@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="col-md-4 col-12 mb-3">
                                     <div class="card shadow-sm h-100">
-                                        <a href="{{ route('orders.invoices') }}" class="card-body text-decoration-none">
+                                        <a href="{{ route('invoices.index') }}" class="card-body text-decoration-none">
                                             <h5 class="card-title text-dark">Transactions List</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">Invoices</h6>
                                         </a>
