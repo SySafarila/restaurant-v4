@@ -99,7 +99,12 @@
                         <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-sm btn-block btn-danger my-1">Delete</button>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-sm btn-block btn-danger my-1 dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Delete</button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <button type="submit" class="dropdown-item"><span class="text-danger">Delete !</span></button>
+                                </div>
+                            </div>
                         </form>
                     @endif
                 </div>
