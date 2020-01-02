@@ -33,9 +33,10 @@ class MenusController extends Controller
         if (Auth::user()->level == 'Admin') {
             // $number = 1;
             $menus = Menu::onlyTrashed()->get();
+            $count = Menu::onlyTrashed()->count();
             // return $menus;
 
-            return view('menus.deleted', ['menus' => $menus]);
+            return view('menus.deleted', ['menus' => $menus, 'count' => $count]);
         } else {
             return redirect()->route('dashboard')->with('status', 'Redirected');
         }
@@ -160,6 +161,6 @@ class MenusController extends Controller
     {
         $restore = Menu::onlyTrashed()->where('id', $id)->restore();
 
-        return ('restored');
+        return redirect()->route('menus.deleted')->with('status', 'Menus Restored !');
     }
 }

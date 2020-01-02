@@ -7,7 +7,7 @@
     @if (session('status'))
     <div class="mx-md-2">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('status') }} <a href="{{ route('orders.index') }}" class="alert-link text-decoration-none">Orders</a>
+            {{ session('status') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -42,7 +42,10 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+            @endforeach
+            @if ($count == 0)
+                <h1 class="text-muted text-center">Empty</h1>
+            @endif
     </div>
 </div>
 @endsection
