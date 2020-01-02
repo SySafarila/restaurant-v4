@@ -33,34 +33,22 @@
         <div class="row justify-content-center">
             <div class="col-md-9 col-sm-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered shadow-sm">
+                    <table class="table table-bordered table-hover shadow-sm">
                         <thead>
                             <tr>
-                                <th colspan="5" class="text-center">Invoices</th>
-                            </tr>
-                            <tr>
-                                <th class="text-center">No</th>
-                                <th class="text-left">Name</th>
-                                <th class="text-center">Quantity</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Total</th>
+                                <th class="text-center align-middle">No</th>
+                                <th>Name ( Quantity )</th>
+                                <th class="text-center align-middle">Total <span class="text-success">( Rp )</span></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($invoices as $invoice)
-                                <tr>
-                                    <td class="align-middle text-center">{{ $number++ }}</td>
-                                    <td class="align-middle">{{ $invoice->menu->name }} @if($invoice->status == 'Cooking') <span class="badge badge-warning">{{ $invoice->status }}</span>@else <span class="badge badge-success">{{ $invoice->status }}</span> @endif</td>
-                                    <td class="align-middle text-center">{{ $invoice->quantity }}</td>
-                                    <td class="align-middle text-center">{{ number_format($invoice->price) }}</td>
-                                    <td class="align-middle text-center font-weight-bold text-success">{{ number_format($invoice->total) }}</td>
-                                </tr>
-                            @endforeach
-                            @if (count($invoices) < 1)
                             <tr>
-                                <th class="align-middle text-center text-danger" colspan="5">Invoices Is Empty</th>
+                                <td class="text-center align-middle">{{ $nomor++ }}</td>
+                                <td class="align-middle">{{ $invoice->menu }} <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span></td>
+                                <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
                             </tr>
-                            @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -53,4 +53,4 @@ Route::get('/dashboard/order/{id}', 'OrdersController@show')->name('orders.show'
 Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redirect');
 
 // Invoices
-Route::get('/dashboard/invoices', 'OrdersController@invoices')->name('orders.invoices');
+Route::get('/dashboard/invoices', 'InvoicesController@index')->name('invoices.index');
