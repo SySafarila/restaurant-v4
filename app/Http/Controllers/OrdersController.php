@@ -69,7 +69,7 @@ class OrdersController extends Controller
         $check = Order::where([
             'user_id' => $user_id,
             'menu_id' => $menu_id,
-            'status' => 'Pending'
+            'status'  => 'Pending'
         ]);
 
         // return $check->first('quantity')->quantity;
@@ -78,17 +78,17 @@ class OrdersController extends Controller
             Order::where([
                 'user_id' => $user_id,
                 'menu_id' => $menu_id,
-                'status' => 'Pending',
+                'status'  => 'Pending',
             ])->update([
-                'quantity' => Order::where([
-                    'user_id' => $user_id,
-                    'menu_id' => $menu_id,
-                    'status' => 'Pending',
+                    'quantity' => Order::where([
+                    'user_id'  => $user_id,
+                    'menu_id'  => $menu_id,
+                    'status'   => 'Pending',
                 ])->first('quantity')->quantity + $request['quantity'],
-                'total' => Order::where([
+                    'total'   => Order::where([
                     'user_id' => $user_id,
                     'menu_id' => $menu_id,
-                    'status' => 'Pending',
+                    'status'  => 'Pending',
                 ])->first('total')->total + $total,
             ]);
             return redirect()->route('menus.index')->with('status', 'Success added to current ');
@@ -150,7 +150,7 @@ class OrdersController extends Controller
 
         $edit = Order::where('id', $id)->update([
             'quantity' => $request['quantity'],
-            'total' => $price * $request['quantity'],
+            'total'    => $price * $request['quantity'],
         ]);
 
         return redirect()->route('orders.index')->with('status', 'Order Updated !');
@@ -185,8 +185,8 @@ class OrdersController extends Controller
     
     public function invoices()
     {
-        $number = 1;
-        $user = Auth::user();
+        $number   = 1;
+        $user     = Auth::user();
         $invoices = Order::where('user_id', $user->id)->latest()->get()->where('status', 'Success');
         // $invoices = Order::where('user_id', $user->id)->latest()->get();
 
