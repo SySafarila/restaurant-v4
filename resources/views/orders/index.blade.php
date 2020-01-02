@@ -85,6 +85,7 @@
                                     @endif
                                 </tbody>
                             </table>
+                            <p class="text-center text-muted">If some of Order is disappeared, it's mean the Menus is Deleted by Admin</p>
                         </div>
                         @if (count($orders) < 1)
                         <div class="d-flex justify-content-center">

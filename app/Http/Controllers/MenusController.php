@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\Order;
 use Illuminate\Http\Request;
 
 class MenusController extends Controller
@@ -136,6 +137,8 @@ class MenusController extends Controller
         $menu = Menu::findOrFail($id);
         $menu->delete();
 
-        return redirect()->route('menus.index')->with('status_menu', 'Menu deleted !');
+        $order = Order::where('menu_id', $id)->delete();
+
+        return redirect()->route('menus.index')->with('status_menu', 'Menu deleted with Order Pending !');
     }
 }
