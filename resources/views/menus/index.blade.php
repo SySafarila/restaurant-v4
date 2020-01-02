@@ -79,8 +79,9 @@
                                     @enderror
                             </div>
                         </div>
-                            <button type="submit" class="btn btn-sm btn-success btn-block" style="margin-bottom:-4px;" >Add</button>
-                            <button type="reset" class="btn btn-sm btn-danger btn-block">Reset</button>
+                            <button type="submit" class="btn btn-sm btn-success btn-block" style="margin-bottom:-4px;">Add</button>
+                            <button type="reset" class="btn btn-sm btn-danger btn-block" style="margin-bottom:-4px;">Reset</button>
+                            <a href="{{ route('menus.deleted') }}" class="btn btn-sm btn-outline-success btn-block">Restore Menus</a>
                     </form>
                 </div>
             </div>
