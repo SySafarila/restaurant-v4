@@ -142,8 +142,11 @@ class UsersController extends Controller
 
     public function search(Request $request)
     {
+        $validate = $request->validate([
+            'username' => 'required',
+        ]);
         $req = $request['username'];
-        $user = User::where('username','like',"%".$req."%")->first();
+        $user = User::where('username','like',"%".$req."%")->get();
 
         return $user;
     }

@@ -13,9 +13,11 @@
             @endif
             <div class="card">
                 <div class="card-body table-responsive">
-                    <form action="{{ route('users.search') }}" method="get">
-                        <input type="text" name="username">
-                        <button type="submit">Search</button>
+                    <form action="{{ route('users.search') }}" method="get" class="mb-3">
+                        <div class="d-flex">
+                            <input type="text" name="username" class="rounded-pill form-control form-control-sm mr-1 @error('username') is-invalid @enderror" placeholder="@error('username') {{ $message }} @else Search username @enderror" value="{{ old('username') }}" required>
+                            <button type="submit" class="rounded-pill btn btn-sm btn-success"><span class="material-icons align-middle" style="font-size:15px; padding-bottom:3px;">search</span></button>
+                        </div>
                     </form>
                     <table class="table table-bordered table-hover">
                         <thead>
