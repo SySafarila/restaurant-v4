@@ -33,6 +33,8 @@ Route::get('/dashboard/user/{id}', 'UsersController@show')->name('users.show');
 Route::get('/dashboard/user/{id}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/dashboard/user/{id}', 'UsersController@update')->name('users.update');
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->name('users.delete');
+// Search
+Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
 
 // Menus
 Route::get('/dashboard/menus', 'MenusController@index')->name('menus.index');

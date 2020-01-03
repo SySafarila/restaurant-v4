@@ -13,6 +13,10 @@
             @endif
             <div class="card">
                 <div class="card-body table-responsive">
+                    <form action="{{ route('users.search') }}" method="get">
+                        <input type="text" name="username">
+                        <button type="submit">Search</button>
+                    </form>
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>

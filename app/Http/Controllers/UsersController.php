@@ -139,4 +139,12 @@ class UsersController extends Controller
         
         return redirect()->route('users.index')->with('status', 'User has been deleted !');
     }
+
+    public function search(Request $request)
+    {
+        $req = $request['username'];
+        $user = User::where('username','like',"%".$req."%")->first();
+
+        return $user;
+    }
 }
