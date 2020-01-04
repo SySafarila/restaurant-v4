@@ -32,7 +32,7 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td class="text-center">{{ $number++ }}</td>
-                                        <td><a href="user/{{ $user->id }}" class="text-decoration-none text-dark">{{ $user->name }}</a></td>
+                                        <td><a href="{{ route('users.show', $user->id) }}" class="text-decoration-none text-dark">{{ $user->name }}</a></td>
                                         <td class="text-center">
                                             <span class="badge 
                                                 @if($user->level == 'Admin')
