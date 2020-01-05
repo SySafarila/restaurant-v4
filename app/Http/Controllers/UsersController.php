@@ -145,9 +145,10 @@ class UsersController extends Controller
         $validate = $request->validate([
             'username' => 'required',
         ]);
-        $req = $request['username'];
-        $user = User::where('username','like',"%".$req."%")->get();
+        $username = $request['username'];
+        // $user = User::where('username','like',"%".$username."%")->get();
+        $user = User::where('username', $username)->first();
 
-        return $user;
+        return view('users.search', ['user' => $user]);
     }
 }
