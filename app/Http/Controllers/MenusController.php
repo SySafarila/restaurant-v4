@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Menu;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MenusController extends Controller
 {
@@ -25,6 +26,20 @@ class MenusController extends Controller
         // dd($menus);
 
         return view('menus.index', ['menus' => $menus, 'number' => $number]);
+    }
+
+    public function deleted()
+    {
+        if (Auth::user()->level == 'Admin') {
+            // $number = 1;
+            $menus = Menu::onlyTrashed()->get();
+            $count = Menu::onlyTrashed()->count();
+            // return $menus;
+
+            return view('menus.deleted', ['menus' => $menus, 'count' => $count]);
+        } else {
+            return redirect()->route('dashboard')->with('status', 'Redirected');
+        }
     }
 
     /**
@@ -140,5 +155,12 @@ class MenusController extends Controller
         $order = Order::where('menu_id', $id)->delete();
 
         return redirect()->route('menus.index')->with('status_menu', 'Menu deleted with Order Pending !');
+    }
+
+    public function restore($id)
+    {
+        $restore = Menu::onlyTrashed()->where('id', $id)->restore();
+
+        return redirect()->route('menus.deleted')->with('status', 'Menus Restored !');
     }
 }
