@@ -147,7 +147,7 @@ class UsersController extends Controller
         ]);
         $username = $request['username'];
         // $user = User::where('username','like',"%".$username."%")->get();
-        $user = User::where('username', $username)->first();
+        $user = User::where(['username' => $username, 'Level' => 'Customer'])->firstOrFail();
 
         return view('users.search', ['user' => $user]);
     }

@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         @empty($user)
