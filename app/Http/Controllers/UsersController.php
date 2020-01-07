@@ -142,13 +142,17 @@ class UsersController extends Controller
 
     public function search(Request $request)
     {
-        $validate = $request->validate([
-            'username' => 'required',
-        ]);
-        $username = $request['username'];
-        // $user = User::where('username','like',"%".$username."%")->get();
-        $user = User::where(['username' => $username, 'Level' => 'Customer'])->firstOrFail();
-
-        return view('users.search', ['user' => $user]);
+        if (Auth::user()->level == 'Admin') {
+            $validate = $request->validate([
+                'username' => 'required',
+            ]);
+            $username = $request['username'];
+            $number   = 1;
+            $user     = User::where(['username' => $username, 'Level' => 'Customer'])->firstOrFail();
+    
+            return view('users.search', ['user' => $user, 'number' => $number]);
+        } else {
+            return redirect()->route('dashboard');
+        }
     }
 }
