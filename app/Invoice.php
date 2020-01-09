@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    protected $fillable = ['user_id', 'menu', 'quantity', 'total'];
+    protected $fillable = ['user_id', 'menu', 'total'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,7 +47,23 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'user_id' => 'required|numeric',
+            'menu_quantity' => 'required'
+        ]);
+        $orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->get();
+
+        // return $orders;
+
+        $invoice = Invoice::create([
+            'user_id' => $request->user_id,
+            'menu' => $request->menu_quantity,
+            'total' => $orders->sum('total'),
+        ]);
+
+        $delete_orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->delete();
+
+        return redirect()->route('users.index')->with('status', 'Success added to invoices');
     }
 
     /**
