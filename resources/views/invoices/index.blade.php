@@ -37,17 +37,17 @@
                         <thead>
                             <tr>
                                 <th class="text-center align-middle">No</th>
-                                <th>Name ( Quantity )</th>
-                                <th class="text-center align-middle">Total <span class="text-success">( Rp )</span></th>
+                                <th class="align-middle">Invoices</th>
+                                <th class="text-center align-middle">Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($invoices as $invoice)
-                            <tr>
-                                <td class="text-center align-middle">{{ $nomor++ }}</td>
-                                <td class="align-middle">{{ $invoice->menu }} <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span></td>
-                                <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
-                            </tr>
+                                <tr>
+                                    <td class="text-center align-middle">{{ $nomor++ }}</td>
+                                    <td class="align-middle">{{ $invoice->menu }} <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span></td>
+                                    <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
