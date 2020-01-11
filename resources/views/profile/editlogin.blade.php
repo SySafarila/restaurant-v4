@@ -6,12 +6,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-body table-responsive">
+            <div class="card border-0">
+                <div class="p-0 card-body table-responsive">
                     <form action="{{ route('profile.updatelogin') }}" method="POST">
                         @csrf
                         @method('PATCH')
-                        <table class="table table-bordered">
+                        <table class="table table-bordered shadow-sm">
                             <tr>
                                 <td class="align-middle">New / Old Email</td>
                                 <td>
