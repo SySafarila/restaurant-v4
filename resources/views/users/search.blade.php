@@ -46,10 +46,11 @@
                             </table>
                         </div>
                         <form action="{{ route('invoices.store') }}" method="post">
+                            @foreach ($user->orders as $order)
+                                <input type="hidden" name="menus[]" value="- {{ $order->menu->name }} : {{ $order->quantity }} </br>">
+                            @endforeach
                             <div class="d-flex">
                                 @csrf
-                                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                <input type="hidden" name="menu_quantity" value="@foreach($user->orders as $order){{ $order->menu->name . ': ' . $order->quantity . ' | ' }}@endforeach">
                                 <button class="mx-auto btn btn-sm btn-success">Pay !</button>
                             </div>
                         </form>

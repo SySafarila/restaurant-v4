@@ -47,23 +47,26 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'user_id' => 'required|numeric',
-            'menu_quantity' => 'required'
-        ]);
-        $orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->get();
+        foreach ($request->all() as $menu) {
+            return implode($menu);
+        }
+        // $validate = $request->validate([
+        //     'user_id' => 'required|numeric',
+        //     'menu_quantity' => 'required'
+        // ]);
+        // $orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->get();
 
-        // return $orders;
+        // // return $orders;
 
-        $invoice = Invoice::create([
-            'user_id' => $request->user_id,
-            'menu' => $request->menu_quantity,
-            'total' => $orders->sum('total'),
-        ]);
+        // $invoice = Invoice::create([
+        //     'user_id' => $request->user_id,
+        //     'menu' => $request->menu_quantity,
+        //     'total' => $orders->sum('total'),
+        // ]);
 
-        $delete_orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->delete();
+        // $delete_orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->delete();
 
-        return redirect()->route('users.index')->with('status', 'Success added to invoices');
+        // return redirect()->route('users.index')->with('status', 'Success added to invoices');
     }
 
     /**
