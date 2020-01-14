@@ -19,7 +19,7 @@
                 <div class="card border-0">
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table table-bordered shadow-sm">
+                            <table class="table table-bordered table-hover shadow-sm">
                                 <thead>
                                     <tr>
                                         <th colspan="3" class="text-center">Orders <span class="text-muted">{{ '@' . $user->username }}</span></th>
@@ -34,7 +34,7 @@
                                     @foreach ($user->orders as $order)
                                         <tr>
                                             <td class="text-center align-middle">{{ $number++ }}</td>
-                                            <td class="align-middle">{{ $order->menu->name }} <span class="badge badge-success align-middle">{{ $order->quantity }}</span></td>
+                                            <td class="align-middle">{{ $order->menu->name }} <span class="badge badge-pill badge-success align-middle">{{ $order->quantity }}</span></td>
                                             <td class="text-center align-middle font-weight-bold text-success">{{ number_format($order->price * $order->quantity, 0, 0, '.') }}</td>
                                         </tr>
                                     @endforeach
@@ -51,7 +51,7 @@
                             @endforeach
                             <div class="d-flex">
                                 @csrf
-                                <button class="mx-auto btn btn-sm btn-success">Pay !</button>
+                                <button class="mx-auto btn btn-sm btn-outline-success">Pay !</button>
                             </div>
                         </form>
                     </div>

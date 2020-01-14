@@ -77,7 +77,10 @@ class InvoicesController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        $user = Auth::user()->id;
+        $invoice = Invoice::where(['user_id' => $user])->first();
+
+        return $invoice;
     }
 
     /**
