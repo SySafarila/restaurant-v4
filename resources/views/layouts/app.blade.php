@@ -116,7 +116,7 @@
 
         <footer>
             <div class="container">
-                <p class="text-muted text-center">&copy; <a href="http://instagram.com/sysafarila" target="_blank" class="text-decoration-none text-muted">SySafarila <i class="material-icons align-middle pb-1" style="font-size:13px;">launch</i></a></p>
+                <p class="text-muted text-center">&copy; <a href="http://instagram.com/sysafarila" target="_blank" class="text-decoration-none text-muted">SySafarila <i class="material-icons align-middle pb-1" style="font-size:1rem;">launch</i></a></p>
             </div>
         </footer>
     </div>
