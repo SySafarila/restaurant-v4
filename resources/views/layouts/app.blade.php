@@ -76,7 +76,7 @@
                                 <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('dashboard/orders') ? 'active' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is('dashboard/profile') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['dashboard/profile', 'dashboard/invoices', 'dashboard/profile/edit', 'dashboard/profile/login/edit']) ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ '@' . Str::limit(Auth::user()->username, 8, ' . .') }} <span class="caret"></span>
                                 </a>
 

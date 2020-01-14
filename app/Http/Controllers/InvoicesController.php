@@ -80,7 +80,8 @@ class InvoicesController extends Controller
         $user = Auth::user()->id;
         $invoice = Invoice::where(['user_id' => $user])->first();
 
-        return $invoice;
+        // return $invoice;
+        return view('invoices.show', ['invoice' => $invoice]);
     }
 
     /**
