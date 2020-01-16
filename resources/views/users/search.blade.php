@@ -49,10 +49,15 @@
                             @foreach ($user->orders as $order)
                                 <input type="hidden" name="menus[]" value="- {{ $order->menu->name }} : {{ $order->quantity }} </br>">
                             @endforeach
+
+                            @empty($user->orders)
                             <div class="d-flex">
                                 @csrf
                                 <button class="mx-auto btn btn-sm btn-outline-success">Pay !</button>
                             </div>
+                            @else
+                                <p class="text-center text-muted">Empty</p>
+                            @endempty
                         </form>
                     </div>
                 </div>
