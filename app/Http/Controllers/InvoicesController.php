@@ -47,9 +47,17 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        foreach ($request->all() as $menu) {
-            return implode($menu);
-        }
+        $menu = implode($request->menus);
+        
+        $invoice = Invoice::create([
+            'user_id' => $request->user_id,
+            'menu' => $menu,
+            'quantity' => 123,
+            'total' => $request->total
+        ]);
+
+        return ('success');
+
         // $validate = $request->validate([
         //     'user_id' => 'required|numeric',
         //     'menu_quantity' => 'required'
