@@ -16,10 +16,11 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
+            {{-- Breadcrumb --}}
             <div class="my-breadcrumb d-flex pb-3">
-                <a href="{{ route('menus.index') }}" class="text-decoration-none text-success">Menus</a>
-                <span class="material-icons text-muted pt-1 px-2" style="font-size:15px;">label_important</span>
-                <p class="text-muted m-0">{{ $menu->name }}</p>
+                <a href="{{ route('dashboard') }}" class="text-decoration-none text-success">Menus</a>
+                <span class="text-muted px-2">/</span>
+                <a href="{{ route('users.index') }}" class="text-decoration-none text-success">{{ $menu->name }}</a>
             </div>
             <div class="card mb-4 shadow-sm">
                 <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
