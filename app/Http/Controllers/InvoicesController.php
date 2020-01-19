@@ -56,36 +56,18 @@ class InvoicesController extends Controller
         $menu = implode($request->menus);
         
         $invoice = Invoice::create([
-            'user_id' => $request->user_id,
-            'menu' => $menu,
+            'user_id'  => $request->user_id,
+            'menu'     => $menu,
             'quantity' => 123,
-            'total' => $request->total
+            'total'    => $request->total
         ]);
 
         $deleteOrders = Order::where([
             'user_id' => $request->user_id,
-            'status' => 'Pending'
+            'status'  => 'Pending'
         ])->delete();
 
         return redirect()->route('users.index')->with('status', 'Payment Success !');
-
-        // $validate = $request->validate([
-        //     'user_id' => 'required|numeric',
-        //     'menu_quantity' => 'required'
-        // ]);
-        // $orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->get();
-
-        // // return $orders;
-
-        // $invoice = Invoice::create([
-        //     'user_id' => $request->user_id,
-        //     'menu' => $request->menu_quantity,
-        //     'total' => $orders->sum('total'),
-        // ]);
-
-        // $delete_orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->delete();
-
-        // return redirect()->route('users.index')->with('status', 'Success added to invoices');
     }
 
     /**
