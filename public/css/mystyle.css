@@ -6,6 +6,15 @@
     font-family: 'Pacifico';
 }
 
-.text-orange{
-    color: #FA591D;
+.text-orange {
+    color: #FA591D !important;
+}
+  
+a.text-orange:hover,
+a.text-orange:focus {
+    color: rgb(212, 77, 28) !important;
+}
+
+.material-icons{
+    font-size: 1rem;
 }

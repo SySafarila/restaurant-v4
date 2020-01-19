@@ -7,15 +7,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if (session('status'))
-                <div class="alert alert-warning" role="alert">
+                <div class="alert alert-success" role="alert">
                     {{ session('status') }}
                 </div>
             @endif
-            <div class="card">
-                <div class="card-body">
+            <div class="card border-0">
+                <div class="card-body p-0">
                     <form action="{{ route('users.search') }}" method="get">
                         <div class="input-group mb-3">
-                            <input type="text" name="username" class="rounded-pill mr-1 form-control form-control-sm @error('username') is-invalid @enderror" placeholder="Search Username" required>
+                            <input type="text" name="username" class="rounded-pill mr-1 form-control form-control-sm @error('username') is-invalid @enderror" placeholder='Search Username without "@"' required>
                             <div class="input-group-append">
                                 <button type="submit" class="rounded-pill btn btn-sm btn-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                             </div>

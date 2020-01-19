@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class InvoicesController extends Controller
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
-            $invoices = Invoice::where('user_id', $user->id)->latest()->get();
+            $invoices = Invoice::where('user_id', $user->id)->latest()->paginate(10);
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         }
@@ -46,7 +47,45 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'user_id' => 'required|numeric',
+            'menus'   => 'required',
+            'total'   => 'required|numeric'
+        ]);
+        
+        $menu = implode($request->menus);
+        
+        $invoice = Invoice::create([
+            'user_id' => $request->user_id,
+            'menu' => $menu,
+            'quantity' => 123,
+            'total' => $request->total
+        ]);
+
+        $deleteOrders = Order::where([
+            'user_id' => $request->user_id,
+            'status' => 'Pending'
+        ])->delete();
+
+        return redirect()->route('users.index')->with('status', 'Payment Success !');
+
+        // $validate = $request->validate([
+        //     'user_id' => 'required|numeric',
+        //     'menu_quantity' => 'required'
+        // ]);
+        // $orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->get();
+
+        // // return $orders;
+
+        // $invoice = Invoice::create([
+        //     'user_id' => $request->user_id,
+        //     'menu' => $request->menu_quantity,
+        //     'total' => $orders->sum('total'),
+        // ]);
+
+        // $delete_orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->delete();
+
+        // return redirect()->route('users.index')->with('status', 'Success added to invoices');
     }
 
     /**
@@ -55,9 +94,14 @@ class InvoicesController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show($id)
     {
-        //
+        $user = Auth::user()->id;
+        $invoice = Invoice::where(['user_id' => $user, 'id' => $id])->first();
+        // dd($invoice);
+
+        // return $invoice;
+        return view('invoices.show', ['invoice' => $invoice]);
     }
 
     /**

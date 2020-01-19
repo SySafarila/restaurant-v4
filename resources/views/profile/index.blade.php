@@ -6,8 +6,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow-sm">
-                <div class="card-body table-responsive">
+            <div class="card border-0">
+                <div class="p-0 card-body table-responsive">
                     @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('status') }}
@@ -16,7 +16,7 @@
                             </button>
                         </div>
                     @endif
-                    <table class="table table-bordered">
+                    <table class="table table-bordered shadow-sm">
                         <tr>
                             <td colspan="2" class="text-center">Profile</td>
                         </tr>
