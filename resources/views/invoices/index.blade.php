@@ -56,6 +56,11 @@
                             @endif
                         </tbody>
                     </table>
+                    <div class="d-flex">
+                        <div class="mx-auto">
+                            {{ $invoices->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

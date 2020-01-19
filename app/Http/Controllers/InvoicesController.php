@@ -23,7 +23,7 @@ class InvoicesController extends Controller
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
-            $invoices = Invoice::where('user_id', $user->id)->latest()->get();
+            $invoices = Invoice::where('user_id', $user->id)->latest()->paginate(10);
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         }
@@ -94,10 +94,11 @@ class InvoicesController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show($id)
     {
         $user = Auth::user()->id;
-        $invoice = Invoice::where(['user_id' => $user])->first();
+        $invoice = Invoice::where(['user_id' => $user, 'id' => $id])->first();
+        // dd($invoice);
 
         // return $invoice;
         return view('invoices.show', ['invoice' => $invoice]);

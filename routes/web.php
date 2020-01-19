@@ -59,4 +59,4 @@ Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redire
 // Invoices
 Route::get('/dashboard/invoices', 'InvoicesController@index')->name('invoices.index');
 Route::post('/dashboard/invoices/store', 'InvoicesController@store')->name('invoices.store');
-Route::get('/dashboard/invoice/{invoice}', 'InvoicesController@show')->name('invoices.show');
+Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
