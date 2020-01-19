@@ -38,14 +38,14 @@
                             <tr>
                                 <th class="text-center align-middle">No</th>
                                 <th class="align-middle">Invoices</th>
-                                <th class="text-center align-middle">Total</th>
+                                <th class="text-center align-middle">Total (Rp)</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($invoices as $invoice)
                                 <tr>
                                     <td class="text-center align-middle">{{ $nomor++ }}</td>
-                                    <td class="align-middle"><a href="{{ route('invoices.show', $invoice->id) }}">{{ $invoice->created_at }}</a></span></td>
+                                    <td class="align-middle"><a href="{{ route('invoices.show', $invoice->id) }}">{{ 'RV4' . $invoice->id }}</a></span></td>
                                     <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
                                 </tr>
                             @endforeach

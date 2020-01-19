@@ -47,6 +47,12 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = $request->validate([
+            'user_id' => 'required|numeric',
+            'menus'   => 'required',
+            'total'   => 'required|numeric'
+        ]);
+        
         $menu = implode($request->menus);
         
         $invoice = Invoice::create([
