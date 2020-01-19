@@ -56,6 +56,11 @@ class InvoicesController extends Controller
             'total' => $request->total
         ]);
 
+        $deleteOrders = Order::where([
+            'user_id' => $request->user_id,
+            'status' => 'Pending'
+        ])->delete();
+
         return ('success');
 
         // $validate = $request->validate([

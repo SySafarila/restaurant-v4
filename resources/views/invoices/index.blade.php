@@ -49,11 +49,11 @@
                                     <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
                                 </tr>
                             @endforeach
-                            @empty(!$invoices)
+                            @if ($invoices->count() == 0)
                                 <tr>
-                                    <th colspan="3" class="text-center text-muted">Empty</th>
+                                    <th colspan="3" class="text-center text-danger">Empty</th>
                                 </tr>
-                            @endempty
+                            @endif
                         </tbody>
                     </table>
                 </div>
