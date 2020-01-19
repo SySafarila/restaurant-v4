@@ -8,6 +8,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 {{-- Breadcrumb --}}
                 <div class="my-breadcrumb d-flex pb-3">
                     <a href="{{ route('dashboard') }}" class="text-decoration-none text-success">Dashboard</a>
@@ -54,7 +62,7 @@
                             <div class="d-flex">
                                 @csrf
                                 @if ($user->orders->count() == 0)
-                                    <h3 class="text-center text-muted">Empty</h3>
+                                    <h3 class="text-center text-muted mx-auto">Empty</h3>
                                 @else
                                     <button class="mx-auto btn btn-sm btn-outline-success">Pay !</button>
                                 @endif

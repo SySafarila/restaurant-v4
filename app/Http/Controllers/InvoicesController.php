@@ -61,7 +61,7 @@ class InvoicesController extends Controller
             'status' => 'Pending'
         ])->delete();
 
-        return ('success');
+        return redirect()->route('users.index')->with('status', 'Payment Success !');
 
         // $validate = $request->validate([
         //     'user_id' => 'required|numeric',
