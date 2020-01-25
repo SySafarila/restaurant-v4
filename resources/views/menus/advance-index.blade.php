@@ -11,15 +11,22 @@
                         <tr>
                             <th class="text-center" style="width: 60px;">No</th>
                             <th>Menus</th>
-                            <th class="text-center">Stock</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($menus as $menu)
                         <tr>
                             <td class="text-center align-middle" style="width: 60px;">{{ $number++ }}</td>
-                            <td class="align-middle">{{ $menu->name }} <br> <span class="badge badge-success badge-pill align-middle">Rp.{{ $menu->price }}</span></td>
-                            <td class="text-center align-middle">{{ $menu->stock }}</td>
+                            <td class="align-middle"><a href="{{ route('menus.show', $menu->id) }}" class="text-decoration-none text-orange">{{ $menu->name }}</a> <br> <span class="badge badge-success badge-pill align-middle">Rp.{{ $menu->price }}</span> <span class="badge badge-primary badge-pill align-middle">Stock : {{ $menu->stock }}</span></td>
+                            <td class="text-center align-middle">
+                                <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-outline-success">Edit</a>
+                                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         <tr>
