@@ -45,6 +45,7 @@ Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->name('menus.edi
 Route::post('/dashboard/menus', 'MenusController@store')->name('menus.store');
 Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->name('menus.destroy');
 Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->name('menus.restore');
+Route::get('/dashboard/menus/create', 'MenusController@create')->name('menus.create');
 
 // Orders
 Route::get('/dashboard/orders', 'OrdersController@index')->name('orders.index');

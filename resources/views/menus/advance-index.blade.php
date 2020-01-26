@@ -16,7 +16,7 @@
                 @endif
                 <div class="action mb-1 float-right">
                     <a href="{{ route('menus.deleted') }}" class="material-icons text-orange text-decoration-none" style="font-size:30px;">restore_from_trash</a>
-                    <a href="#" class="material-icons text-success text-decoration-none" style="font-size:30px;">add_box</a>
+                    <a href="{{ route('menus.create') }}" class="material-icons text-success text-decoration-none" style="font-size:30px;">add_box</a>
                 </div>
                 <table class="table table-bordered table-hover shadow-sm">
                     <thead>

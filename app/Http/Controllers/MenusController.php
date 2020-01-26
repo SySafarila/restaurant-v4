@@ -54,7 +54,11 @@ class MenusController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::user()->level == 'Admin') {
+            return view('menus.create');
+        } else {
+            return redirect()->route('dashboard');
+        }
     }
 
     /**
@@ -83,7 +87,7 @@ class MenusController extends Controller
             'status'      => ucwords($request['status'])
         ]);
 
-        return redirect()->route('menus.index')->with('status_menu', 'Menu added !');
+        return redirect()->route('menus.index')->with('status', 'Menu added !');
     }
 
     /**
@@ -118,7 +122,6 @@ class MenusController extends Controller
         } else {
             return redirect()->route('dashboard');
         }
-        
     }
 
     /**
@@ -148,7 +151,7 @@ class MenusController extends Controller
             'status'      => ucwords($request['status'])
         ]);
 
-        return redirect()->route('menus.index')->with('status_menu', 'Menu edited !');
+        return redirect()->route('menus.index')->with('status', 'Menu edited !');
     }
 
     /**
