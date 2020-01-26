@@ -109,11 +109,16 @@ class MenusController extends Controller
      */
     public function edit($id)
     {
-        $menu = Menu::findOrFail($id);
-
-        // return $menu;
-
-        return view('menus.edit', ['menu' => $menu]);
+        if (Auth::user()->level == 'Admin') {
+            $menu = Menu::findOrFail($id);
+    
+            // return $menu;
+    
+            return view('menus.edit', ['menu' => $menu]);
+        } else {
+            return redirect()->route('dashboard');
+        }
+        
     }
 
     /**
@@ -159,7 +164,7 @@ class MenusController extends Controller
 
         $order = Order::where('menu_id', $id)->delete();
 
-        return redirect()->route('menus.index')->with('status_menu', 'Menu deleted with Order Pending !');
+        return redirect()->route('menus.index')->with('status', 'Menu moved to trash !');
     }
 
     public function restore($id)
