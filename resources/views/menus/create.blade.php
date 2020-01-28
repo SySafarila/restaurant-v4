@@ -12,8 +12,8 @@
                     @csrf
                     @method('POST')
                     <div class="form-group">
-                        <label for="product">Name Product</label>
-                        <input type="text" id="product" name="name" value="{{ old('name') }}" class="form-control form-control-sm mb-1 @error('name') is-invalid @enderror" placeholder="Name" required>
+                        <label for="product">Product Name</label>
+                        <input type="text" id="product" name="name" value="{{ old('name') }}" class="form-control form-control-sm mb-1 @error('name') is-invalid @enderror" placeholder="Product Name" required>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
