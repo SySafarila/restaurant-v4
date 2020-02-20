@@ -67,7 +67,10 @@ class InvoicesController extends Controller
                 'quantity' => $order->quantity,
                 'total' => $random
             ]);
+
+            $delete = Order::where('id', $id)->delete();
         }
+        return ('sukses');
     }
 
     /**
