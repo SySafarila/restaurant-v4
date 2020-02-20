@@ -55,9 +55,7 @@
                         </div>
                         <form action="{{ route('invoices.store') }}" method="post">
                             @foreach ($user->orders as $order)
-                                <input type="hidden" name="menus[]" value="- {{ $order->menu->name }} : {{ $order->quantity }} </br>">
-                                <input type="hidden" name="total" value="{{ $user->orders->sum('total') }}">
-                                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <input type="hidden" name="orderId[]" value="{{ $order->id }}">
                             @endforeach
                             <div class="d-flex">
                                 @csrf

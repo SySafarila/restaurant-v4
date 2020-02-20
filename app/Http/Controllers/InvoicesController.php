@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Menu;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class InvoicesController extends Controller
 {
@@ -47,27 +49,25 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = $request->validate([
-            'user_id' => 'required|numeric',
-            'menus'   => 'required',
-            'total'   => 'required|numeric'
-        ]);
-        
-        $menu = implode($request->menus);
-        
-        $invoice = Invoice::create([
-            'user_id'  => $request->user_id,
-            'menu'     => $menu,
-            'quantity' => 123,
-            'total'    => $request->total
-        ]);
+        $random = Str::random(60);
 
-        $deleteOrders = Order::where([
-            'user_id' => $request->user_id,
-            'status'  => 'Pending'
-        ])->delete();
+        foreach ($request->orderId as $id) {
+            $order = Order::where('id', $id)->first();
+            // echo $order;
 
-        return redirect()->route('users.index')->with('status', 'Payment Success !');
+            $min = Menu::where('id', $order->menu_id)->first();
+            // echo $min->stock;
+            $menu = Menu::where('id', $order->menu_id)->update([
+                'stock' => $min->stock - $order->quantity
+            ]);
+
+            $invoice = Invoice::create([
+                'user_id' => $order->user_id,
+                'menu' => $order->menu->name,
+                'quantity' => $order->quantity,
+                'total' => $random
+            ]);
+        }
     }
 
     /**
