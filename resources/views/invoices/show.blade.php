@@ -8,13 +8,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5 col-12">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
-                    <h3 class="card-title">Invoice : {{ $unique }}</h3>
+                    <h5 class="card-title text-success">Invoice : {{ $unique }}</h5>
                     @foreach ($invoices as $invoice)
                     <p>{!! $invoice->menu !!} qty : {{ $invoice->quantity }}</p>
-                    <p>Total : {{ $invoice->total }}</p>
                 @endforeach
+                    <p>Total : {{ $invoices->sum('total') }}</p>
                 </div>
             </div>
         </div>
