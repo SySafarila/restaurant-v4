@@ -25,7 +25,7 @@ class InvoicesController extends Controller
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
-            $invoices = Invoice::where('user_id', $user->id)->latest()->paginate(10);
+            $invoices = Invoice::where('user_id', $user->id)->groupBy('unique')->get();
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         }
@@ -80,14 +80,11 @@ class InvoicesController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($unique)
     {
-        $user = Auth::user()->id;
-        $invoice = Invoice::where(['user_id' => $user, 'id' => $id])->first();
-        // dd($invoice);
-
-        // return $invoice;
-        return view('invoices.show', ['invoice' => $invoice]);
+        $auth = Auth::user();
+        $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $unique])->get();
+        return view('invoices.show', ['invoices' => $invoices, 'unique' => $unique]);
     }
 
     /**

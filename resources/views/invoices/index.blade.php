@@ -32,6 +32,7 @@
         @endif
         <div class="row justify-content-center">
             <div class="col-md-9 col-sm-12">
+                <a href="{{ route('tes', 'asd') }}">tes</a>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover shadow-sm">
                         <thead>
@@ -45,7 +46,7 @@
                             @foreach ($invoices as $invoice)
                                 <tr>
                                     <td class="text-center align-middle">{{ $nomor++ }}</td>
-                                    <td class="align-middle"><a href="{{ route('invoices.show', $invoice->id) }}">{{ 'RV4' . $invoice->id }}</a></span></td>
+                                    <td class="align-middle"><a href="{{ route('invoices.show', $invoice->unique) }}">{{ $invoice->unique }}</a></td>
                                     <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
                                 </tr>
                             @endforeach
@@ -56,11 +57,6 @@
                             @endif
                         </tbody>
                     </table>
-                    <div class="d-flex">
-                        <div class="mx-auto">
-                            {{ $invoices->links() }}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
