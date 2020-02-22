@@ -65,7 +65,8 @@ class InvoicesController extends Controller
                 'user_id' => $order->user_id,
                 'menu' => $order->menu->name,
                 'quantity' => $order->quantity,
-                'total' => $random
+                'total' => $order->total,
+                'unique' => $random
             ]);
 
             $delete = Order::where('id', $id)->delete();
