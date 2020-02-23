@@ -30,7 +30,7 @@
                             <table class="table table-bordered table-hover shadow-sm">
                                 <thead>
                                     <tr>
-                                        <th colspan="3" class="text-center">Orders <span class="text-success">{{ '@' . $user->username }}</span></th>
+                                        <th colspan="3" class="text-center"><span class="text-success">{{ '@' . $user->username }}</span>'s Orders</th>
                                     </tr>
                                     <tr>
                                         <th class="text-center align-middle">No</th>

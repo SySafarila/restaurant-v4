@@ -38,6 +38,7 @@ Route::patch('/dashboard/user/{id}', 'UsersController@update')->name('users.upda
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->name('users.delete');
 // Search
 Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
+Route::get('/dashboard/user/search/username/{username}', 'UsersController@search2')->name('users.search2');
 
 // Menus
 Route::get('/dashboard/menus', 'MenusController@index')->name('menus.index');
