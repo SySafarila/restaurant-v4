@@ -18,3 +18,20 @@ a.text-orange:focus {
 .material-icons{
     font-size: 1rem;
 }
+
+.badge-orange {
+    color: #fff;
+    background-color: #FA591D;
+}
+  
+a.badge-orange:hover,
+a.badge-orange:focus {
+    color: #fff;
+    background-color: rgb(212, 77, 28);
+}
+  
+a.badge-orange:focus,
+a.badge-orange.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+}

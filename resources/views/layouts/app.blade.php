@@ -29,7 +29,7 @@
                     Restaurant v4
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="material-icons">menu_open</span>
+                    <span class="material-icons pt-1">menu_open</span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

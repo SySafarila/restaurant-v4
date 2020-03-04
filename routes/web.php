@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('tes/{name?}', function ($name = null) {
+    return $name;
+})->name('tes');
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +38,7 @@ Route::patch('/dashboard/user/{id}', 'UsersController@update')->name('users.upda
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->name('users.delete');
 // Search
 Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
+Route::get('/dashboard/user/search/username/{username}', 'UsersController@search2')->name('users.search2');
 
 // Menus
 Route::get('/dashboard/menus', 'MenusController@index')->name('menus.index');
@@ -45,6 +49,7 @@ Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->name('menus.edi
 Route::post('/dashboard/menus', 'MenusController@store')->name('menus.store');
 Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->name('menus.destroy');
 Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->name('menus.restore');
+Route::get('/dashboard/menus/create', 'MenusController@create')->name('menus.create');
 
 // Orders
 Route::get('/dashboard/orders', 'OrdersController@index')->name('orders.index');
@@ -59,4 +64,5 @@ Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redire
 // Invoices
 Route::get('/dashboard/invoices', 'InvoicesController@index')->name('invoices.index');
 Route::post('/dashboard/invoices/store', 'InvoicesController@store')->name('invoices.store');
-Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
+Route::get('/dashboard/invoices/{unique?}', 'InvoicesController@show')->name('invoices.show');
+// Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');

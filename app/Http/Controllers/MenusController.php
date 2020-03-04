@@ -25,7 +25,12 @@ class MenusController extends Controller
 
         // dd($menus);
 
-        return view('menus.index', ['menus' => $menus, 'number' => $number]);
+        if (Auth::user()->level == 'Admin') {
+            return view('menus.advance-index', ['menus' => $menus, 'number' => $number]);
+        } else {
+            return view('menus.index', ['menus' => $menus, 'number' => $number]);
+        }
+        
     }
 
     public function deleted()
@@ -49,7 +54,11 @@ class MenusController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::user()->level == 'Admin') {
+            return view('menus.create');
+        } else {
+            return redirect()->route('dashboard');
+        }
     }
 
     /**
@@ -78,7 +87,7 @@ class MenusController extends Controller
             'status'      => ucwords($request['status'])
         ]);
 
-        return redirect()->route('menus.index')->with('status_menu', 'Menu added !');
+        return redirect()->route('menus.index')->with('status', 'Menu added !');
     }
 
     /**
@@ -104,11 +113,15 @@ class MenusController extends Controller
      */
     public function edit($id)
     {
-        $menu = Menu::findOrFail($id);
-
-        // return $menu;
-
-        return view('menus.edit', ['menu' => $menu]);
+        if (Auth::user()->level == 'Admin') {
+            $menu = Menu::findOrFail($id);
+    
+            // return $menu;
+    
+            return view('menus.edit', ['menu' => $menu]);
+        } else {
+            return redirect()->route('dashboard');
+        }
     }
 
     /**
@@ -138,7 +151,7 @@ class MenusController extends Controller
             'status'      => ucwords($request['status'])
         ]);
 
-        return redirect()->route('menus.index')->with('status_menu', 'Menu edited !');
+        return redirect()->route('menus.index')->with('status', 'Menu edited !');
     }
 
     /**
@@ -154,7 +167,7 @@ class MenusController extends Controller
 
         $order = Order::where('menu_id', $id)->delete();
 
-        return redirect()->route('menus.index')->with('status_menu', 'Menu deleted with Order Pending !');
+        return redirect()->route('menus.index')->with('status', 'Menu moved to trash !');
     }
 
     public function restore($id)

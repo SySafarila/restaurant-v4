@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Menu;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class InvoicesController extends Controller
 {
@@ -23,7 +25,7 @@ class InvoicesController extends Controller
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
-            $invoices = Invoice::where('user_id', $user->id)->latest()->paginate(10);
+            $invoices = Invoice::where('user_id', $user->id)->groupBy('unique')->get();
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         }
@@ -47,45 +49,29 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = $request->validate([
-            'user_id' => 'required|numeric',
-            'menus'   => 'required',
-            'total'   => 'required|numeric'
-        ]);
-        
-        $menu = implode($request->menus);
-        
-        $invoice = Invoice::create([
-            'user_id' => $request->user_id,
-            'menu' => $menu,
-            'quantity' => 123,
-            'total' => $request->total
-        ]);
+        $random = Str::random(60);
 
-        $deleteOrders = Order::where([
-            'user_id' => $request->user_id,
-            'status' => 'Pending'
-        ])->delete();
+        foreach ($request->orderId as $id) {
+            $order = Order::where('id', $id)->first();
+            // echo $order;
 
-        return redirect()->route('users.index')->with('status', 'Payment Success !');
+            $min = Menu::where('id', $order->menu_id)->first();
+            // echo $min->stock;
+            $menu = Menu::where('id', $order->menu_id)->update([
+                'stock' => $min->stock - $order->quantity
+            ]);
 
-        // $validate = $request->validate([
-        //     'user_id' => 'required|numeric',
-        //     'menu_quantity' => 'required'
-        // ]);
-        // $orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->get();
+            $invoice = Invoice::create([
+                'user_id' => $order->user_id,
+                'menu' => $order->menu->name,
+                'quantity' => $order->quantity,
+                'total' => $order->total,
+                'unique' => $random
+            ]);
 
-        // // return $orders;
-
-        // $invoice = Invoice::create([
-        //     'user_id' => $request->user_id,
-        //     'menu' => $request->menu_quantity,
-        //     'total' => $orders->sum('total'),
-        // ]);
-
-        // $delete_orders = Order::where(['user_id' => $request->user_id, 'status' => 'Pending'])->delete();
-
-        // return redirect()->route('users.index')->with('status', 'Success added to invoices');
+            $delete = Order::where('id', $id)->delete();
+        }
+        return ('sukses');
     }
 
     /**
@@ -94,14 +80,11 @@ class InvoicesController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($unique)
     {
-        $user = Auth::user()->id;
-        $invoice = Invoice::where(['user_id' => $user, 'id' => $id])->first();
-        // dd($invoice);
-
-        // return $invoice;
-        return view('invoices.show', ['invoice' => $invoice]);
+        $auth = Auth::user();
+        $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $unique])->get();
+        return view('invoices.show', ['invoices' => $invoices, 'unique' => $unique]);
     }
 
     /**

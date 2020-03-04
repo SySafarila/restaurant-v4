@@ -19,6 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->string('menu');
             $table->string('quantity');
             $table->string('total');
+            $table->string('unique');
             $table->timestamps();
         });
     }
