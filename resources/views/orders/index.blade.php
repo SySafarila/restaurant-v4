@@ -80,13 +80,13 @@
                                     @else
                                     <tr>
                                         <td colspan="4" class="text-center align-middle font-weight-bold text-success">Total ( Rp )</td>
-                                        <td class="text-center align-middle text-success font-weight-bold">{{ number_format($orders->sum('total'), 0, 0, '.') }}</td>
+                                        <td class="text-center align-middle text-orange font-weight-bold">{{ number_format($orders->sum('total'), 0, 0, '.') }}</td>
                                     </tr>
                                     @endif
                                 </tbody>
                             </table>
                         </div>
-                        <p class="text-center text-muted">If several Orders disappear, it means the Order has been deleted by the Admin</p>
+                        <p class="text-center text-muted">If several Orders disappear, it means the Orders has been deleted by the Admin</p>
                         @if (count($orders) < 1)
                         <div class="d-flex justify-content-center">
                             <a href="{{ route('menus.index') }}" class="btn btn-sm btn-success mb-3">Order Now</a>

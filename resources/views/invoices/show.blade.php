@@ -11,8 +11,15 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h3 class="card-title text-success text-center">INVOICE</h3>
+                    <div class="row">
+                        <div class="col">
+                            <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">Success</span>
+                        </div>
+                        <div class="col">
+                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->first()->created_at }}</span>
+                        </div>
+                    </div>
                     <p class="text-muted">{{ $unique }}</p>
-                    <p class="text-muted">Date : {{ $invoices->first()->created_at }}</p>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
