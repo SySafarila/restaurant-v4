@@ -16,10 +16,10 @@
                             <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">Success</span>
                         </div>
                         <div class="col">
-                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->first()->created_at }}</span>
+                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->first()->created_at }}</span> <p><span class="font-weight-bold">It's {{ $invoices->first()->created_at->diffForHumans() }}</span></p>
                         </div>
                     </div>
-                    <p class="text-muted">{{ $unique }}</p>
+                    <p class="text-muted" title="{{ $unique }}">Code : {{ Str::limit($unique, 30, ' . . .') }}</p>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
