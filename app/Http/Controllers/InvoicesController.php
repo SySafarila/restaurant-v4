@@ -63,6 +63,7 @@ class InvoicesController extends Controller
 
             if ($min->stock - $order->quantity == 0) {
                 Menu::where('id', $order->menu_id)->delete();
+                // Order::where('menu_id', $order->menu_id)->delete();
             }
 
             $invoice = Invoice::create([
