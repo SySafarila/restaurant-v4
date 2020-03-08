@@ -43,6 +43,9 @@
                                 <p class="card-title font-weight-bold m-0">{{ $order->menu->name }}</p>
                                 <span class="text-success">{{ $order->quantity }}</span> <span class="font-weight-bold">x</span> <span class="text-orange font-weight-bold">{{ number_format($order->menu->price, 0, 0, '.') }}</span>
                                     <br>
+                                @if ($order->menu->stock - $order->quantity <= 0)
+                                <span class="badge badge-warning algn-middle">Order Is Too Much</span>
+                                @endif
                                 @if ($order->menu->stock == 0)
                                     <span class="badge badge-warning algn-middle">Out of stock</span>
                                 @else

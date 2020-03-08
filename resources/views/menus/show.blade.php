@@ -43,8 +43,8 @@
                         @csrf
                         <input type="hidden" name="menu" value="{{ $menu->id }}">
                         <div class="row px-3">
-                            <input type="number" name="quantity" class="rounded-pill form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity" required>
-                            <button type="submit" class="rounded-pill btn btn-sm btn-success ml-1 material-icons">add_shopping_cart</button>
+                            <input type="number" name="quantity" class="rounded-pill form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity" required @if($menu->stock <= 0) disabled @endif>
+                            <button type="submit" class="rounded-pill btn btn-sm btn-success ml-1 material-icons" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
                             @error('quantity')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
