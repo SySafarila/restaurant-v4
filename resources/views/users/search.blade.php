@@ -44,7 +44,7 @@
                                             <td class="text-center align-middle">{{ $number++ }}</td>
                                             <td class="align-middle">{{ $order->menu->name }} <span class="badge badge-pill badge-success align-middle">{{ $order->quantity }}</span>
                                                 <br>
-                                            @if ($order->menu->stock - $order->quantity < 0)
+                                            @if ($order->menu->stock - $order->quantity <= 0)
                                                 <span class="badge badge-warning algn-middle">Product Is Not Enough</span>
                                             @endif
                                             @if ($order->menu->stock == 0)
