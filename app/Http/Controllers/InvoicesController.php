@@ -57,6 +57,15 @@ class InvoicesController extends Controller
 
             $min = Menu::where('id', $order->menu_id)->first();
             // echo $min->stock;
+
+            if ($order->menu->stock == 0) {
+                return ('Out of stock');
+            }
+            
+            if ($min->stock - $order->quantity < 0) {
+                return ('quantity is not enough');
+            }
+
             $menu = Menu::where('id', $order->menu_id)->update([
                 'stock' => $min->stock - $order->quantity
             ]);
