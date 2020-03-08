@@ -42,7 +42,15 @@
                                     @foreach ($user->orders as $order)
                                         <tr>
                                             <td class="text-center align-middle">{{ $number++ }}</td>
-                                            <td class="align-middle">{{ $order->menu->name }} <span class="badge badge-pill badge-success align-middle">{{ $order->quantity }}</span></td>
+                                            <td class="align-middle">{{ $order->menu->name }} <span class="badge badge-pill badge-success align-middle">{{ $order->quantity }}</span>
+                                                <br>
+                                            @if ($order->menu->stock - $order->quantity <= 0)
+                                                <span class="badge badge-warning algn-middle">Product Is Not Enough</span>
+                                            @endif
+                                            @if ($order->menu->stock == 0)
+                                                <span class="badge badge-danger algn-middle">Out Of Stock</span>
+                                            @endif
+                                            </td>
                                             <td class="text-center align-middle font-weight-bold text-success">{{ number_format($order->price * $order->quantity, 0, 0, '.') }}</td>
                                         </tr>
                                     @endforeach

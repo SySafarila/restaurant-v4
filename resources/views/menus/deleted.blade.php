@@ -32,6 +32,8 @@
                     <div class="card-body">
                         <h5 class="card-title"><a href="{{ route('menus.show', $menu->id) }}" class="text-decoration-none text-success font-weight-bold">{{ $menu->name }}</a></h5>
                         <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }}</h6>
+                        <span class="text-muted">{{ $menu->deleted_at->diffForHumans() }}</span>
+                        <br>
                         <p class="card-text">{{ Str::limit($menu->description, 50) }}</p>
 
                         <form action="{{ route('menus.restore', $menu->id) }}" method="post">
