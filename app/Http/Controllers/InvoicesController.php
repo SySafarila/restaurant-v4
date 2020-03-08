@@ -25,7 +25,7 @@ class InvoicesController extends Controller
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
-            $invoices = Invoice::where('user_id', $user->id)->groupBy('unique')->get();
+            $invoices = Invoice::where('user_id', $user->id)->groupBy('unique')->latest()->get();
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         }
