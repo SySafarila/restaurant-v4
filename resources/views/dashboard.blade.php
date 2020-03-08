@@ -136,7 +136,7 @@
                                                 @if (Auth::user()->invoices->count() == 0)
                                                     You don't have any invoices
                                                 @else
-                                                    You have <u>{{ Auth::user()->invoices->count() }}</u> invoices
+                                                    List an <i>Invoices</i>
                                                 @endif
                                             </h6>
                                         </a>

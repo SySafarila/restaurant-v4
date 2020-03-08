@@ -4,6 +4,16 @@
 
 @section('content')
     <div class="container">
+        @if (session('status'))
+        {{-- <div class=> --}}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('status') }} <a href="{{ route('orders.index') }}" class="alert-link text-decoration-none">Orders</a>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{-- </div> --}}
+            @endif
         <div class="row px-2 justify-content-center">
             @foreach ($menus as $menu)
                 <div class="col-6 px-1 col-md-2 mb-2">
