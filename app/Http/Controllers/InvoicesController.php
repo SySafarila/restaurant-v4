@@ -62,7 +62,7 @@ class InvoicesController extends Controller
                 return ('Out of stock');
             }
             
-            if ($min->stock - $order->quantity <= 0) {
+            if ($min->stock - $order->quantity < 0) {
                 return ('quantity is not enough');
             }
 
