@@ -63,5 +63,14 @@
                 </div>
             @endforeach
         </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <span class="text-success">TOTAL</span> <span class="text-orange font-weight-bold">Rp {{ number_format($orders->sum('total'), 0, 0, '.') }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
