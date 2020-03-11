@@ -28,9 +28,7 @@
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="material-icons pt-1">notifications_none</span>
                 </button>
-                <a class="navbar-brand text-success my-font" href="{{ url('/') }}">
-                    Restaurant v4
-                </a>
+                <a class="navbar-brand text-success my-font" href="{{ url('/') }}">Restaurant v4</a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="material-icons pt-1">menu_open</span>
                 </button>
