@@ -45,7 +45,7 @@ Route::get('/dashboard/menus', 'MenusController@index')->name('menus.index');
 Route::get('/dashboard/menus/deleted', 'MenusController@deleted')->name('menus.deleted');
 Route::get('/dashboard/menu/{id}', 'MenusController@show')->name('menus.show');
 Route::patch('/dashboard/menu/{id}', 'MenusController@update')->name('menus.update');
-Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->name('menus.edit');
+Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->middleware('admin')->name('menus.edit');
 Route::post('/dashboard/menus', 'MenusController@store')->name('menus.store');
 Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->name('menus.destroy');
 Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->name('menus.restore');

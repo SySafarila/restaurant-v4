@@ -113,15 +113,15 @@ class MenusController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::user()->level == 'Admin') {
+        // if (Auth::user()->level == 'Admin') {
             $menu = Menu::findOrFail($id);
     
             // return $menu;
     
             return view('menus.edit', ['menu' => $menu]);
-        } else {
-            return redirect()->route('dashboard');
-        }
+        // } else {
+            // return redirect()->route('dashboard');
+        // }
     }
 
     /**
