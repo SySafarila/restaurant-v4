@@ -21,11 +21,11 @@ class InvoicesController extends Controller
         $nomor = 1;
         $user = Auth::user();
         if ($user->level == 'Admin') {
-            $invoices = Invoice::groupBy('unique')->latest()->get();
+            $invoices = Invoice::groupBy('unique')->latest()->paginate(20);
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
-            $invoices = Invoice::where('user_id', $user->id)->groupBy('unique')->latest()->get();
+            $invoices = Invoice::where('user_id', $user->id)->groupBy('unique')->latest()->paginate(20);
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         }
