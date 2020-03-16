@@ -21,7 +21,7 @@ class InvoicesController extends Controller
         $nomor = 1;
         $user = Auth::user();
         if ($user->level == 'Admin') {
-            $invoices = Invoice::all();
+            $invoices = Invoice::groupBy('unique')->latest()->get();
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
@@ -96,10 +96,16 @@ class InvoicesController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $auth = Auth::user();
-        $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $invoice->unique])->get();
-        
-        return view('invoices.show', ['invoices' => $invoices, 'unique' => $invoice->unique]);
+        if (Auth::user()->level == 'Admin') {
+            $invoices = Invoice::where('unique', $invoice->unique)->get();
+
+            return view('invoices.show', ['invoices' => $invoices, 'unique' => $invoice->unique]);
+        } else {
+            $auth = Auth::user();
+            $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $invoice->unique])->get();
+            
+            return view('invoices.show', ['invoices' => $invoices, 'unique' => $invoice->unique]);
+        }
     }
 
     /**

@@ -39,6 +39,9 @@
                                 <th class="text-center align-middle">No</th>
                                 <th class="align-middle">Invoices</th>
                                 <th class="text-center align-middle">Total (Rp)</th>
+                                @if (Auth::user()->level == 'Admin')
+                                    <th class="align-middle">Username</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +50,9 @@
                                     <td class="text-center align-middle">{{ $nomor++ }}</td>
                                     <td class="align-middle"><a href="{{ route('invoices.show', $invoice->unique) }}">{{ $invoice->unique }}</a></td>
                                     <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
+                                    @if (Auth::user()->level == 'Admin')
+                                        <td class="align-middle">{{'@' . $invoices->first()->user->username }}</td>
+                                    @endif
                                 </tr>
                             @endforeach
                             @if ($invoices->count() == 0)
