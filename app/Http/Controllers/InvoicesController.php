@@ -101,8 +101,13 @@ class InvoicesController extends Controller
 
             return view('invoices.show', ['invoices' => $invoices, 'unique' => $invoice->unique]);
         } else {
-            $auth = Auth::user();
-            $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $invoice->unique])->get();
+            if (Auth::user()->id == $invoice->user_id) {
+                $auth = Auth::user();
+                $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $invoice->unique])->get();
+            } else {
+                return redirect()->route('dashboard')->with('status-redirect', 'Redirected !');
+            }
+            
             
             return view('invoices.show', ['invoices' => $invoices, 'unique' => $invoice->unique]);
         }
