@@ -51,7 +51,7 @@
                                     <td class="align-middle"><a href="{{ route('invoices.show', $invoice->unique) }}">{{ $invoice->unique }}</a></td>
                                     <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
                                     @if (Auth::user()->level == 'Admin')
-                                        <td class="align-middle"><a href="{{ route('users.show', $invoices->first()->user->username) }}" class="text-orange text-decoration-none">{{'@' . $invoices->first()->user->username }}</a></td>
+                                        <td class="align-middle"><a href="{{ route('users.show', $invoices->first()->user->username) }}" class="text-orange text-decoration-none">{{'@' . $invoice->user->username }}</a></td>
                                     @endif
                                 </tr>
                             @endforeach
