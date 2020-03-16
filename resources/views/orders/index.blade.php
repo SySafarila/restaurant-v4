@@ -31,7 +31,7 @@
             </div>
         @endif
         <div class="row justify-content-center">
-            @foreach ($orders as $order)
+            @forelse ($orders as $order)
                 <div class="col-md-6 mb-3">
                     <div class="card shadow-sm h-100">
                         <div class="card-body">
@@ -61,7 +61,15 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-md-6 mb-3">
+                    <div class="card shadow-sm border-danger">
+                        <div class="card-body">
+                            <p class="text-muted text-center m-0">EMPTY</p>
+                        </div>
+                    </div>
+                </div>
+            @endforelse
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6 mb-3">
