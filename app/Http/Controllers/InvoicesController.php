@@ -94,11 +94,12 @@ class InvoicesController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show($unique)
+    public function show(Invoice $invoice)
     {
         $auth = Auth::user();
-        $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $unique])->get();
-        return view('invoices.show', ['invoices' => $invoices, 'unique' => $unique]);
+        $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $invoice->unique])->get();
+        
+        return view('invoices.show', ['invoices' => $invoices, 'unique' => $invoice->unique]);
     }
 
     /**
