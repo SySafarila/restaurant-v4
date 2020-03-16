@@ -65,9 +65,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
+        // return $user;
+        $user = $user;
 
         if ($user->level == 'Admin') {
             $badge = 'badge-success';
@@ -144,7 +145,7 @@ class UsersController extends Controller
     {
         $username = $request->username;
 
-        return redirect()->route('users.search2', $username);
+        return redirect()->route('users.payment', $username);
         // if (Auth::user()->level == 'Admin') {
         //     $validate = $request->validate([
         //         'username' => 'required',
@@ -161,21 +162,31 @@ class UsersController extends Controller
 
     public function search2($username)
     {
-        $user = User::where('username', $username)->firstOrFail();
+        // $user = User::where('username', $username)->firstOrFail();
 
-        // return $user->username;
+        // // return $user->username;
 
-        if (Auth::user()->level == 'Admin') {
-            // $validate = $request->validate([
-            //     'username' => 'required',
-            // ]);
-            // $username = $request['username'];
-            $number   = 1;
-            $user     = User::where(['username' => $username, 'Level' => 'Customer'])->firstOrFail();
+        // if (Auth::user()->level == 'Admin') {
+        //     // $validate = $request->validate([
+        //     //     'username' => 'required',
+        //     // ]);
+        //     // $username = $request['username'];
+        //     $number   = 1;
+        //     $user     = User::where(['username' => $username, 'Level' => 'Customer'])->firstOrFail();
     
-            return view('users.search', ['user' => $user, 'number' => $number]);
-        } else {
-            return redirect()->route('dashboard');
-        }
+        //     return view('users.search', ['user' => $user, 'number' => $number]);
+        // } else {
+        //     return redirect()->route('dashboard');
+        // }
+    }
+
+    public function payment(User $user)
+    {
+        // return $user;
+        // $username = $user;
+        $user = $user;
+        $number   = 1;
+
+        return view('users.search', ['user' => $user, 'number' => $number]);
     }
 }

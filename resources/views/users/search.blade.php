@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    | Search
+    | Payment
 @endsection
 
 @section('content')
@@ -20,9 +20,9 @@
                 <div class="my-breadcrumb d-flex pb-3">
                     <a href="{{ route('dashboard') }}" class="text-decoration-none text-success">Dashboard</a>
                     <span class="text-muted px-2">/</span>
-                    <a href="{{ route('users.index') }}" class="text-decoration-none text-success">Users</a>
+                    <a href="{{ route('users.show', $user->username) }}" class="text-decoration-none text-success">{{'@' . $user->username }}</a>
                     <span class="text-muted px-2">/</span>
-                    <p class="text-muted m-0">{{ '@' . $user->username }}</p>
+                    <p class="text-muted m-0">Payment</p>
                 </div>
                 <div class="card border-0">
                     <div class="card-body p-0">

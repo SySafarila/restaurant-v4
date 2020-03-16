@@ -31,14 +31,15 @@ Route::patch('/dashboard/profile/updatelogin', 'ProfileController@updatelogin')-
 Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.delete');
 
 // Users
-Route::get('/dashboard/users', 'UsersController@index')->name('users.index');
-Route::get('/dashboard/user/{id}', 'UsersController@show')->name('users.show');
+Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');
+Route::get('/dashboard/user/{user:username}', 'UsersController@show')->middleware('admin')->name('users.show');
 Route::get('/dashboard/user/{id}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/dashboard/user/{id}', 'UsersController@update')->name('users.update');
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->name('users.delete');
 // Search
 Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
 Route::get('/dashboard/user/search/username/{username}', 'UsersController@search2')->name('users.search2');
+Route::get('/dashboard/{user:username}/payment', 'UsersController@payment')->name('users.payment');
 
 // Menus
 Route::get('/dashboard/menus', 'MenusController@index')->name('menus.index');
