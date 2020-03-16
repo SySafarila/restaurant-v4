@@ -32,7 +32,6 @@
         @endif
         <div class="row justify-content-center">
             <div class="col-md-9 col-sm-12">
-                <a href="{{ route('tes', 'asd') }}">tes</a>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover shadow-sm">
                         <thead>
