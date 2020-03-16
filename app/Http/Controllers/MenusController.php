@@ -113,15 +113,15 @@ class MenusController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::user()->level == 'Admin') {
+        // if (Auth::user()->level == 'Admin') {
             $menu = Menu::findOrFail($id);
     
             // return $menu;
     
             return view('menus.edit', ['menu' => $menu]);
-        } else {
-            return redirect()->route('dashboard');
-        }
+        // } else {
+            // return redirect()->route('dashboard');
+        // }
     }
 
     /**
@@ -138,7 +138,7 @@ class MenusController extends Controller
             'description' => 'string|min:10|required',
             'price'       => 'numeric|digits_between:3,9999|required',
             'img'         => 'string|required',
-            'stock'       => 'numeric|digits_between:1,9999|required',
+            'stock'       => 'numeric|min:1|required',
             'status'      => 'in:Available,Unavailable|required'
         ]);
 

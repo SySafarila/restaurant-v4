@@ -17,7 +17,7 @@
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Add Menu</h5>
+                        <h5 class="card-title text-center">Edit Menu</h5>
                         <form action="{{ route('menus.update', $menu->id) }}" method="post">
                             @csrf
                             @method('PATCH')

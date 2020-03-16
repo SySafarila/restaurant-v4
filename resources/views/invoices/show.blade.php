@@ -16,7 +16,7 @@
                             <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">Success</span>
                         </div>
                         <div class="col">
-                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->first()->created_at }}</span> <p><span class="font-weight-bold">It's {{ $invoices->first()->created_at->diffForHumans() }}</span></p>
+                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->first()->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">It's {{ $invoices->first()->created_at->diffForHumans() }}</span></p>
                         </div>
                     </div>
                     <p class="text-muted" title="{{ $unique }}">Code : {{ Str::limit($unique, 30, ' . . .') }}</p>
@@ -32,11 +32,11 @@
                                 @foreach ($invoices as $invoice)
                                 <tr>
                                     <td>{{ $invoice->menu }} <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span></td>
-                                    <td class="text-center">Rp. {{ number_format($invoice->total,0 ,0, '.') }}</td>
+                                    <td class="text-center text-success">Rp. {{ number_format($invoice->total,0 ,0, '.') }}</td>
                                 </tr>
                                 @endforeach
                                 <tr>
-                                    <td class="text-right font-weight-bold text-success">Total : </td>
+                                    <td class="text-right font-weight-bold text-success">Total </td>
                                     <td class="text-center font-weight-bold text-orange">Rp. {{ number_format($invoices->sum('total'),0 ,0, '.') }}</td>
                                 </tr>
                             </tbody>
