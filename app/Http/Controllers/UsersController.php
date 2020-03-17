@@ -124,7 +124,7 @@ class UsersController extends Controller
             'status'   => ucwords($request['status']),
         ]);
 
-        return redirect()->route('users.show', $id)->with('status', 'User updated !');
+        return redirect()->route('users.show', $request->username)->with('status', 'User updated !');
     }
 
     /**
