@@ -58,7 +58,7 @@
                         </table>
                     <div class="d-flex justify-content-center">
                         <a href="#" class="btn btn-sm btn-danger mx-1" data-toggle="modal" data-target="#DeleteUserModal">Delete Profile</a>
-                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-success mx-1">Edit Profile</a>
+                        <a href="{{ route('users.edit', $user->username) }}" class="btn btn-sm btn-outline-success mx-1">Edit Profile</a>
                     </div>
                 </div>
             </div>

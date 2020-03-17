@@ -34,7 +34,7 @@ Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.
 // Users
 Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');
 Route::get('/dashboard/user/{user:username}', 'UsersController@show')->middleware('admin')->name('users.show');
-Route::get('/dashboard/user/{id}/edit', 'UsersController@edit')->middleware('admin')->name('users.edit');
+Route::get('/dashboard/user/{user:username}/edit', 'UsersController@edit')->middleware('admin')->name('users.edit');
 Route::patch('/dashboard/user/{id}', 'UsersController@update')->middleware('admin')->name('users.update');
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('admin')->name('users.delete');
 // Search

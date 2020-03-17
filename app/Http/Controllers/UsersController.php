@@ -88,9 +88,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
+        // $user = User::findOrFail($id);
 
         return view('users.edit', ['user' => $user]);
     }
