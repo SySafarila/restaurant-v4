@@ -15,7 +15,7 @@
                     </div>
                 @endif
                 <form action="#" method="get">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-2">
                         <input type="text" class="form-control form-control-sm rounded mr-1" placeholder="Search Menu's" required>
                         {{-- <div class="input-group-prepend"> --}}
                             <button class="btn btn-sm btn-outline-orange rounded ml-1" type="button"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
@@ -53,6 +53,11 @@
                             </td>
                         </tr>
                         @endforeach
+                        @if ($menus->sum('stock') == 0)
+                            <tr>
+                                <td colspan="3" class="text-center font-weight-bold text-danger">Menus Empty</td>
+                            </tr>
+                        @endif
                         <tr>
                             <td colspan="2" class="text-center font-weight-bold">Total Available Stock</td>
                             <td class="text-center font-weight-bold text-orange">{{ $menus->sum('stock') }}</td>
