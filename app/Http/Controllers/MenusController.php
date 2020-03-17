@@ -83,7 +83,7 @@ class MenusController extends Controller
             'description' => ucwords($request['description']),
             'price'       => $request['price'],
             'img'         => $request['img'],
-            'stock'       => $request['stock'],
+            'stock'       => intval($request['stock']),
             'status'      => ucwords($request['status'])
         ]);
 
@@ -147,7 +147,7 @@ class MenusController extends Controller
             'description' => ucwords($request['description']),
             'price'       => $request['price'],
             'img'         => $request['img'],
-            'stock'       => $request['stock'],
+            'stock'       => intval($request['stock']),
             'status'      => ucwords($request['status'])
         ]);
 
