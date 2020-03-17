@@ -174,6 +174,12 @@ class MenusController extends Controller
     {
         $restore = Menu::onlyTrashed()->where('id', $id)->restore();
 
+        $onlyTrash = Menu::onlyTrashed()->get();
+
+        if ($onlyTrash->count() == 0) {
+            return redirect()->route('menus.index')->with('status', 'All Restored !');
+        }
+
         return redirect()->route('menus.deleted')->with('status', 'Menus Restored !');
     }
 }

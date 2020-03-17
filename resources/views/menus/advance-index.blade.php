@@ -6,6 +6,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <form action="#" method="get">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control form-control-sm rounded mr-1" placeholder="Search Menu's" required>
@@ -18,14 +26,6 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
-                @if (session('status'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('status') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
                 <div class="action mb-1 float-right">
                     <a href="{{ route('menus.deleted') }}" class="material-icons text-orange text-decoration-none" style="font-size:30px;">restore_from_trash</a>
                     <a href="{{ route('menus.create') }}" class="material-icons text-success text-decoration-none" style="font-size:30px;">add_box</a>

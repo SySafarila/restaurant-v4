@@ -43,14 +43,14 @@ Route::get('/dashboard/{user:username}/payment', 'UsersController@payment')->mid
 
 // Menus
 Route::get('/dashboard/menus', 'MenusController@index')->name('menus.index');
-Route::get('/dashboard/menus/deleted', 'MenusController@deleted')->name('menus.deleted');
+Route::get('/dashboard/menus/deleted', 'MenusController@deleted')->middleware('admin')->name('menus.deleted');
 Route::get('/dashboard/menu/{id}', 'MenusController@show')->name('menus.show');
-Route::patch('/dashboard/menu/{id}', 'MenusController@update')->name('menus.update');
+Route::patch('/dashboard/menu/{id}', 'MenusController@update')->middleware('admin')->name('menus.update');
 Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->middleware('admin')->name('menus.edit');
-Route::post('/dashboard/menus', 'MenusController@store')->name('menus.store');
-Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->name('menus.destroy');
-Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->name('menus.restore');
-Route::get('/dashboard/menus/create', 'MenusController@create')->name('menus.create');
+Route::post('/dashboard/menus', 'MenusController@store')->middleware('admin')->name('menus.store');
+Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->middleware('admin')->name('menus.destroy');
+Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
+Route::get('/dashboard/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
 
 // Orders
 Route::get('/dashboard/orders', 'OrdersController@index')->name('orders.index');
@@ -64,6 +64,6 @@ Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redire
 
 // Invoices
 Route::get('/dashboard/invoices', 'InvoicesController@index')->name('invoices.index');
-Route::post('/dashboard/invoices/store', 'InvoicesController@store')->name('invoices.store');
+Route::post('/dashboard/invoices/store', 'InvoicesController@store')->middleware('admin')->name('invoices.store');
 Route::get('/dashboard/invoices/{invoice:unique}', 'InvoicesController@show')->name('invoices.show');
 // Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
