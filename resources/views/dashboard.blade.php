@@ -105,8 +105,8 @@
                         <div class="col-md-4 col-12 mb-4">
                             <div class="card shadow-sm">
                                 <a href="#" class="card-body text-decoration-none">
-                                    <h5 class="card-title text-dark">Payment Order</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Show, add, edit, or delete</h6>
+                                    <h5 class="card-title text-dark">Payment</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Checkout Users Orders</h6>
                                 </a>
                             </div>
                         </div>
