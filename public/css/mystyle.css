@@ -33,5 +33,41 @@ a.badge-orange:focus {
 a.badge-orange:focus,
 a.badge-orange.focus {
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(212, 77, 28, 0.5);
+}
+
+.btn-outline-orange {
+    color: #FA591D;
+    border-color: #FA591D;
+}
+
+.btn-outline-orange:hover {
+    color: #fff;
+    background-color: #FA591D;
+    border-color: #FA591D;
+}
+
+.btn-outline-orange:focus,
+.btn-outline-orange.focus {
+    box-shadow: 0 0 0 0.2rem rgba(212, 77, 28, 0.5);
+}
+
+.btn-outline-orange.disabled,
+.btn-outline-orange:disabled {
+    color: #FA591D;
+    background-color: transparent;
+}
+
+.btn-outline-orange:not(:disabled):not(.disabled):active,
+.btn-outline-orange:not(:disabled):not(.disabled).active,
+.show > .btn-outline-orange.dropdown-toggle {
+    color: #fff;
+    background-color: #FA591D;
+    border-color: #FA591D;
+}
+
+.btn-outline-orange:not(:disabled):not(.disabled):active:focus,
+.btn-outline-orange:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-orange.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(212, 77, 28, 0.5);
 }

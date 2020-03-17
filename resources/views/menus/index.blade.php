@@ -14,6 +14,18 @@
             </div>
             {{-- </div> --}}
             @endif
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <form action="#" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-sm rounded mr-1" placeholder="Search Menu's" required>
+                        {{-- <div class="input-group-prepend"> --}}
+                            <button class="btn btn-sm btn-outline-orange rounded ml-1" type="button"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
+                        {{-- </div> --}}
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="row px-2 justify-content-center">
             @foreach ($menus as $menu)
                 <div class="col-6 px-1 col-md-2 mb-2">
