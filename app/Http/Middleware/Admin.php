@@ -20,6 +20,7 @@ class Admin
             return $next($request);
         }
 
-        return redirect()->route('dashboard')->with('status-redirect', 'Redirected !');
+        return abort(404);
+        // return redirect()->route('dashboard')->with('status-redirect', 'Redirected !');
     }
 }

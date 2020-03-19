@@ -37,6 +37,7 @@ Route::get('/dashboard/user/{user:username}', 'UsersController@show')->middlewar
 Route::get('/dashboard/user/{user:username}/edit', 'UsersController@edit')->middleware('admin')->name('users.edit');
 Route::patch('/dashboard/user/{id}', 'UsersController@update')->middleware('admin')->name('users.update');
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('admin')->name('users.delete');
+
 // Search
 Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
 // Route::get('/dashboard/user/search/username/{username}', 'UsersController@search2')->name('users.search2');
@@ -68,3 +69,6 @@ Route::get('/dashboard/invoices', 'InvoicesController@index')->name('invoices.in
 Route::post('/dashboard/invoices/store', 'InvoicesController@store')->middleware('admin')->name('invoices.store');
 Route::get('/dashboard/invoices/{invoice:unique}', 'InvoicesController@show')->name('invoices.show');
 // Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
+
+// Payment
+Route::get('/dashboard/payment', 'PaymentsController@index')->name('payment');
