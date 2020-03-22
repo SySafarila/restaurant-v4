@@ -15,14 +15,16 @@
         </div>
     @endif
     <div class="row justify-content-center">
+        {{-- Breadcrumb --}}
+        <div class="my-breadcrumb d-flex pb-3">
+            <a href="{{ route('menus.index') }}" class="text-decoration-none text-success">Menus</a>
+            <span class="text-muted px-2">/</span>
+            <span class="text-decoration-none text-muted">{{ $menu->name }}</span>
+        </div>
+    </div>
+    <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
-            {{-- Breadcrumb --}}
-            <div class="my-breadcrumb d-flex pb-3">
-                <a href="{{ route('dashboard') }}" class="text-decoration-none text-success">Menus</a>
-                <span class="text-muted px-2">/</span>
-                <a href="{{ route('users.index') }}" class="text-decoration-none text-success">{{ $menu->name }}</a>
-            </div>
-            <div class="card mb-4 shadow-sm">
+            <div class="card mb-4 shadow">
                 <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-success font-weight-bold">{{ $menu->name }}</h5>
@@ -55,6 +57,26 @@
                     @endif
                 </div>
             </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <h3>Other Menus</h3>
+            @foreach ($menus as $menu)
+            <div class="card mb-3 border-0 shadow">
+                <div class="card-body p-2">
+                    <a href="{{ route('menus.show', $menu->id) }}" class="stretched-link"></a>
+                    <div class="row no-gutters">
+                        <div class="col-6">
+                            <img src="{{ $menu->img }}" class="card-img border-0">
+                        </div>
+                        <div class="col ml-3">
+                            <h5 class="font-weight-bold"><a href="{{ route('menus.show', $menu->id) }}" class="stretched-link text-success text-decoration-none">{{ $menu->name }}</a></h5>
+                            <p class="text-orange m-0">Rp {{ number_format($menu->price,0 ,0, '.') }}</p>
+                            <p class="m-0"><span class="badge badge-pill badge-orange">Stock {{ number_format($menu->stock,0 ,0, '.') }}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </div>

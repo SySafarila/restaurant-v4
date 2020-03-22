@@ -99,10 +99,11 @@ class MenusController extends Controller
     public function show($id)
     {
         $menu = Menu::findOrFail($id);
+        $menus = Menu::whereNotIn('id', [$id])->inRandomOrder()->paginate(4);
 
-        // return $menu;
+        // return $menus;
 
-        return view('menus.show', ['menu' => $menu]);
+        return view('menus.show', ['menu' => $menu, 'menus' => $menus]);
     }
 
     /**
