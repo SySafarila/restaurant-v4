@@ -158,24 +158,33 @@ class ProfileController extends Controller
 
     public function updateAvatar(Request $request)
     {
-        $fileName = $request->user()->id . '.' . $request->file('avatar')->getClientOriginalExtension();
-        $avatar = $request->file('avatar')->storeAs('public/avatars/user', $fileName);
-
-        $update = User::where('id', $request->user()->id)->update([
-            'img' => $fileName,
-        ]);
-        return redirect()->route('profile.index')->with('status', 'Avatar Updated !');
+        if ($request->user()->img == null) {
+            
+            $fileName = $request->user()->id . '.' . $request->file('avatar')->getClientOriginalExtension();
+            $avatar = $request->file('avatar')->storeAs('public/avatars/user', $fileName);
+            
+            $update = User::where('id', $request->user()->id)->update([
+                'img' => $fileName,
+                ]);
+            return redirect()->route('profile.index')->with('status', 'Avatar Updated !');
+        } else {
+            return redirect()->route('profile.index');
+        }
     }
 
     public function deleteAvatar()
     {
-        $profile = Auth::user();
-
-        $delete = Storage::delete('public/avatars/user/' . $profile->img);
-        $deleteImg = User::where('id', $profile->id)->update([
-            'img' => null,
-        ]);
-
-        return redirect()->route('profile.index')->with('status', 'Avatar Deleted !');
+        if (Auth::user()->img == null) {
+            return redirect()->route('profile.index');
+        } else {
+            $profile = Auth::user();
+            
+            $delete = Storage::delete('public/avatars/user/' . $profile->img);
+            $deleteImg = User::where('id', $profile->id)->update([
+                'img' => null,
+                ]);
+                
+            return redirect()->route('profile.index')->with('status', 'Avatar Deleted !');
+        }        
     }
 }

@@ -17,13 +17,13 @@
                         </div>
                     @endif
                     @if ($profile->img == null)
-                        <img src="{{ asset('storage/avatars/avatar.png') }}" alt="Avatar" class="mx-auto d-block mb-2 w-25 rounded-circle shadow-sm">
+                        <img src="{{ asset('storage/avatars/avatar.png') }}" alt="Avatar" class="mx-auto d-block mb-2 rounded-circle shadow-sm" style="width:150px; height:150px;">
                     @else
-                        <img src="{{ $avatar }}" alt="Avatar" title="Avatar" class="mx-auto d-block mb-2 rounded-circle shadow-sm" style="width:150px; height:150px;">
+                        <img src="{{ asset('storage/avatars/user/' . $profile->img) }}" alt="Avatar" title="Avatar" class="mx-auto d-block mb-2 rounded-circle shadow-sm" style="width:150px; height:150px;">
                     @endif
                     <p class="text-center">
                         @if (!$profile->img == null)
-                            <a href="{{ route('profile.deleteAvatar') }}" onclick="event.preventDefault();document.getElementById('deleteAvatar').submit();">Delete</a>
+                            <a href="{{ route('profile.deleteAvatar') }}" onclick="event.preventDefault();document.getElementById('deleteAvatar').submit();" class="text-decoration-none">Delete</a>
                         @else
                             <a href="{{ route('profile.editAvatar') }}" class="text-decoration-none">Edit</a>
                         @endif
