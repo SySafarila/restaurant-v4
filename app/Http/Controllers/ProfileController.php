@@ -145,6 +145,11 @@ class ProfileController extends Controller
     public function destroy()
     {
         $user   = Auth::user();
+
+        if (!$user->img == null) {
+            $avatar = Storage::delete('public/avatars/user/' . $user->img);
+        }
+
         $delete = User::find($user->id);
         $delete->delete();
         
