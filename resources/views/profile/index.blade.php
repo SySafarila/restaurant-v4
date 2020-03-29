@@ -22,11 +22,10 @@
                         <img src="{{ $avatar }}" alt="Avatar" title="Avatar" class="mx-auto d-block mb-2 rounded-circle shadow-sm" style="width:150px; height:150px;">
                     @endif
                     <p class="text-center">
-                        <a href="{{ route('profile.editAvatar') }}" class="text-decoration-none">Edit</a>
-                        @if ($profile->img == null)
-                            
-                        @else
+                        @if (!$profile->img == null)
                             <a href="{{ route('profile.deleteAvatar') }}" onclick="event.preventDefault();document.getElementById('deleteAvatar').submit();">Delete</a>
+                        @else
+                            <a href="{{ route('profile.editAvatar') }}" class="text-decoration-none">Edit</a>
                         @endif
                     </p>
                     <form action="{{ route('profile.deleteAvatar') }}" id="deleteAvatar" method="post">
