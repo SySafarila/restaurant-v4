@@ -164,7 +164,7 @@ class ProfileController extends Controller
         $update = User::where('id', $request->user()->id)->update([
             'img' => $fileName,
         ]);
-        return redirect()->route('profile.index');
+        return redirect()->route('profile.index')->with('status', 'Avatar Updated !');
     }
 
     public function deleteAvatar()
@@ -176,6 +176,6 @@ class ProfileController extends Controller
             'img' => null,
         ]);
 
-        return redirect()->route('profile.index');
+        return redirect()->route('profile.index')->with('status', 'Avatar Deleted !');
     }
 }

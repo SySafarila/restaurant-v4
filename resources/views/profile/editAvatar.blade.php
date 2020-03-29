@@ -11,11 +11,6 @@
                         <button type="submit">Submit</button>
                     </form>
                 @endif
-
-                {{-- <form action="{{ route('profile.deleteAvatar') }}" method="post">
-                    @csrf
-                    <button type="submit">de</button>
-                </form> --}}
             </div>
         </div>
     </div>
