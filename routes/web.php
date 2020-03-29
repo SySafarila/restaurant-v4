@@ -1,4 +1,6 @@
 <?php
+    use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,8 @@ Route::patch('/dashboard/profile', 'ProfileController@update')->name('profile.up
 Route::get('/dashboard/profile/login/edit', 'ProfileController@editlogin')->name('profile.editlogin')->middleware(['auth', 'password.confirm']);
 Route::patch('/dashboard/profile/updatelogin', 'ProfileController@updatelogin')->name('profile.updatelogin');
 Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.delete');
+Route::get('/dashboard/profile/avatar/edit', 'ProfileController@editAvatar')->name('profile.editAvatar');
+Route::post('/dashboard/profile/avatar/update', 'ProfileController@updateAvatar')->name('profile.updateAvatar');
 
 // Users
 Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');

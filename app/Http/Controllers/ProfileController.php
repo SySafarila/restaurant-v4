@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -23,6 +24,8 @@ class ProfileController extends Controller
     public function index()
     {
         $profile = Auth::user();
+        $avatar = Storage::url('avatars/user/' . $profile->id . '.png');
+        return $avatar;
 
         return view('profile.index', ['profile' => $profile]);
     }
@@ -146,5 +149,21 @@ class ProfileController extends Controller
         $delete->delete();
         
         return redirect()->route('login')->with('status', 'Profile deleted and unregistered !');
+    }
+
+    public function editAvatar()
+    {
+        return view('profile.editAvatar');
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        $fileName = $request->user()->id . '.' . $request->file('avatar')->getClientOriginalExtension();
+        $avatar = $request->file('avatar')->storeAs('public/avatars/user', $fileName);
+
+        $update = User::where('id', $request->user()->id)->update([
+            'img' => $fileName,
+        ]);
+        return redirect()->route('profile.index');
     }
 }
