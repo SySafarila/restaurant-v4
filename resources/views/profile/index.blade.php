@@ -16,8 +16,22 @@
                             </button>
                         </div>
                     @endif
-                    <img src="{{ $avatar ?? asset('storage/avatars/avatar.png') }}" alt="Avatar" class="mx-auto d-block mb-2 w-25 rounded-circle shadow-sm">
-                    <p class="text-center"><a href="{{ route('profile.editAvatar') }}" class="text-decoration-none">Edit</a></p>
+                    @if ($profile->img == null)
+                        <img src="{{ asset('storage/avatars/avatar.png') }}" alt="Avatar" class="mx-auto d-block mb-2 w-25 rounded-circle shadow-sm">
+                    @else
+                        <img src="{{ $avatar }}" alt="Avatar" title="Avatar" class="mx-auto d-block mb-2 rounded-circle shadow-sm" style="width:150px; height:150px;">
+                    @endif
+                    <p class="text-center">
+                        <a href="{{ route('profile.editAvatar') }}" class="text-decoration-none">Edit</a>
+                        @if ($profile->img == null)
+                            
+                        @else
+                            <a href="{{ route('profile.deleteAvatar') }}" onclick="event.preventDefault();document.getElementById('deleteAvatar').submit();">Delete</a>
+                        @endif
+                    </p>
+                    <form action="{{ route('profile.deleteAvatar') }}" id="deleteAvatar" method="post">
+                        @csrf
+                    </form>
                     <table class="table">
                         <tr>
                             <td>Name</td>

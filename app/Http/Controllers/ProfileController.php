@@ -24,10 +24,10 @@ class ProfileController extends Controller
     public function index()
     {
         $profile = Auth::user();
-        $avatar = Storage::url('avatars/user/' . $profile->id . '.png');
-        return $avatar;
+        $avatar = Storage::url('avatars/user/' . $profile->img);
+        // return $avatar;
 
-        return view('profile.index', ['profile' => $profile]);
+        return view('profile.index', ['profile' => $profile, 'avatar' => $avatar]);
     }
 
     /**
@@ -164,6 +164,18 @@ class ProfileController extends Controller
         $update = User::where('id', $request->user()->id)->update([
             'img' => $fileName,
         ]);
+        return redirect()->route('profile.index');
+    }
+
+    public function deleteAvatar()
+    {
+        $profile = Auth::user();
+
+        $delete = Storage::delete('public/avatars/user/' . $profile->img);
+        $deleteImg = User::where('id', $profile->id)->update([
+            'img' => null,
+        ]);
+
         return redirect()->route('profile.index');
     }
 }

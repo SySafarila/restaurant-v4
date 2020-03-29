@@ -34,6 +34,7 @@ Route::patch('/dashboard/profile/updatelogin', 'ProfileController@updatelogin')-
 Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.delete');
 Route::get('/dashboard/profile/avatar/edit', 'ProfileController@editAvatar')->name('profile.editAvatar');
 Route::post('/dashboard/profile/avatar/update', 'ProfileController@updateAvatar')->name('profile.updateAvatar');
+Route::post('/dashboard/profile/avatar/delete', 'ProfileController@deleteAvatar')->name('profile.deleteAvatar');
 
 // Users
 Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');
