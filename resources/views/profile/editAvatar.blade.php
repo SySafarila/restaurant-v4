@@ -10,7 +10,7 @@
                 @if (Auth::user()->img == null)
                     <form action="{{ route('profile.updateAvatar') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" name="avatar" class="form-control-file">
+                        <input type="file" name="avatar" class="form-control-file" required>
                         <button type="submit">Submit</button>
                     </form>
                 @endif
