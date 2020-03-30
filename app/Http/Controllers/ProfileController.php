@@ -158,7 +158,11 @@ class ProfileController extends Controller
 
     public function editAvatar()
     {
-        return view('profile.editAvatar');
+        if (Auth::user()->img == null) {
+            return view('profile.editAvatar');
+        }
+        
+        return redirect()->route('profile.index');
     }
 
     public function updateAvatar(Request $request)
