@@ -4,6 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
                 @if (Auth::user()->img == null)
                     <form action="{{ route('profile.updateAvatar') }}" method="post" enctype="multipart/form-data">
                         @csrf
