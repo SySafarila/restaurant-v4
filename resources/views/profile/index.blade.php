@@ -17,7 +17,7 @@
                         </div>
                     @endif
                     @if ($profile->img == null)
-                        <img src="{{ asset('storage/avatars/avatar.png') }}" alt="Avatar" class="mx-auto d-block mb-2 rounded-circle shadow-sm" style="width:150px; height:150px;">
+                        <img src="{{ asset('avatar.png') }}" alt="Avatar" class="mx-auto d-block mb-2 rounded-circle shadow-sm" style="width:150px; height:150px;">
                     @else
                         <img src="{{ asset('storage/avatars/user/' . $profile->img) }}" alt="Avatar" title="Avatar" class="mx-auto d-block mb-2 rounded-circle shadow-sm" style="width:150px; height:150px;">
                     @endif
