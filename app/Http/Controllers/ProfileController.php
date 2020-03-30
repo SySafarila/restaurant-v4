@@ -169,10 +169,10 @@ class ProfileController extends Controller
     {
         $validate = $request->validate(
             [
-                'avatar' => ['required' ,'mimes:jpg,jpeg,png', 'max:1024'],
+                'avatar' => ['required' ,'mimes:jpg,jpeg,png', 'max:5120'],
             ],
             [
-                'avatar.max' => 'Maximum file size for avatar is 1MB.',
+                'avatar.max' => 'Maximum file size for avatar is 5MB.',
                 'avatar.mimes' => 'Extensions allowed is : JPG, JPEG, and PNG.'
             ]
         );
