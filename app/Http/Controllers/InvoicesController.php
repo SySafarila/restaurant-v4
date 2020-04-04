@@ -69,13 +69,13 @@ class InvoicesController extends Controller
         $year = $time->year;
         $userId = $request->user()->id;
 
-        $code = 'INV/U-' . $userId . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
         // return $lastCode . '|' . $code;
         
-
+        
         foreach ($request->orderId as $id) {
             $order = Order::where('id', $id)->first();
-            // echo $order;
+            $code = 'INV/U-' . $order->user_id . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
+            return $code;
 
             $min = Menu::where('id', $order->menu_id)->first();
             // echo $min->stock;
