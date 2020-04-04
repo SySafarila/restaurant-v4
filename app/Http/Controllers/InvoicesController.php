@@ -27,7 +27,7 @@ class InvoicesController extends Controller
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
-            $invoices = Invoice_code::where('user_id', $user->id)->paginate(10);
+            $invoices = Invoice_code::where('user_id', $user->id)->latest()->paginate(10);
             // return $invoices;
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
@@ -75,7 +75,7 @@ class InvoicesController extends Controller
         foreach ($request->orderId as $id) {
             $order = Order::where('id', $id)->first();
             $code = 'INV/U-' . $order->user_id . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
-            return $code;
+            // return $code;
 
             $min = Menu::where('id', $order->menu_id)->first();
             // echo $min->stock;
@@ -129,13 +129,14 @@ class InvoicesController extends Controller
         $auth = Auth::user();
         $invoices = $invoice_code;
         $code = $invoice_code->code;
-        
+        $time = $invoice_code->created_at;
+        // return $time;
+
         if ($auth->id == $invoice_code->user_id or $auth->level == 'Admin') {
-            return view('invoices.show', ['invoices' => $invoices, 'code' => $code]);
+            return view('invoices.show', ['invoices' => $invoices, 'code' => $code, 'time' => $time]);
         } else {
             return abort(404);
         }
-        
     }
 
     /**

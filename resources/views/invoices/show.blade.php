@@ -20,7 +20,7 @@
                             @endif
                         </div>
                         <div class="col">
-                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->first()->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">It's {{ $invoices->first()->created_at->diffForHumans() }}</span></p>
+                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">It's {{ $time->diffForHumans() }}</span></p>
                         </div>
                     </div>
                     <p class="text-muted" title="{{ $code }}">Code : {{ Str::limit($code, 30, ' . . .') }}</p>
