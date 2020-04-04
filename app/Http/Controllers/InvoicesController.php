@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Invoice_code;
 use App\Menu;
 use App\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -25,7 +27,8 @@ class InvoicesController extends Controller
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
-            $invoices = Invoice::where('user_id', $user->id)->groupBy('unique')->latest()->paginate(20);
+            $invoices = Invoice_code::where('user_id', $user->id)->paginate(10);
+            // return $invoices;
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         }
@@ -49,7 +52,26 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        $random = Str::random(60);
+        $random = Str::random(4);
+
+        $lastCode = Invoice_code::latest()->first();
+        if ($lastCode == null) {
+            $lastCode = 1;
+        } else {
+            $lastCode = $lastCode->id + 1;
+        }
+        // return $checkLastCode;
+
+        // Generate code
+        $time = Carbon::now();
+        $day = $time->day;
+        $month = $time->month;
+        $year = $time->year;
+        $userId = $request->user()->id;
+
+        $code = 'INV/U-' . $userId . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
+        // return $lastCode . '|' . $code;
+        
 
         foreach ($request->orderId as $id) {
             $order = Order::where('id', $id)->first();
@@ -80,11 +102,18 @@ class InvoicesController extends Controller
                 'menu' => $order->menu->name,
                 'quantity' => $order->quantity,
                 'total' => $order->total,
-                'unique' => $random
+                'invoice_code_id' => $lastCode
             ]);
 
+            
             $delete = Order::where('id', $id)->delete();
         }
+
+        Invoice_code::create([
+            'user_id' => $order->user_id,
+            'code' => $code
+        ]);
+
         return ('sukses');
     }
 

@@ -48,8 +48,8 @@
                             @foreach ($invoices as $invoice)
                                 <tr>
                                     <td class="text-center align-middle">{{ $nomor++ }}</td>
-                                    <td class="align-middle"><a href="{{ route('invoices.show', $invoice->unique) }}">{{ $invoice->unique }}</a></td>
-                                    <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->total, 0, 0, '.') }}</td>
+                                    <td class="align-middle"><a href="#">{{ $invoice->code }}</a></td>
+                                    <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->invoices->sum('total'), 0, 0, '.') }}</td>
                                     @if (Auth::user()->level == 'Admin')
                                         <td class="align-middle"><a href="{{ route('users.show', $invoice->user->username) }}" class="text-orange text-decoration-none">{{'@' . $invoice->user->username }}</a></td>
                                     @endif
