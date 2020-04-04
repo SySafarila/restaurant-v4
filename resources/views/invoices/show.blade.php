@@ -23,8 +23,8 @@
                             <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->first()->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">It's {{ $invoices->first()->created_at->diffForHumans() }}</span></p>
                         </div>
                     </div>
-                    <p class="text-muted mb-0" title="{{ $code }}">Code : {{ Str::limit($code, 30, ' . . .') }}</p>
-                    <button type="button" class="btn btn-sm btn-success mb-2" data-toggle="modal" data-target="#modalUnique">Show Unique Code</button>
+                    <p class="text-muted" title="{{ $code }}">Code : {{ Str::limit($code, 30, ' . . .') }}</p>
+                    {{-- <button type="button" class="btn btn-sm btn-success mb-2" data-toggle="modal" data-target="#modalUnique">Show Unique Code</button> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -53,7 +53,7 @@
     </div>
 </div>
 {{-- Modal --}}
-<div class="modal fade" id="modalUnique" tabindex="-1" role="dialog" aria-labelledby="modalUniqueTitle" aria-hidden="true">
+{{-- <div class="modal fade" id="modalUnique" tabindex="-1" role="dialog" aria-labelledby="modalUniqueTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -74,9 +74,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
-                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

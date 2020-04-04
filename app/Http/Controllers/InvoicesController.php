@@ -23,7 +23,7 @@ class InvoicesController extends Controller
         $nomor = 1;
         $user = Auth::user();
         if ($user->level == 'Admin') {
-            $invoices = Invoice::groupBy('unique')->latest()->paginate(20);
+            $invoices = Invoice_code::paginate(20);
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
@@ -127,9 +127,10 @@ class InvoicesController extends Controller
     public function show(Invoice_code $invoice_code)
     {
         $auth = Auth::user();
-        if ($auth->id == $invoice_code->user_id) {
-            $invoices = $invoice_code;
-            $code = $invoice_code->code;
+        $invoices = $invoice_code;
+        $code = $invoice_code->code;
+        
+        if ($auth->id == $invoice_code->user_id or $auth->level == 'Admin') {
             return view('invoices.show', ['invoices' => $invoices, 'code' => $code]);
         } else {
             return abort(404);

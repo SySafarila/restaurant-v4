@@ -57,7 +57,7 @@
                             @endforeach
                             @if ($invoices->count() == 0)
                                 <tr>
-                                    <th colspan="3" class="text-center text-danger">Empty</th>
+                                    <th colspan="4" class="text-center text-danger">Empty</th>
                                 </tr>
                             @endif
                         </tbody>
