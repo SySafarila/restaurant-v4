@@ -102,7 +102,8 @@ class InvoicesController extends Controller
                 'menu' => $order->menu->name,
                 'quantity' => $order->quantity,
                 'total' => $order->total,
-                'invoice_code_id' => $lastCode
+                'invoice_code_id' => $lastCode,
+                'code' => $code
             ]);
 
             
@@ -123,23 +124,17 @@ class InvoicesController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show(Invoice_code $invoice_code)
     {
-        if (Auth::user()->level == 'Admin') {
-            $invoices = Invoice::where('unique', $invoice->unique)->get();
-
-            return view('invoices.show', ['invoices' => $invoices, 'unique' => $invoice->unique]);
+        $auth = Auth::user();
+        if ($auth->id == $invoice_code->user_id) {
+            $invoices = $invoice_code;
+            $code = $invoice_code->code;
+            return view('invoices.show', ['invoices' => $invoices, 'code' => $code]);
         } else {
-            if (Auth::user()->id == $invoice->user_id) {
-                $auth = Auth::user();
-                $invoices = Invoice::where(['user_id' => $auth->id, 'unique' => $invoice->unique])->get();
-            } else {
-                return redirect()->route('dashboard')->with('status-redirect', 'Redirected !');
-            }
-            
-            
-            return view('invoices.show', ['invoices' => $invoices, 'unique' => $invoice->unique]);
+            return abort(404);
         }
+        
     }
 
     /**

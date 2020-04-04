@@ -19,7 +19,8 @@ class CreateInvoicesTable extends Migration
             $table->string('menu');
             $table->string('quantity');
             $table->string('total');
-            $table->string('invoice_code_code');
+            $table->string('invoice_code_id');
+            $table->string('code');
             $table->timestamps();
         });
     }

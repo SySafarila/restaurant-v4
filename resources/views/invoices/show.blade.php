@@ -23,7 +23,7 @@
                             <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->first()->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">It's {{ $invoices->first()->created_at->diffForHumans() }}</span></p>
                         </div>
                     </div>
-                    <p class="text-muted mb-0" title="{{ $unique }}">Code : {{ Str::limit($unique, 30, ' . . .') }}</p>
+                    <p class="text-muted mb-0" title="{{ $code }}">Code : {{ Str::limit($code, 30, ' . . .') }}</p>
                     <button type="button" class="btn btn-sm btn-success mb-2" data-toggle="modal" data-target="#modalUnique">Show Unique Code</button>
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -34,7 +34,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($invoices as $invoice)
+                                @foreach ($invoices->invoices as $invoice)
                                 <tr>
                                     <td>{{ $invoice->menu }} <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span></td>
                                     <td class="text-center text-success">Rp. {{ number_format($invoice->total,0 ,0, '.') }}</td>
@@ -42,7 +42,7 @@
                                 @endforeach
                                 <tr>
                                     <td class="text-right font-weight-bold text-success">Total </td>
-                                    <td class="text-center font-weight-bold text-orange">Rp. {{ number_format($invoices->sum('total'),0 ,0, '.') }}</td>
+                                    <td class="text-center font-weight-bold text-orange">Rp. {{ number_format($invoices->invoices->sum('total'),0 ,0, '.') }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -67,7 +67,7 @@
                 <div class="card border-0 shadow mb-2">
                     <div class="card-body">
                         <p class="m-0 text-center">
-                            {{ $invoices->first()->unique }}
+                            {{ $invoices->first()->code }}
                         </p>
                     </div>
                 </div>
