@@ -75,5 +75,5 @@ Route::post('/dashboard/invoices/store', 'InvoicesController@store')->middleware
 Route::get('/dashboard/invoice/{invoice_code}', 'InvoicesController@show')->name('invoices.show');
 // Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
 
-// Payment
-Route::get('/dashboard/payment', 'PaymentsController@index')->name('payment');
+// Payment & Cashier
+Route::get('/dashboard/cashier', 'CashierController@index')->name('cashier.payment');
