@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class CashierController extends Controller
@@ -47,9 +48,12 @@ class CashierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $user = $user;
+        $number   = 1;
+
+        return view('cashier.show', ['user' => $user, 'number' => $number]);
     }
 
     /**
@@ -84,5 +88,10 @@ class CashierController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        return redirect()->route('user.payment', $request->username);
     }
 }

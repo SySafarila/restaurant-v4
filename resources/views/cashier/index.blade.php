@@ -10,7 +10,18 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ab impedit ipsum exercitationem nostrum natus omnis, excepturi veniam pariatur, ut autem provident cupiditate dolores assumenda, nobis soluta aliquid ea maxime?
+                        <h3 class="text-muted text-center">Search User</h3>
+                        <form action="{{ route('payment.search') }}" method="get">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="@username" required>
+                            <button type="submit" class="btn btn-sm btn-block btn-success mt-2">Search</button>
+                        </form>
+                        <hr>
+                        <p class="mb-0">
+                            Search example : <span class="text-success">@</span><span class="text-orange">username</span>
+                        </p>
+                        <p class="mb-0">
+                            Note : Input the username without '<span class="text-orange">@</span>'
+                        </p>
                     </div>
                 </div>
             </div>

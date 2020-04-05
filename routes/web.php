@@ -77,3 +77,5 @@ Route::get('/dashboard/invoice/{invoice_code}', 'InvoicesController@show')->name
 
 // Payment & Cashier
 Route::get('/dashboard/cashier', 'CashierController@index')->name('cashier.payment');
+Route::get('/dashboard/cashier/search', 'CashierController@search')->name('payment.search');
+Route::get('/dashboard/payment/{user:username}', 'CashierController@show')->name('user.payment');
