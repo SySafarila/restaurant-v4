@@ -28,7 +28,7 @@ class InvoicesController extends Controller
         $nomor = 1;
         $user = Auth::user();
         if ($user->level == 'Admin') {
-            $invoices = Invoice_code::paginate(20);
+            $invoices = Invoice_code::latest()->paginate(20);
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
