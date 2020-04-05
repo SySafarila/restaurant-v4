@@ -85,20 +85,20 @@
                     </div>
                     <div class="col-md-4 col-12 mb-4">
                         <div class="card shadow-sm">
-                            <a href="#" class="card-body text-decoration-none">
+                            <a href="{{ route('invoices.index') }}" class="card-body text-decoration-none">
                                 <h5 class="card-title text-dark">Transactions List</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Organizer Transactions</h6>
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-4 col-12 mb-4">
+                    {{-- <div class="col-md-4 col-12 mb-4">
                         <div class="card shadow-sm">
                             <a href="{{ route('orders.index') }}" class="card-body text-decoration-none">
                                 <h5 class="card-title text-dark">Orders List</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Organizer Orders</h6>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 @else
                     @if (Auth::user()->level == 'Cashier')
                     {{-- CASHIER PAGE --}}
