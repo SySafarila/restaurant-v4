@@ -13,6 +13,11 @@ use Illuminate\Support\Str;
 
 class InvoicesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +33,6 @@ class InvoicesController extends Controller
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         } else {
             $invoices = Invoice_code::where('user_id', $user->id)->latest()->paginate(10);
-            // return $invoices;
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
         }
@@ -67,13 +71,14 @@ class InvoicesController extends Controller
         $day = $time->day;
         $month = $time->month;
         $year = $time->year;
-        $userId = $request->user()->id;
+        // $userId = $request->user()->id;
 
         // return $lastCode . '|' . $code;
         
         
         foreach ($request->orderId as $id) {
             $order = Order::where('id', $id)->first();
+
             $code = 'INV/U-' . $order->user_id . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
             // return $code;
 
