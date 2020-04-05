@@ -9,6 +9,7 @@ class CashierController extends Controller
 {
     public function __construct()
     {
+        // Cashier access only
         $this->middleware('cashier');
     }
     /**
@@ -18,7 +19,7 @@ class CashierController extends Controller
      */
     public function index()
     {
-        return view('cashier.index');
+        return view('cashier.search');
     }
 
     /**
