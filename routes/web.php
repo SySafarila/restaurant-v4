@@ -49,9 +49,9 @@ Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('a
 // Route::get('/dashboard/{user:username}/payment', 'UsersController@payment')->middleware('admin')->name('users.payment');
 
 // Menus
-Route::get('/dashboard/menus', 'MenusController@index')->name('menus.index');
+Route::get('/dashboard/menus', 'MenusController@index')->middleware('customerOrAdmin')->name('menus.index');
 Route::get('/dashboard/menus/deleted', 'MenusController@deleted')->middleware('admin')->name('menus.deleted');
-Route::get('/dashboard/menu/{id}', 'MenusController@show')->name('menus.show');
+Route::get('/dashboard/menu/{id}', 'MenusController@show')->middleware('customerOrAdmin')->name('menus.show');
 Route::patch('/dashboard/menu/{id}', 'MenusController@update')->middleware('admin')->name('menus.update');
 Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->middleware('admin')->name('menus.edit');
 Route::post('/dashboard/menus', 'MenusController@store')->middleware('admin')->name('menus.store');
@@ -70,9 +70,9 @@ Route::get('/dashboard/order/{id}', 'OrdersController@show')->name('orders.show'
 Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redirect');
 
 // Invoices
-Route::get('/dashboard/invoices', 'InvoicesController@index')->name('invoices.index');
+Route::get('/dashboard/invoices', 'InvoicesController@index')->middleware('customerOrAdmin')->name('invoices.index');
 Route::post('/dashboard/invoices/store', 'InvoicesController@store')->middleware('admin')->name('invoices.store');
-Route::get('/dashboard/invoice/{invoice_code}', 'InvoicesController@show')->name('invoices.show');
+Route::get('/dashboard/invoice/{invoice_code}', 'InvoicesController@show')->middleware('customerOrAdmin')->name('invoices.show');
 // Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
 
 // Cashier & Payment Route ( Cashier access only )

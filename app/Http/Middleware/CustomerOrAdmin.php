@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Customer
+class CustomerOrAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class Customer
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->level == 'Customer') {
+        if (Auth::user()->level == 'Admin' || Auth::user()->level == 'Customer') {
             return $next($request);
         }
 
