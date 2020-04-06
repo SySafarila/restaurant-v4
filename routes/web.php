@@ -75,7 +75,8 @@ Route::post('/dashboard/invoices/store', 'InvoicesController@store')->middleware
 Route::get('/dashboard/invoice/{invoice_code}', 'InvoicesController@show')->name('invoices.show');
 // Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
 
-// Payment & Cashier
-Route::get('/dashboard/cashier', 'CashierController@index')->name('cashier.payment');
-Route::get('/dashboard/cashier/search', 'CashierController@search')->name('payment.search');
-Route::get('/dashboard/payment/{user:username}', 'CashierController@show')->name('user.payment');
+// Cashier & Payment Route
+Route::get('/cashier', 'CashierController@index')->name('cashier.index');
+Route::get('/cashier/search-username', 'CashierController@search')->name('cashier.search');
+Route::get('/cashier/payment/{user:username}', 'CashierController@payment')->middleware('password.confirm')->name('cashier.payment');
+Route::post('cashier/confirm-payment', 'CashierController@confirmPayment')->name('cashier.confirmPayment');

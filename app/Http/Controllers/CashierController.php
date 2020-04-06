@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
+use App\Invoice;
+use App\Invoice_code;
+use App\Menu;
+use App\Order;
+use Carbon\Carbon;
+// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 class CashierController extends Controller
 {
     public function __construct()
     {
-        // Cashier access only
-        $this->middleware('cashier');
+        // Authenticated cashier access only
+        $this->middleware(['auth', 'cashier']);
     }
     /**
      * Display a listing of the resource.
@@ -49,7 +57,7 @@ class CashierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function payment(User $user)
     {
         $user = $user;
         $number   = 1;
@@ -93,6 +101,75 @@ class CashierController extends Controller
 
     public function search(Request $request)
     {
-        return redirect()->route('user.payment', $request->username);
+        return redirect()->route('cashier.payment', $request->username);
+    }
+
+    public function confirmPayment(Request $request)
+    {
+        $random = Str::random(4);
+
+        $lastCode = Invoice_code::latest()->first();
+        if ($lastCode == null) {
+            $lastCode = 1;
+        } else {
+            $lastCode = $lastCode->id + 1;
+        }
+        // return $checkLastCode;
+
+        // Generate code
+        $time = Carbon::now();
+        $day = $time->day;
+        $month = $time->month;
+        $year = $time->year;
+        // $userId = $request->user()->id;
+
+        // return $lastCode . '|' . $code;
+        
+        
+        foreach ($request->orderId as $id) {
+            $order = Order::where('id', $id)->first();
+
+            $code = 'INV/U-' . $order->user_id . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
+            // return $code;
+
+            $min = Menu::where('id', $order->menu_id)->first();
+            // echo $min->stock;
+
+            if ($order->menu->stock == 0) {
+                return ('Out of stock');
+            }
+            
+            if ($min->stock - $order->quantity < 0) {
+                return ('quantity is not enough');
+            }
+
+            $menu = Menu::where('id', $order->menu_id)->update([
+                'stock' => $min->stock - $order->quantity
+            ]);
+
+            if ($min->stock - $order->quantity == 0) {
+                Menu::where('id', $order->menu_id)->delete();
+                // Order::where('menu_id', $order->menu_id)->delete();
+            }
+
+            $invoice = Invoice::create([
+                'user_id' => $order->user_id,
+                'menu' => $order->menu->name,
+                'quantity' => $order->quantity,
+                'total' => $order->total,
+                'invoice_code_id' => $lastCode,
+                'code' => $code
+            ]);
+
+            
+            $delete = Order::where('id', $id)->delete();
+        }
+
+        Invoice_code::create([
+            'user_id' => $order->user_id,
+            'code' => $code
+        ]);
+
+        return redirect()->route('cashier.index')->with('status', 'Payment Success !');
     }
 }

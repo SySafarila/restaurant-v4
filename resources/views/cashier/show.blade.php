@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.cashier')
 
 @section('title')
     | Payment
@@ -61,7 +61,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <form action="{{ route('invoices.store') }}" method="post">
+                        <form action="{{ route('cashier.confirmPayment') }}" method="post">
                             @foreach ($user->orders as $order)
                             <input type="hidden" name="orderId[]" value="{{ $order->id }}">
                             @endforeach

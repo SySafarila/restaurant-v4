@@ -8,10 +8,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <h3 class="text-muted text-center">Search User</h3>
-                        <form action="{{ route('payment.search') }}" method="get">
+                        <form action="{{ route('cashier.search') }}" method="get">
                             <input type="text" name="username" id="username" class="form-control" placeholder="@username" required>
                             <button type="submit" class="btn btn-sm btn-block btn-success mt-2">Search</button>
                         </form>
