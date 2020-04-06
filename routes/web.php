@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 // Route::get('/getbrowser', 'HomeController@getBrowser')->name('getBrowser');
 
-// Profile
+// Profile ( All levels can access)
 Route::get('/dashboard/profile', 'ProfileController@index')->name('profile.index');
 Route::get('/dashboard/profile/edit', 'ProfileController@edit2')->name('profile.edit');
 Route::patch('/dashboard/profile', 'ProfileController@update')->name('profile.update');
@@ -36,7 +36,7 @@ Route::get('/dashboard/profile/avatar/edit', 'ProfileController@editAvatar')->na
 Route::post('/dashboard/profile/avatar/update', 'ProfileController@updateAvatar')->name('profile.updateAvatar');
 Route::post('/dashboard/profile/avatar/delete', 'ProfileController@deleteAvatar')->name('profile.deleteAvatar');
 
-// Users
+// Users ( Admin only )
 Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');
 Route::get('/dashboard/user/{user:username}', 'UsersController@show')->middleware('admin')->name('users.show');
 Route::get('/dashboard/user/{user:username}/edit', 'UsersController@edit')->middleware('admin')->name('users.edit');
@@ -59,7 +59,7 @@ Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->middleware('a
 Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
 Route::get('/dashboard/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
 
-// Orders
+// Orders ( Customer access only )
 Route::get('/dashboard/orders', 'OrdersController@index')->name('orders.index');
 Route::post('/dashboard/orders', 'OrdersController@store')->name('orders.store');
 Route::delete('/dashboard/orders', 'OrdersController@destroy')->name('orders.destroy');
@@ -75,7 +75,7 @@ Route::post('/dashboard/invoices/store', 'InvoicesController@store')->middleware
 Route::get('/dashboard/invoice/{invoice_code}', 'InvoicesController@show')->name('invoices.show');
 // Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
 
-// Cashier & Payment Route
+// Cashier & Payment Route ( Cashier access only )
 Route::get('/cashier', 'CashierController@index')->name('cashier.index');
 Route::get('/cashier/search-username', 'CashierController@search')->name('cashier.search');
 Route::get('/cashier/payment/{user:username}', 'CashierController@payment')->middleware('password.confirm')->name('cashier.payment');
