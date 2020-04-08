@@ -1,4 +1,11 @@
-@extends('layouts.app')
+@php
+    if (Auth::user()->level == 'Admin' || Auth::user()->level == 'Customer') {
+        $layout = 'layouts.app';
+    } else {
+        $layout = 'layouts.cashier';
+    }
+@endphp
+@extends($layout)
 
 @section('content')
 <div class="container">

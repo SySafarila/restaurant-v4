@@ -25,16 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->level == 'Cashier') {
-            $layout = 'layouts.cashier';
-        } else {
+        if (Auth::user()->level == 'Admin' || Auth::user()->level == 'Customer') {
             $layout = 'layouts.app';
+        } else {
+            $layout = 'layouts.cashier';
         }
+
         return view('dashboard', ['layout' => $layout]);
     }
 
-    public function getBrowser()
-    {
-        dd(get_browser(null, true));
-    }
+    // public function getBrowser()
+    // {
+    //     dd(get_browser(null, true));
+    // }
 }
