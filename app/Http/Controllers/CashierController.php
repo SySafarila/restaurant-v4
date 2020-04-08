@@ -18,7 +18,7 @@ class CashierController extends Controller
     public function __construct()
     {
         // Authenticated cashier access only
-        $this->middleware(['auth', 'cashier']);
+        $this->middleware(['auth', 'cashier', 'checkUserStatus']);
     }
     /**
      * Display a listing of the resource.

@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'cashier' => \App\Http\Middleware\Cashier::class,
         'customer' => \App\Http\Middleware\Customer::class,
         'customerOrAdmin' => \App\Http\Middleware\CustomerOrAdmin::class,
+        'checkUserStatus' => \App\Http\Middleware\CheckUserStatus::class,
     ];
 
     /**
