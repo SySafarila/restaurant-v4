@@ -50,13 +50,14 @@
                     @if (Auth::user())
                     <ul class="navbar-nav mx-auto d-none d-md-block">
                         <li class="nav-item">
+                            <span class="text-muted">CASHIER</span>
                             {{-- <form action="#" method="get"> --}}
-                                <div class="d-flex">
+                                {{-- <div class="d-flex">
                                     <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
                                     <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
                                     <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
                                     <button type="submit" class="rounded-pill btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
-                                </div>
+                                </div> --}}
                             {{-- </form> --}}
                         </li>
                     </ul>
@@ -99,14 +100,14 @@
                                 </div>
                             </li>
                             {{-- mobile --}}
-                            <li class="nav-item d-sm-block d-md-none mt-2">
-                                {{-- <form action="#" method="get"> --}}
+                            {{-- <li class="nav-item d-sm-block d-md-none mt-2">
+                                <form action="#" method="get">
                                     <div class="d-flex">
                                         <input type="text" name="" id="" class="rounded-pill form-control form-control-sm" placeholder="What are you looking for ?">
                                         <button type="submit" class="rounded-pill btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                     </div>
-                                {{-- </form> --}}
-                            </li>
+                                </form>
+                            </li> --}}
                         @endguest
                     </ul>
                 </div>

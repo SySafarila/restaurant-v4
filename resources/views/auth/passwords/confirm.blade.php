@@ -5,7 +5,10 @@
         $layout = 'layouts.cashier';
     }
 @endphp
+
 @extends($layout)
+
+@section('title', '| Confirm Password')
 
 @section('content')
 <div class="container">
