@@ -1,3 +1,4 @@
+@if (Auth::user()->level == 'Cashier')
 <div class="col-md-4 col-12 mb-4">
     <div class="card shadow-sm">
         <a href="{{ route('cashier.index')}}" class="card-body text-decoration-none">
@@ -6,3 +7,4 @@
         </a>
     </div>
 </div>
+@endif

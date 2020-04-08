@@ -1,3 +1,4 @@
+@if (Auth::user()->level == 'Customer')
 <div class="col-md-4 col-12 mb-3">
     <div class="card shadow-sm h-100">
         <a href="{{ route('menus.index') }}" class="card-body text-decoration-none">
@@ -28,3 +29,4 @@
         </a>
     </div>
 </div>
+@endif

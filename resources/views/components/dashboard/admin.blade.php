@@ -1,3 +1,4 @@
+@if (Auth::user()->level == 'Admin')
 <div class="col-md-4 col-12 mb-4">
     <div class="card shadow-sm">
         <a href="{{ route('menus.index') }}" class="card-body text-decoration-none">
@@ -30,3 +31,4 @@
         </a>
     </div>
 </div>
+@endif
