@@ -20,6 +20,6 @@ class Cashier
             return $next($request);
         }
         
-        return redirect()->route('dashboard');
+        return abort(404);
     }
 }
