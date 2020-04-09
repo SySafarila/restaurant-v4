@@ -1,4 +1,4 @@
-@extends('layouts.cashier')
+@extends('layouts.app')
 
 @section('title')
     Cashier

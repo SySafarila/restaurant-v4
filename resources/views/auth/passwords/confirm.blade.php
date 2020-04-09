@@ -1,12 +1,4 @@
-@php
-    if (Auth::user()->level == 'Admin' || Auth::user()->level == 'Customer') {
-        $layout = 'layouts.app';
-    } else {
-        $layout = 'layouts.cashier';
-    }
-@endphp
-
-@extends($layout)
+@extends('layouts.app')
 
 @section('title', '| Confirm Password')
 

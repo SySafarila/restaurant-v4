@@ -37,12 +37,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @if (Auth::user())
-                            <li class="nav-item">
-                                <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active text-orange font-weight-bold' : '' }}">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('menus.index') }}" class="nav-link {{ Request::is('dashboard/menus') ? 'active text-orange font-weight-bold' : '' }}">Menus</a>
-                            </li>
+                            <x-navbar-left.admin />
+                            <x-navbar-left.cashier />
+                            <x-navbar-left.customer />
                         @endif
                     </ul>
 
@@ -75,17 +72,20 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('dashboard/orders') ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
-                            </li>
+                        @if (Auth::user()->level == 'Customer')
+                        <li class="nav-item">
+                            <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('dashboard/orders') ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
+                        </li>
+                        @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['dashboard/profile', 'dashboard/invoices', 'dashboard/profile/edit', 'dashboard/profile/login/edit']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ '@' . Str::limit(Auth::user()->username, 8, ' . .') }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right mb-1" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('profile.index') }}" class="dropdown-item {{ Request::is('dashboard/profile') ? 'active' : '' }}">My Profile</a>
-                                    <a href="{{ route('invoices.index') }}" class="dropdown-item {{ Request::is('dashboard/invoices') ? 'active' : '' }}">Invoices</a>
+                                    <x-navbar-right.customer />
+                                    <x-navbar-right.cashier />
+                                    <x-navbar-right.admin />
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
