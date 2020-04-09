@@ -33,9 +33,4 @@ class HomeController extends Controller
 
         return view('dashboard', ['layout' => $layout]);
     }
-
-    // public function getBrowser()
-    // {
-    //     dd(get_browser(null, true));
-    // }
 }

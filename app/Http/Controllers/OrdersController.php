@@ -24,10 +24,7 @@ class OrdersController extends Controller
     {
         $number = 1;
         $user   = Auth::user();
-        // $orders = User::find($user)->orders->where('status', 'Pending');
         $orders = Order::where('user_id', $user->id)->latest()->get()->whereNotIn('status', 'Success');
-
-        // return $orders->first()->menu->name;
 
         return view('orders.index', ['number' => $number, 'orders' => $orders]);
     }
@@ -65,14 +62,12 @@ class OrdersController extends Controller
         $status   = 'Pending';
 
         // Input to database
-        
         $check = Order::where([
             'user_id' => $user_id,
             'menu_id' => $menu_id,
             'status'  => 'Pending'
         ]);
 
-        // return $check->first('quantity')->quantity;
         // Conditionals
         if ($check->count() == 1) {
             Order::where([
@@ -127,7 +122,6 @@ class OrdersController extends Controller
         $user  = Auth::user()->id;
         $order = Order::where('id', $id)->where('user_id', $user)->where('status', 'Pending')->firstOrFail();
 
-        // return $order;
         return view('orders.edit', ['order' => $order]);
     }
 

@@ -64,26 +64,20 @@ class InvoicesController extends Controller
         } else {
             $lastCode = $lastCode->id + 1;
         }
-        // return $checkLastCode;
 
         // Generate code
         $time = Carbon::now();
         $day = $time->day;
         $month = $time->month;
         $year = $time->year;
-        // $userId = $request->user()->id;
-
-        // return $lastCode . '|' . $code;
         
         
         foreach ($request->orderId as $id) {
             $order = Order::where('id', $id)->first();
 
             $code = 'INV/U-' . $order->user_id . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
-            // return $code;
 
             $min = Menu::where('id', $order->menu_id)->first();
-            // echo $min->stock;
 
             if ($order->menu->stock == 0) {
                 return ('Out of stock');
@@ -99,7 +93,6 @@ class InvoicesController extends Controller
 
             if ($min->stock - $order->quantity == 0) {
                 Menu::where('id', $order->menu_id)->delete();
-                // Order::where('menu_id', $order->menu_id)->delete();
             }
 
             $invoice = Invoice::create([
@@ -135,7 +128,6 @@ class InvoicesController extends Controller
         $invoices = $invoice_code;
         $code = $invoice_code->code;
         $time = $invoice_code->created_at;
-        // return $time;
 
         if ($auth->id == $invoice_code->user_id or $auth->level == 'Admin') {
             return view('invoices.show', ['invoices' => $invoices, 'code' => $code, 'time' => $time]);

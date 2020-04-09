@@ -23,23 +23,18 @@ class MenusController extends Controller
         $menus  = Menu::orderBy('name', 'asc')->get();
         $number = 1;
 
-        // dd($menus);
-
         if (Auth::user()->level == 'Admin') {
             return view('menus.advance-index', ['menus' => $menus, 'number' => $number]);
         } else {
             return view('menus.index', ['menus' => $menus, 'number' => $number]);
         }
-        
     }
 
     public function deleted()
     {
         if (Auth::user()->level == 'Admin') {
-            // $number = 1;
             $menus = Menu::onlyTrashed()->get();
             $count = Menu::onlyTrashed()->count();
-            // return $menus;
 
             return view('menus.deleted', ['menus' => $menus, 'count' => $count]);
         } else {
@@ -101,8 +96,6 @@ class MenusController extends Controller
         $menu = Menu::findOrFail($id);
         $menus = Menu::whereNotIn('id', [$id])->inRandomOrder()->paginate(4);
 
-        // return $menus;
-
         return view('menus.show', ['menu' => $menu, 'menus' => $menus]);
     }
 
@@ -114,15 +107,9 @@ class MenusController extends Controller
      */
     public function edit($id)
     {
-        // if (Auth::user()->level == 'Admin') {
             $menu = Menu::findOrFail($id);
     
-            // return $menu;
-    
             return view('menus.edit', ['menu' => $menu]);
-        // } else {
-            // return redirect()->route('dashboard');
-        // }
     }
 
     /**

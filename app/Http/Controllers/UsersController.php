@@ -67,7 +67,6 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        // return $user;
         $user = $user;
 
         if ($user->level == 'Admin') {
@@ -75,9 +74,6 @@ class UsersController extends Controller
         } else {
             $badge = 'badge-secondary';
         }
-        
-        // return $user;
-        // dd($user);
 
         return view('users.show', ['user' => $user, 'badge' => $badge]);
     }
@@ -90,8 +86,6 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        // $user = User::findOrFail($id);
-
         return view('users.edit', ['user' => $user]);
     }
 
@@ -146,44 +140,15 @@ class UsersController extends Controller
         $username = $request->username;
 
         return redirect()->route('users.payment', $username);
-        // if (Auth::user()->level == 'Admin') {
-        //     $validate = $request->validate([
-        //         'username' => 'required',
-        //     ]);
-        //     $username = $request['username'];
-        //     $number   = 1;
-        //     $user     = User::where(['username' => $username, 'Level' => 'Customer'])->firstOrFail();
-    
-        //     return view('users.search', ['user' => $user, 'number' => $number]);
-        // } else {
-        //     return redirect()->route('dashboard');
-        // }
     }
 
     public function search2($username)
     {
-        // $user = User::where('username', $username)->firstOrFail();
-
-        // // return $user->username;
-
-        // if (Auth::user()->level == 'Admin') {
-        //     // $validate = $request->validate([
-        //     //     'username' => 'required',
-        //     // ]);
-        //     // $username = $request['username'];
-        //     $number   = 1;
-        //     $user     = User::where(['username' => $username, 'Level' => 'Customer'])->firstOrFail();
-    
-        //     return view('users.search', ['user' => $user, 'number' => $number]);
-        // } else {
-        //     return redirect()->route('dashboard');
-        // }
+        // 
     }
 
     public function payment(User $user)
     {
-        // return $user;
-        // $username = $user;
         $user = $user;
         $number   = 1;
 

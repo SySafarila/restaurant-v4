@@ -25,7 +25,6 @@ class ProfileController extends Controller
     {
         $profile = Auth::user();
         $avatar = Storage::url('avatars/user/' . $profile->img);
-        // return $avatar;
 
         return view('profile.index', ['profile' => $profile, 'avatar' => $avatar]);
     }
@@ -76,7 +75,7 @@ class ProfileController extends Controller
     public function edit2()
     {
         $user = Auth::user();
-        // return $user;
+
         return view('profile.edit', ['user' => $user]);
     }
 
@@ -96,8 +95,6 @@ class ProfileController extends Controller
             'phone'    => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($user->id),
             'address'  => 'required|min:7|string',
             'gender'   => 'required|in:Female,Male',
-            // 'level' => 'required|in:Owner,Admin,Cashier,Waiter,Customer',
-            // 'status' => 'required|in:Active,Nonactive',
         ]);
         $user = Auth::user();
         $edit = User::where('id', $user->id)->update([
@@ -106,8 +103,6 @@ class ProfileController extends Controller
             'phone'    => $request['phone'],
             'address'  => ucwords($request['address']), //uppercase for each word
             'gender'   => $request['gender'],
-            // 'level' => $request['level'],
-            // 'status' => $request['status'],
         ]);
         return redirect()->route('profile.index')->with('status', 'Profile Updated !');
     }
