@@ -20,7 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-// Route::get('/getbrowser', 'HomeController@getBrowser')->name('getBrowser');
 
 // Profile ( All levels can access)
 Route::get('/dashboard/profile', 'ProfileController@index')->name('profile.index');
@@ -40,10 +39,8 @@ Route::get('/dashboard/user/{user:username}/edit', 'UsersController@edit')->midd
 Route::patch('/dashboard/user/{id}', 'UsersController@update')->middleware('admin')->name('users.update');
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('admin')->name('users.delete');
 
-// Search
+// Users Search
 Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
-// Route::get('/dashboard/user/search/username/{username}', 'UsersController@search2')->name('users.search2');
-// Route::get('/dashboard/{user:username}/payment', 'UsersController@payment')->middleware('admin')->name('users.payment');
 
 // Menus
 Route::get('/dashboard/menus', 'MenusController@index')->middleware('customerOrAdmin')->name('menus.index');
@@ -70,7 +67,6 @@ Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redire
 Route::get('/dashboard/invoices', 'InvoicesController@index')->middleware('customerOrAdmin')->name('invoices.index');
 Route::post('/dashboard/invoices/store', 'InvoicesController@store')->middleware('admin')->name('invoices.store');
 Route::get('/dashboard/invoice/{invoice_code}', 'InvoicesController@show')->middleware('customerOrAdmin')->name('invoices.show');
-// Route::get('/dashboard/invoice/{id}', 'InvoicesController@show')->name('invoices.show');
 
 // Cashier & Payment Route ( Cashier access only )
 Route::get('/cashier', 'CashierController@index')->name('cashier.index');
