@@ -137,9 +137,10 @@ class UsersController extends Controller
 
     public function search(Request $request)
     {
+        // return $request;
         $username = $request->username;
 
-        return redirect()->route('users.payment', $username);
+        return redirect()->route('users.show', $username);
     }
 
     public function search2($username)

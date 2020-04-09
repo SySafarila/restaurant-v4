@@ -13,7 +13,7 @@
             @endif
             <div class="card border-0">
                 <div class="card-body p-0">
-                    <form action="#" method="get">
+                    <form action="{{ route('users.search') }}" method="get">
                         <div class="input-group mb-3">
                             <input type="text" name="username" class="rounded-pill mr-1 form-control form-control-sm @error('username') is-invalid @enderror" placeholder='Search Username without "@"' required>
                             <div class="input-group-append">
