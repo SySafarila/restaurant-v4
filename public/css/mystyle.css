@@ -19,6 +19,11 @@ a.text-orange:focus {
     font-size: 1rem;
 }
 
+.svg-logo{
+    width: 19px;
+    height: 19px;
+}
+
 .badge-orange {
     color: #fff;
     background-color: #FA591D;
