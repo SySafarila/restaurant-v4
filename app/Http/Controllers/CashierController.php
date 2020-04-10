@@ -101,7 +101,14 @@ class CashierController extends Controller
 
     public function search(Request $request)
     {
-        return redirect()->route('cashier.payment', $request->username);
+        $username = $request->username;
+        $level = User::where('username', $username)->first()->level;
+
+        if ($level == 'Customer') {
+            return redirect()->route('cashier.payment', $request->username);
+        } else {
+            return abort(404);
+        }        
     }
 
     public function confirmPayment(Request $request)
