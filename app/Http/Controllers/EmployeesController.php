@@ -18,9 +18,9 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = User::whereIn('level', ['Customer', 'Waiter'])->orderBy('name')->get();
+        $employees = User::whereIn('level', ['Cashier', 'Waiter'])->orderBy('name')->get();
 
-        return $employees;
+        return view('employees.index', ['employees' => $employees]);
     }
 
     /**
@@ -52,11 +52,11 @@ class EmployeesController extends Controller
      */
     public function show(User $user)
     {
-        if ($user->level == 'Cashier' or $user->level == 'Waiter') {
-            return $user;
-        }
+        // if ($user->level == 'Cashier' or $user->level == 'Waiter') {
+        //     return $user;
+        // }
 
-        return abort(404);
+        // return abort(404);
     }
 
     /**
