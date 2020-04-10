@@ -9,7 +9,7 @@ class EmployeesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'admin']);
+        $this->middleware(['auth', 'admin', 'checkUserStatus']);
     }
     /**
      * Display a listing of the resource.
