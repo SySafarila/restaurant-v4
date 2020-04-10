@@ -73,3 +73,7 @@ Route::get('/cashier', 'CashierController@index')->name('cashier.index');
 Route::get('/cashier/search-username', 'CashierController@search')->name('cashier.search');
 Route::get('/cashier/payment/{user:username}', 'CashierController@payment')->middleware('password.confirm')->name('cashier.payment');
 Route::post('cashier/confirm-payment', 'CashierController@confirmPayment')->name('cashier.confirmPayment');
+
+// Employees ( Admin & Owner access only )
+Route::get('/employees', 'EmployeesController@index')->name('employees.index');
+Route::get('/employee/{user:username}', 'EmployeesController@show')->name('employees.show');
