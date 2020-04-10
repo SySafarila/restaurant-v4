@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 @foreach ($employees as $user)
                     <div class="card shadow-sm mb-3">
-                        <div class="card-header bg-white">{{ $user->name }}</div>
+                        <div class="card-header bg-white font-weight-bold">{{ $user->name }}</div>
                         <a href="{{ route('users.show', $user->username) }}" class="stretched-link"></a>
                         <div class="card-body">
                             <ul class="m-0 pl-3">

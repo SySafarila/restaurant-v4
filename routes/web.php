@@ -22,15 +22,15 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 // Profile ( All levels can access)
-Route::get('/dashboard/profile', 'ProfileController@index')->name('profile.index');
-Route::get('/dashboard/profile/edit', 'ProfileController@edit2')->name('profile.edit');
-Route::patch('/dashboard/profile', 'ProfileController@update')->name('profile.update');
-Route::get('/dashboard/profile/login/edit', 'ProfileController@editlogin')->name('profile.editlogin')->middleware(['auth', 'password.confirm']);
-Route::patch('/dashboard/profile/updatelogin', 'ProfileController@updatelogin')->name('profile.updatelogin');
-Route::delete('/dashboard/profile', 'ProfileController@destroy')->name('profile.delete');
-Route::get('/dashboard/profile/avatar/edit', 'ProfileController@editAvatar')->name('profile.editAvatar');
-Route::post('/dashboard/profile/avatar/update', 'ProfileController@updateAvatar')->name('profile.updateAvatar');
-Route::post('/dashboard/profile/avatar/delete', 'ProfileController@deleteAvatar')->name('profile.deleteAvatar');
+Route::get('/profile', 'ProfileController@index')->name('profile.index');
+Route::get('/profile/edit', 'ProfileController@edit2')->name('profile.edit');
+Route::patch('/profile', 'ProfileController@update')->name('profile.update');
+Route::get('/profile/login/edit', 'ProfileController@editlogin')->name('profile.editlogin')->middleware(['auth', 'password.confirm']);
+Route::patch('/profile/updatelogin', 'ProfileController@updatelogin')->name('profile.updatelogin');
+Route::delete('/profile', 'ProfileController@destroy')->name('profile.delete');
+Route::get('/profile/avatar/edit', 'ProfileController@editAvatar')->name('profile.editAvatar');
+Route::post('/profile/avatar/update', 'ProfileController@updateAvatar')->name('profile.updateAvatar');
+Route::post('/profile/avatar/delete', 'ProfileController@deleteAvatar')->name('profile.deleteAvatar');
 
 // Users ( Admin only )
 Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');
@@ -43,9 +43,9 @@ Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('a
 Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
 
 // Menus
-Route::get('/dashboard/menus', 'MenusController@index')->middleware('customerOrAdmin')->name('menus.index');
+Route::get('/menus', 'MenusController@index')->middleware('customerOrAdmin')->name('menus.index');
 Route::get('/dashboard/menus/deleted', 'MenusController@deleted')->middleware('admin')->name('menus.deleted');
-Route::get('/dashboard/menu/{id}', 'MenusController@show')->middleware('customerOrAdmin')->name('menus.show');
+Route::get('/menu/{id}', 'MenusController@show')->middleware('customerOrAdmin')->name('menus.show');
 Route::patch('/dashboard/menu/{id}', 'MenusController@update')->middleware('admin')->name('menus.update');
 Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->middleware('admin')->name('menus.edit');
 Route::post('/dashboard/menus', 'MenusController@store')->middleware('admin')->name('menus.store');
