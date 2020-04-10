@@ -18,7 +18,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = User::whereIn('level', ['Customer', 'Waiter'])->get();
+        $employees = User::whereIn('level', ['Customer', 'Waiter'])->orderBy('name')->get();
 
         return $employees;
     }
