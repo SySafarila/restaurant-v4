@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    | Create Menu
-@endsection
+@section('title', '| Create Menu')
 
 @section('content')
     <div class="container">
