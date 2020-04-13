@@ -32,14 +32,10 @@ class MenusController extends Controller
 
     public function deleted()
     {
-        // if (Auth::user()->level == 'Admin') {
-            $menus = Menu::onlyTrashed()->get();
-            $count = Menu::onlyTrashed()->count();
+        $menus = Menu::onlyTrashed()->get();
+        $count = Menu::onlyTrashed()->count();
 
-            return view('menus.deleted', ['menus' => $menus, 'count' => $count]);
-        // } else {
-        //     return redirect()->route('dashboard')->with('status', 'Redirected');
-        // }
+        return view('menus.deleted', ['menus' => $menus, 'count' => $count]);
     }
 
     /**
@@ -49,11 +45,7 @@ class MenusController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->level == 'Admin') {
-            return view('menus.create');
-        } else {
-            return redirect()->route('dashboard');
-        }
+        return view('menus.create');
     }
 
     /**
@@ -107,9 +99,9 @@ class MenusController extends Controller
      */
     public function edit($id)
     {
-            $menu = Menu::findOrFail($id);
-    
-            return view('menus.edit', ['menu' => $menu]);
+        $menu = Menu::findOrFail($id);
+
+        return view('menus.edit', ['menu' => $menu]);
     }
 
     /**
