@@ -53,6 +53,9 @@ Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->middleware('a
 Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
 Route::get('/dashboard/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
 
+// Menus Search
+Route::get('menus/search', 'MenusController@search')->name('menus.search');
+
 // Orders ( Customer access only )
 Route::get('/dashboard/orders', 'OrdersController@index')->name('orders.index');
 Route::post('/dashboard/orders', 'OrdersController@store')->name('orders.store');

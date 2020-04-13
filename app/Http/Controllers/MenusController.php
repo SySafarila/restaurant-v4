@@ -170,4 +170,12 @@ class MenusController extends Controller
 
         return redirect()->route('menus.deleted')->with('status', 'Menus Restored !');
     }
+
+    public function search(Request $request)
+    {
+        $search = '%' . $request->name . '%';
+        $menus = Menu::where('name', 'like', $search)->get();
+        
+        return $menus;
+    }
 }

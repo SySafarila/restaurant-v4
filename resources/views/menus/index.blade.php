@@ -16,9 +16,9 @@
             @endif
         <div class="row justify-content-center">
             <div class="col-12">
-                <form action="#" method="get">
+                <form action="{{ route('menus.search') }}" method="get">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-sm rounded mr-1" placeholder="Search Menu's" required>
+                        <input type="text" name="name" class="form-control form-control-sm rounded mr-1" placeholder="Search Menu's" required>
                         {{-- <div class="input-group-prepend"> --}}
                             <button class="btn btn-sm btn-outline-orange rounded ml-1" type="button"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                         {{-- </div> --}}
