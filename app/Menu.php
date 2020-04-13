@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends Model
 {
-    protected $fillable = ['name', 'description', 'price', 'img', 'stock', 'status'];
+    protected $fillable = ['name', 'description', 'price', 'img', 'stock'];
     use SoftDeletes;
 
     // Relationship

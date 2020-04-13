@@ -24,7 +24,7 @@ class OrdersController extends Controller
     {
         $number = 1;
         $user   = Auth::user();
-        $orders = Order::where('user_id', $user->id)->latest()->get()->whereNotIn('status', 'Success');
+        $orders = Order::where('user_id', $user->id)->latest()->get();
 
         return view('orders.index', ['number' => $number, 'orders' => $orders]);
     }
@@ -59,7 +59,7 @@ class OrdersController extends Controller
         $quantity = $request['quantity'];
         $price    = Menu::findOrFail($menu_id)->price;
         $total    = $price * $quantity;
-        $status   = 'Pending';
+        // $status   = 'Pending';
 
         // Input to database
         $check = Order::where([
@@ -94,7 +94,7 @@ class OrdersController extends Controller
                 'quantity' => $quantity,
                 'price'    => $price,
                 'total'    => $total,
-                'status'   => $status,
+                // 'status'   => $status,
             ]);
             return redirect()->route('menus.index')->with('status', 'Success add a new ');
         }

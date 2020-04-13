@@ -39,7 +39,13 @@
                         <form action="{{ route('menus.restore', $menu->id) }}" method="post">
                             @csrf
                             @method('PATCH')
-                            <button type="submit" class="btn btn-sm btn-success btn-block">Restore</button>
+                            <input type="number" name="stock" class="form-control form-control-sm @error('stock') is-invalid @enderror" value="{{ $menu->stock }}" required>
+                            @error('stock')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <button type="submit" class="btn btn-sm btn-success btn-block mt-2">Restore</button>
                         </form>
                     </div>
                 </div>

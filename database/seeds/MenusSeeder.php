@@ -18,7 +18,7 @@ class MenusSeeder extends Seeder
                 'price' => 12000,
                 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRLvXYXsRCdp_dzzArbON6jl94LXnFw5qa1CWBHw9YPiqvqNwIl',
                 'stock' => 99,
-                'status' => 'Available',
+                // 'status' => 'Available',
             ]);
             DB::table('menus')->insert([
 	            'name' => 'Ayam Goreng',
@@ -26,7 +26,7 @@ class MenusSeeder extends Seeder
                 'price' => 7000,
                 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlvKNW2zD499zD07wjjbswL4CTes8BR9ChlECDTzgQXoEsz3nR',
                 'stock' => 99,
-                'status' => 'Available',
+                // 'status' => 'Available',
             ]);
             DB::table('menus')->insert([
 	            'name' => 'Ayam Goreng',
@@ -34,7 +34,7 @@ class MenusSeeder extends Seeder
                 'price' => 7000,
                 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlvKNW2zD499zD07wjjbswL4CTes8BR9ChlECDTzgQXoEsz3nR',
                 'stock' => 99,
-                'status' => 'Available',
+                // 'status' => 'Available',
             ]);
             //php artisan db:seed --class=MenusSeeder
     }

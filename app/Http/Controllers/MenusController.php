@@ -32,14 +32,14 @@ class MenusController extends Controller
 
     public function deleted()
     {
-        if (Auth::user()->level == 'Admin') {
+        // if (Auth::user()->level == 'Admin') {
             $menus = Menu::onlyTrashed()->get();
             $count = Menu::onlyTrashed()->count();
 
             return view('menus.deleted', ['menus' => $menus, 'count' => $count]);
-        } else {
-            return redirect()->route('dashboard')->with('status', 'Redirected');
-        }
+        // } else {
+        //     return redirect()->route('dashboard')->with('status', 'Redirected');
+        // }
     }
 
     /**
@@ -158,8 +158,14 @@ class MenusController extends Controller
         return redirect()->route('menus.index')->with('status', 'Menu moved to trash !');
     }
 
-    public function restore($id)
+    public function restore(Request $request, $id)
     {
+        $request->validate([
+            'stock' => 'required|min:1|numeric'
+        ]);
+        $update = Menu::onlyTrashed()->where('id', $id)->update([
+            'stock' => $request->stock
+        ]);
         $restore = Menu::onlyTrashed()->where('id', $id)->restore();
 
         $onlyTrash = Menu::onlyTrashed()->get();
