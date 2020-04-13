@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class CustomerSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class CustomerSeeder extends Seeder
             'gender' => 'Male',
             'level' => 'Customer',
             'status' => 'Active',
+            'created_at' => Carbon::now(),
             'password' => Hash::make('customer'),
         ]);
         //php artisan db:seed --class=CustomerSeeder

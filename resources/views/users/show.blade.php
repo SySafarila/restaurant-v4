@@ -48,6 +48,10 @@
                                 <td class="text-capitalize">{{ $user->gender }}</td>
                             </tr>
                             <tr>
+                                <td>Registered</td>
+                                <td>{{ $user->created_at->diffForHumans() }}</td>
+                            </tr>
+                            <tr>
                                 <td>Level</td>
                                 <td class="text-capitalize"><span class="badge {{ $badge }}">{{ $user->level }}</span></td>
                             </tr>

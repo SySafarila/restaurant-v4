@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class AdminSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class AdminSeeder extends Seeder
             'gender' => 'Male',
             'level' => 'Admin',
             'status' => 'Active',
+            'created_at' => Carbon::now(),
             'password' => Hash::make('admin'),
         ]);
         //php artisan db:seed --class=AdminSeeder

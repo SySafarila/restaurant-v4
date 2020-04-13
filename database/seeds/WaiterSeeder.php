@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class WaiterSeeder extends Seeder
@@ -20,6 +21,7 @@ class WaiterSeeder extends Seeder
             'gender' => 'Male',
             'level' => 'Waiter',
             'status' => 'Active',
+            'created_at' => Carbon::now(),
             'password' => Hash::make('waiter'),
         ]);
         //php artisan db:seed --class=WaiterSeeder

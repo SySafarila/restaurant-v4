@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class CashierSeeder extends Seeder
@@ -20,6 +21,7 @@ class CashierSeeder extends Seeder
             'gender' => 'Male',
             'level' => 'Cashier',
             'status' => 'Active',
+            'created_at' => Carbon::now(),
             'password' => Hash::make('cashier'),
         ]);
         // php artisan db:seed --class=CashierSeeder
