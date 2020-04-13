@@ -173,8 +173,7 @@ class MenusController extends Controller
 
     public function search(Request $request)
     {
-        $search = '%' . $request->name . '%';
-        $menus = Menu::where('name', 'like', $search)->get();
+        $menus = Menu::where('name', 'like', '%' . $request->name . '%')->orderBy('name')->get();
         
         return $menus;
     }
