@@ -171,8 +171,16 @@ class MenusController extends Controller
 
     public function search(Request $request)
     {
-        $menus = Menu::where('name', 'like', '%' . $request->name . '%')->orderBy('name')->get();
-        
-        return $menus;
+        $menus = Menu::where('name', 'like', '%' . $request->name . '%')->orderBy('name')->paginate(10);
+        if ($menus->count() == 0) {
+            return abort(404);
+        }
+        $number = 1;
+
+        if (Auth::user()->level == 'Admin') {
+            return view('menus.advance-index', ['menus' => $menus, 'number' => $number]);
+        } else {
+            return view('menus.index', ['menus' => $menus, 'number' => $number]);
+        }
     }
 }
