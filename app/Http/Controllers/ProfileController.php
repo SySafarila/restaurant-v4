@@ -157,7 +157,7 @@ class ProfileController extends Controller
             return view('profile.editAvatar');
         }
         
-        return redirect()->route('profile.index');
+        return redirect()->route('profile.index')->with('status-warning', 'Delete first your avatar');
     }
 
     public function updateAvatar(Request $request)
