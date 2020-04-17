@@ -66,5 +66,8 @@
                 </table>
             </div>
         </div>
+        <div class="row justify-content-center">
+            {{ $menus->links() }}
+        </div>
     </div>
 @endsection

@@ -40,5 +40,9 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="row justify-content-center mt-1">
+            {{ $menus->links() }}
+        </div>
     </div>
 @endsection

@@ -20,7 +20,7 @@ class MenusController extends Controller
      */
     public function index()
     {
-        $menus  = Menu::orderBy('name', 'asc')->get();
+        $menus  = Menu::orderBy('name', 'asc')->paginate(10);
         $number = 1;
 
         if (Auth::user()->level == 'Admin') {
