@@ -10,9 +10,9 @@
                             @csrf
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
+                                    <input type="file" class="custom-file-input" id="customFile" name="avatar">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                  </div>
                             </div>
                             <button type="submit" class="btn btn-sm btn-success mt-2">Upload</button>
                         </form>
@@ -21,14 +21,16 @@
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
-                {{-- @if (Auth::user()->img == null)
-                    <form action="{{ route('profile.updateAvatar') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <input type="file" name="avatar" class="form-control-file" required>
-                        <button type="submit">Submit</button>
-                    </form>
-                @endif --}}
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+            })
+    </script>
 @endsection
