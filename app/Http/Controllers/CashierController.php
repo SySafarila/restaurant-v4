@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Invoice;
 use App\Invoice_code;
 use App\Menu;
+use App\Notification;
 use App\Order;
 use Carbon\Carbon;
 // use Illuminate\Support\Facades\Auth;
@@ -167,6 +168,12 @@ class CashierController extends Controller
         Invoice_code::create([
             'user_id' => $order->user_id,
             'code' => $code
+        ]);
+
+        Notification::create([
+            'user_id' => $order->user_id,
+            'message' => 'Your payment was successfully with code ' . $code,
+            'status' => 0
         ]);
 
         return redirect()->route('cashier.index')->with('status', 'Payment Success !');
