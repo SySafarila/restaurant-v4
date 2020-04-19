@@ -82,3 +82,4 @@ Route::get('/employees', 'EmployeesController@index')->name('employees.index');
 
 // Notifications
 Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
+Route::get('/notification/{notification}', 'NotificationsController@show')->name('notifications.show');

@@ -15,7 +15,10 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        return Auth::user()->notifications;
+        $user = Auth::user();
+        $notifications = Notification::where('user_id', $user->id)->latest()->get();
+
+        return view('notifications.index', ['notifications' => $notifications]);
     }
 
     /**
@@ -47,7 +50,17 @@ class NotificationsController extends Controller
      */
     public function show(Notification $notification)
     {
-        //
+        if (Auth::user()->id == $notification->user_id) {
+            if ($notification->status == false) {
+                Notification::where('id', $notification->id)->update([
+                    'status' => 1
+                ]);
+            }
+            return $notification;
+        } else {
+            return abort(404);
+        }
+        
     }
 
     /**

@@ -172,7 +172,7 @@ class CashierController extends Controller
 
         Notification::create([
             'user_id' => $order->user_id,
-            'message' => 'Your payment was successfully with code ' . $code,
+            'message' => 'Your payment was successfully with code ' . '<b>' . $code . '</b>',
             'status' => 0
         ]);
 

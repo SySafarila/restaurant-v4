@@ -25,8 +25,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container-fluid">
-                <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="material-icons pt-1">notifications_none</span>
+                <button class="navbar-toggler border-0" type="button">
+                    <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none text-orange">notifications_none</a>
                 </button>
                 <a class="navbar-brand text-success my-font mx-auto" href="{{ url('/') }}">Restaurant v4</a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -78,7 +78,7 @@
                         </li>
                         @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'dashboard/invoices', 'dashboard/profile/edit', 'dashboard/profile/login/edit']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'dashboard/invoices', 'dashboard/profile/edit', 'dashboard/profile/login/edit', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ '@' . Str::limit(Auth::user()->username, 8, ' . .') }} <span class="caret"></span>
                                 </a>
 
