@@ -15,7 +15,10 @@
                             <div class="col-1 align-self-center">
                                 <span class="material-icons align-middle mb-1 @if($notif->status == true) text-success @endif">@if($notif->status == false) info @else done_all @endif</span>
                             </div>
-                            <div class="col"><a href="{{ route('notifications.show', $notif->id) }}" class="text-decoration-none text-dark stretched-link">{!! $notif->message !!}</a></div>
+                            <div class="col">
+                                <a href="{{ route('notifications.show', $notif->id) }}" class="text-decoration-none text-dark stretched-link">{!! $notif->message !!}</a>
+                                <small class="d-block">{{ $notif->created_at->diffForHumans() }}</small>
+                            </div>
                         </div>
                     </li>
                     @endforeach

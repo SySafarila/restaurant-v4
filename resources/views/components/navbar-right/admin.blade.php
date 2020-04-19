@@ -1,5 +1,5 @@
 @if (Auth::user()->level == 'Admin')
 <a href="{{ route('profile.index') }}" class="dropdown-item {{ Request::is(['profile', 'profile/*']) ? 'active' : '' }}">My Profile</a>
-<a href="{{ route('notifications.index') }}" class="dropdown-item {{ Request::is('notifications') ? 'active' : '' }}">Notifications</a>
+<a href="{{ route('notifications.index') }}" class="dropdown-item d-none d-md-block {{ Request::is('notifications') ? 'active' : '' }}">Notifications</a>
 <a href="{{ route('invoices.index') }}" class="dropdown-item {{ Request::is('dashboard/invoices') ? 'active' : '' }}">All Invoices</a>
 @endif
