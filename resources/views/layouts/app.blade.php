@@ -27,7 +27,7 @@
             <div class="container-fluid">
                 @auth
                 <button class="navbar-toggler border-0" type="button">
-                    <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none @if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) text-muted @else text-orange @endif">notifications_none</a>
+                    <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none @if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) text-muted @else text-orange @endif">@if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) notifications_none @else notification_important @endif</a>
                 </button>
                 @else
                 <button class="navbar-toggler border-0" type="button">
