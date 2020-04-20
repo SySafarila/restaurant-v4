@@ -17,7 +17,7 @@
                             </div>
                             <div class="col">
                                 <a href="{{ route('notifications.show', $notif->id) }}" class="text-decoration-none text-dark stretched-link">{!! $notif->message !!}</a>
-                                <small class="d-block">{{ $notif->created_at->diffForHumans() }}</small>
+                                <small class="d-block text-muted">{{ $notif->created_at->diffForHumans() }}</small>
                             </div>
                         </div>
                     </li>
@@ -26,6 +26,11 @@
                         <h3 class="text-center text-muted">EMPTY</h3>
                     @endif
                 </ul>
+                <div class="d-flex mt-3">
+                    <div class="mx-auto">
+                        {{ $notifications->links() }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

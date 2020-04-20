@@ -25,9 +25,15 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container-fluid">
+                @auth
                 <button class="navbar-toggler border-0" type="button">
                     <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none @if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) text-muted @else text-orange @endif">notifications_none</a>
                 </button>
+                @else
+                <button class="navbar-toggler border-0" type="button">
+                    <a href="#" class="material-icons pt-1 text-decoration-none text-muted">notifications_none</a>
+                </button>
+                @endauth
                 <a class="navbar-brand text-success my-font mx-auto" href="{{ url('/') }}">Restaurant v4</a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="material-icons pt-1 text-muted">menu_open</span>

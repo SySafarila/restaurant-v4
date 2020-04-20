@@ -20,7 +20,7 @@ class NotificationsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $notifications = Notification::where('user_id', $user->id)->latest()->get();
+        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(15);
 
         return view('notifications.index', ['notifications' => $notifications]);
     }
