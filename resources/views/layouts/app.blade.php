@@ -27,7 +27,7 @@
             <div class="container-fluid">
                 @auth
                 <button class="navbar-toggler border-0" type="button">
-                    @if (!Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') < 0)
+                    @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
                     <div class="spinner-grow spinner-grow-sm text-orange mt-1" role="status" style="position:fixed;">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -90,7 +90,7 @@
                         @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'dashboard/invoices', 'dashboard/profile/edit', 'dashboard/profile/login/edit', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (!Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') < 0)
+                                    @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
                                     <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
