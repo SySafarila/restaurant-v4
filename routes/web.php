@@ -79,4 +79,7 @@ Route::post('cashier/confirm-payment', 'CashierController@confirmPayment')->name
 
 // Employees ( Admin & Owner access only )
 Route::get('/employees', 'EmployeesController@index')->name('employees.index');
-// Route::get('/employee/{user:username}', 'EmployeesController@show')->name('employees.show');
+
+// Notifications
+Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
+Route::get('/notification/{notification}', 'NotificationsController@show')->name('notifications.show');

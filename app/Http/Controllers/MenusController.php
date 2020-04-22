@@ -119,7 +119,6 @@ class MenusController extends Controller
             'price'       => 'numeric|digits_between:3,9999|required',
             'img'         => 'string|required',
             'stock'       => 'numeric|min:1|required',
-            'status'      => 'in:Available,Unavailable|required'
         ]);
 
         Menu::where('id', $id)->update([
@@ -128,7 +127,6 @@ class MenusController extends Controller
             'price'       => $request['price'],
             'img'         => $request['img'],
             'stock'       => intval($request['stock']),
-            'status'      => ucwords($request['status'])
         ]);
 
         return redirect()->route('menus.index')->with('status', 'Menu edited !');

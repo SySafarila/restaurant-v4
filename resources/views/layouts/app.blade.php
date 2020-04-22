@@ -25,12 +25,18 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container-fluid">
-                <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="material-icons pt-1">notifications_none</span>
+                @auth
+                <button class="navbar-toggler border-0" type="button">
+                    <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none @if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) text-muted @else text-orange @endif">@if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) notifications_none @else notification_important @endif</a>
                 </button>
+                @else
+                <button class="navbar-toggler border-0" type="button">
+                    <a href="#" class="material-icons pt-1 text-decoration-none text-muted">notifications_none</a>
+                </button>
+                @endauth
                 <a class="navbar-brand text-success my-font mx-auto" href="{{ url('/') }}">Restaurant v4</a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="material-icons pt-1">menu_open</span>
+                    <span class="material-icons pt-1 text-muted">menu_open</span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -78,7 +84,7 @@
                         </li>
                         @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'dashboard/invoices', 'dashboard/profile/edit', 'dashboard/profile/login/edit']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'dashboard/invoices', 'dashboard/profile/edit', 'dashboard/profile/login/edit', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ '@' . Str::limit(Auth::user()->username, 8, ' . .') }} <span class="caret"></span>
                                 </a>
 
@@ -127,10 +133,6 @@
             </div>
         </footer>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> --}}
-    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> --}}
     @yield('script')
 </body>
 <!-- Build With <3 -->

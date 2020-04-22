@@ -27,10 +27,11 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
-    <script>
-        $(document).ready(function () {
-            bsCustomFileInput.init()
-            })
-    </script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+<script>
+    $(document).ready(function () {
+        bsCustomFileInput.init()
+        })
+</script>
 @endsection

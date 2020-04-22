@@ -76,3 +76,26 @@ a.badge-orange.focus {
 .show > .btn-outline-orange.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(212, 77, 28, 0.5);
 }
+
+.hr {
+    margin-left: 0px;
+    width: 45%;
+}
+
+@media (min-width: 768px) {
+    .hr {
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .hr {
+        width: 40%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hr {
+        width: 30%;
+    }
+}
