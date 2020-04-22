@@ -89,7 +89,7 @@
     function shopClick() {
         const quantity = document.getElementById('quantity').value;
         if (quantity == '') {
-            console.log('null');
+            // console.log('null');
         } else {
             document.getElementById('shop').innerHTML = '<div class="spinner-border spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>';
         }
