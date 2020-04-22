@@ -47,8 +47,8 @@
                         @csrf
                         <input type="hidden" name="menu" value="{{ $menu->id }}">
                         <div class="row px-3">
-                            <input type="number" name="quantity" class="rounded-pill form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity" required @if($menu->stock <= 0) disabled @endif>
-                            <button type="submit" class="rounded-pill btn btn-sm btn-success ml-1 material-icons" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
+                            <input type="number" name="quantity" id="quantity" class="rounded-pill form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity" required @if($menu->stock <= 0) disabled @endif>
+                            <button type="submit" id="shop" onclick="shopClick()" class="rounded-pill btn btn-sm btn-success ml-1 material-icons" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
                             @error('quantity')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -82,4 +82,17 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    function shopClick() {
+        const quantity = document.getElementById('quantity').value;
+        if (quantity == '') {
+            console.log('null');
+        } else {
+            document.getElementById('shop').innerHTML = '<div class="spinner-border spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>';
+        }
+    }
+</script>
 @endsection
