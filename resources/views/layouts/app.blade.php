@@ -35,8 +35,8 @@
                 </button>
                 @endauth
                 <a class="navbar-brand text-success my-font mx-auto" href="{{ url('/') }}">Restaurant v4</a>
-                <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="material-icons pt-1 text-muted">menu_open</span>
+                <button class="navbar-toggler border-0" type="button" onclick="menuButtonClick()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="material-icons pt-1 text-muted" id="menuButton">menu</span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -133,6 +133,16 @@
             </div>
         </footer>
     </div>
+    <script>
+        function menuButtonClick() {
+            if (document.getElementById('menuButton').innerHTML == 'menu') {
+                document.getElementById('menuButton').innerHTML = 'menu_open';
+                // console.log('true');
+            } else {
+                document.getElementById('menuButton').innerHTML = 'menu';
+            }
+        }
+    </script>
     @yield('script')
 </body>
 <!-- Build With <3 -->
