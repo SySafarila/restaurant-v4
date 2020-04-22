@@ -55,7 +55,7 @@
                                         @enderror
                                 </div>
                                 <div class="form-group col">
-                                    <select name="status" value="{{ $menu->status }}" id="" class="custom-select custom-select-sm @error('status') is-invalid @enderror" required>
+                                    <select name="status" value="{{ $menu->status }}" id="" class="custom-select custom-select-sm @error('status') is-invalid @enderror" disabled>
                                         <option value="{{ $menu->status }}" selected>{{ 'Default : ' . $menu->status }}</option>
                                         <option value="Available">Available</option>
                                         <option value="Unavailable">Unavailable</option>
