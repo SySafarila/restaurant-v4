@@ -85,4 +85,4 @@ Route::get('/notifications', 'NotificationsController@index')->name('notificatio
 Route::get('/notification/{notification}', 'NotificationsController@show')->name('notifications.show');
 
 // Tes
-Route::get('/tes', 'TesControllers@index');
+Route::get('/test', 'TestControllers@index');
