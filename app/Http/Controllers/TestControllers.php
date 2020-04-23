@@ -11,6 +11,7 @@ class TestControllers extends Controller
 {
     public function index()
     {
-        $image = Storage::move('public/menuImages/1-image-1.png', 'menuImages/1-image-1.png');
+        $image = Storage::download('menuImages/1-image-1.png');
+        return $image;
     }
 }

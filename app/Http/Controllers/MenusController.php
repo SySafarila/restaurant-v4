@@ -28,7 +28,7 @@ class MenusController extends Controller
         if (Auth::user()->level == 'Admin') {
             return view('menus.advance-index', ['menus' => $menus, 'number' => $number]);
         } else {
-            return view('menus.index', ['menus' => $menus, 'number' => $number]);
+            return view('menus.index', ['menus' => $menus]);
         }
     }
 
