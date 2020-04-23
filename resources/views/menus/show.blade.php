@@ -27,7 +27,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
             <div class="card mb-4 shadow">
-                <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
+                <img src="{{ $image }}" alt="{{ $image }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-success font-weight-bold">{{ $menu->name }}</h5>
                     <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }} | {{ $menu->status }} : {{ $menu->stock }}</h6>
