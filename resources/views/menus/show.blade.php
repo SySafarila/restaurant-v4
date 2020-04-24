@@ -1,3 +1,12 @@
+@php
+    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $image);
+    if ($checkImage == true) {
+        $menuImage = asset('storage/menuImages/' . $image);
+    } else {
+        $menuImage = asset('image-not-found.png');
+    }
+    
+@endphp
 @extends('layouts.app')
 
 @section('title')
@@ -27,7 +36,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
             <div class="card mb-4 shadow">
-                <img src="{{ asset('storage/menuImages/' . $image) }}" alt="{{ $image }}" class="card-img-top">
+                <img src="{{ $menuImage }}" alt="{{ $image }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-success font-weight-bold">{{ $menu->name }}</h5>
                     <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }} | {{ $menu->status }} : {{ $menu->stock }}</h6>
