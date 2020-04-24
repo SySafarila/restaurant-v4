@@ -77,7 +77,7 @@
                         <a href="{{ route('menus.show', $menu->id) }}" class="stretched-link"></a>
                         <div class="row no-gutters">
                             <div class="col-6">
-                                <img src="{{ $menu->img }}" class="card-img border-0">
+                                <img src="{{ asset('storage/menuImages/' . $menu->images->first()->name) }}" class="card-img border-0">
                             </div>
                             <div class="col ml-3">
                                 <h5 class="font-weight-bold"><a href="{{ route('menus.show', $menu->id) }}" class="stretched-link text-success text-decoration-none">{{ $menu->name }}</a></h5>

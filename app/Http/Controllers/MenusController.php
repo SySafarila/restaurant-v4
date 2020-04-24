@@ -70,10 +70,10 @@ class MenusController extends Controller
             'image_5'   => 'mimes:jpg,jpeg,png|max:5120',
         ]);
         
-        if (Menu::all()->count() == 0) {
+        if (Menu::withTrashed()->count() == 0) {
             $lastId = 1;
         } else {
-            $lastId = Menu::orderBy('id', 'desc')->first()->id + 1;
+            $lastId = Menu::withTrashed()->count() + 1;
         }
         
         // Unique
