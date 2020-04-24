@@ -48,9 +48,8 @@
                             @enderror
                             <button type="submit" class="btn btn-sm btn-success btn-block mt-2">Restore</button>
                         </form>
-                        <form action="#" method="post">
+                        <form action="{{ route('menus.forceDelete', $menu->id) }}" method="post">
                             @csrf
-                            @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-outline-danger btn-block mt-2">Delete Permanent</button>
                         </form>
                     </div>

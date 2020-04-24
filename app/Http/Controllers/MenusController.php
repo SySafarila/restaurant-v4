@@ -70,6 +70,7 @@ class MenusController extends Controller
             'image_5'   => 'mimes:jpg,jpeg,png|max:5120',
         ]);
         
+        // bugs
         if (Menu::withTrashed()->count() == 0) {
             $lastId = 1;
         } else {
@@ -208,5 +209,14 @@ class MenusController extends Controller
         } else {
             return view('menus.index', ['menus' => $menus, 'number' => $number]);
         }
+    }
+
+    public function forceDelete($id)
+    {
+        $menu = Menu::withTrashed()->find($id);
+        // $imgUrl = Storage::disk('local')->delete('menuImages/' . $menu->images->first()->name);
+        $imgDb = Menu_image::where('menu_id', $id)->forceDelete();
+        $deleteMenu = $menu->forceDelete();
+        return $menu->images;
     }
 }

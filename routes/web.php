@@ -52,6 +52,7 @@ Route::post('/dashboard/menus', 'MenusController@store')->middleware('admin')->n
 Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->middleware('admin')->name('menus.destroy');
 Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
 Route::get('/dashboard/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
+route::post('/menu/forceDelete/{id}', 'MenusController@forceDelete')->name('menus.forceDelete');
 
 // Menus Search
 Route::get('menus/search', 'MenusController@search')->name('menus.search');
