@@ -15,4 +15,9 @@ class Menu extends Model
     {
         return $this->hasMany('App\Order');
     }
+
+    public function images()
+    {
+        return $this->hasMany('App\Menu_image');
+    }
 }

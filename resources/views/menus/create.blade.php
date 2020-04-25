@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-                <form action="{{ route('menus.store') }}" method="post">
+                <form action="{{ route('menus.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="form-group">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image_link">Image Link</label>
-                        <input type="text" id="image_link" name="img" value="{{ old('img') }}" class="form-control form-control-sm mb-1 @error('img') is-invalid @enderror" placeholder="Image *link" required>
+                        <input type="text" id="image_link" name="img" value="{{ old('img') }}" class="form-control form-control-sm mb-1 @error('img') is-invalid @enderror" placeholder="Image *link" disabled>
                         @error('img')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -55,20 +55,38 @@
                             </span>
                             @enderror
                         </div>
+                    </div>
+                    <div class="form-row mb-3">
                         <div class="col">
-                            <label for="status">Status</label>
-                            <select name="status" id="status" value="{{ old('status') }}" class="custom-select custom-select-sm @error('status') is-invalid @enderror" required>
-                                <option value="" selected>- Status -</option>
-                                <option value="Available">Available</option>
-                                <option value="Unavailable">Unavailable</option>
-                            </select>
-                            @error('status')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <label for="images">Images <small class="text-danger">*First image is required</small></label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image_1" name="image_1" required>
+                                <label class="custom-file-label" for="image_1">Choose Image 1</label>
+                            </div>
+                            <div class="custom-file mt-2">
+                                <input type="file" class="custom-file-input" id="image_2" name="image_2" disabled>
+                                <label class="custom-file-label" for="image_2">Choose Image 2</label>
+                            </div>
+                            <div class="custom-file mt-2">
+                                <input type="file" class="custom-file-input" id="image_3" name="image_3" disabled>
+                                <label class="custom-file-label" for="image_3">Choose Image 3</label>
+                            </div>
+                            <div class="custom-file mt-2">
+                                <input type="file" class="custom-file-input" id="image_4" name="image_4" disabled>
+                                <label class="custom-file-label" for="image_4">Choose Image 4</label>
+                            </div>
+                            <div class="custom-file mt-2">
+                                <input type="file" class="custom-file-input" id="image_5" name="image_5" disabled>
+                                <label class="custom-file-label" for="image_5">Choose Image 5</label>
+                            </div>
+                            {{-- <input type="number" id="stock" name="stock" value="{{ old('stock') }}" class="form-control form-control-sm @error('stock') is-invalid @enderror" placeholder="Stock" required> --}}
+                            @error('stock')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
-                      </div>
+                    </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-sm btn-success mx-1 material-icons">add</button>
                         <button type="reset" class="btn btn-sm btn-outline-danger mx-1 material-icons">delete</button>
@@ -77,4 +95,13 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+<script>
+    $(document).ready(function () {
+        bsCustomFileInput.init()
+        })
+</script>
 @endsection

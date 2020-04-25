@@ -1,3 +1,12 @@
+@php
+    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $image);
+    if ($checkImage == true) {
+        $menuImage = asset('storage/menuImages/' . $image);
+    } else {
+        $menuImage = asset('image-not-found.png');
+    }
+    
+@endphp
 @extends('layouts.app')
 
 @section('title')
@@ -27,7 +36,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
             <div class="card mb-4 shadow">
-                <img src="{{ $menu->img }}" alt="{{ $menu->name }}" class="card-img-top">
+                <img src="{{ $menuImage }}" alt="{{ $image }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-success font-weight-bold">{{ $menu->name }}</h5>
                     <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }} | {{ $menu->status }} : {{ $menu->stock }}</h6>
@@ -47,8 +56,8 @@
                         @csrf
                         <input type="hidden" name="menu" value="{{ $menu->id }}">
                         <div class="row px-3">
-                            <input type="number" name="quantity" class="rounded-pill form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity" required @if($menu->stock <= 0) disabled @endif>
-                            <button type="submit" class="rounded-pill btn btn-sm btn-success ml-1 material-icons" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
+                            <input type="number" name="quantity" id="quantity" class="rounded-pill form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity" required @if($menu->stock <= 0) disabled @endif>
+                            <button type="submit" id="shop" onclick="shopClick()" class="rounded-pill btn btn-sm btn-success ml-1 material-icons" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
                             @error('quantity')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -62,18 +71,27 @@
         </div>
         <div class="col-12 col-md-4">
             <h3 class="text-center">Other Menus</h3>
-            @foreach ($menus as $menu)
+            @foreach ($menus as $other)
+            @php
+                $checkImageOther = Storage::disk('local')->exists('public/menuImages/' . $other->images->first()->name);
+                if ($checkImageOther == true) {
+                    $menuImageOther = asset('storage/menuImages/' . $other->images->first()->name);
+                } else {
+                    $menuImageOther = asset('image-not-found.png');
+                }
+                
+            @endphp
                 <div class="card mb-3 shadow">
                     <div class="card-body p-2">
-                        <a href="{{ route('menus.show', $menu->id) }}" class="stretched-link"></a>
+                        <a href="{{ route('menus.show', $other->id) }}" class="stretched-link"></a>
                         <div class="row no-gutters">
                             <div class="col-6">
-                                <img src="{{ $menu->img }}" class="card-img border-0">
+                                <img src="{{ $menuImageOther }}" class="card-img border-0">
                             </div>
                             <div class="col ml-3">
-                                <h5 class="font-weight-bold"><a href="{{ route('menus.show', $menu->id) }}" class="stretched-link text-success text-decoration-none">{{ $menu->name }}</a></h5>
-                                <p class="text-orange m-0">Rp {{ number_format($menu->price,0 ,0, '.') }}</p>
-                                <p class="m-0"><span class="badge badge-pill badge-orange">Stock {{ number_format($menu->stock,0 ,0, '.') }}</span></p>
+                                <h5 class="font-weight-bold"><a href="{{ route('menus.show', $other->id) }}" class="stretched-link text-success text-decoration-none">{{ $menu->name }}</a></h5>
+                                <p class="text-orange m-0">Rp {{ number_format($other->price,0 ,0, '.') }}</p>
+                                <p class="m-0"><span class="badge badge-pill badge-orange">Stock {{ number_format($other->stock,0 ,0, '.') }}</span></p>
                             </div>
                         </div>
                     </div>
@@ -82,4 +100,17 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    function shopClick() {
+        const quantity = document.getElementById('quantity').value;
+        if (quantity == '') {
+            // console.log('null');
+        } else {
+            document.getElementById('shop').innerHTML = '<div class="spinner-border spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>';
+        }
+    }
+</script>
 @endsection

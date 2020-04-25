@@ -12,7 +12,7 @@
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="customFile" name="avatar">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
-                                  </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-sm btn-success mt-2">Upload</button>
                         </form>
