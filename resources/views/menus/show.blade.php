@@ -71,18 +71,27 @@
         </div>
         <div class="col-12 col-md-4">
             <h3 class="text-center">Other Menus</h3>
-            @foreach ($menus as $menu)
+            @foreach ($menus as $other)
+            @php
+                $checkImageOther = Storage::disk('local')->exists('public/menuImages/' . $other->images->first()->name);
+                if ($checkImageOther == true) {
+                    $menuImageOther = asset('storage/menuImages/' . $other->images->first()->name);
+                } else {
+                    $menuImageOther = asset('image-not-found.png');
+                }
+                
+            @endphp
                 <div class="card mb-3 shadow">
                     <div class="card-body p-2">
-                        <a href="{{ route('menus.show', $menu->id) }}" class="stretched-link"></a>
+                        <a href="{{ route('menus.show', $other->id) }}" class="stretched-link"></a>
                         <div class="row no-gutters">
                             <div class="col-6">
-                                <img src="{{ asset('storage/menuImages/' . $menu->images->first()->name) }}" class="card-img border-0">
+                                <img src="{{ $menuImageOther }}" class="card-img border-0">
                             </div>
                             <div class="col ml-3">
-                                <h5 class="font-weight-bold"><a href="{{ route('menus.show', $menu->id) }}" class="stretched-link text-success text-decoration-none">{{ $menu->name }}</a></h5>
-                                <p class="text-orange m-0">Rp {{ number_format($menu->price,0 ,0, '.') }}</p>
-                                <p class="m-0"><span class="badge badge-pill badge-orange">Stock {{ number_format($menu->stock,0 ,0, '.') }}</span></p>
+                                <h5 class="font-weight-bold"><a href="{{ route('menus.show', $other->id) }}" class="stretched-link text-success text-decoration-none">{{ $menu->name }}</a></h5>
+                                <p class="text-orange m-0">Rp {{ number_format($other->price,0 ,0, '.') }}</p>
+                                <p class="m-0"><span class="badge badge-pill badge-orange">Stock {{ number_format($other->stock,0 ,0, '.') }}</span></p>
                             </div>
                         </div>
                     </div>

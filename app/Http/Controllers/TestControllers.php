@@ -11,7 +11,6 @@ class TestControllers extends Controller
 {
     public function index()
     {
-        $image = Storage::download('menuImages/1-image-1.png');
-        return $image;
+        return Menu_image::orderBy('id', 'desc')->first()->id;
     }
 }

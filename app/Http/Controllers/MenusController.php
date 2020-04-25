@@ -58,33 +58,17 @@ class MenusController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'name'        => 'string|min:5|required',
-            'description' => 'string|min:10|required',
-            'price'       => 'numeric|digits_between:3,9999|required',
-            'stock'       => 'numeric|digits_between:1,9999|required',
-            'image_1'   => 'required|mimes:jpg,jpeg,png|max:5120',
-            'image_2'   => 'mimes:jpg,jpeg,png|max:5120',
-            'image_3'   => 'mimes:jpg,jpeg,png|max:5120',
-            'image_4'   => 'mimes:jpg,jpeg,png|max:5120',
-            'image_5'   => 'mimes:jpg,jpeg,png|max:5120',
-        ]);
-        
-        // bugs
-        if (Menu::withTrashed()->count() == 0) {
-            $lastId = 1;
-        } else {
-            $lastId = Menu::withTrashed()->count() + 1;
-        }
-        
-        // Unique
-        if (Menu_image::all()->count() == 0) {
-            $unique = 1;
-        } else {
-            $unique = Menu_image::latest()->first()->id + 1;
-        }
-
-        $fileName = $lastId . '-image-' . $unique;
+        // $validate = $request->validate([
+        //     'name'        => 'string|min:5|required',
+        //     'description' => 'string|min:10|required',
+        //     'price'       => 'numeric|digits_between:3,9999|required',
+        //     'stock'       => 'numeric|digits_between:1,9999|required',
+        //     'image_1'   => 'required|mimes:jpg,jpeg,png|max:5120',
+        //     'image_2'   => 'mimes:jpg,jpeg,png|max:5120',
+        //     'image_3'   => 'mimes:jpg,jpeg,png|max:5120',
+        //     'image_4'   => 'mimes:jpg,jpeg,png|max:5120',
+        //     'image_5'   => 'mimes:jpg,jpeg,png|max:5120',
+        // ]);
         
         Menu::create([
             'name'        => ucwords($request['name']),
@@ -93,12 +77,23 @@ class MenusController extends Controller
             'stock'       => intval($request['stock'])
         ]);
 
-        // Upload images 1
-        $request->file('image_1')->storeAs('public/menuImages', $fileName . '.' . $request->file('image_1')->getClientOriginalExtension());
+        if (Menu_image::all()->count() == 0) {
+            $lastImage = 1;
+        } else {
+            $lastImage = Menu_image::orderBy('id', 'desc')->first()->id + 1;
+        }
+
+        $image1Ext = $request->file('image_1')->getClientOriginalExtension();
+        $getLastId = Menu::withTrashed()->orderBy('id', 'desc')->first()->id;
+        $image1Name = 'image-' . $lastImage . '.' . $image1Ext;
+
         Menu_image::create([
-            'name' => $fileName . '.' . $request->file('image_1')->getClientOriginalExtension(),
-            'menu_id' => $lastId
+            'name' => $image1Name,
+            'menu_id' => $getLastId
         ]);
+
+        $upload = $request->file('image_1')->storeAs('public/menuImages', $image1Name);
+
         return redirect()->route('menus.index')->with('status', 'Menu added !');
     }
 
