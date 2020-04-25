@@ -11,6 +11,7 @@ use App\Menu;
 use App\Notification;
 use App\Order;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 // use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -136,6 +137,8 @@ class CashierController extends Controller
 
             $min = Menu::where('id', $order->menu_id)->first();
 
+            $image = $min->images->first()->name;
+
             if ($order->menu->stock == 0) {
                 return ('Out of stock');
             }
@@ -149,6 +152,9 @@ class CashierController extends Controller
             ]);
 
             if ($min->stock - $order->quantity == 0) {
+                if (Storage::disk('local')->exists('public/menuImages/' . $image) == true) {
+                    Storage::move('public/menuImages/' . $image, 'menuImages/' . $image);
+                }
                 Menu::where('id', $order->menu_id)->delete();
             }
 
