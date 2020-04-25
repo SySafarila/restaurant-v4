@@ -209,9 +209,9 @@ class MenusController extends Controller
     public function forceDelete($id)
     {
         $menu = Menu::withTrashed()->find($id);
-        // $imgUrl = Storage::disk('local')->delete('menuImages/' . $menu->images->first()->name);
+        $imgUrl = Storage::disk('local')->delete('menuImages/' . $menu->images->first()->name);
         $imgDb = Menu_image::where('menu_id', $id)->forceDelete();
         $deleteMenu = $menu->forceDelete();
-        return $menu->images;
+        return redirect()->route('menus.deleted')->with('status', 'Menu Deleted Permanent !');
     }
 }
