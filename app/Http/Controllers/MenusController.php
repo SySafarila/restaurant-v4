@@ -58,17 +58,17 @@ class MenusController extends Controller
      */
     public function store(Request $request)
     {
-        // $validate = $request->validate([
-        //     'name'        => 'string|min:5|required',
-        //     'description' => 'string|min:10|required',
-        //     'price'       => 'numeric|digits_between:3,9999|required',
-        //     'stock'       => 'numeric|digits_between:1,9999|required',
-        //     'image_1'   => 'required|mimes:jpg,jpeg,png|max:5120',
-        //     'image_2'   => 'mimes:jpg,jpeg,png|max:5120',
-        //     'image_3'   => 'mimes:jpg,jpeg,png|max:5120',
-        //     'image_4'   => 'mimes:jpg,jpeg,png|max:5120',
-        //     'image_5'   => 'mimes:jpg,jpeg,png|max:5120',
-        // ]);
+        $validate = $request->validate([
+            'name'        => 'string|min:5|required',
+            'description' => 'string|min:10|required',
+            'price'       => 'numeric|digits_between:3,9999|required',
+            'stock'       => 'numeric|digits_between:1,9999|required',
+            'image_1'   => 'required|mimes:jpg,jpeg,png|max:5120',
+            'image_2'   => 'mimes:jpg,jpeg,png|max:5120',
+            'image_3'   => 'mimes:jpg,jpeg,png|max:5120',
+            'image_4'   => 'mimes:jpg,jpeg,png|max:5120',
+            'image_5'   => 'mimes:jpg,jpeg,png|max:5120',
+        ]);
         
         Menu::create([
             'name'        => ucwords($request['name']),
