@@ -16,6 +16,13 @@
                 <div class="card">
                     <img src="{{ $imageSrc }}" alt="{{ $image->name }}" class="card-img-top">
                     <div class="card-body">
+                        <div class="d-flex justify-content-center mb-1">
+                            <form action="{{ route('menus.deleteImage', ['menu' => $image->menu_id, 'image' => $image->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </div>
                         <form action="{{ route('menus.updateImage', ['menu' => $menu->id, 'image' => $image->id]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

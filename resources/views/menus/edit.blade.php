@@ -115,6 +115,7 @@
                                 @endforeach
                             </div>
                         </div>
+                        <p class="text-center m-0"><a href="#" class="text-decoration-none">Add more images</a></p>
                     </div>
                 </div>
             </div>

@@ -16,6 +16,13 @@
                 <div class="card">
                     <img src="{{ $image }}" alt="{{ $menu->cover->name }}" class="card-img-top">
                     <div class="card-body">
+                        <div class="d-flex justify-content-center mb-1">
+                            <form action="{{ route('menus.deleteCover', $menu->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </div>
                         <form action="{{ route('menus.updateCover', $menu->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

@@ -291,6 +291,17 @@ class MenusController extends Controller
         return redirect()->route('menus.edit', $menu);
     }
 
+    public function deleteCover(Menu $menu)
+    {
+        // return $menu;
+        if (Storage::disk('local')->exists('public/menuImages/' . $menu->cover->name) == true) {
+            Storage::disk('local')->delete('public/menuImages/' . $menu->cover->name);
+        } else {
+            return redirect()->route('menus.editCover', $menu);
+        }
+        return redirect()->route('menus.edit', $menu);
+    }
+
     public function editImage(Menu $menu, Menu_image $image)
     {
         return view('menus.edit.edit-image', ['menu' => $menu, 'image' => $image]);
@@ -314,6 +325,15 @@ class MenusController extends Controller
         
         // Upload
         $request->file('newImage')->storeAs('public/menuImages', $image);
+        return redirect()->route('menus.edit', $menu);
+    }
+
+    public function deleteImage(Menu $menu, Menu_image $image)
+    {
+        if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
+            Storage::disk('local')->delete('public/menuImages/' . $image->name);
+        }
+        $image->delete();
         return redirect()->route('menus.edit', $menu);
     }
 }
