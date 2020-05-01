@@ -1,11 +1,11 @@
-{{-- @php
-    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $image);
+@php
+    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $images->first()->name);
     if ($checkImage == true) {
-        $menuImage = asset('storage/menuImages/' . $image);
+        $menuImage = asset('storage/menuImages/' . $images->first()->name);
     } else {
         $menuImage = asset('image-not-found.png');
     }
-@endphp --}}
+@endphp
 @extends('layouts.app')
 
 @section('title')
@@ -44,11 +44,19 @@
                     </ol> --}}
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ asset('storage/menuImages/' . $images->first()->name) }}" class="d-block w-100" alt="...">
+                            <img src="{{ $menuImage }}" class="d-block w-100" alt="...">
                         </div>
                         @foreach ($images as $image)
+                        @php
+                            if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
+                                $carouselImage = asset('storage/menuImages/' . $image->name);
+                            } else {
+                                $carouselImage = asset('image-not-found.png');
+                            }
+                            
+                        @endphp
                         <div class="carousel-item">
-                            <img src="{{ asset('storage/menuImages/' . $image->name) }}" class="d-block w-100" alt="...">
+                            <img src="{{ $carouselImage }}" class="d-block w-100" alt="...">
                         </div>
                         @endforeach
                     </div>
