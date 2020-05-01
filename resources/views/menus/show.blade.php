@@ -108,15 +108,15 @@
         <div class="col-12 col-md-4">
             <h3 class="text-center">Other Menus</h3>
             @foreach ($menus as $other)
-            @php
-                $checkImageOther = Storage::disk('local')->exists('public/menuImages/' . $other->images->first()->name);
-                if ($checkImageOther == true) {
-                    $menuImageOther = asset('storage/menuImages/' . $other->images->first()->name);
-                } else {
-                    $menuImageOther = asset('image-not-found.png');
-                }
-                
-            @endphp
+                @php
+                    $checkImageOther = Storage::disk('local')->exists('public/menuImages/' . $other->cover->name);
+                    if ($checkImageOther == true) {
+                        $menuImageOther = asset('storage/menuImages/' . $other->cover->name);
+                    } else {
+                        $menuImageOther = asset('image-not-found.png');
+                    }
+                    
+                @endphp
                 <div class="card mb-3 shadow">
                     <div class="card-body p-2">
                         <a href="{{ route('menus.show', $other->id) }}" class="stretched-link"></a>

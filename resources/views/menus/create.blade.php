@@ -58,10 +58,12 @@
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
-                            <label for="images">Images <small class="text-danger">*First image is required</small></label>
+                            <label for="images">Images 
+                                {{-- <small class="text-danger">*First image is required</small> --}}
+                            </label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="cover_image" name="cover_image" required>
-                                <label class="custom-file-label" for="cover_image">Choose Image 1</label>
+                                <label class="custom-file-label text-truncate" for="cover_image">Choose Cover *</label>
                                 @error('cover_image')
                                 <span class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
@@ -70,7 +72,7 @@
                             </div>
                             <div class="custom-file mt-2">
                                 <input type="file" class="custom-file-input" id="images" name="images[]" multiple>
-                                <label class="custom-file-label" for="images">Choose Other Images</label>
+                                <label class="custom-file-label text-truncate" for="images">Choose Other Images</label>
                                 @error('images[]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
