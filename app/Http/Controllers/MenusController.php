@@ -265,4 +265,55 @@ class MenusController extends Controller
         $deleteMenu = $menu->forceDelete();
         return redirect()->route('menus.deleted')->with('status', 'Menu Deleted Permanent !');
     }
+
+    public function editCover(Menu $menu)
+    {
+        return view('menus.edit.edit-cover', ['menu' => $menu]);
+    }
+
+    public function updateCover(Request $request, Menu $menu)
+    {
+        $request->validate([
+            'newCover' => 'required|mimes:jpg,jpeg,png|max:5120'
+        ],
+        [
+            'newCover.max' => 'Maximum file size is 5MB',
+            'newCover.mimes' => 'Only accepting JPG, JPEG, and PNG formats'
+        ]);
+
+        $cover = $menu->cover->name;
+        if (Storage::disk('local')->exists('public/menuImages/' . $cover) == true) {
+            Storage::disk('local')->delete('public/menuImages/' . $cover);
+        }
+        
+        // Upload
+        $request->file('newCover')->storeAs('public/menuImages', $cover);
+        return redirect()->route('menus.edit', $menu);
+    }
+
+    public function editImage(Menu $menu, Menu_image $image)
+    {
+        return view('menus.edit.edit-image', ['menu' => $menu, 'image' => $image]);
+    }
+
+    public function updateImage(Request $request, Menu $menu, Menu_image $image)
+    {
+        // return $image;
+        $request->validate([
+            'newImage' => 'required|mimes:jpg,jpeg,png|max:5120'
+        ],
+        [
+            'newImage.max' => 'Maximum file size is 5MB',
+            'newImage.mimes' => 'Only accepting JPG, JPEG, and PNG formats'
+        ]);
+
+        $image = $image->name;
+        if (Storage::disk('local')->exists('public/menuImages/' . $image) == true) {
+            Storage::disk('local')->delete('public/menuImages/' . $image);
+        }
+        
+        // Upload
+        $request->file('newImage')->storeAs('public/menuImages', $image);
+        return redirect()->route('menus.edit', $menu);
+    }
 }

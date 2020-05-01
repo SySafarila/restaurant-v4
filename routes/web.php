@@ -53,6 +53,10 @@ Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->middleware('a
 Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
 Route::get('/dashboard/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
 route::post('/menu/forceDelete/{id}', 'MenusController@forceDelete')->name('menus.forceDelete');
+Route::get('/menu/{menu}/edit-cover', 'MenusController@editCover')->name('menus.editCover');
+Route::post('/menu/{menu}/updage-cover', 'MenusController@updateCover')->name('menus.updateCover');
+Route::get('/menu/{menu}/edit-image/{image}', 'MenusController@editImage')->name('menus.editImage');
+Route::post('/menu/{menu}/edit-image/{image}', 'MenusController@updateImage')->name('menus.updateImage');
 
 // Menus Search
 Route::get('menus/search', 'MenusController@search')->name('menus.search');

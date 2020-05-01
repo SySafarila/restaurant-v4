@@ -102,6 +102,6 @@
 <script>
     $(document).ready(function () {
         bsCustomFileInput.init()
-        })
+        });
 </script>
 @endsection
