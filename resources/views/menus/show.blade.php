@@ -1,11 +1,12 @@
 @php
-    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $image);
+    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $menu->cover->name);
     if ($checkImage == true) {
-        $menuImage = asset('storage/menuImages/' . $image);
+        $menuImage = asset('storage/menuImages/' . $menu->cover->name);
     } else {
         $menuImage = asset('image-not-found.png');
     }
-    
+
+    $no = 1;
 @endphp
 @extends('layouts.app')
 
@@ -36,11 +37,50 @@
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
             <div class="card mb-4 shadow">
-                <img src="{{ $menuImage }}" alt="{{ $image }}" class="card-img-top">
+                {{-- Carousel --}}
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        @foreach ($images as $item)
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $no }}"></li>
+                        @endforeach
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ $menuImage }}" class="d-block w-100" alt="...">
+                        </div>
+                        @foreach ($images as $image)
+                            @php
+                                if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
+                                    $carouselImage = asset('storage/menuImages/' . $image->name);
+                                } else {
+                                    $carouselImage = asset('image-not-found.png');
+                                }
+                                
+                            @endphp
+                        <div class="carousel-item">
+                            <img src="{{ $carouselImage }}" class="d-block w-100" alt="...">
+                        </div>
+                        @endforeach
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                {{-- Carousel --}}
                 <div class="card-body">
-                    <h5 class="card-title text-success font-weight-bold">{{ $menu->name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }} | {{ $menu->status }} : {{ $menu->stock }}</h6>
-                    <p class="card-text">{!! nl2br(e($menu->description)) !!}</p>
+                    <h5 class="card-title text-success font-weight-bold mb-1">{{ $menu->name }}</h5>
+                    <div class="d-flex justify-content-between mb-1">
+                        <h6 class="card-subtitle m-0 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }}</h6>
+                        <span class="badge badge-pill badge-success align-middle" style="white-space: pre;">Stock : {{ $menu->stock }}</span>
+                    </div>
+                    <hr>
+                    <p class="card-text" style="white-space: pre-line;">{!! $menu->description !!}</p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
                             <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
@@ -72,15 +112,15 @@
         <div class="col-12 col-md-4">
             <h3 class="text-center">Other Menus</h3>
             @foreach ($menus as $other)
-            @php
-                $checkImageOther = Storage::disk('local')->exists('public/menuImages/' . $other->images->first()->name);
-                if ($checkImageOther == true) {
-                    $menuImageOther = asset('storage/menuImages/' . $other->images->first()->name);
-                } else {
-                    $menuImageOther = asset('image-not-found.png');
-                }
-                
-            @endphp
+                @php
+                    $checkImageOther = Storage::disk('local')->exists('public/menuImages/' . $other->cover->name);
+                    if ($checkImageOther == true) {
+                        $menuImageOther = asset('storage/menuImages/' . $other->cover->name);
+                    } else {
+                        $menuImageOther = asset('image-not-found.png');
+                    }
+                    
+                @endphp
                 <div class="card mb-3 shadow">
                     <div class="card-body p-2">
                         <a href="{{ route('menus.show', $other->id) }}" class="stretched-link"></a>

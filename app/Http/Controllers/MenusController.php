@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\Menu_cover;
 use App\Menu_image;
 use App\Order;
 use Illuminate\Http\Request;
@@ -58,41 +59,63 @@ class MenusController extends Controller
      */
     public function store(Request $request)
     {
-        // $validate = $request->validate([
-        //     'name'        => 'string|min:5|required',
-        //     'description' => 'string|min:10|required',
-        //     'price'       => 'numeric|digits_between:3,9999|required',
-        //     'stock'       => 'numeric|digits_between:1,9999|required',
-        //     'image_1'   => 'required|mimes:jpg,jpeg,png|max:5120',
-        //     'image_2'   => 'mimes:jpg,jpeg,png|max:5120',
-        //     'image_3'   => 'mimes:jpg,jpeg,png|max:5120',
-        //     'image_4'   => 'mimes:jpg,jpeg,png|max:5120',
-        //     'image_5'   => 'mimes:jpg,jpeg,png|max:5120',
-        // ]);
+        $validate = $request->validate([
+            'name'        => 'string|min:5|required',
+            'description' => 'string|min:10|required',
+            'price'       => 'numeric|digits_between:3,9999|required',
+            'stock'       => 'numeric|digits_between:1,9999|required',
+            'cover_image' => 'required|mimes:jpg,jpeg,png|max:5120',
+            'images[]'   => 'mimes:jpg,jpeg,png|max:10120',
+        ]);
         
         Menu::create([
             'name'        => ucwords($request['name']),
-            'description' => ucwords($request['description']),
+            'description' => ucfirst($request['description']),
             'price'       => $request['price'],
             'stock'       => intval($request['stock'])
         ]);
 
-        if (Menu_image::all()->count() == 0) {
+        if (Menu_cover::all()->count() == 0) {
             $lastImage = 1;
         } else {
-            $lastImage = Menu_image::orderBy('id', 'desc')->first()->id + 1;
+            $lastImage = Menu_cover::orderBy('id', 'desc')->first()->id + 1;
         }
 
-        $image1Ext = $request->file('image_1')->getClientOriginalExtension();
+        $image1Ext = $request->file('cover_image')->getClientOriginalExtension();
         $getLastId = Menu::withTrashed()->orderBy('id', 'desc')->first()->id;
-        $image1Name = 'image-' . $lastImage . '.' . $image1Ext;
+        $image1Name = 'image-cover-' . $getLastId . '.' . $image1Ext;
+        
+        // Menu_image::create([
+        //     'name' => $image1Name,
+        //     'menu_id' => $getLastId
+        // ]);
 
-        Menu_image::create([
+        Menu_cover::create([
             'name' => $image1Name,
             'menu_id' => $getLastId
         ]);
+            
+        $upload = $request->file('cover_image')->storeAs('public/menuImages', $image1Name);
+            
+        // Other images
+        if ($request->hasFile('images') == true) {
+            foreach ($request->file('images') as $image) {
+                if (Menu_image::all()->count() == 0) {
+                    $imgOtherLastId = 1;
+                } else {
+                    $imgOtherLastId = Menu_image::orderBy('id', 'desc')->first()->id + 1;
+                }
+                $imgOtherFileName = 'image-' . $imgOtherLastId . '.' . $image->getClientOriginalExtension();
 
-        $upload = $request->file('image_1')->storeAs('public/menuImages', $image1Name);
+                Menu_image::create([
+                    'name' => $imgOtherFileName,
+                    'menu_id' => $getLastId
+                ]);
+
+                // Upload
+                $image->storeAs('public/menuimages', $imgOtherFileName);
+            }
+        }
 
         return redirect()->route('menus.index')->with('status', 'Menu added !');
     }
@@ -106,10 +129,10 @@ class MenusController extends Controller
     public function show($id)
     {
         $menu = Menu::findOrFail($id);
-        $image = $menu->images->first()->name;
+        $images = $menu->images;
         $menus = Menu::whereNotIn('id', [$id])->inRandomOrder()->paginate(4);
 
-        return view('menus.show', ['menu' => $menu, 'menus' => $menus, 'image' => $image]);
+        return view('menus.show', ['menu' => $menu, 'menus' => $menus, 'images' => $images]);
     }
 
     /**
@@ -138,15 +161,15 @@ class MenusController extends Controller
             'name'        => 'string|min:5|required',
             'description' => 'string|min:10|required',
             'price'       => 'numeric|digits_between:3,9999|required',
-            'img'         => 'string|required',
+            // 'img'         => 'string|required',
             'stock'       => 'numeric|min:1|required',
         ]);
 
         Menu::where('id', $id)->update([
             'name'        => ucwords($request['name']),
-            'description' => ucwords($request['description']),
+            'description' => ucfirst($request['description']),
             'price'       => $request['price'],
-            'img'         => $request['img'],
+            // 'img'         => $request['img'],
             'stock'       => intval($request['stock']),
         ]);
 
@@ -162,10 +185,19 @@ class MenusController extends Controller
     public function destroy($id)
     {
         $menu = Menu::findOrFail($id);
-        // return $menu->images;
-        $menu->delete();
 
-        $moveImage = Storage::move('public/menuImages/' . $menu->images->first()->name, 'menuImages/' . $menu->images->first()->name);
+        foreach ($menu->images as $image) {
+            if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
+                $moveImage = Storage::move('public/menuImages/' . $image->name, 'menuImages/' . $image->name);
+            }
+        }
+
+        if (Storage::disk('local')->exists('public/menuImages/' . $menu->cover->name) == true) {
+            $moveImage = Storage::move('public/menuImages/' . $menu->cover->name, 'menuImages/' . $menu->cover->name);
+        }
+        
+        // $moveImage = Storage::move('public/menuImages/' . $menu->images->first()->name, 'menuImages/' . $menu->images->first()->name);
+        $menu->delete();
 
         $order = Order::where('menu_id', $id)->delete();
 
@@ -183,7 +215,16 @@ class MenusController extends Controller
         $restore = Menu::onlyTrashed()->where('id', $id)->restore();
         $menu = Menu::withTrashed()->where('id', $id)->first();
         $onlyTrash = Menu::onlyTrashed()->get();
-        $restoreImage = Storage::move('menuImages/' . $menu->images->first()->name, 'public/menuImages/' . $menu->images->first()->name);
+        foreach ($menu->images as $image) {
+            if (Storage::disk('local')->exists('menuImages/' . $image->name) == true) {
+                $restoreImage = Storage::move('menuImages/' . $image->name, 'public/menuImages/' . $image->name);
+            }
+        }
+
+        if (Storage::disk('local')->exists('menuImages/' . $menu->cover->name) == true) {
+            $restoreImage = Storage::move('menuImages/' . $menu->cover->name, 'public/menuImages/' . $menu->cover->name);
+        }
+        
         if ($onlyTrash->count() == 0) {
             return redirect()->route('menus.index')->with('status', 'All Restored !');
         }
@@ -209,8 +250,18 @@ class MenusController extends Controller
     public function forceDelete($id)
     {
         $menu = Menu::withTrashed()->find($id);
-        $imgUrl = Storage::disk('local')->delete('menuImages/' . $menu->images->first()->name);
-        $imgDb = Menu_image::where('menu_id', $id)->forceDelete();
+        foreach ($menu->images as $image) {
+            if (Storage::disk('local')->exists('menuImages/' . $image->name) == true) {
+                $imgUrl = Storage::disk('local')->delete('menuImages/' . $image->name);
+            }
+        }
+
+        if (Storage::disk('local')->exists('menuImages/' . $menu->cover->name) == true) {
+            $imgUrl = Storage::disk('local')->delete('menuImages/' . $menu->cover->name);
+        }
+
+        Menu_image::where('menu_id', $id)->forceDelete();
+        Menu_cover::where('menu_id', $id)->delete();
         $deleteMenu = $menu->forceDelete();
         return redirect()->route('menus.deleted')->with('status', 'Menu Deleted Permanent !');
     }

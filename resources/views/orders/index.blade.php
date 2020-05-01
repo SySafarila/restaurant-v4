@@ -37,7 +37,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <img src="{{ asset('storage/menuImages/' . $order->menu->images->first()->name) }}" class="card-img shadow-sm" alt="">
+                                    <img src="{{ asset('storage/menuImages/' . $order->menu->cover->name) }}" class="card-img shadow-sm" alt="">
                                 </div>
                                 <div class="col">
                                     <p class="card-title font-weight-bold m-0">{{ $order->menu->name }}</p>

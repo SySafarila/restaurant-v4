@@ -39,7 +39,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            <input type="text" name="img" value="{{ $menu->img }}" id="" class="form-control form-control-sm mb-1 @error('img') is-invalid @enderror" placeholder="Image *link" required>
+                            <input type="text" name="img" value="{{ $menu->img }}" id="" class="form-control form-control-sm mb-1 @error('img') is-invalid @enderror" placeholder="Image *link" disabled>
                             @error('img')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

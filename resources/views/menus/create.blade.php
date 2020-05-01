@@ -58,26 +58,26 @@
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
-                            <label for="images">Images <small class="text-danger">*First image is required</small></label>
+                            <label for="images">Images 
+                                {{-- <small class="text-danger">*First image is required</small> --}}
+                            </label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="image_1" name="image_1" required>
-                                <label class="custom-file-label" for="image_1">Choose Image 1</label>
+                                <input type="file" class="custom-file-input" id="cover_image" name="cover_image" required>
+                                <label class="custom-file-label text-truncate" for="cover_image">Choose Cover *</label>
+                                @error('cover_image')
+                                <span class="invalid-feedback">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="custom-file mt-2">
-                                <input type="file" class="custom-file-input" id="image_2" name="image_2" disabled>
-                                <label class="custom-file-label" for="image_2">Choose Image 2</label>
-                            </div>
-                            <div class="custom-file mt-2">
-                                <input type="file" class="custom-file-input" id="image_3" name="image_3" disabled>
-                                <label class="custom-file-label" for="image_3">Choose Image 3</label>
-                            </div>
-                            <div class="custom-file mt-2">
-                                <input type="file" class="custom-file-input" id="image_4" name="image_4" disabled>
-                                <label class="custom-file-label" for="image_4">Choose Image 4</label>
-                            </div>
-                            <div class="custom-file mt-2">
-                                <input type="file" class="custom-file-input" id="image_5" name="image_5" disabled>
-                                <label class="custom-file-label" for="image_5">Choose Image 5</label>
+                                <input type="file" class="custom-file-input" id="images" name="images[]" multiple>
+                                <label class="custom-file-label text-truncate" for="images">Choose Other Images</label>
+                                @error('images[]')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             {{-- <input type="number" id="stock" name="stock" value="{{ old('stock') }}" class="form-control form-control-sm @error('stock') is-invalid @enderror" placeholder="Stock" required> --}}
                             @error('stock')
