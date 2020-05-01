@@ -70,7 +70,7 @@ class MenusController extends Controller
         
         Menu::create([
             'name'        => ucwords($request['name']),
-            'description' => ucwords($request['description']),
+            'description' => ucfirst($request['description']),
             'price'       => $request['price'],
             'stock'       => intval($request['stock'])
         ]);
@@ -161,15 +161,15 @@ class MenusController extends Controller
             'name'        => 'string|min:5|required',
             'description' => 'string|min:10|required',
             'price'       => 'numeric|digits_between:3,9999|required',
-            'img'         => 'string|required',
+            // 'img'         => 'string|required',
             'stock'       => 'numeric|min:1|required',
         ]);
 
         Menu::where('id', $id)->update([
             'name'        => ucwords($request['name']),
-            'description' => ucwords($request['description']),
+            'description' => ucfirst($request['description']),
             'price'       => $request['price'],
-            'img'         => $request['img'],
+            // 'img'         => $request['img'],
             'stock'       => intval($request['stock']),
         ]);
 
