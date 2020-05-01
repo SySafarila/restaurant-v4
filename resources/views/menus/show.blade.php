@@ -5,7 +5,6 @@
     } else {
         $menuImage = asset('image-not-found.png');
     }
-    
 @endphp
 @extends('layouts.app')
 

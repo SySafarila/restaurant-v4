@@ -63,11 +63,8 @@ class MenusController extends Controller
             'description' => 'string|min:10|required',
             'price'       => 'numeric|digits_between:3,9999|required',
             'stock'       => 'numeric|digits_between:1,9999|required',
-            'image_1'   => 'required|mimes:jpg,jpeg,png|max:5120',
-            'image_2'   => 'mimes:jpg,jpeg,png|max:5120',
-            'image_3'   => 'mimes:jpg,jpeg,png|max:5120',
-            'image_4'   => 'mimes:jpg,jpeg,png|max:5120',
-            'image_5'   => 'mimes:jpg,jpeg,png|max:5120',
+            'cover_image' => 'required|mimes:jpg,jpeg,png|max:5120',
+            'images[]'   => 'mimes:jpg,jpeg,png|max:10120',
         ]);
         
         Menu::create([
@@ -83,16 +80,36 @@ class MenusController extends Controller
             $lastImage = Menu_image::orderBy('id', 'desc')->first()->id + 1;
         }
 
-        $image1Ext = $request->file('image_1')->getClientOriginalExtension();
+        $image1Ext = $request->file('cover_image')->getClientOriginalExtension();
         $getLastId = Menu::withTrashed()->orderBy('id', 'desc')->first()->id;
-        $image1Name = 'image-' . $lastImage . '.' . $image1Ext;
-
+        $image1Name = 'image-cover-' . $getLastId . '.' . $image1Ext;
+        
         Menu_image::create([
             'name' => $image1Name,
             'menu_id' => $getLastId
-        ]);
+            ]);
+            
+        $upload = $request->file('cover_image')->storeAs('public/menuImages', $image1Name);
+            
+        // Other images
+        if ($request->hasFile('images') == true) {
+            foreach ($request->file('images') as $image) {
+                if (Menu_image::all()->count() == 0) {
+                    $imgOtherLastId = 1;
+                } else {
+                    $imgOtherLastId = Menu_image::orderBy('id', 'desc')->first()->id + 1;
+                }
+                $imgOtherFileName = 'image-' . $imgOtherLastId . '.' . $image->getClientOriginalExtension();
 
-        $upload = $request->file('image_1')->storeAs('public/menuImages', $image1Name);
+                Menu_image::create([
+                    'name' => $imgOtherFileName,
+                    'menu_id' => $getLastId
+                ]);
+
+                // Upload
+                $image->storeAs('public/menuimages', $imgOtherFileName);
+            }
+        }
 
         return redirect()->route('menus.index')->with('status', 'Menu added !');
     }
