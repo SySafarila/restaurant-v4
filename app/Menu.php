@@ -20,4 +20,9 @@ class Menu extends Model
     {
         return $this->hasMany('App\Menu_image');
     }
+
+    public function cover()
+    {
+        return $this->hasOne('App\Menu_cover');
+    }
 }

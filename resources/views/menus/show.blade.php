@@ -1,10 +1,12 @@
 @php
-    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $images->first()->name);
+    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $menu->cover->name);
     if ($checkImage == true) {
-        $menuImage = asset('storage/menuImages/' . $images->first()->name);
+        $menuImage = asset('storage/menuImages/' . $menu->cover->name);
     } else {
         $menuImage = asset('image-not-found.png');
     }
+
+    $no = 1;
 @endphp
 @extends('layouts.app')
 
@@ -37,24 +39,25 @@
             <div class="card mb-4 shadow">
                 {{-- Carousel --}}
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    {{-- <ol class="carousel-indicators">
+                    <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol> --}}
+                        @foreach ($images as $item)
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $no }}"></li>
+                        @endforeach
+                    </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="{{ $menuImage }}" class="d-block w-100" alt="...">
                         </div>
                         @foreach ($images as $image)
-                        @php
-                            if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
-                                $carouselImage = asset('storage/menuImages/' . $image->name);
-                            } else {
-                                $carouselImage = asset('image-not-found.png');
-                            }
-                            
-                        @endphp
+                            @php
+                                if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
+                                    $carouselImage = asset('storage/menuImages/' . $image->name);
+                                } else {
+                                    $carouselImage = asset('image-not-found.png');
+                                }
+                                
+                            @endphp
                         <div class="carousel-item">
                             <img src="{{ $carouselImage }}" class="d-block w-100" alt="...">
                         </div>

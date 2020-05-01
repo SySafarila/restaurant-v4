@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\Menu_cover;
 use App\Menu_image;
 use App\Order;
 use Illuminate\Http\Request;
@@ -74,20 +75,25 @@ class MenusController extends Controller
             'stock'       => intval($request['stock'])
         ]);
 
-        if (Menu_image::all()->count() == 0) {
+        if (Menu_cover::all()->count() == 0) {
             $lastImage = 1;
         } else {
-            $lastImage = Menu_image::orderBy('id', 'desc')->first()->id + 1;
+            $lastImage = Menu_cover::orderBy('id', 'desc')->first()->id + 1;
         }
 
         $image1Ext = $request->file('cover_image')->getClientOriginalExtension();
         $getLastId = Menu::withTrashed()->orderBy('id', 'desc')->first()->id;
         $image1Name = 'image-cover-' . $getLastId . '.' . $image1Ext;
         
-        Menu_image::create([
+        // Menu_image::create([
+        //     'name' => $image1Name,
+        //     'menu_id' => $getLastId
+        // ]);
+
+        Menu_cover::create([
             'name' => $image1Name,
             'menu_id' => $getLastId
-            ]);
+        ]);
             
         $upload = $request->file('cover_image')->storeAs('public/menuImages', $image1Name);
             
@@ -185,6 +191,10 @@ class MenusController extends Controller
                 $moveImage = Storage::move('public/menuImages/' . $image->name, 'menuImages/' . $image->name);
             }
         }
+
+        if (Storage::disk('local')->exists('public/menuImages/' . $menu->cover->name) == true) {
+            $moveImage = Storage::move('public/menuImages/' . $menu->cover->name, 'menuImages/' . $menu->cover->name);
+        }
         
         // $moveImage = Storage::move('public/menuImages/' . $menu->images->first()->name, 'menuImages/' . $menu->images->first()->name);
         $menu->delete();
@@ -209,6 +219,10 @@ class MenusController extends Controller
             if (Storage::disk('local')->exists('menuImages/' . $image->name) == true) {
                 $restoreImage = Storage::move('menuImages/' . $image->name, 'public/menuImages/' . $image->name);
             }
+        }
+
+        if (Storage::disk('local')->exists('menuImages/' . $menu->cover->name) == true) {
+            $restoreImage = Storage::move('menuImages/' . $menu->cover->name, 'public/menuImages/' . $menu->cover->name);
         }
         
         if ($onlyTrash->count() == 0) {
@@ -241,7 +255,13 @@ class MenusController extends Controller
                 $imgUrl = Storage::disk('local')->delete('menuImages/' . $image->name);
             }
         }
-        $imgDb = Menu_image::where('menu_id', $id)->forceDelete();
+
+        if (Storage::disk('local')->exists('menuImages/' . $menu->cover->name) == true) {
+            $imgUrl = Storage::disk('local')->delete('menuImages/' . $menu->cover->name);
+        }
+
+        Menu_image::where('menu_id', $id)->forceDelete();
+        Menu_cover::where('menu_id', $id)->delete();
         $deleteMenu = $menu->forceDelete();
         return redirect()->route('menus.deleted')->with('status', 'Menu Deleted Permanent !');
     }

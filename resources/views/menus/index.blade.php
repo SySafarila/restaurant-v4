@@ -31,7 +31,7 @@
                 @php
                     $checkImage = Storage::disk('local')->exists('public/menuImages/' . $menu->images->first()->name);
                     if ($checkImage == true) {
-                        $image = asset('storage/menuImages/' . $menu->images->first()->name);
+                        $image = asset('storage/menuImages/' . $menu->cover->name);
                     } else {
                         $image = asset('image-not-found.png');
                     }
