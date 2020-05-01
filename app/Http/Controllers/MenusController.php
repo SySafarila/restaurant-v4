@@ -181,7 +181,9 @@ class MenusController extends Controller
         $menu = Menu::findOrFail($id);
 
         foreach ($menu->images as $image) {
-            $moveImage = Storage::move('public/menuImages/' . $image->name, 'menuImages/' . $image->name);
+            if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
+                $moveImage = Storage::move('public/menuImages/' . $image->name, 'menuImages/' . $image->name);
+            }
         }
         
         // $moveImage = Storage::move('public/menuImages/' . $menu->images->first()->name, 'menuImages/' . $menu->images->first()->name);
@@ -204,7 +206,9 @@ class MenusController extends Controller
         $menu = Menu::withTrashed()->where('id', $id)->first();
         $onlyTrash = Menu::onlyTrashed()->get();
         foreach ($menu->images as $image) {
-            $restoreImage = Storage::move('menuImages/' . $image->name, 'public/menuImages/' . $image->name);
+            if (Storage::disk('local')->exists('menuImages/' . $image->name) == true) {
+                $restoreImage = Storage::move('menuImages/' . $image->name, 'public/menuImages/' . $image->name);
+            }
         }
         
         if ($onlyTrash->count() == 0) {
@@ -233,7 +237,9 @@ class MenusController extends Controller
     {
         $menu = Menu::withTrashed()->find($id);
         foreach ($menu->images as $image) {
-            $imgUrl = Storage::disk('local')->delete('menuImages/' . $image->name);
+            if (Storage::disk('local')->exists('menuImages/' . $image->name) == true) {
+                $imgUrl = Storage::disk('local')->delete('menuImages/' . $image->name);
+            }
         }
         $imgDb = Menu_image::where('menu_id', $id)->forceDelete();
         $deleteMenu = $menu->forceDelete();
