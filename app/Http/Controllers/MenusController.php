@@ -123,10 +123,10 @@ class MenusController extends Controller
     public function show($id)
     {
         $menu = Menu::findOrFail($id);
-        $image = $menu->images->first()->name;
+        $images = $menu->images;
         $menus = Menu::whereNotIn('id', [$id])->inRandomOrder()->paginate(4);
 
-        return view('menus.show', ['menu' => $menu, 'menus' => $menus, 'image' => $image]);
+        return view('menus.show', ['menu' => $menu, 'menus' => $menus, 'images' => $images]);
     }
 
     /**

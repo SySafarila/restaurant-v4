@@ -1,11 +1,11 @@
-@php
+{{-- @php
     $checkImage = Storage::disk('local')->exists('public/menuImages/' . $image);
     if ($checkImage == true) {
         $menuImage = asset('storage/menuImages/' . $image);
     } else {
         $menuImage = asset('image-not-found.png');
     }
-@endphp
+@endphp --}}
 @extends('layouts.app')
 
 @section('title')
@@ -35,7 +35,33 @@
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
             <div class="card mb-4 shadow">
-                <img src="{{ $menuImage }}" alt="{{ $image }}" class="card-img-top">
+                {{-- Carousel --}}
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    {{-- <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol> --}}
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('storage/menuImages/' . $images->first()->name) }}" class="d-block w-100" alt="...">
+                        </div>
+                        @foreach ($images as $image)
+                        <div class="carousel-item">
+                            <img src="{{ asset('storage/menuImages/' . $image->name) }}" class="d-block w-100" alt="...">
+                        </div>
+                        @endforeach
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                {{-- Carousel --}}
                 <div class="card-body">
                     <h5 class="card-title text-success font-weight-bold">{{ $menu->name }}</h5>
                     <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }} | {{ $menu->status }} : {{ $menu->stock }}</h6>
