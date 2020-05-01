@@ -179,10 +179,13 @@ class MenusController extends Controller
     public function destroy($id)
     {
         $menu = Menu::findOrFail($id);
-        // return $menu->images;
-        $menu->delete();
 
-        $moveImage = Storage::move('public/menuImages/' . $menu->images->first()->name, 'menuImages/' . $menu->images->first()->name);
+        foreach ($menu->images as $image) {
+            $moveImage = Storage::move('public/menuImages/' . $image->name, 'menuImages/' . $image->name);
+        }
+        
+        // $moveImage = Storage::move('public/menuImages/' . $menu->images->first()->name, 'menuImages/' . $menu->images->first()->name);
+        $menu->delete();
 
         $order = Order::where('menu_id', $id)->delete();
 
@@ -200,7 +203,10 @@ class MenusController extends Controller
         $restore = Menu::onlyTrashed()->where('id', $id)->restore();
         $menu = Menu::withTrashed()->where('id', $id)->first();
         $onlyTrash = Menu::onlyTrashed()->get();
-        $restoreImage = Storage::move('menuImages/' . $menu->images->first()->name, 'public/menuImages/' . $menu->images->first()->name);
+        foreach ($menu->images as $image) {
+            $restoreImage = Storage::move('menuImages/' . $image->name, 'public/menuImages/' . $image->name);
+        }
+        
         if ($onlyTrash->count() == 0) {
             return redirect()->route('menus.index')->with('status', 'All Restored !');
         }
@@ -226,7 +232,9 @@ class MenusController extends Controller
     public function forceDelete($id)
     {
         $menu = Menu::withTrashed()->find($id);
-        $imgUrl = Storage::disk('local')->delete('menuImages/' . $menu->images->first()->name);
+        foreach ($menu->images as $image) {
+            $imgUrl = Storage::disk('local')->delete('menuImages/' . $image->name);
+        }
         $imgDb = Menu_image::where('menu_id', $id)->forceDelete();
         $deleteMenu = $menu->forceDelete();
         return redirect()->route('menus.deleted')->with('status', 'Menu Deleted Permanent !');
