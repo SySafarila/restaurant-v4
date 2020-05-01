@@ -74,9 +74,12 @@
                 </div>
                 {{-- Carousel --}}
                 <div class="card-body">
-                    <h5 class="card-title text-success font-weight-bold">{{ $menu->name }}</h5>
-                    <h6 class="card-subtitle mb-0 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }}</h6>
-                    <span class="badge badge-pill badge-success align-middle" style="white-space: pre;">•  {{ $menu->stock }}</span>
+                    <h5 class="card-title text-success font-weight-bold mb-1">{{ $menu->name }}</h5>
+                    <div class="d-flex justify-content-between mb-1">
+                        <h6 class="card-subtitle m-0 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }}</h6>
+                        <span class="badge badge-pill badge-success align-middle" style="white-space: pre;">Stock : {{ $menu->stock }}</span>
+                    </div>
+                    <hr>
                     <p class="card-text" style="white-space: pre-line;">{!! $menu->description !!}</p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
