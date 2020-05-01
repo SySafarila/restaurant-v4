@@ -125,11 +125,11 @@
                     <div class="card-body p-2">
                         <a href="{{ route('menus.show', $other->id) }}" class="stretched-link"></a>
                         <div class="row no-gutters">
-                            <div class="col-6">
+                            <div class="col-5">
                                 <img src="{{ $menuImageOther }}" class="card-img border-0">
                             </div>
                             <div class="col ml-3">
-                                <h5 class="font-weight-bold"><a href="{{ route('menus.show', $other->id) }}" class="stretched-link text-success text-decoration-none">{{ $menu->name }}</a></h5>
+                                <h5 class="font-weight-bold"><a href="{{ route('menus.show', $other->id) }}" class="stretched-link text-success text-decoration-none">{{ $other->name }}</a></h5>
                                 <p class="text-orange m-0">Rp {{ number_format($other->price,0 ,0, '.') }}</p>
                                 <p class="m-0"><span class="badge badge-pill badge-orange">Stock {{ number_format($other->stock,0 ,0, '.') }}</span></p>
                             </div>

@@ -59,6 +59,7 @@ Route::get('/menu/{menu}/edit-image/{image}', 'MenusController@editImage')->midd
 Route::post('/menu/{menu}/edit-image/{image}', 'MenusController@updateImage')->middleware('admin')->name('menus.updateImage');
 Route::delete('/menu/{menu}/delete-cover', 'MenusController@deleteCover')->middleware('admin')->name('menus.deleteCover');
 Route::delete('/menu/{menu}/delete-image/{image}', 'MenusController@deleteImage')->middleware('admin')->name('menus.deleteImage');
+Route::post('/menu/{menu}/add-images', 'MenusController@addImages')->middleware('admin')->name('menus.addImages');
 
 // Menus Search
 Route::get('menus/search', 'MenusController@search')->name('menus.search');

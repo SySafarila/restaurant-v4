@@ -336,4 +336,31 @@ class MenusController extends Controller
         $image->delete();
         return redirect()->route('menus.edit', $menu);
     }
+
+    public function addImages(Menu $menu, Request $request)
+    {
+        $request->validate([
+            'newImages[]'   => 'required|mimes:jpg,jpeg,png|max:10120',
+        ]);
+        if ($request->hasFile('newImages') == true) {
+            foreach ($request->file('newImages') as $image) {
+                if (Menu_image::all()->count() == 0) {
+                    $imgNew = 1;
+                } else {
+                    $imgNew = Menu_image::orderBy('id', 'desc')->first()->id + 1;
+                }
+                $fileName = 'image-' . $imgNew . '.' . $image->getClientOriginalExtension();
+
+                Menu_image::create([
+                    'name' => $fileName,
+                    'menu_id' => $menu->id
+                ]);
+
+                // Upload
+                $image->storeAs('public/menuimages', $fileName);
+            }
+        }
+
+        return redirect()->route('menus.edit', $menu);
+    }
 }

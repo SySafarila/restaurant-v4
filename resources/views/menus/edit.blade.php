@@ -108,18 +108,45 @@
                                         }
                                         
                                     @endphp
-                                <div class="col">
+                                <div class="col-6 col-md-3">
                                     <img src="{{ $imageSrc }}" alt="{{ $image->name }}" class="img-thumbnail">
                                     <p class="text-center"><a href="{{ route('menus.editImage', ['menu' => $menu->id, 'image' => $image->id]) }}" class="text-decoration-none">Edit Image</a></p>
                                 </div>
                                 @endforeach
                             </div>
                         </div>
-                        <p class="text-center m-0"><a href="#" class="text-decoration-none">Add more images</a></p>
+                        <hr>
+                        <p class="text-center m-0">Want add more ?</p>
+                        <form action="{{ route('menus.addImages', $menu->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="newCover">Add New Images</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="newImages" name="newImages[]" required multiple>
+                                    <label class="custom-file-label text-truncate" for="newImages">Choose New Cover</label>
+                                    @error('newImages')
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-success">Add Images</button>
+                        </form>
+                        {{-- <p class="text-center m-0"><a href="#" class="text-decoration-none">Add more images</a></p> --}}
                     </div>
                 </div>
             </div>
         @endif
     </div>
 </div>
+@endsection
+@section('script')
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+<script>
+    $(document).ready(function () {
+        bsCustomFileInput.init()
+        });
+</script>
 @endsection
