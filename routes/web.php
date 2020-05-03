@@ -52,7 +52,14 @@ Route::post('/dashboard/menus', 'MenusController@store')->middleware('admin')->n
 Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->middleware('admin')->name('menus.destroy');
 Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
 Route::get('/dashboard/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
-route::post('/menu/forceDelete/{id}', 'MenusController@forceDelete')->name('menus.forceDelete');
+route::post('/menu/forceDelete/{id}', 'MenusController@forceDelete')->middleware('admin')->name('menus.forceDelete');
+Route::get('/menu/{menu}/edit-cover', 'MenusController@editCover')->middleware('admin')->name('menus.editCover');
+Route::post('/menu/{menu}/updage-cover', 'MenusController@updateCover')->middleware('admin')->name('menus.updateCover');
+Route::get('/menu/{menu}/edit-image/{image}', 'MenusController@editImage')->middleware('admin')->name('menus.editImage');
+Route::post('/menu/{menu}/edit-image/{image}', 'MenusController@updateImage')->middleware('admin')->name('menus.updateImage');
+Route::delete('/menu/{menu}/delete-cover', 'MenusController@deleteCover')->middleware('admin')->name('menus.deleteCover');
+Route::delete('/menu/{menu}/delete-image/{image}', 'MenusController@deleteImage')->middleware('admin')->name('menus.deleteImage');
+Route::post('/menu/{menu}/add-images', 'MenusController@addImages')->middleware('admin')->name('menus.addImages');
 
 // Menus Search
 Route::get('menus/search', 'MenusController@search')->name('menus.search');

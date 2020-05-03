@@ -65,7 +65,12 @@ class MenusController extends Controller
             'price'       => 'numeric|digits_between:3,9999|required',
             'stock'       => 'numeric|digits_between:1,9999|required',
             'cover_image' => 'required|mimes:jpg,jpeg,png|max:5120',
-            'images[]'   => 'mimes:jpg,jpeg,png|max:10120',
+            'images.*'   => 'mimes:jpg,jpeg,png|max:10120',
+        ],[
+            'images.*.mimes' => 'Only jpg, jpeg, and png are allowed.',
+            'images.*.max' => 'Maximum size for external Images is 10MB.',
+            'cover_image.mimes' => 'Only jpg, jpeg, and png are allowed.',
+            'cover_image.max' => 'Maximum size for Cover Image is 5MB.',
         ]);
         
         Menu::create([
@@ -264,5 +269,107 @@ class MenusController extends Controller
         Menu_cover::where('menu_id', $id)->delete();
         $deleteMenu = $menu->forceDelete();
         return redirect()->route('menus.deleted')->with('status', 'Menu Deleted Permanent !');
+    }
+
+    public function editCover(Menu $menu)
+    {
+        return view('menus.edit.edit-cover', ['menu' => $menu]);
+    }
+
+    public function updateCover(Request $request, Menu $menu)
+    {
+        $request->validate([
+            'newCover' => 'required|mimes:jpg,jpeg,png|max:5120'
+        ],
+        [
+            'newCover.max' => 'Maximum file size is 5MB',
+            'newCover.mimes' => 'Only accepting JPG, JPEG, and PNG formats'
+        ]);
+
+        $cover = $menu->cover->name;
+        if (Storage::disk('local')->exists('public/menuImages/' . $cover) == true) {
+            Storage::disk('local')->delete('public/menuImages/' . $cover);
+        }
+        
+        // Upload
+        $request->file('newCover')->storeAs('public/menuImages', $cover);
+        return redirect()->route('menus.edit', $menu);
+    }
+
+    public function deleteCover(Menu $menu)
+    {
+        // return $menu;
+        if (Storage::disk('local')->exists('public/menuImages/' . $menu->cover->name) == true) {
+            Storage::disk('local')->delete('public/menuImages/' . $menu->cover->name);
+        } else {
+            return redirect()->route('menus.editCover', $menu);
+        }
+        return redirect()->route('menus.edit', $menu);
+    }
+
+    public function editImage(Menu $menu, Menu_image $image)
+    {
+        return view('menus.edit.edit-image', ['menu' => $menu, 'image' => $image]);
+    }
+
+    public function updateImage(Request $request, Menu $menu, Menu_image $image)
+    {
+        // return $image;
+        $request->validate([
+            'newImage' => 'required|mimes:jpg,jpeg,png|max:5120'
+        ],
+        [
+            'newImage.max' => 'Maximum file size is 5MB',
+            'newImage.mimes' => 'Only accepting JPG, JPEG, and PNG formats'
+        ]);
+
+        $image = $image->name;
+        if (Storage::disk('local')->exists('public/menuImages/' . $image) == true) {
+            Storage::disk('local')->delete('public/menuImages/' . $image);
+        }
+        
+        // Upload
+        $request->file('newImage')->storeAs('public/menuImages', $image);
+        return redirect()->route('menus.edit', $menu);
+    }
+
+    public function deleteImage(Menu $menu, Menu_image $image)
+    {
+        if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
+            Storage::disk('local')->delete('public/menuImages/' . $image->name);
+        }
+        $image->delete();
+        return redirect()->route('menus.edit', $menu);
+    }
+
+    public function addImages(Menu $menu, Request $request)
+    {
+        $request->validate([
+            'newImages.*' => 'required|mimes:jpg,jpeg,png|max:10120'
+        ],[
+            'newImages.*.mimes' => 'Only jpg, jpeg, and png are allowed.',
+            'newImages.*.max' => 'Maximum size is 10MB.',
+            'newImages.*.required' => 'File is required.'
+        ]);
+        if ($request->hasFile('newImages') == true) {
+            foreach ($request->file('newImages') as $image) {
+                if (Menu_image::all()->count() == 0) {
+                    $imgNew = 1;
+                } else {
+                    $imgNew = Menu_image::orderBy('id', 'desc')->first()->id + 1;
+                }
+                $fileName = 'image-' . $imgNew . '.' . $image->getClientOriginalExtension();
+
+                Menu_image::create([
+                    'name' => $fileName,
+                    'menu_id' => $menu->id
+                ]);
+
+                // Upload
+                $image->storeAs('public/menuimages', $fileName);
+            }
+        }
+
+        return redirect()->route('menus.edit', $menu);
     }
 }
