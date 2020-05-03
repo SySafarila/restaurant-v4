@@ -134,6 +134,16 @@
                             <button type="submit" class="btn btn-sm btn-success">Add Images</button>
                         </form>
                         {{-- <p class="text-center m-0"><a href="#" class="text-decoration-none">Add more images</a></p> --}}
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                            <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+                                {{ $error }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

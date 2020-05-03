@@ -65,7 +65,12 @@ class MenusController extends Controller
             'price'       => 'numeric|digits_between:3,9999|required',
             'stock'       => 'numeric|digits_between:1,9999|required',
             'cover_image' => 'required|mimes:jpg,jpeg,png|max:5120',
-            'images[]'   => 'mimes:jpg,jpeg,png|max:10120',
+            'images.*'   => 'mimes:jpg,jpeg,png|max:10120',
+        ],[
+            'images.*.mimes' => 'Only jpg, jpeg, and png are allowed.',
+            'images.*.max' => 'Maximum size for external Images is 10MB.',
+            'cover_image.mimes' => 'Only jpg, jpeg, and png are allowed.',
+            'cover_image.max' => 'Maximum size for Cover Image is 5MB.',
         ]);
         
         Menu::create([
@@ -340,7 +345,11 @@ class MenusController extends Controller
     public function addImages(Menu $menu, Request $request)
     {
         $request->validate([
-            'newImages[]'   => 'required|mimes:jpg,jpeg,png|max:10120',
+            'newImages.*' => 'required|mimes:jpg,jpeg,png|max:10120'
+        ],[
+            'newImages.*.mimes' => 'Only jpg, jpeg, and png are allowed.',
+            'newImages.*.max' => 'Maximum size is 10MB.',
+            'newImages.*.required' => 'File is required.'
         ]);
         if ($request->hasFile('newImages') == true) {
             foreach ($request->file('newImages') as $image) {

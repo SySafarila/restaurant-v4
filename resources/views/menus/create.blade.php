@@ -73,18 +73,23 @@
                             <div class="custom-file mt-2">
                                 <input type="file" class="custom-file-input" id="images" name="images[]" multiple>
                                 <label class="custom-file-label text-truncate" for="images">Choose Other Images</label>
-                                @error('images[]')
+                                @error('images.*')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
                             {{-- <input type="number" id="stock" name="stock" value="{{ old('stock') }}" class="form-control form-control-sm @error('stock') is-invalid @enderror" placeholder="Stock" required> --}}
-                            @error('stock')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+                                    {{ $error }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
