@@ -95,6 +95,23 @@
                     <form action="{{ route('orders.store') }}" method="post">
                         @csrf
                         <input type="hidden" name="menu" value="{{ $menu->id }}">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button type="button" class="input-group-text order-button btn btn-success" onclick="orderMinus()">-</button>
+                            </div>
+                            <input type="number" class="form-control text-center bg-white" name="quantity" id="quantity" value="1" readonly>
+                            <div class="input-group-append">
+                                <button type="button" class="input-group-text order-button btn btn-success" onclick="orderPlus()">+</button>
+                            </div>
+                        </div>
+                        <button type="submit" id="shop" onclick="shopClick()" class="rounded btn btn-block btn-sm btn-outline-orange material-icons" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
+                    </form>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    {{-- <form action="{{ route('orders.store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="menu" value="{{ $menu->id }}">
                         <div class="row px-3">
                             <input type="number" name="quantity" id="quantity" class="rounded-pill form-control form-control-sm col @error('quantity') is-invalid @enderror" placeholder="Quantity" required @if($menu->stock <= 0) disabled @endif>
                             <button type="submit" id="shop" onclick="shopClick()" class="rounded-pill btn btn-sm btn-success ml-1 material-icons" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
@@ -104,7 +121,7 @@
                                 </span>
                             @enderror
                         </div>
-                    </form>
+                    </form> --}}
                     @endif
                 </div>
             </div>
@@ -150,6 +167,24 @@
             // console.log('null');
         } else {
             document.getElementById('shop').innerHTML = '<div class="spinner-border spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>';
+        }
+    }
+
+    function orderPlus() {
+        const quantity = document.getElementById('quantity');
+        // console.log(parseInt(quantity.value) + 1);
+        quantity.value = parseInt(quantity.value) + 1;
+    }
+    
+    function orderMinus() {
+        const quantity = document.getElementById('quantity');
+        // if (quantity.value == 1) {
+        //     console.log('nol');
+        // } else {
+        //     quantity.value = parseInt(quantity.value) - 1;
+        // }
+        if (quantity.value > 1) {
+            quantity.value = parseInt(quantity.value) - 1;
         }
     }
 </script>
