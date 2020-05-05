@@ -106,4 +106,14 @@ class NotificationsController extends Controller
     {
         //
     }
+
+    public function clear()
+    {
+        $user = Auth::user();
+        Notification::where(['user_id'=> $user->id, 'status' => false])->update([
+            'status' => 1
+        ]);
+
+        return redirect()->route('notifications.index');
+    }
 }

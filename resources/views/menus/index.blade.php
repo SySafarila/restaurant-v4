@@ -29,7 +29,7 @@
         <div class="row px-2 justify-content-center">
             @foreach ($menus as $menu)
                 @php
-                    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $menu->images->first()->name);
+                    $checkImage = Storage::disk('local')->exists('public/menuImages/' . $menu->cover->name);
                     if ($checkImage == true) {
                         $image = asset('storage/menuImages/' . $menu->cover->name);
                     } else {
