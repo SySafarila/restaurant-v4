@@ -82,9 +82,45 @@ a.badge-orange.focus {
     width: 45%;
 }
 
+
+.show-image {
+    width: 100%;
+    height: 290px;
+    object-fit: contain;
+    background-color: #575759;
+}
+
+.show-image-other {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    background-color: #575759;
+}
+
+.menus-image {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    background-color: black;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive MD */
 @media (min-width: 768px) {
     .hr {
         width: 50%;
+    }
+
+    .show-image {
+        height: 400px;
+    }
+
+    .menus-image {
+        height: 175px;
     }
 }
 
@@ -98,18 +134,4 @@ a.badge-orange.focus {
     .hr {
         width: 30%;
     }
-}
-
-.show-image {
-    width: 100%;
-    height: 400px;
-    object-fit: contain;
-    background-color: black;
-}
-
-.menus-image {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    background-color: black;
 }
