@@ -39,6 +39,7 @@
                     </p>
                     <form action="{{ route('profile.deleteAvatar') }}" id="deleteAvatar" method="post">
                         @csrf
+                        @method('DELETE')
                     </form>
                     <table class="table">
                         <tr>
