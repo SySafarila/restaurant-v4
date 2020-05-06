@@ -40,7 +40,7 @@
                                 <img src="{{ asset('storage/menuImages/' . $order->menu->cover->name) }}" class="show-image-other" alt="">
                             </div>
                             <div class="col pt-2 pl-0">
-                                <p class="card-title font-weight-bold m-0">{{ $order->menu->name }}</p>
+                                <p class="card-title font-weight-bold m-0"><a href="{{ route('menus.show', $order->menu_id) }}" class="text-decoration-none text-dark">{{ $order->menu->name }}</a></p>
                                 <span class="text-success">{{ $order->quantity }}</span> <span class="font-weight-bold">x</span> <span class="text-orange font-weight-bold">{{ number_format($order->menu->price, 0, 0, '.') }}</span>
                                 <br>
                                 @if ($order->menu->stock - $order->quantity < 0)
