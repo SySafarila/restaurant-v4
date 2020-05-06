@@ -36,7 +36,7 @@
                     <div class="card shadow-sm h-100">
                         <div class="card-body p-0">
                             <div class="row">
-                                <div class="col-5">
+                                <div class="col-5 col-md-3">
                                     <img src="{{ asset('storage/menuImages/' . $order->menu->cover->name) }}" class="show-image-other" alt="">
                                 </div>
                                 <div class="col pt-2 pl-0">
