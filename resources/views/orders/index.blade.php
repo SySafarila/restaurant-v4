@@ -34,12 +34,12 @@
             @forelse ($orders as $order)
                 <div class="col-md-6 mb-3">
                     <div class="card shadow-sm h-100">
-                        <div class="card-body">
+                        <div class="card-body p-0">
                             <div class="row">
-                                <div class="col-4">
-                                    <img src="{{ asset('storage/menuImages/' . $order->menu->cover->name) }}" class="card-img shadow-sm" alt="">
+                                <div class="col-5">
+                                    <img src="{{ asset('storage/menuImages/' . $order->menu->cover->name) }}" class="show-image-other" alt="">
                                 </div>
-                                <div class="col">
+                                <div class="col pt-2 pl-0">
                                     <p class="card-title font-weight-bold m-0">{{ $order->menu->name }}</p>
                                     <span class="text-success">{{ $order->quantity }}</span> <span class="font-weight-bold">x</span> <span class="text-orange font-weight-bold">{{ number_format($order->menu->price, 0, 0, '.') }}</span>
                                     <br>
