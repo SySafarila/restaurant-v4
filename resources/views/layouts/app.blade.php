@@ -85,11 +85,11 @@
                         @else
                         @if (Auth::user()->level == 'Customer')
                         <li class="nav-item">
-                            <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('dashboard/orders') ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
+                            <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('orders') ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
                         </li>
                         @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'dashboard/invoices', 'dashboard/profile/edit', 'dashboard/profile/login/edit', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
                                     <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
                                         <span class="sr-only">Loading...</span>

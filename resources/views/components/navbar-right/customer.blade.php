@@ -12,5 +12,5 @@
         @endif
     </div>
 </a>
-<a href="{{ route('invoices.index') }}" class="dropdown-item {{ Request::is('dashboard/invoices') ? 'active' : '' }}">Invoices</a>
+<a href="{{ route('invoices.index') }}" class="dropdown-item {{ Request::is(['invoices', 'invoice/*']) ? 'active' : '' }}">Invoices</a>
 @endif
