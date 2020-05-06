@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Menu;
 use App\Menu_cover;
 use App\Menu_image;
+use App\Notification;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -190,6 +191,15 @@ class MenusController extends Controller
     public function destroy($id)
     {
         $menu = Menu::findOrFail($id);
+
+        $orders = Order::where('menu_id', $id)->get();
+        foreach ($orders as $order) {
+            Notification::create([
+                'user_id' => $order->user_id,
+                'message' => 'Your order <b>' . $menu->name . '</b> is unavailable right now.',
+                'status' => 0
+            ]);
+        }
 
         foreach ($menu->images as $image) {
             if (Storage::disk('local')->exists('public/menuImages/' . $image->name) == true) {
