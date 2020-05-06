@@ -47,7 +47,7 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ $menuImage }}" class="d-block w-100" alt="...">
+                            <img src="{{ $menuImage }}" class="d-block show-image" alt="...">
                         </div>
                         @foreach ($images as $image)
                             @php
@@ -59,7 +59,7 @@
                                 
                             @endphp
                         <div class="carousel-item">
-                            <img src="{{ $carouselImage }}" class="d-block w-100" alt="...">
+                            <img src="{{ $carouselImage }}" class="d-block show-image" alt="...">
                         </div>
                         @endforeach
                     </div>
