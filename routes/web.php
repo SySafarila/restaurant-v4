@@ -26,11 +26,12 @@ Route::get('/profile', 'ProfileController@index')->name('profile.index');
 Route::get('/profile/edit', 'ProfileController@edit2')->name('profile.edit');
 Route::patch('/profile', 'ProfileController@update')->name('profile.update');
 Route::get('/profile/login/edit', 'ProfileController@editlogin')->name('profile.editlogin')->middleware(['auth', 'password.confirm']);
-Route::patch('/profile/updatelogin', 'ProfileController@updatelogin')->name('profile.updatelogin');
+Route::patch('/profile/login/edit', 'ProfileController@updatelogin')->name('profile.updatelogin');
 Route::delete('/profile', 'ProfileController@destroy')->name('profile.delete');
 Route::get('/profile/avatar/edit', 'ProfileController@editAvatar')->name('profile.editAvatar');
-Route::post('/profile/avatar/update', 'ProfileController@updateAvatar')->name('profile.updateAvatar');
-Route::post('/profile/avatar/delete', 'ProfileController@deleteAvatar')->name('profile.deleteAvatar');
+Route::post('/profile/avatar/edit', 'ProfileController@updateAvatar')->name('profile.updateAvatar');
+Route::redirect('/profile/avatar', '/profile');
+Route::delete('/profile/avatar', 'ProfileController@deleteAvatar')->name('profile.deleteAvatar');
 
 // Users ( Admin only )
 Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');
@@ -44,52 +45,58 @@ Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
 
 // Menus
 Route::get('/menus', 'MenusController@index')->middleware('customerOrAdmin')->name('menus.index');
-Route::get('/dashboard/menus/deleted', 'MenusController@deleted')->middleware('admin')->name('menus.deleted');
+Route::get('/menus/deleted', 'MenusController@deleted')->middleware('admin')->name('menus.deleted');
 Route::get('/menu/{id}', 'MenusController@show')->middleware('customerOrAdmin')->name('menus.show');
-Route::patch('/dashboard/menu/{id}', 'MenusController@update')->middleware('admin')->name('menus.update');
-Route::get('/dashboard/menu/{id}/edit', 'MenusController@edit')->middleware('admin')->name('menus.edit');
-Route::post('/dashboard/menus', 'MenusController@store')->middleware('admin')->name('menus.store');
-Route::delete('/dashboard/menus/{id}', 'MenusController@destroy')->middleware('admin')->name('menus.destroy');
-Route::patch('/dashboard/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
-Route::get('/dashboard/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
+Route::patch('/menu/{id}', 'MenusController@update')->middleware('admin')->name('menus.update');
+Route::get('/menu/{id}/edit', 'MenusController@edit')->middleware('admin')->name('menus.edit');
+Route::post('/menus', 'MenusController@store')->middleware('admin')->name('menus.store');
+Route::delete('/menu/{id}', 'MenusController@destroy')->middleware('admin')->name('menus.destroy');
+Route::redirect('/menus/deleted/{id}', '/menus/deleted');
+Route::patch('/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
+Route::get('/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
+route::redirect('/menu/forceDelete/{id}', '/menus');
 route::post('/menu/forceDelete/{id}', 'MenusController@forceDelete')->middleware('admin')->name('menus.forceDelete');
 Route::get('/menu/{menu}/edit-cover', 'MenusController@editCover')->middleware('admin')->name('menus.editCover');
-Route::post('/menu/{menu}/updage-cover', 'MenusController@updateCover')->middleware('admin')->name('menus.updateCover');
-Route::get('/menu/{menu}/edit-image/{image}', 'MenusController@editImage')->middleware('admin')->name('menus.editImage');
-Route::post('/menu/{menu}/edit-image/{image}', 'MenusController@updateImage')->middleware('admin')->name('menus.updateImage');
-Route::delete('/menu/{menu}/delete-cover', 'MenusController@deleteCover')->middleware('admin')->name('menus.deleteCover');
-Route::delete('/menu/{menu}/delete-image/{image}', 'MenusController@deleteImage')->middleware('admin')->name('menus.deleteImage');
+Route::redirect('/menu/{menu}/cover', '/menu/{menu}');
+Route::post('/menu/{menu}/cover', 'MenusController@updateCover')->middleware('admin')->name('menus.updateCover');
+Route::delete('/menu/{menu}/cover', 'MenusController@deleteCover')->middleware('admin')->name('menus.deleteCover');
+Route::get('/menu/{menu}/image/{image}', 'MenusController@editImage')->middleware('admin')->name('menus.editImage');
+Route::post('/menu/{menu}/image/{image}', 'MenusController@updateImage')->middleware('admin')->name('menus.updateImage');
+Route::delete('/menu/{menu}/image/{image}', 'MenusController@deleteImage')->middleware('admin')->name('menus.deleteImage');
+Route::redirect('/menu/{menu}/add-images', '/menu/{menu}/edit');
 Route::post('/menu/{menu}/add-images', 'MenusController@addImages')->middleware('admin')->name('menus.addImages');
 
 // Menus Search
 Route::get('menus/search', 'MenusController@search')->name('menus.search');
 
 // Orders ( Customer access only )
-Route::get('/dashboard/orders', 'OrdersController@index')->name('orders.index');
-Route::post('/dashboard/orders', 'OrdersController@store')->name('orders.store');
-Route::delete('/dashboard/orders', 'OrdersController@destroy')->name('orders.destroy');
-Route::delete('/dashboard/orders/{id}', 'OrdersController@destroyOne')->name('orders.destroyOne');
-Route::get('/dashboard/order/{id}/edit', 'OrdersController@edit')->name('orders.edit');
-Route::patch('/dashboard/order/{id}', 'OrdersController@update')->name('orders.update');
-Route::get('/dashboard/order/{id}', 'OrdersController@show')->name('orders.show');
-Route::get('/dashboard/order', 'OrdersController@redirect')->name('orders.redirect');
+Route::get('/orders', 'OrdersController@index')->name('orders.index');
+Route::post('/orders', 'OrdersController@store')->name('orders.store');
+Route::delete('/orders', 'OrdersController@destroy')->name('orders.destroy');
+Route::delete('/order/{id}', 'OrdersController@destroyOne')->name('orders.destroyOne');
+Route::get('/order/{id}/edit', 'OrdersController@edit')->name('orders.edit');
+Route::patch('/order/{id}', 'OrdersController@update')->name('orders.update');
+Route::get('/order/{id}', 'OrdersController@show')->name('orders.show');
+Route::get('/order', 'OrdersController@redirect')->name('orders.redirect');
 
 // Invoices
-Route::get('/dashboard/invoices', 'InvoicesController@index')->middleware('customerOrAdmin')->name('invoices.index');
-Route::post('/dashboard/invoices/store', 'InvoicesController@store')->middleware('admin')->name('invoices.store');
-Route::get('/dashboard/invoice/{invoice_code}', 'InvoicesController@show')->middleware('customerOrAdmin')->name('invoices.show');
+Route::get('/invoices', 'InvoicesController@index')->middleware('customerOrAdmin')->name('invoices.index');
+Route::post('/invoices', 'InvoicesController@store')->middleware('admin')->name('invoices.store');
+Route::get('/invoice/{invoice_code}', 'InvoicesController@show')->middleware('customerOrAdmin')->name('invoices.show');
 
 // Cashier & Payment Route ( Cashier access only )
 Route::get('/cashier', 'CashierController@index')->name('cashier.index');
 Route::get('/cashier/search-username', 'CashierController@search')->name('cashier.search');
 Route::get('/cashier/payment/{user:username}', 'CashierController@payment')->middleware('password.confirm')->name('cashier.payment');
-Route::post('cashier/confirm-payment', 'CashierController@confirmPayment')->name('cashier.confirmPayment');
+Route::redirect('/cashier/confirm-payment', '/cashier');
+Route::post('/cashier/confirm-payment', 'CashierController@confirmPayment')->name('cashier.confirmPayment');
 
 // Employees ( Admin & Owner access only )
 Route::get('/employees', 'EmployeesController@index')->name('employees.index');
 
 // Notifications
 Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
+Route::redirect('/notification', '/notifications');
 Route::get('/notification/{notification}', 'NotificationsController@show')->name('notifications.show');
 Route::patch('/notifications', 'NotificationsController@clear')->name('notifications.clear');
 
