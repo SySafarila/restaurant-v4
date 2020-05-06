@@ -85,7 +85,7 @@
                         @else
                         @if (Auth::user()->level == 'Customer')
                         <li class="nav-item">
-                            <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('orders') ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
+                            <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is(['orders', 'order/*']) ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
                         </li>
                         @endif
                             <li class="nav-item dropdown">
