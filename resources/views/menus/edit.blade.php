@@ -45,19 +45,31 @@
                                     </span>
                                 @enderror
 
-                            <label for="price">Price</label>
-                            <input type="number" name="price" id="price" value="{{ $menu->price }}" class="form-control form-control-sm mb-2 @error('price') is-invalid @enderror" placeholder="Price" required>
-                                @error('price')
+                            <div class="form-row" style="margin-bottom:-12px;">
+                                <div class="form-group col">
+                                    <label for="price">Price</label>
+                                    <input type="number" name="price" id="price" value="{{ $menu->price }}" class="form-control form-control-sm mb-2 @error('price') is-invalid @enderror" placeholder="Price" required>
+                                        @error('price')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                </div>
+                                <div class="form-group col">
+                                    <label for="category">Category</label>
+                                    <select name="category" class="custom-select custom-select-sm @error('category') is-invalid @enderror" required>
+                                        <option value="{{ $menu->category }}">Default : {{ $menu->category }}</option>
+                                        <option value="Foods">Food's</option>
+                                        <option value="Drinks">Drink's</option>
+                                    </select>
+                                    @error('category')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            {{-- <input type="text" name="img" value="{{ $menu->img }}" id="" class="form-control form-control-sm mb-1 @error('img') is-invalid @enderror" placeholder="Image *link" disabled>
-                            @error('img')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror --}}
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="form-row" style="margin-bottom:-12px;">
                                 <div class="form-group col">
                                     <label for="stock">Stock</label>
@@ -116,11 +128,11 @@
                             </div>
                         </div>
                         <hr>
-                        <p class="text-center m-0">Want add more ?</p>
+                        {{-- <p class="text-center m-0">Want add more ?</p> --}}
                         <form action="{{ route('menus.addImages', $menu->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="newCover">Add New Images</label>
+                                <label for="newImages">Add New Images</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="newImages" name="newImages[]" required multiple>
                                     <label class="custom-file-label text-truncate" for="newImages">Choose New Cover</label>
@@ -131,7 +143,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-success">Add Images</button>
+                            <button type="submit" class="btn btn-sm btn-success">Upload</button>
                         </form>
                         {{-- <p class="text-center m-0"><a href="#" class="text-decoration-none">Add more images</a></p> --}}
                         @if ($errors->any())

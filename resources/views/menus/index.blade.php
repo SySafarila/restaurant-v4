@@ -38,7 +38,8 @@
                 @endphp
                 <div class="col-6 px-1 col-md-2 mb-2">
                     <div class="card h-100 shadow-sm" id="{{ $menu->id }}">
-                        <div style="background-image: url('{{ $image }}'); height:140px; width:100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                        <img src="{{ $image }}" alt="{{ $image }}" class="menus-image">
+                        {{-- <div style="background-image: url('{{ $image }}'); height:140px; width:100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div> --}}
                         <div class="card-body p-2">
                             <h6 class="card-title"><a href="{{ route('menus.show', $menu->id) }}" class="stretched-link text-decoration-none text-success font-weight-bold">{{ $menu->name }}</a></h6>
                             <h6 class="card-subtitle text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }}</h6>

@@ -47,7 +47,7 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ $menuImage }}" class="d-block w-100" alt="...">
+                            <img src="{{ $menuImage }}" class="d-block show-image" alt="...">
                         </div>
                         @foreach ($images as $image)
                             @php
@@ -59,7 +59,7 @@
                                 
                             @endphp
                         <div class="carousel-item">
-                            <img src="{{ $carouselImage }}" class="d-block w-100" alt="...">
+                            <img src="{{ $carouselImage }}" class="d-block show-image" alt="...">
                         </div>
                         @endforeach
                     </div>
@@ -80,7 +80,8 @@
                         <span class="badge badge-pill badge-success align-middle" style="white-space: pre;">Stock : {{ $menu->stock }}</span>
                     </div>
                     <hr>
-                    <p class="card-text" style="white-space: pre-line;">{!! $menu->description !!}</p>
+                    <p class="card-text mb-0" style="white-space: pre-line;">{!! $menu->description !!}</p>
+                    <p class="font-weight-bold">Category : <span class="badge badge-pill badge-dark align-middle">{{ $menu->category }}</span></p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
                             <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
@@ -139,14 +140,14 @@
                     
                 @endphp
                 <div class="card mb-3 shadow">
-                    <div class="card-body p-2">
+                    <div class="card-body p-0">
                         <a href="{{ route('menus.show', $other->id) }}" class="stretched-link"></a>
                         <div class="row no-gutters">
                             <div class="col-5">
-                                <img src="{{ $menuImageOther }}" class="card-img border-0">
+                                <img src="{{ $menuImageOther }}" class="show-image-other">
                             </div>
-                            <div class="col ml-3">
-                                <h5 class="font-weight-bold"><a href="{{ route('menus.show', $other->id) }}" class="stretched-link text-success text-decoration-none">{{ $other->name }}</a></h5>
+                            <div class="col ml-2 flex-column align-self-center">
+                                <h6 class="font-weight-bold"><a href="{{ route('menus.show', $other->id) }}" class="stretched-link text-success text-decoration-none">{{ $other->name }}</a></h6>
                                 <p class="text-orange m-0">Rp {{ number_format($other->price,0 ,0, '.') }}</p>
                                 <p class="m-0"><span class="badge badge-pill badge-orange">Stock {{ number_format($other->stock,0 ,0, '.') }}</span></p>
                             </div>

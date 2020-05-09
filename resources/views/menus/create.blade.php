@@ -37,9 +37,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="image_link">Image Link</label>
-                        <input type="text" id="image_link" name="img" value="{{ old('img') }}" class="form-control form-control-sm mb-1 @error('img') is-invalid @enderror" placeholder="Image *link" disabled>
-                        @error('img')
+                        <label for="category">Category</label>
+                        {{-- <input type="text" id="category" name="img" value="{{ old('img') }}" class="form-control form-control-sm mb-1 @error('img') is-invalid @enderror" placeholder="Image *link"> --}}
+                        <select name="category" class="custom-select custom-select-sm" required>
+                            <option value="null">- Select Category</option>
+                            <option value="Foods">Food's</option>
+                            <option value="Drinks">Drink's</option>
+                        </select>
+                        @error('category')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
