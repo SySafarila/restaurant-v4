@@ -58,14 +58,14 @@
                     @if (Auth::user())
                     <ul class="navbar-nav mx-auto d-none d-md-block">
                         <li class="nav-item">
-                            {{-- <form action="#" method="get"> --}}
+                            <form action="{{ route('menus.search') }}" method="get">
                                 <div class="d-flex">
-                                    <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-md-block d-lg-none" placeholder="What are you looking for ?" style="width:150px">
-                                    <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="What are you looking for ?" style="width:300px">
-                                    <input type="text" name="form" class="rounded-pill form-control form-control-sm d-none d-xl-block" placeholder="What are you looking for ?" style="width:600px;">
+                                    <input type="text" name="name" class="rounded-pill form-control form-control-sm d-none d-md-block d-lg-none" placeholder="Looking for Food's or Drink's ?" style="width:150px">
+                                    <input type="text" name="name" class="rounded-pill form-control form-control-sm d-none d-lg-block d-xl-none" placeholder="Looking for Food's or Drink's ?" style="width:300px">
+                                    <input type="text" name="name" class="rounded-pill form-control form-control-sm d-none d-xl-block" placeholder="Looking for Food's or Drink's ?" style="width:600px;">
                                     <button type="submit" class="rounded-pill btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                 </div>
-                            {{-- </form> --}}
+                            </form>
                         </li>
                     </ul>
                     @endif
