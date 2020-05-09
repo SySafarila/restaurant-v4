@@ -18,7 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('name');
             $table->longText('description');
             $table->string('price');
-            $table->longText('img');
+            $table->enum('category', ['Foods', 'Drinks']);
             $table->string('stock');
             $table->timestamps();
             $table->softDeletes();
