@@ -117,12 +117,12 @@
                             </li>
                             {{-- mobile --}}
                             <li class="nav-item d-sm-block d-md-none mt-2">
-                                {{-- <form action="#" method="get"> --}}
+                                <form action="{{ route('menus.search') }}" method="get">
                                     <div class="d-flex">
-                                        <input type="text" name="" id="" class="rounded-pill form-control form-control-sm" placeholder="What are you looking for ?">
+                                        <input type="text" name="name" class="rounded-pill form-control form-control-sm" placeholder="Looking for Food's or Drink's ?">
                                         <button type="submit" class="rounded-pill btn btn-sm btn-outline-success ml-1"><i class="material-icons align-middle" style="font-size:15px; padding-bottom:2px;">search</i></button>
                                     </div>
-                                {{-- </form> --}}
+                                </form>
                             </li>
                         @endguest
                     </ul>
