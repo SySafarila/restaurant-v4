@@ -63,7 +63,7 @@ class MenusController extends Controller
         $validate = $request->validate([
             'name'        => 'string|min:5|required',
             'description' => 'string|min:10|required',
-            'category'    => 'required|string',
+            'category'    => 'required|string|in:Foods,Drinks',
             'price'       => 'numeric|digits_between:3,9999|required',
             'stock'       => 'numeric|digits_between:1,9999|required',
             'cover_image' => 'required|mimes:jpg,jpeg,png|max:5120',

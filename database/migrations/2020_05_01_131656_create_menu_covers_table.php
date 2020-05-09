@@ -28,6 +28,6 @@ class CreateMenuCoversTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus_cover');
+        Schema::dropIfExists('menu_covers');
     }
 }

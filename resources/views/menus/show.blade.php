@@ -80,7 +80,8 @@
                         <span class="badge badge-pill badge-success align-middle" style="white-space: pre;">Stock : {{ $menu->stock }}</span>
                     </div>
                     <hr>
-                    <p class="card-text" style="white-space: pre-line;">{!! $menu->description !!}</p>
+                    <p class="card-text mb-0" style="white-space: pre-line;">{!! $menu->description !!}</p>
+                    <p class="font-weight-bold">Category : <span class="badge badge-pill badge-dark align-middle">{{ $menu->category }}</span></p>
                     @if (Auth::user()->level == 'Admin')
                         <div class="d-flex justify-content-between">
                             <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
