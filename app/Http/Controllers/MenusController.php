@@ -63,6 +63,7 @@ class MenusController extends Controller
         $validate = $request->validate([
             'name'        => 'string|min:5|required',
             'description' => 'string|min:10|required',
+            'category'    => 'required|string',
             'price'       => 'numeric|digits_between:3,9999|required',
             'stock'       => 'numeric|digits_between:1,9999|required',
             'cover_image' => 'required|mimes:jpg,jpeg,png|max:5120',
@@ -78,7 +79,8 @@ class MenusController extends Controller
             'name'        => ucwords($request['name']),
             'description' => ucfirst($request['description']),
             'price'       => $request['price'],
-            'stock'       => intval($request['stock'])
+            'stock'       => intval($request['stock']),
+            'category'    => $request->category
         ]);
 
         if (Menu_cover::all()->count() == 0) {
