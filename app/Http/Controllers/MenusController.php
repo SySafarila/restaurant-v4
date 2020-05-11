@@ -305,7 +305,7 @@ class MenusController extends Controller
         
         // Upload
         $request->file('newCover')->storeAs('public/menuImages', $cover);
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Cover updated !');
     }
 
     public function deleteCover(Menu $menu)
@@ -316,7 +316,7 @@ class MenusController extends Controller
         } else {
             return redirect()->route('menus.editCover', $menu);
         }
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Cover deleted !');
     }
 
     public function editImage(Menu $menu, Menu_image $image)
@@ -342,7 +342,7 @@ class MenusController extends Controller
         
         // Upload
         $request->file('newImage')->storeAs('public/menuImages', $image);
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Image updated !');
     }
 
     public function deleteImage(Menu $menu, Menu_image $image)
@@ -351,7 +351,7 @@ class MenusController extends Controller
             Storage::disk('local')->delete('public/menuImages/' . $image->name);
         }
         $image->delete();
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Image deleted !');
     }
 
     public function addImages(Menu $menu, Request $request)
@@ -382,6 +382,6 @@ class MenusController extends Controller
             }
         }
 
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Images uploaded !');
     }
 }
