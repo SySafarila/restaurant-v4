@@ -31,16 +31,25 @@
             </div>
         @endif
         @foreach ($orders as $order)
+        @php
+            $checkImage = 'public/menuImages/' . $order->menu->cover->name;
+            if (Storage::disk('local')->exists($checkImage) == true) {
+                $image = asset('storage/menuImages/' . $order->menu->cover->name);
+            } else {
+                $image = asset('image-not-found.png');
+            }
+            
+        @endphp
         <div class="row justify-content-center">
             <div class="col-md-6 mb-3">
                 <div class="card shadow-sm h-100">
                     <div class="card-body p-0">
                         <div class="row">
-                            <div class="col-5 col-md-3">
-                                <img src="{{ asset('storage/menuImages/' . $order->menu->cover->name) }}" class="show-image-other" alt="">
+                            <div class="col-5 col-md-3 pr-1">
+                                <img src="{{ $image }}" class="show-image-other" alt="">
                             </div>
-                            <div class="col pt-2 pl-0">
-                                <p class="card-title font-weight-bold m-0"><a href="{{ route('menus.show', $order->menu_id) }}" class="text-decoration-none text-dark">{{ $order->menu->name }}</a></p>
+                            <div class="col-7 col-md-8 pt-0 pl-0">
+                                <p class="card-title font-weight-bold m-0"><a href="{{ route('menus.show', $order->menu_id) }}" class="text-decoration-none text-dark">{{ Str::limit($order->menu->name, 40, '...') }}</a></p>
                                 <span class="text-success">{{ $order->quantity }}</span> <span class="font-weight-bold">x</span> <span class="text-orange font-weight-bold">{{ number_format($order->menu->price, 0, 0, '.') }}</span>
                                 <br>
                                 @if ($order->menu->stock - $order->quantity < 0)
