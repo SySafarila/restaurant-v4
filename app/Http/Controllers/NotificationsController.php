@@ -66,7 +66,7 @@ class NotificationsController extends Controller
                     'status' => 1
                 ]);
             }
-            return $notification;
+            return view('notifications.show', ['notification' => $notification]);
         } else {
             return abort(404);
         }

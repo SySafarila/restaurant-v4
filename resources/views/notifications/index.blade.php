@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class="d-flex justify-content-between">
                     <h3 class="mb-0">Notifications</h3>
-                    <a href="{{ route('notifications.clear') }}" class="pt-1 text-decoration-none" onclick="event.preventDefault();document.getElementById('clearNotifications').submit();">Clear</a>
+                    <a href="{{ route('notifications.clear') }}" class="pt-1 text-decoration-none text-success" onclick="event.preventDefault();document.getElementById('clearNotifications').submit();">Clear</a>
                 </div>
                 <form id="clearNotifications" action="{{ route('notifications.clear') }}" method="post" class="d-none">
                     @csrf
