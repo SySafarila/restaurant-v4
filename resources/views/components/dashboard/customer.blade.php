@@ -19,7 +19,7 @@
     <div class="card shadow-sm h-100">
         <a href="{{ route('notifications.index') }}" class="card-body text-decoration-none">
             <h5 class="card-title text-dark">Notifications</h5>
-            <h6 class="text-muted">
+            <h6 class="card-subtitle mb-2 text-muted">
                 @if (Auth::user()->notifications->where('status', false)->count() == 0)
                     See all notifications
                 @else

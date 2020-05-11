@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="mb-0"><a href="{{ route('notifications.index') }}" class="text-success text-decoration-none">Notification</a></h3>
+                        <h3 class="mb-0"><a href="{{ route('notifications.index') }}" class="text-dark text-decoration-none">Notification</a></h3>
                         <hr class="hr">
                         <p class="mb-0">{!! $notification->message !!}</p>
                         <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
