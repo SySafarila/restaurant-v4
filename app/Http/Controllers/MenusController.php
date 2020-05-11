@@ -92,11 +92,6 @@ class MenusController extends Controller
         $image1Ext = $request->file('cover_image')->getClientOriginalExtension();
         $getLastId = Menu::withTrashed()->orderBy('id', 'desc')->first()->id;
         $image1Name = 'image-cover-' . $getLastId . '.' . $image1Ext;
-        
-        // Menu_image::create([
-        //     'name' => $image1Name,
-        //     'menu_id' => $getLastId
-        // ]);
 
         Menu_cover::create([
             'name' => $image1Name,
@@ -213,7 +208,6 @@ class MenusController extends Controller
             $moveImage = Storage::move('public/menuImages/' . $menu->cover->name, 'menuImages/' . $menu->cover->name);
         }
         
-        // $moveImage = Storage::move('public/menuImages/' . $menu->images->first()->name, 'menuImages/' . $menu->images->first()->name);
         $menu->delete();
 
         $order = Order::where('menu_id', $id)->delete();
@@ -326,7 +320,6 @@ class MenusController extends Controller
 
     public function updateImage(Request $request, Menu $menu, Menu_image $image)
     {
-        // return $image;
         $request->validate([
             'newImage' => 'required|mimes:jpg,jpeg,png|max:5120'
         ],

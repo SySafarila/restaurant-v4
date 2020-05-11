@@ -59,7 +59,6 @@ class OrdersController extends Controller
         $quantity = $request['quantity'];
         $price    = Menu::findOrFail($menu_id)->price;
         $total    = $price * $quantity;
-        // $status   = 'Pending';
 
         // Input to database
         $check = Order::where([
