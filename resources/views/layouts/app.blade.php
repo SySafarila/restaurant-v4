@@ -48,6 +48,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @if (Auth::user())
+                            <x-navbar-left.owner />
                             <x-navbar-left.admin />
                             <x-navbar-left.cashier />
                             <x-navbar-left.customer />
@@ -103,6 +104,7 @@
                                     <x-navbar-right.customer />
                                     <x-navbar-right.cashier />
                                     <x-navbar-right.admin />
+                                    <x-navbar-right.owner />
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

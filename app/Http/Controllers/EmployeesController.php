@@ -9,7 +9,7 @@ class EmployeesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'admin', 'checkUserStatus']);
+        $this->middleware(['auth', 'ownerOrAdmin', 'checkUserStatus']);
     }
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = User::whereIn('level', ['Cashier', 'Waiter'])->orderBy('name')->get();
+        $employees = User::whereIn('level', ['Cashier', 'Waiter', 'Admin'])->orderBy('name')->get();
 
         return view('employees.index', ['employees' => $employees]);
     }

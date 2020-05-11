@@ -95,20 +95,22 @@
                             <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     @else
-                    <form action="{{ route('orders.store') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="menu" value="{{ $menu->id }}">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <button type="button" class="input-group-text order-button btn btn-success" onclick="orderMinus()">-</button>
+                    @if (Auth::user()->level == 'Customer')
+                        <form action="{{ route('orders.store') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="menu" value="{{ $menu->id }}">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="input-group-text order-button btn btn-success" onclick="orderMinus()">-</button>
+                                </div>
+                                <input type="number" class="form-control text-center bg-white" name="quantity" id="quantity" value="1" readonly>
+                                <div class="input-group-append">
+                                    <button type="button" class="input-group-text order-button btn btn-success" onclick="orderPlus()">+</button>
+                                </div>
                             </div>
-                            <input type="number" class="form-control text-center bg-white" name="quantity" id="quantity" value="1" readonly>
-                            <div class="input-group-append">
-                                <button type="button" class="input-group-text order-button btn btn-success" onclick="orderPlus()">+</button>
-                            </div>
-                        </div>
-                        <button type="submit" id="shop" onclick="shopClick()" class="rounded btn btn-block btn-orange material-icons rem-1" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
-                    </form>
+                            <button type="submit" id="shop" onclick="shopClick()" class="rounded btn btn-block btn-orange material-icons rem-1" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
+                        </form>
+                    @endif
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach

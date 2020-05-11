@@ -34,8 +34,8 @@ Route::redirect('/profile/avatar', '/profile');
 Route::delete('/profile/avatar', 'ProfileController@deleteAvatar')->name('profile.deleteAvatar');
 
 // Users ( Admin only )
-Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');
-Route::get('/dashboard/user/{user:username}', 'UsersController@show')->middleware('admin')->name('users.show');
+Route::get('/dashboard/users', 'UsersController@index')->middleware('ownerOrAdmin')->name('users.index');
+Route::get('/dashboard/user/{user:username}', 'UsersController@show')->middleware('ownerOrAdmin')->name('users.show');
 Route::get('/dashboard/user/{user:username}/edit', 'UsersController@edit')->middleware('admin')->name('users.edit');
 Route::patch('/dashboard/user/{id}', 'UsersController@update')->middleware('admin')->name('users.update');
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('admin')->name('users.delete');
@@ -44,9 +44,9 @@ Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('a
 Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
 
 // Menus
-Route::get('/menus', 'MenusController@index')->middleware('customerOrAdmin')->name('menus.index');
+Route::get('/menus', 'MenusController@index')->middleware('ownerOrAdminOrCustomer')->name('menus.index');
 Route::get('/menus/deleted', 'MenusController@deleted')->middleware('admin')->name('menus.deleted');
-Route::get('/menu/{id}', 'MenusController@show')->middleware('customerOrAdmin')->name('menus.show');
+Route::get('/menu/{id}', 'MenusController@show')->middleware('ownerOrAdminOrCustomer')->name('menus.show');
 Route::patch('/menu/{id}', 'MenusController@update')->middleware('admin')->name('menus.update');
 Route::get('/menu/{id}/edit', 'MenusController@edit')->middleware('admin')->name('menus.edit');
 Route::post('/menus', 'MenusController@store')->middleware('admin')->name('menus.store');

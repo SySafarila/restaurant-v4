@@ -18,10 +18,9 @@
                             </button>
                         </div>
                     @endif
-                    
                         <table class="table table-bordered">
                             <tr>
-                                <td colspan="2" class="text-center">Profile</td>
+                                <td colspan="2" class="text-center font-weight-bold">Profile</td>
                             </tr>
                             <tr>
                                 <td>Name</td>
@@ -60,10 +59,12 @@
                                 <td class="text-capitalize"><span class="badge @if($user->status == 'Active') badge-success @else badge-secondary @endif">{{ $user->status }}</span></td>
                             </tr>
                         </table>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-sm btn-danger mx-1" data-toggle="modal" data-target="#DeleteUserModal">Delete Profile</a>
-                        <a href="{{ route('users.edit', $user->username) }}" class="btn btn-sm btn-outline-success mx-1">Edit Profile</a>
-                    </div>
+                    @if (Auth::user()->level == 'Admin')
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-sm btn-danger mx-1" data-toggle="modal" data-target="#DeleteUserModal">Delete Profile</a>
+                            <a href="{{ route('users.edit', $user->username) }}" class="btn btn-sm btn-outline-success mx-1">Edit Profile</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
