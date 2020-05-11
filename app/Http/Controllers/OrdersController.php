@@ -85,7 +85,7 @@ class OrdersController extends Controller
                     'status'  => 'Pending',
                 ])->first('total')->total + $total,
             ]);
-            return redirect()->route('menus.index')->with('status', 'Success added to current ');
+            return redirect()->route('menus.index')->with('status', 'Added to ');
         } else {
             Order::create([
                 'user_id'  => $user_id,
@@ -95,7 +95,7 @@ class OrdersController extends Controller
                 'total'    => $total,
                 // 'status'   => $status,
             ]);
-            return redirect()->route('menus.index')->with('status', 'Success add a new ');
+            return redirect()->route('menus.index')->with('status', 'Added to ');
         }
     }
 

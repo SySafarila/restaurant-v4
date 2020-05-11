@@ -47,8 +47,8 @@
                                 <form action="{{ route('menus.destroy', $menu->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('menus.edit', $menu->id) }}" class="my-1 btn btn-sm btn-success material-icons">edit</a>
-                                    <button class="my-1 btn btn-sm btn-outline-danger material-icons">delete</button>
+                                    <a href="{{ route('menus.edit', $menu->id) }}" class="my-1 btn btn-sm btn-success material-icons rem-1">edit</a>
+                                    <button class="my-1 btn btn-sm btn-outline-danger material-icons rem-1">delete</button>
                                 </form>
                             </td>
                         </tr>

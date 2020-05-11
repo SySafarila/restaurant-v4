@@ -15,7 +15,11 @@ a.text-orange:focus {
     color: rgb(212, 77, 28) !important;
 }
 
-.material-icons{
+/* .material-icons{
+    font-size: 1rem;
+} */
+
+.rem-1 {
     font-size: 1rem;
 }
 
@@ -38,6 +42,18 @@ a.badge-orange:focus {
 a.badge-orange:focus,
 a.badge-orange.focus {
     outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(212, 77, 28, 0.5);
+}
+
+.btn-orange {
+    color: white;
+    background-color: #FA591D;
+}
+
+.btn-orange:hover, .btn-orange:focus {
+    color: white;
+    background-color: rgb(216, 80, 30);
+    border-color: rgb(216, 80, 30);
     box-shadow: 0 0 0 0.2rem rgba(212, 77, 28, 0.5);
 }
 
