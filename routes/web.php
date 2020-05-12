@@ -100,5 +100,8 @@ Route::redirect('/notification', '/notifications');
 Route::get('/notification/{notification}', 'NotificationsController@show')->name('notifications.show');
 Route::patch('/notifications', 'NotificationsController@clear')->name('notifications.clear');
 
-// Tes
-Route::get('/test', 'TestControllers@index');
+// SetAdmin (Owner Only)
+Route::get('/setting/admin', 'SetAdminController@index')->name('addAdmin.index');
+Route::post('/setting/admin', 'SetAdminController@setAdmin')->name('setAdmin');
+Route::redirect('/setting/admin/{id}', '/setting/admin');
+Route::post('/setting/admin/{id}', 'SetAdminController@deleteAdmin')->name('deleteAdmin');

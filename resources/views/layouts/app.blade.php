@@ -89,6 +89,11 @@
                             <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is(['orders', 'order/*']) ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
                         </li>
                         @endif
+                        @if (Auth::user()->level == 'Owner')
+                        <li class="nav-item">
+                            <a href="{{ route('addAdmin.index') }}" class="nav-link {{ Request::is(['setting', 'setting/*']) ? 'active text-orange font-weight-bold' : '' }}">Admin's</a>
+                        </li>
+                        @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
