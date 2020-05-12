@@ -9,7 +9,7 @@
 </div>
 <div class="col-md-4 col-12 mb-4">
     <div class="card shadow-sm">
-        <a href="#" class="card-body text-decoration-none">
+        <a href="{{ route('employees.index') }}" class="card-body text-decoration-none">
             <h5 class="card-title text-dark">Employees</h5>
             <h6 class="card-subtitle mb-2 text-muted">See all employees</h6>
         </a>
@@ -28,6 +28,14 @@
         <a href="{{ route('menus.index') }}" class="card-body text-decoration-none">
             <h5 class="card-title text-dark">Menus</h5>
             <h6 class="card-subtitle mb-2 text-muted">See all menus</h6>
+        </a>
+    </div>
+</div>
+<div class="col-md-4 col-12 mb-4">
+    <div class="card shadow-sm">
+        <a href="{{ route('addAdmin.index') }}" class="card-body text-decoration-none">
+            <h5 class="card-title text-dark">Admin's</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Admin's manager</h6>
         </a>
     </div>
 </div>
