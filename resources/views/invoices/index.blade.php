@@ -39,7 +39,7 @@
                                 <th class="text-center align-middle">No</th>
                                 <th class="align-middle">Invoices</th>
                                 <th class="text-center align-middle">Total (Rp)</th>
-                                @if (Auth::user()->level == 'Admin')
+                                @if (Auth::user()->level == 'Admin' or Auth::user()->level == 'Owner')
                                     <th class="align-middle">Username</th>
                                 @endif
                             </tr>
@@ -50,7 +50,7 @@
                                     <td class="text-center align-middle">{{ $nomor++ }}</td>
                                     <td class="align-middle"><a href="{{ route('invoices.show', $invoice->id)}}">{{ $invoice->code }}</a></td>
                                     <td class="text-center align-middle font-weight-bold text-success">{{ number_format($invoice->invoices->sum('total'), 0, 0, '.') }}</td>
-                                    @if (Auth::user()->level == 'Admin')
+                                    @if (Auth::user()->level == 'Admin' or Auth::user()->level == 'Owner')
                                         <td class="align-middle"><a href="{{ route('users.show', $invoice->user->username) }}" class="text-orange text-decoration-none">{{'@' . $invoice->user->username }}</a></td>
                                     @endif
                                 </tr>

@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col">
                             <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">Success</span>
-                            @if (Auth::user()->level == 'Admin')
+                            @if (Auth::user()->level == 'Admin' or Auth::user()->level == 'Owner')
                             <br>
                             <span class="font-weight-bold">Username :</span> <span class="badge badge-pill badge-orange">{{ '@' . $invoices->first()->user->username }}</span>
                             @endif

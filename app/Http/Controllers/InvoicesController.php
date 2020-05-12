@@ -27,7 +27,7 @@ class InvoicesController extends Controller
     {
         $nomor = 1;
         $user = Auth::user();
-        if ($user->level == 'Admin') {
+        if ($user->level == 'Admin' or $user->level == 'Owner') {
             $invoices = Invoice_code::latest()->paginate(20);
 
             return view('invoices.index', ['invoices' => $invoices, 'nomor' => $nomor]);
@@ -129,7 +129,7 @@ class InvoicesController extends Controller
         $code = $invoice_code->code;
         $time = $invoice_code->created_at;
 
-        if ($auth->id == $invoice_code->user_id or $auth->level == 'Admin') {
+        if ($auth->id == $invoice_code->user_id or $auth->level == 'Admin' or $auth->level == 'Owner') {
             return view('invoices.show', ['invoices' => $invoices, 'code' => $code, 'time' => $time]);
         } else {
             return abort(404);

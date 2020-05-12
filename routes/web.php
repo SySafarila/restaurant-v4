@@ -80,9 +80,9 @@ Route::get('/order/{id}', 'OrdersController@show')->name('orders.show');
 Route::get('/order', 'OrdersController@redirect')->name('orders.redirect');
 
 // Invoices
-Route::get('/invoices', 'InvoicesController@index')->middleware('customerOrAdmin')->name('invoices.index');
+Route::get('/invoices', 'InvoicesController@index')->middleware('ownerOrAdminOrCustomer')->name('invoices.index');
 Route::post('/invoices', 'InvoicesController@store')->middleware('admin')->name('invoices.store');
-Route::get('/invoice/{invoice_code}', 'InvoicesController@show')->middleware('customerOrAdmin')->name('invoices.show');
+Route::get('/invoice/{invoice_code}', 'InvoicesController@show')->middleware('ownerOrAdminOrCustomer')->name('invoices.show');
 
 // Cashier & Payment Route ( Cashier access only )
 Route::get('/cashier', 'CashierController@index')->name('cashier.index');
