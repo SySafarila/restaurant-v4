@@ -103,26 +103,30 @@ a.badge-orange.focus {
     width: 100%;
     height: 290px;
     object-fit: contain;
-    background-color: #575759;
+    background-color: whitesmoke;
 }
 
 .show-image-other {
     width: 100%;
     height: 100px;
     object-fit: contain;
-    background-color: #575759;
+    background-color: whitesmoke;
 }
 
 .menus-image {
     width: 100%;
     height: 160px;
     object-fit: contain;
-    background-color: black;
+    background-color: whitesmoke;
 }
 
 .flex-column {
     display: flex;
     flex-direction: column;
+}
+
+.search-top {
+    width: 150px;
 }
 
 /* Responsive MD */
@@ -138,16 +142,30 @@ a.badge-orange.focus {
     .menus-image {
         height: 175px;
     }
+
+    .search-top {
+        width: 150px;
+    }
 }
 
+/* lg */
 @media (min-width: 992px) {
     .hr {
         width: 40%;
     }
+
+    .search-top {
+        width: 300px;
+    }
 }
 
+/* xl */
 @media (min-width: 1200px) {
     .hr {
         width: 30%;
+    }
+
+    .search-top {
+        width: 600px;
     }
 }
