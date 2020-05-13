@@ -21,7 +21,7 @@
     <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/restaurantv4.css') }}" rel="stylesheet">
 </head>
-<body class="bg-white">
+<body class="bg-light">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container-fluid">
