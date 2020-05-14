@@ -108,3 +108,6 @@ Route::post('/setting/admin/{id}', 'SetAdminController@deleteAdmin')->name('dele
 
 // Trashed Menus
 Route::get('/cover/{cover}', 'MenusController@getCover')->middleware('admin')->name('getCover');
+
+// Setting
+Route::get('/setting', 'SettingController@index')->name('setting.index');
