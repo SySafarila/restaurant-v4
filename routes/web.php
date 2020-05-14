@@ -105,3 +105,6 @@ Route::get('/setting/admin', 'SetAdminController@index')->name('addAdmin.index')
 Route::post('/setting/admin', 'SetAdminController@setAdmin')->name('setAdmin');
 Route::redirect('/setting/admin/{id}', '/setting/admin');
 Route::post('/setting/admin/{id}', 'SetAdminController@deleteAdmin')->name('deleteAdmin');
+
+// Trashed Menus
+Route::get('/cover/{cover}', 'MenusController@getCover')->middleware('admin')->name('getCover');

@@ -377,4 +377,10 @@ class MenusController extends Controller
 
         return redirect()->route('menus.edit', $menu)->with('status-success', 'Images uploaded !');
     }
+
+    public function getCover($cover)
+    {
+        $getCover = Storage::get('menuImages/' . $cover);
+        return $getCover;
+    }
 }

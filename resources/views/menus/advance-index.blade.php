@@ -31,7 +31,7 @@
                     <a href="{{ route('menus.create') }}" class="material-icons text-success text-decoration-none" style="font-size:30px;">add_box</a>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover shadow-sm">
+                    <table class="table table-bordered table-hover shadow-sm bg-white">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 60px;">No</th>
