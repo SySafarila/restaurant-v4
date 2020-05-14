@@ -380,7 +380,11 @@ class MenusController extends Controller
 
     public function getCover($cover)
     {
-        $getCover = Storage::get('menuImages/' . $cover);
-        return $getCover;
+        if (Storage::disk('local')->exists('menuImages/'. $cover) == true) {
+            $getCover = Storage::get('menuImages/' . $cover);
+            return $getCover;
+        } else {
+            return abort(404);
+        }
     }
 }
