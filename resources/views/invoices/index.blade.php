@@ -33,7 +33,7 @@
         <div class="row justify-content-center">
             <div class="col-md-9 col-sm-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover shadow-sm">
+                    <table class="table table-bordered table-hover shadow-sm bg-white">
                         <thead>
                             <tr>
                                 <th class="text-center align-middle">No</th>
