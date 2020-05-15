@@ -135,8 +135,8 @@
             </div>
         </nav>
 
-        <div class="position-fixed sidebar-button" style="right: 0; bottom: 0.5rem;">
-            <button class="btn material-icons" style="box-shadow: none;" onclick="sidebar()">more_vert</button>
+        <div class="sidebar-button" id="sidebar-button">
+            <button class="btn material-icons sidebar-button-toggle" style="box-shadow: none;" onclick="sidebar()">more_vert</button>
         </div>
         <main class="sidebar bg-white shadow-sm" id="sidebar">
             <ul style="list-style-type: none; padding-left: 0px; padding-bottom: 2.5rem;">
@@ -219,6 +219,7 @@
 
         function sidebar() {
             document.getElementById('sidebar').classList.toggle('sidebar-show');
+            document.getElementById('sidebar-button').classList.toggle('sidebar-button-show');
         }
     </script>
     @yield('script')

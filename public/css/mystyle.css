@@ -172,10 +172,26 @@ a.badge-orange.focus {
 }
 
 .sidebar-button {
+    bottom: 0.5rem;
+    position: fixed;
     /* display: block; */
     opacity: 1;
     transition: all ease-in-out;
     transition-duration: 0.5s;
+}
+
+.sidebar-button-show {
+    transform: translateX(14rem);
+}
+
+.sidebar-button-toggle {
+    color: #6c757d;
+    transition: all ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.sidebar-button-toggle:hover .sidebar-button-toggle:focus {
+    color: #343a40;
 }
 
 .main {
