@@ -110,4 +110,4 @@ Route::post('/setting/admin/{id}', 'SetAdminController@deleteAdmin')->name('dele
 Route::get('/cover/{cover}', 'MenusController@getCover')->middleware('admin')->name('getCover');
 
 // Setting
-Route::get('/setting', 'SettingController@index')->name('setting.index');
+Route::get('/setting/account', 'SettingController@index')->name('setting.index');

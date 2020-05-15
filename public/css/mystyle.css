@@ -151,6 +151,7 @@ a.badge-orange.focus {
     transition: all ease-in-out;
     transition-duration: 0.5s;
     overflow: auto;
+    z-index: 1080;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -178,6 +179,7 @@ a.badge-orange.focus {
     opacity: 1;
     transition: all ease-in-out;
     transition-duration: 0.5s;
+    z-index: 1080;
 }
 
 .sidebar-button-show {

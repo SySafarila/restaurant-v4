@@ -93,7 +93,7 @@
                         </li>
                         @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['setting/*', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
                                     <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
                                         <span class="sr-only">Loading...</span>
@@ -136,12 +136,12 @@
         </nav>
 
         <div class="sidebar-button" id="sidebar-button">
-            <button class="btn material-icons sidebar-button-toggle" style="box-shadow: none;" onclick="sidebar()">more_vert</button>
+            <button type="button" class="btn material-icons sidebar-button-toggle" style="box-shadow: none;" onclick="sidebar()">more_vert</button>
         </div>
         <main class="sidebar bg-white shadow-sm" id="sidebar">
             <ul style="list-style-type: none; padding-left: 0px; padding-bottom: 2.5rem;">
-                <a href="#1" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2 sidebar-active">Account</li>
+                <a href="{{ route('setting.index') }}" class="text-decoration-none text-dark">
+                    <li class="list-hover p-2 {{ Request::is(['setting/account']) ? 'sidebar-active' : '' }}">Account</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
                     <li class="list-hover p-2">Restaurant</li>
