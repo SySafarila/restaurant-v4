@@ -141,55 +141,55 @@
         <main class="sidebar bg-white shadow-sm" id="sidebar">
             <ul style="list-style-type: none; padding-left: 0px; padding-bottom: 2.5rem;">
                 <a href="{{ route('setting.index') }}" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2 {{ Request::is(['setting/account']) ? 'sidebar-active' : '' }}">Account</li>
+                    <li class="list-hover py-2 sidebar-padding-left {{ Request::is(['setting/account']) ? 'sidebar-active' : '' }}">Account</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#3" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Employee's</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Employee's</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#3" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Employee's</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Employee's</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#3" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Employee's</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Employee's</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#3" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Employee's</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Employee's</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#3" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Employee's</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Employee's</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#3" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Employee's</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Employee's</li>
                 </a>
                 <a href="#2" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Restaurant</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Restaurant</li>
                 </a>
                 <a href="#3" class="text-decoration-none text-dark">
-                    <li class="list-hover p-2">Employee'ssss</li>
+                    <li class="list-hover py-2 sidebar-padding-left">Employee'ssss</li>
                 </a>
             </ul>
         </main>
