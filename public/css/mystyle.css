@@ -133,6 +133,75 @@ a.badge-orange.focus {
     transition-duration: 1s;
 }
 
+.list-hover:hover {
+    background-color: whitesmoke;
+}
+.sidebar-active {
+    background-color: whitesmoke;
+    font-weight: bold;
+}
+
+.sidebar {
+    scrollbar-width: 3px;
+    position: fixed; 
+    height: 100vh; 
+    width: 14rem;
+    /* display: none; */
+    transform: translate(-14rem);
+    transition: all ease-in-out;
+    transition-duration: 0.5s;
+    overflow: auto;
+    z-index: 1080;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: whitesmoke;
+}
+
+.sidebar-show {
+    transform: translate(0rem);
+    transition: all ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.sidebar-button {
+    bottom: 0.5rem;
+    position: fixed;
+    /* display: block; */
+    opacity: 1;
+    transition: all ease-in-out;
+    transition-duration: 0.5s;
+    z-index: 1080;
+}
+
+.sidebar-button-show {
+    transform: translateX(14rem);
+}
+
+.sidebar-button-toggle {
+    color: #6c757d;
+    transition: all ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.sidebar-button-toggle:hover .sidebar-button-toggle:focus {
+    color: #343a40;
+}
+
+.main {
+    margin-left: 0rem;
+    transition: all ease-in-out;
+    transition-duration: 0.5s;
+}
+
 /* Responsive MD */
 @media (min-width: 768px) {
     .hr {
@@ -149,6 +218,21 @@ a.badge-orange.focus {
 
     .search-top {
         width: 150px;
+    }
+
+    .sidebar {
+        display: block;
+        transform: translate(0rem);
+    }
+
+    .main {
+        margin-left: 14rem;
+    }
+
+    .sidebar-button {
+        transform: scale(0);
+        opacity: 0;
+        /* display: none; */
     }
 }
 
