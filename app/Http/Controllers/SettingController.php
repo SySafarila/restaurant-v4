@@ -17,7 +17,14 @@ class SettingController extends Controller
     {
         $profile = Auth::user();
         $avatar = Storage::url('avatars/user/' . $profile->img);
-
-        return view('setting.index', ['profile' => $profile, 'avatar' => $avatar]);
+        
+        return view('settings.account', ['profile' => $profile, 'avatar' => $avatar]);
+    }
+    
+    public function overview()
+    {
+        $user = Auth::user();
+        $avatar = Storage::url('avatars/user/' . $user->img);
+        return view('settings.overview', ['user' => $user, 'avatar' => $avatar]);
     }
 }

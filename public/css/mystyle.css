@@ -182,6 +182,12 @@ a.badge-orange.focus {
     z-index: 1080;
 }
 
+.sidebar-padding-left {
+    padding-left: 0.5rem;
+    transition: padding ease-in-out;
+    transition-duration: 0.5s;
+}
+
 .sidebar-button-show {
     transform: translateX(14rem);
 }
@@ -233,6 +239,10 @@ a.badge-orange.focus {
         transform: scale(0);
         opacity: 0;
         /* display: none; */
+    }
+
+    .sidebar-padding-left {
+        padding-left: 2rem;
     }
 }
 
