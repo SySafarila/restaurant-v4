@@ -15,7 +15,11 @@ a.text-orange:focus {
     color: rgb(212, 77, 28) !important;
 }
 
-.material-icons{
+/* .material-icons{
+    font-size: 1rem;
+} */
+
+.rem-1 {
     font-size: 1rem;
 }
 
@@ -38,6 +42,18 @@ a.badge-orange:focus {
 a.badge-orange:focus,
 a.badge-orange.focus {
     outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(212, 77, 28, 0.5);
+}
+
+.btn-orange {
+    color: white;
+    background-color: #FA591D;
+}
+
+.btn-orange:hover, .btn-orange:focus {
+    color: white;
+    background-color: rgb(216, 80, 30);
+    border-color: rgb(216, 80, 30);
     box-shadow: 0 0 0 0.2rem rgba(212, 77, 28, 0.5);
 }
 
@@ -79,7 +95,9 @@ a.badge-orange.focus {
 
 .hr {
     margin-left: 0px;
-    width: 45%;
+    width: 100%;
+    transition: all ease-in-out;
+    transition-duration: 1s;
 }
 
 
@@ -87,26 +105,32 @@ a.badge-orange.focus {
     width: 100%;
     height: 290px;
     object-fit: contain;
-    background-color: #575759;
+    background-color: whitesmoke;
 }
 
 .show-image-other {
     width: 100%;
     height: 100px;
     object-fit: contain;
-    background-color: #575759;
+    background-color: whitesmoke;
 }
 
 .menus-image {
     width: 100%;
     height: 160px;
     object-fit: contain;
-    background-color: black;
+    background-color: whitesmoke;
 }
 
 .flex-column {
     display: flex;
     flex-direction: column;
+}
+
+.search-top {
+    width: 150px;
+    transition: all ease-in-out;
+    transition-duration: 1s;
 }
 
 /* Responsive MD */
@@ -122,16 +146,30 @@ a.badge-orange.focus {
     .menus-image {
         height: 175px;
     }
-}
 
-@media (min-width: 992px) {
-    .hr {
-        width: 40%;
+    .search-top {
+        width: 150px;
     }
 }
 
+/* lg */
+@media (min-width: 992px) {
+    .hr {
+        width: 50%;
+    }
+
+    .search-top {
+        width: 300px;
+    }
+}
+
+/* xl */
 @media (min-width: 1200px) {
     .hr {
-        width: 30%;
+        width: 50%;
+    }
+
+    .search-top {
+        width: 600px;
     }
 }

@@ -34,8 +34,8 @@ Route::redirect('/profile/avatar', '/profile');
 Route::delete('/profile/avatar', 'ProfileController@deleteAvatar')->name('profile.deleteAvatar');
 
 // Users ( Admin only )
-Route::get('/dashboard/users', 'UsersController@index')->middleware('admin')->name('users.index');
-Route::get('/dashboard/user/{user:username}', 'UsersController@show')->middleware('admin')->name('users.show');
+Route::get('/dashboard/users', 'UsersController@index')->middleware('ownerOrAdmin')->name('users.index');
+Route::get('/dashboard/user/{user:username}', 'UsersController@show')->middleware('ownerOrAdmin')->name('users.show');
 Route::get('/dashboard/user/{user:username}/edit', 'UsersController@edit')->middleware('admin')->name('users.edit');
 Route::patch('/dashboard/user/{id}', 'UsersController@update')->middleware('admin')->name('users.update');
 Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('admin')->name('users.delete');
@@ -44,9 +44,9 @@ Route::delete('/dashboard/users/{id}', 'UsersController@destroy')->middleware('a
 Route::get('/dashboard/search', 'UsersController@search')->name('users.search');
 
 // Menus
-Route::get('/menus', 'MenusController@index')->middleware('customerOrAdmin')->name('menus.index');
+Route::get('/menus', 'MenusController@index')->middleware('ownerOrAdminOrCustomer')->name('menus.index');
 Route::get('/menus/deleted', 'MenusController@deleted')->middleware('admin')->name('menus.deleted');
-Route::get('/menu/{id}', 'MenusController@show')->middleware('customerOrAdmin')->name('menus.show');
+Route::get('/menu/{id}', 'MenusController@show')->middleware('ownerOrAdminOrCustomer')->name('menus.show');
 Route::patch('/menu/{id}', 'MenusController@update')->middleware('admin')->name('menus.update');
 Route::get('/menu/{id}/edit', 'MenusController@edit')->middleware('admin')->name('menus.edit');
 Route::post('/menus', 'MenusController@store')->middleware('admin')->name('menus.store');
@@ -80,9 +80,9 @@ Route::get('/order/{id}', 'OrdersController@show')->name('orders.show');
 Route::get('/order', 'OrdersController@redirect')->name('orders.redirect');
 
 // Invoices
-Route::get('/invoices', 'InvoicesController@index')->middleware('customerOrAdmin')->name('invoices.index');
+Route::get('/invoices', 'InvoicesController@index')->middleware('ownerOrAdminOrCustomer')->name('invoices.index');
 Route::post('/invoices', 'InvoicesController@store')->middleware('admin')->name('invoices.store');
-Route::get('/invoice/{invoice_code}', 'InvoicesController@show')->middleware('customerOrAdmin')->name('invoices.show');
+Route::get('/invoice/{invoice_code}', 'InvoicesController@show')->middleware('ownerOrAdminOrCustomer')->name('invoices.show');
 
 // Cashier & Payment Route ( Cashier access only )
 Route::get('/cashier', 'CashierController@index')->name('cashier.index');
@@ -100,5 +100,11 @@ Route::redirect('/notification', '/notifications');
 Route::get('/notification/{notification}', 'NotificationsController@show')->name('notifications.show');
 Route::patch('/notifications', 'NotificationsController@clear')->name('notifications.clear');
 
-// Tes
-Route::get('/test', 'TestControllers@index');
+// SetAdmin (Owner Only)
+Route::get('/setting/admin', 'SetAdminController@index')->name('addAdmin.index');
+Route::post('/setting/admin', 'SetAdminController@setAdmin')->name('setAdmin');
+Route::redirect('/setting/admin/{id}', '/setting/admin');
+Route::post('/setting/admin/{id}', 'SetAdminController@deleteAdmin')->name('deleteAdmin');
+
+// Trashed Menus
+Route::get('/cover/{cover}', 'MenusController@getCover')->middleware('admin')->name('getCover');

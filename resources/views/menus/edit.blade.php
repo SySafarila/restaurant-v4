@@ -12,14 +12,7 @@
 
 @section('content')
 <div class="container">
-    @if (session('status'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('status') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
+    <x-alert.status-success />
     <div class="row justify-content-center">
         @if (Auth::user()->level == 'Admin')
             <div class="col-md-6">
@@ -109,8 +102,8 @@
                         <img src="{{ $cover }}" alt="{{ $menu->cover->name }}" class="card-img-top">
                         <p class="text-center"><a href="{{ route('menus.editCover', $menu->id) }}" class="text-decoration-none">Edit Cover</a></p>
                         <hr>
-                        <div class="d-flex justify-content-center">
-                            <div class="row">
+                        <div class="d-flex">
+                            <div class="row justify-content-center">
                                 @foreach ($menu->images as $image)
                                     @php
                                         if (Storage::disk('local')->exists('public/menuImages/' . $image->name)) {

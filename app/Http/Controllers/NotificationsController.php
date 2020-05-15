@@ -19,12 +19,6 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        // $tes = Auth::user()->notifications->count() - Auth::user()->notifications->sum('status');
-        // if ($tes > 0) {
-        //     return 'shoq notife';
-        // }   else {
-        //     return 0;
-        // }
         $user = Auth::user();
         $notifications = Notification::where('user_id', $user->id)->latest()->paginate(15);
 
@@ -66,7 +60,7 @@ class NotificationsController extends Controller
                     'status' => 1
                 ]);
             }
-            return $notification;
+            return view('notifications.show', ['notification' => $notification]);
         } else {
             return abort(404);
         }

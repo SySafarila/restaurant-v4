@@ -92,11 +92,6 @@ class MenusController extends Controller
         $image1Ext = $request->file('cover_image')->getClientOriginalExtension();
         $getLastId = Menu::withTrashed()->orderBy('id', 'desc')->first()->id;
         $image1Name = 'image-cover-' . $getLastId . '.' . $image1Ext;
-        
-        // Menu_image::create([
-        //     'name' => $image1Name,
-        //     'menu_id' => $getLastId
-        // ]);
 
         Menu_cover::create([
             'name' => $image1Name,
@@ -213,7 +208,6 @@ class MenusController extends Controller
             $moveImage = Storage::move('public/menuImages/' . $menu->cover->name, 'menuImages/' . $menu->cover->name);
         }
         
-        // $moveImage = Storage::move('public/menuImages/' . $menu->images->first()->name, 'menuImages/' . $menu->images->first()->name);
         $menu->delete();
 
         $order = Order::where('menu_id', $id)->delete();
@@ -305,7 +299,7 @@ class MenusController extends Controller
         
         // Upload
         $request->file('newCover')->storeAs('public/menuImages', $cover);
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Cover updated !');
     }
 
     public function deleteCover(Menu $menu)
@@ -316,7 +310,7 @@ class MenusController extends Controller
         } else {
             return redirect()->route('menus.editCover', $menu);
         }
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Cover deleted !');
     }
 
     public function editImage(Menu $menu, Menu_image $image)
@@ -326,7 +320,6 @@ class MenusController extends Controller
 
     public function updateImage(Request $request, Menu $menu, Menu_image $image)
     {
-        // return $image;
         $request->validate([
             'newImage' => 'required|mimes:jpg,jpeg,png|max:5120'
         ],
@@ -342,7 +335,7 @@ class MenusController extends Controller
         
         // Upload
         $request->file('newImage')->storeAs('public/menuImages', $image);
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Image updated !');
     }
 
     public function deleteImage(Menu $menu, Menu_image $image)
@@ -351,7 +344,7 @@ class MenusController extends Controller
             Storage::disk('local')->delete('public/menuImages/' . $image->name);
         }
         $image->delete();
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Image deleted !');
     }
 
     public function addImages(Menu $menu, Request $request)
@@ -382,6 +375,16 @@ class MenusController extends Controller
             }
         }
 
-        return redirect()->route('menus.edit', $menu);
+        return redirect()->route('menus.edit', $menu)->with('status-success', 'Images uploaded !');
+    }
+
+    public function getCover($cover)
+    {
+        if (Storage::disk('local')->exists('menuImages/'. $cover) == true) {
+            $getCover = Storage::get('menuImages/' . $cover);
+            return $getCover;
+        } else {
+            return abort(404);
+        }
     }
 }

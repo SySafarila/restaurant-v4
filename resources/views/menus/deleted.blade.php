@@ -26,10 +26,18 @@
     @endif
     <div class="card-group justify-content-center">
         @foreach ($menus as $menu)
+        @php
+            if (Storage::disk('local')->exists('menuImages/' . $menu->cover->name) == true) {
+                $getCover = route('getCover', $menu->cover->name);
+            } else {
+                $getCover = asset('image-not-found.png');
+            }
+            
+        @endphp
             <div class="col-12 col-md-3 pb-md-3 px-0 px-md-2">
                 <div class="card mb-3 h-100 shadow-sm">
-                    {{-- <img src="{{ $menu->img }}" class="card-img-top" alt="{{ $menu->name }}"> --}}
-                    <div class="card-img-top text-center px-4 py-5 bg-dark text-muted font-weight-bold">Image isn't available</div>
+                    <img src="{{ $getCover }}" class="card-img-top" alt="{{ $menu->name }}">
+                    {{-- <div class="card-img-top text-center px-4 py-5 bg-dark text-muted font-weight-bold">Image isn't available</div> --}}
                     <div class="card-body">
                         <h5 class="card-title"><a href="{{ route('menus.show', $menu->id) }}" class="text-decoration-none text-success font-weight-bold">{{ $menu->name }}</a></h5>
                         <h6 class="card-subtitle mb-2 text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }}</h6>

@@ -27,11 +27,13 @@
     <div class="row justify-content-center">
         {{-- Breadcrumb --}}
         <div class="my-breadcrumb d-flex pb-3">
-            <a href="{{ route('dashboard') }}" class="text-decoration-none text-success">Dashboard</a>
-            <span class="text-muted px-2">/</span>
-            <a href="{{ route('menus.index') }}" class="text-decoration-none text-success">Menus</a>
-            <span class="text-muted px-2">/</span>
-            <span class="text-decoration-none text-orange">{{ $menu->name }}</span>
+            <div class="container">
+                <a href="{{ route('dashboard') }}" class="text-decoration-none text-success">Dashboard</a>
+                <span class="text-muted px-2">/</span>
+                <a href="{{ route('menus.index') }}" class="text-decoration-none text-success">Menus</a>
+                <span class="text-muted px-2">/</span>
+                <span class="text-decoration-none text-orange text-break">{{ $menu->name }}</span>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -93,20 +95,22 @@
                             <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     @else
-                    <form action="{{ route('orders.store') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="menu" value="{{ $menu->id }}">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <button type="button" class="input-group-text order-button btn btn-success" onclick="orderMinus()">-</button>
+                    @if (Auth::user()->level == 'Customer')
+                        <form action="{{ route('orders.store') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="menu" value="{{ $menu->id }}">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="input-group-text order-button btn btn-success" onclick="orderMinus()">-</button>
+                                </div>
+                                <input type="number" class="form-control text-center bg-white" name="quantity" id="quantity" value="1" readonly>
+                                <div class="input-group-append">
+                                    <button type="button" class="input-group-text order-button btn btn-success" onclick="orderPlus()">+</button>
+                                </div>
                             </div>
-                            <input type="number" class="form-control text-center bg-white" name="quantity" id="quantity" value="1" readonly>
-                            <div class="input-group-append">
-                                <button type="button" class="input-group-text order-button btn btn-success" onclick="orderPlus()">+</button>
-                            </div>
-                        </div>
-                        <button type="submit" id="shop" onclick="shopClick()" class="rounded btn btn-block btn-sm btn-outline-orange material-icons" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
-                    </form>
+                            <button type="submit" id="shop" onclick="shopClick()" class="rounded btn btn-block btn-orange material-icons rem-1" @if($menu->stock <= 0) disabled @endif>add_shopping_cart</button>
+                        </form>
+                    @endif
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -127,35 +131,38 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-4">
-            <h3 class="text-center">Other Menus</h3>
-            @foreach ($menus as $other)
-                @php
-                    $checkImageOther = Storage::disk('local')->exists('public/menuImages/' . $other->cover->name);
-                    if ($checkImageOther == true) {
-                        $menuImageOther = asset('storage/menuImages/' . $other->cover->name);
-                    } else {
-                        $menuImageOther = asset('image-not-found.png');
-                    }
-                    
-                @endphp
-                <div class="card mb-3 shadow">
-                    <div class="card-body p-0">
+        @if ($menus->count() >= 1)
+            <div class="col-12 col-md-4">
+                <h3 class="text-center">Other Menus</h3>
+                <hr>
+                @foreach ($menus as $other)
+                    @php
+                        $checkImageOther = Storage::disk('local')->exists('public/menuImages/' . $other->cover->name);
+                        if ($checkImageOther == true) {
+                            $menuImageOther = asset('storage/menuImages/' . $other->cover->name);
+                        } else {
+                            $menuImageOther = asset('image-not-found.png');
+                        }
+                        
+                    @endphp
+                    <div class="card mb-3" style="max-width: 540px;">
                         <a href="{{ route('menus.show', $other->id) }}" class="stretched-link"></a>
                         <div class="row no-gutters">
-                            <div class="col-5">
-                                <img src="{{ $menuImageOther }}" class="show-image-other">
+                            <div class="col-4">
+                                <img src="{{ $menuImageOther }}" class="show-image-other" alt="{{ $menuImageOther }}">
                             </div>
-                            <div class="col ml-2 flex-column align-self-center">
-                                <h6 class="font-weight-bold"><a href="{{ route('menus.show', $other->id) }}" class="stretched-link text-success text-decoration-none">{{ $other->name }}</a></h6>
-                                <p class="text-orange m-0">Rp {{ number_format($other->price,0 ,0, '.') }}</p>
-                                <p class="m-0"><span class="badge badge-pill badge-orange">Stock {{ number_format($other->stock,0 ,0, '.') }}</span></p>
+                            <div class="col-8">
+                                <div class="card-body px-1 pb-0 pt-1">
+                                <h6 class="card-title font-weight-bold">{{ Str::limit($other->name, 28, '...') }}</h6>
+                                <h6 class="card-subtitle m-0 text-orange font-weight-bold">Rp {{ number_format($other->price,0 ,0, '.') }}</h6>
+                                <span class="badge badge-pill badge-success align-middle" style="white-space: pre;">Stock : {{ $other->stock }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 </div>
 @endsection
