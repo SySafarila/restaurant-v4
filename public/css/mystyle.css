@@ -177,7 +177,7 @@ a.badge-orange.focus {
     opacity: 1;
     transition: all ease-in-out;
     transition-duration: 0.5s;
-    z-index: 1080;
+    z-index: 1;
 }
 
 .sidebar-padding-left {
