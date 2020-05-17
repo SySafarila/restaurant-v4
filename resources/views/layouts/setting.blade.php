@@ -17,8 +17,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/restaurantv4.css') }}" rel="stylesheet">
 </head>
 <body class="bg-light">
@@ -93,7 +91,7 @@
                         </li>
                         @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['settings', 'setting/account', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
                                     <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
                                         <span class="sr-only">Loading...</span>
@@ -135,12 +133,14 @@
             </div>
         </nav>
 
-        <main class="pt-3">
+        <x-sidebar.sidebar-toggle />
+        <x-sidebar.sidebar />
+        <main class="pt-3 main">
             @yield('content')
         </main>
 
-        <footer>
-            <div class="container">
+        <footer class="main">
+            <div class="container-fluid">
                 <hr>
                 <p class="text-muted text-center">&copy; 2020 <a href="https://instagram.com/sysafarila" target="_blank" class="text-decoration-none text-muted">SySafarila <i class="material-icons align-middle pb-1" style="font-size:1rem;">launch</i></a></p>
                 <p class="text-muted text-center">
@@ -157,6 +157,11 @@
             } else {
                 document.getElementById('menuButton').innerHTML = 'menu';
             }
+        }
+
+        function sidebar() {
+            document.getElementById('sidebar').classList.toggle('sidebar-show');
+            document.getElementById('sidebar-button').classList.toggle('sidebar-button-show');
         }
     </script>
     @yield('script')
