@@ -129,8 +129,7 @@ a.badge-orange.focus {
 
 .search-top {
     width: 150px;
-    transition: all ease-in-out;
-    transition-duration: 1s;
+    transition: width 1s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .list-hover:hover {
@@ -149,7 +148,8 @@ a.badge-orange.focus {
     transform: translate(-14rem);
     transition: all ease-in-out;
     transition-duration: 0.5s;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     z-index: 2;
 }
 
