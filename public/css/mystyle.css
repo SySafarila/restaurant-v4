@@ -148,7 +148,8 @@ a.badge-orange.focus {
     transform: translate(-14rem);
     transition: all ease-in-out;
     transition-duration: 0.5s;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     z-index: 2;
 }
 
