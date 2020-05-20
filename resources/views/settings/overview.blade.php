@@ -9,11 +9,10 @@
         <div class="row px-2">
             <div class="col-md-6 mb-3 px-2">
                 <div class="card h-100 shadow-sm">
-                    {{-- <a href="{{ route('setting.account') }}" class="stretched-link"></a> --}}
                     <div class="dropdown">
                         <a href="#" class="material-icons position-absolute text-decoration-none more-vert" id="dropdownProfile" data-toggle="dropdown" style="right: 0.5rem; top: 0.5rem;">more_vert</a>
                         <div class="dropdown-menu shadow-sm" aria-labelledby="dropdownProfile">
-                            <a class="dropdown-item" href="{{ route('setting.account') }}">Go to profile</a>
+                            <a class="dropdown-item" href="{{ route('setting.account') }}">Go to account</a>
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">Edit</a>
                         </div>
                     </div>
