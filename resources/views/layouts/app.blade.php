@@ -93,13 +93,23 @@
                         </li>
                         @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle d-md-none" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
                                     <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
                                     @endif
                                     {{ '@' . Str::limit(Auth::user()->username, 8, ' . .') }} 
+                                    <span class="caret"></span>
+                                </a>
+                                
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['profile', 'profile/*', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} material-icons d-none d-md-block" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
+                                    <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    @endif
+                                    account_circle
                                     <span class="caret"></span>
                                 </a>
 
