@@ -206,6 +206,14 @@ a.badge-orange.focus {
     transition-duration: 0.5s;
 }
 
+.more-vert {
+    color: #6c757d;
+}
+
+.more-vert:hover, .more-vert:focus {
+    color: black;
+}
+
 /* Responsive MD */
 @media (min-width: 768px) {
     .hr {
