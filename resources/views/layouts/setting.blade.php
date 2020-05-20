@@ -80,9 +80,17 @@
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item d-none d-md-block position-relative">
+                            <a href="{{ route('notifications.index') }}" class="nav-link material-icons {{ Request::is(['notifications', 'notification/*']) ? 'active text-orange' : '' }}">notifications_none</a>
+                            <small class="badge badge-pill badge-success position-absolute" style="left: 1.4rem;">{{ Auth::user()->notifications->where('status', false)->count() }}</small>
+                        </li>
                         @if (Auth::user()->level == 'Customer')
-                        <li class="nav-item">
+                        <li class="nav-item d-md-none">
                             <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is(['orders', 'order/*']) ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
+                        </li>
+                        <li class="nav-item d-none d-md-block position-relative">
+                            <a href="{{ route('orders.index') }}" class="nav-link material-icons {{ Request::is(['orders', 'order/*']) ? 'active text-orange' : '' }}">shopping_cart</a>
+                            <small class="badge badge-pill badge-success position-absolute" style="left: 1.5rem;">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</small>
                         </li>
                         @endif
                         @if (Auth::user()->level == 'Owner')
@@ -91,13 +99,23 @@
                         </li>
                         @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['settings', 'setting/account', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['settings', 'setting/account', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange font-weight-bold' : '' }} dropdown-toggle d-md-none" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
                                     <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
                                     @endif
                                     {{ '@' . Str::limit(Auth::user()->username, 8, ' . .') }} 
+                                    <span class="caret"></span>
+                                </a>
+                                
+                                <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['settings', 'setting/account', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange' : '' }} material-icons d-none d-md-block" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
+                                    <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    @endif
+                                    account_circle
                                     <span class="caret"></span>
                                 </a>
 
