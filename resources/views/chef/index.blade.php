@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="container">
+        <x-alert />
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card mb-3 shadow-sm">

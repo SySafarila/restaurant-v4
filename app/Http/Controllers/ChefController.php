@@ -11,23 +11,23 @@ class ChefController extends Controller
     {
         $this->middleware(['auth', 'checkUserStatus', 'chef']);
     }
-    
+
     public function index()
     {
-        // $pending = Invoice::where(['status' => 'Pending'])->get();
-        // $cooking = Invoice::where(['status' => 'Cooking'])->get();
         $orders = Invoice::whereIn('status', ['Pending', 'Cooking'])->get();
         return view('chef.index', ['orders' => $orders]);
     }
 
     public function cooking($id)
     {
-        // Update invoice->menu->status to Cooking.
+        if (Invoice::find($id)->status == 'Cooking') {
+            return redirect()->route('kitchen.index')->with('status-warning', 'Warning, Menu is already cooking');
+        }
         Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
             'status' => 'Cooking'
         ]);
 
-        return 'Updated to Cooking !';
+        return redirect()->route('kitchen.index')->with('status-success', 'Menu set to Cooking !');
     }
 
     public function success($id)
@@ -48,5 +48,10 @@ class ChefController extends Controller
         ]);
 
         return 'Updated to Out Of Stock !';
+    }
+
+    public function show($id)
+    {
+        return abort(404);
     }
 }
