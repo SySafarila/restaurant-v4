@@ -164,7 +164,8 @@ class CashierController extends Controller
                 'quantity' => $order->quantity,
                 'total' => $order->total,
                 'invoice_code_id' => $lastCode,
-                'code' => $code
+                'code' => $code,
+                'status' => 'Pending',
             ]);
 
             

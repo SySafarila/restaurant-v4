@@ -124,6 +124,7 @@ class InvoicesController extends Controller
      */
     public function show(Invoice_code $invoice_code)
     {
+        // return $invoice_code;
         $auth = Auth::user();
         $invoices = $invoice_code;
         $code = $invoice_code->code;

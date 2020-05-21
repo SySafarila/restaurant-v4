@@ -13,14 +13,14 @@
                     <h3 class="card-title text-success text-center">INVOICE</h3>
                     <div class="row">
                         <div class="col">
-                            <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">Success</span>
+                            <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">{{ $invoices->invoices->first()->status }}</span>
                             @if (Auth::user()->level == 'Admin' or Auth::user()->level == 'Owner')
                             <br>
                             <span class="font-weight-bold">Username :</span> <span class="badge badge-pill badge-orange">{{ '@' . $invoices->first()->user->username }}</span>
                             @endif
                         </div>
                         <div class="col">
-                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">It's {{ $time->diffForHumans() }}</span></p>
+                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">{{ $time->diffForHumans() }}</span></p>
                         </div>
                     </div>
                     <p class="text-muted" title="{{ $code }}">Code : {{ Str::limit($code, 30, ' . . .') }}</p>

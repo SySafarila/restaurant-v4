@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique();
             $table->longText('address');
             $table->enum('gender', ['Female', 'Male']);
-            $table->enum('level', ['Owner', 'Admin', 'Cashier', 'Waiter', 'Customer']);
+            $table->enum('level', ['Owner', 'Admin', 'Chef', 'Cashier', 'Waiter', 'Customer']);
             $table->enum('status', ['Active', 'Nonactive']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
