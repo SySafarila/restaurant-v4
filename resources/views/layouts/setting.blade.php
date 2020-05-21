@@ -28,7 +28,7 @@
                     @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
                         <span class="material-icons position-absolute text-success" style="font-size: 1rem; left: 1.5rem;">fiber_manual_record</span>
                     @endif
-                    <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none @if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) text-muted @else text-orange @endif">@if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) notifications_none @else notification_important @endif</a>
+                    <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none text-muted">notifications_none</a>
                 </button>
                 @else
                 <button class="navbar-toggler border-0" type="button">
