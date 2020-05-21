@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Notification;
 use Illuminate\Http\Request;
 
 class ChefController extends Controller
@@ -25,6 +26,14 @@ class ChefController extends Controller
         }
         Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
             'status' => 'Cooking'
+        ]);
+
+        $menu = Invoice::find($id);
+
+        Notification::create([
+            'message' => 'Your order <b>' . $menu->menu . ' | ' . $menu->code . '</b> is on Cooking right now.',
+            'status' => false,
+            'user_id' => $menu->user_id
         ]);
 
         return redirect()->route('kitchen.index')->with('status-success', 'Menu set to Cooking !');

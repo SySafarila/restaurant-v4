@@ -13,7 +13,7 @@
                     <h3 class="card-title text-success text-center">INVOICE</h3>
                     <div class="row">
                         <div class="col">
-                            <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">{{ $invoices->invoices->first()->status }}</span>
+                            <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">Success</span>
                             @if (Auth::user()->level == 'Admin' or Auth::user()->level == 'Owner')
                             <br>
                             <span class="font-weight-bold">Username :</span> <span class="badge badge-pill badge-orange">{{ '@' . $invoices->first()->user->username }}</span>
@@ -36,7 +36,12 @@
                             <tbody>
                                 @foreach ($invoices->invoices as $invoice)
                                 <tr>
-                                    <td>{{ $invoice->menu }} <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span></td>
+                                    <td>
+                                        {{ $invoice->menu }} 
+                                        <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span>
+                                        <br>
+                                        <span class="badge badge-pill badge-orange align-middle">{{ $invoice->status }}</span>
+                                    </td>
                                     <td class="text-center text-success">Rp. {{ number_format($invoice->total,0 ,0, '.') }}</td>
                                 </tr>
                                 @endforeach
