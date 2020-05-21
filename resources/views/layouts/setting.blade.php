@@ -24,11 +24,9 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container-fluid">
                 @auth
-                <button class="navbar-toggler border-0" type="button">
+                <button class="navbar-toggler border-0 position-relative" type="button">
                     @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
-                    <div class="spinner-grow spinner-grow-sm text-orange mt-1" role="status" style="position:fixed;">
-                        <span class="sr-only">Loading...</span>
-                    </div>
+                        <span class="material-icons position-absolute text-success" style="font-size: 1rem; left: 1.5rem;">fiber_manual_record</span>
                     @endif
                     <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none @if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) text-muted @else text-orange @endif">@if(Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') == 0) notifications_none @else notification_important @endif</a>
                 </button>
@@ -111,11 +109,6 @@
                                 </a>
                                 
                                 <a id="navbarDropdown" title="{{ '@' . Auth::user()->username }}" class="nav-link {{ Request::is(['settings', 'setting/account', 'invoices', 'invoice/*', 'notifications', 'notification/*']) ? 'active text-orange' : '' }} material-icons d-none d-md-block" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (Auth::user()->notifications->count() - Auth::user()->notifications->sum('status') > 0)
-                                    <div class="spinner-grow spinner-grow-sm text-orange d-none d-md-inline-flex" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                    @endif
                                     account_circle
                                     <span class="caret"></span>
                                 </a>
