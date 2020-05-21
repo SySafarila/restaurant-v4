@@ -23,6 +23,7 @@
         <x-dashboard.admin />
         <x-dashboard.cashier />
         <x-dashboard.customer />
+        <x-dashboard.chef />
     </div>
 </div>
 @endsection

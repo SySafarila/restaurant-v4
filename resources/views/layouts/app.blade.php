@@ -52,6 +52,7 @@
                             <x-navbar-left.admin />
                             <x-navbar-left.cashier />
                             <x-navbar-left.customer />
+                            <x-navbar-left.chef />
                         @endif
                     </ul>
 
@@ -126,6 +127,7 @@
                                     <x-navbar-right.cashier />
                                     <x-navbar-right.admin />
                                     <x-navbar-right.owner />
+                                    <x-navbar-right.chef />
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
