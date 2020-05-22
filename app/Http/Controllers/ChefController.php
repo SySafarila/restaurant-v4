@@ -66,12 +66,16 @@ class ChefController extends Controller
 
     public function outOfStock($id)
     {
-        // Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
-        //     'status' => 'Out Of Stock'
-        // ]);
+        if (!Invoice::find($id)->status == 'Pending') {
+            return redirect()->route('kitchen.index')->with('status-warning', 'Something error !');
+        }
+        
+        Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
+            'status' => 'Out Of Stock',
+            'chef' => '@' . Auth::user()->username
+        ]);
 
         $invoice = Invoice::find($id);
-        return $invoice;
 
         Refund::create([
             'user_id' => $invoice->user->id,
@@ -80,6 +84,12 @@ class ChefController extends Controller
             'menu_quantity' => $invoice->quantity,
             'refund' => $invoice->total,
             'status' => 'Pending'
+        ]);
+
+        Notification::create([
+            'message' => 'Your order <b>' . $invoice->menu . ' | ' . $invoice->code . '</b> is out of stock.',
+            'status' => false,
+            'user_id' => $invoice->user_id
         ]);
 
         return 'Updated to Out Of Stock !';
