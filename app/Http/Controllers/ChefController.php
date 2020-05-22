@@ -69,7 +69,7 @@ class ChefController extends Controller
         if (!Invoice::find($id)->status == 'Pending') {
             return redirect()->route('kitchen.index')->with('status-warning', 'Something error !');
         }
-        
+
         Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
             'status' => 'Out Of Stock',
             'chef' => '@' . Auth::user()->username
@@ -87,12 +87,12 @@ class ChefController extends Controller
         ]);
 
         Notification::create([
-            'message' => 'Your order <b>' . $invoice->menu . ' | ' . $invoice->code . '</b> is out of stock.',
+            'message' => 'Your order <b>' . $invoice->menu . ' | ' . $invoice->code . '</b> is out of stock, go to Admin"s for the refund.',
             'status' => false,
             'user_id' => $invoice->user_id
         ]);
 
-        return 'Updated to Out Of Stock !';
+        return redirect()->route('kitchen.index')->with('status-warning', 'Menu set to Out Of Stock !');
     }
 
     public function show($id)

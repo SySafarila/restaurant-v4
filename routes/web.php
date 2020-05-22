@@ -119,3 +119,8 @@ Route::post('/kitchen/{id}/out-of-stock', 'ChefController@outOfStock')->name('ki
 // Setting
 Route::get('/settings', 'SettingController@overview')->name('setting.overview');
 Route::get('/setting/account', 'SettingController@index')->name('setting.account');
+
+// Refunds
+Route::get('/refunds', 'RefundsController@index');
+Route::get('/refund/{refund}', 'RefundsController@show');
+Route::post('/refund/{refund}', 'RefundsController@update');
