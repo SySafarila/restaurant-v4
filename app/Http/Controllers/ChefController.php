@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Invoice;
 use App\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChefController extends Controller
 {
@@ -25,7 +26,8 @@ class ChefController extends Controller
             return redirect()->route('kitchen.index')->with('status-warning', 'Warning, Menu is already Cooked');
         }
         Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
-            'status' => 'Cooking'
+            'status' => 'Cooking',
+            'chef' => '@' . Auth::user()->username
         ]);
 
         $menu = Invoice::find($id);
@@ -45,7 +47,8 @@ class ChefController extends Controller
             return redirect()->route('kitchen.index')->with('status-warning', 'Warning, Menu is already Successed');
         }
         Invoice::where(['id' => $id, 'status' => 'Cooking'])->update([
-            'status' => 'Success'
+            'status' => 'Success',
+            'chef' => '@' . Auth::user()->username
         ]);
 
         $menu = Invoice::find($id);
