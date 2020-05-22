@@ -65,7 +65,6 @@ class ChefController extends Controller
 
     public function outOfStock($id)
     {
-        // Update invoice->menu->status to Out Of Stock.
         Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
             'status' => 'Out Of Stock'
         ]);
