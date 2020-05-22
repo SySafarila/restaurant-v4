@@ -111,8 +111,9 @@ Route::get('/cover/{cover}', 'MenusController@getCover')->middleware('admin')->n
 
 // Kitchen
 Route::get('/kitchen', 'ChefController@index')->name('kitchen.index');
-Route::post('/kitchen/{id}', 'ChefController@cooking')->name('kitchen.cooking');
-Route::get('/kitchen/{id}', 'ChefController@show')->name('kitchen.show');
+Route::post('/kitchen/{id}/cooking', 'ChefController@cooking')->name('kitchen.cooking');
+Route::post('/kitchen/{id}/success', 'ChefController@success')->name('kitchen.success');
+Route::redirect('/kitchen/*', 404);
 
 // Setting
 Route::get('/settings', 'SettingController@overview')->name('setting.overview');

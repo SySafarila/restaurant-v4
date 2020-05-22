@@ -45,10 +45,13 @@
                                 <p class="font-weight-bold m-0">{{ $order->menu }}</p>
                                 <p class="m-0 text-muted">{{ $order->code }} | {{ '@' . $order->user->username }}</p>
                                 <div class="d-flex mt-1">
-                                    <a href="#" class="badge badge-success mr-1">Set to Success !</a>
+                                    <a href="{{ route('kitchen.success', $order->id) }}" class="badge badge-success mr-1" onclick="event.preventDefault();document.getElementById('setSuccess').submit();">Set to Success !</a>
                                 </div>
                             </div>
                         </div>
+                        <form action="{{ route('kitchen.success', $order->id) }}" method="post" id="setSuccess">
+                            @csrf
+                        </form>
                         @endforeach
                         @if ($orders->where('status', 'Cooking')->count() == 0)
                             Empty

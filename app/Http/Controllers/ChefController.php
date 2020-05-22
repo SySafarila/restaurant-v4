@@ -22,7 +22,7 @@ class ChefController extends Controller
     public function cooking($id)
     {
         if (Invoice::find($id)->status == 'Cooking') {
-            return redirect()->route('kitchen.index')->with('status-warning', 'Warning, Menu is already cooking');
+            return redirect()->route('kitchen.index')->with('status-warning', 'Warning, Menu is already Cooked');
         }
         Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
             'status' => 'Cooking'
@@ -41,12 +41,22 @@ class ChefController extends Controller
 
     public function success($id)
     {
-        // Update invoice->menu->status to Success.
+        if (Invoice::find($id)->status == 'Success') {
+            return redirect()->route('kitchen.index')->with('status-warning', 'Warning, Menu is already Successed');
+        }
         Invoice::where(['id' => $id, 'status' => 'Cooking'])->update([
             'status' => 'Success'
         ]);
 
-        return 'Updated to Success !';
+        $menu = Invoice::find($id);
+
+        Notification::create([
+            'message' => 'Your order <b>' . $menu->menu . ' | ' . $menu->code . '</b> is already to take.',
+            'status' => false,
+            'user_id' => $menu->user_id
+        ]);
+
+        return redirect()->route('kitchen.index')->with('status-success', 'Menu set to Success !');
     }
 
     public function outOfStock($id)

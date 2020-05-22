@@ -24,7 +24,6 @@
                         </div>
                     </div>
                     <p class="text-muted" title="{{ $code }}">Code : {{ Str::limit($code, 30, ' . . .') }}</p>
-                    {{-- <button type="button" class="btn btn-sm btn-success mb-2" data-toggle="modal" data-target="#modalUnique">Show Unique Code</button> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
