@@ -61,5 +61,24 @@
                 </div>
             </div>
         </div>
+        {{-- <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Succeed</h4>
+                        <hr>
+                        @foreach ($orders->where('status', 'Success')->where('chef', '@' . Auth::user()->username) as $order)
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p class="font-weight-bold m-0">{{ $order->menu }}</p>
+                                <p class="m-0 text-muted">{{ $order->code }} | {{ '@' . $order->user->username }}</p>
+                                <p class="m-0 text-muted">Chef : {{ $order->chef }}</p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div> --}}
     </div>
 @endsection

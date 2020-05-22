@@ -16,7 +16,7 @@ class ChefController extends Controller
 
     public function index()
     {
-        $orders = Invoice::whereIn('status', ['Pending', 'Cooking'])->get();
+        $orders = Invoice::whereIn('status', ['Pending', 'Cooking', 'Success'])->get();
         return view('chef.index', ['orders' => $orders]);
     }
 
