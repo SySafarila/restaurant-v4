@@ -61,24 +61,27 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="row justify-content-center">
+        <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
                         <h4>Succeed</h4>
                         <hr>
-                        @foreach ($orders->where('status', 'Success')->where('chef', '@' . Auth::user()->username) as $order)
+                        @foreach ($success as $item)
                         <div class="card mb-3">
                             <div class="card-body">
-                                <p class="font-weight-bold m-0">{{ $order->menu }}</p>
-                                <p class="m-0 text-muted">{{ $order->code }} | {{ '@' . $order->user->username }}</p>
-                                <p class="m-0 text-muted">Chef : {{ $order->chef }}</p>
+                                <p class="font-weight-bold m-0">{{ $item->menu }}</p>
+                                <p class="m-0 text-muted">{{ $item->code }} | {{ '@' . $item->user->username }}</p>
+                                <p class="m-0 text-muted">Chef : {{ $item->chef }}</p>
                             </div>
                         </div>
                         @endforeach
+                        <div class="d-flex mx-auto">
+                            {{ $success->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 @endsection
