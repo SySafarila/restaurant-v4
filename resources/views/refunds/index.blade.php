@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="container">
+        <x-alert />
         <div class="row justify-content-center">
             <div class="col-md-6 mb-3">
                 <div class="card shadow-sm">
@@ -21,6 +22,8 @@
                                             <p class="m-0 text-muted">{{ $refund->menu }}</p>
                                             <p class="m-0"><span class="text-success">Rp {{ number_format($refund->refund,0 ,0, '.') }}</span> <span class="text-muted">× {{ $refund->menu_quantity }}</span></p>
                                             <span class="badge badge-pill badge-orange">{{ $refund->status }}</span>
+                                            <span class="text-muted"> | </span>
+                                            <a href="{{ route('refunds.update', $refund->id) }}" class="badge badge-pill badge-success" onclick="event.preventDefault();document.getElementById('setSuccess').submit();">Set to Success</a>
                                         </div>
                                         <div class="col d-flex align-items-center flex-row-reverse">
                                             <p class="m-0 text-muted text-right">{{ $refund->created_at->diffForHumans() }}</p>
@@ -28,6 +31,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <form action="{{ route('refunds.update', $refund->id) }}" method="post" id="setSuccess">
+                                @csrf
+                            </form>
                         @endforeach
                         @if ($refunds->where('status', 'Pending')->count() == 0)
                             <span class="text-muted d-block text-center">Empty</span>
@@ -51,7 +57,7 @@
                                             <span class="badge badge-pill badge-orange">{{ $refund->status }}</span>
                                         </div>
                                         <div class="col d-flex align-items-center flex-row-reverse">
-                                            <p class="m-0 text-muted text-right">{{ $refund->created_at->diffForHumans() }}</p>
+                                            <p class="m-0 text-muted text-right">{{ $refund->updated_at->diffForHumans() }}</p>
                                         </div>
                                     </div>
                                 </div>
