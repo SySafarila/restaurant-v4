@@ -29,7 +29,7 @@
                             </form>
                         @endforeach
                         @if ($orders->where('status', 'Pending')->count() == 0)
-                            Empty
+                            <span class="text-muted">Empty</span>
                         @endif
                     </div>
                 </div>
@@ -44,6 +44,7 @@
                             <div class="card-body">
                                 <p class="font-weight-bold m-0">{{ $order->menu }}</p>
                                 <p class="m-0 text-muted">{{ $order->code }} | {{ '@' . $order->user->username }}</p>
+                                <p class="m-0 text-muted">Chef : {{ $order->chef }}</p>
                                 <div class="d-flex mt-1">
                                     <a href="{{ route('kitchen.success', $order->id) }}" class="badge badge-success mr-1" onclick="event.preventDefault();document.getElementById('setSuccess').submit();">Set to Success !</a>
                                 </div>
@@ -54,7 +55,7 @@
                         </form>
                         @endforeach
                         @if ($orders->where('status', 'Cooking')->count() == 0)
-                            Empty
+                            <span class="text-muted">Empty</span>
                         @endif
                     </div>
                 </div>
