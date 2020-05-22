@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->longText('quantity');
             $table->integer('price');
             $table->integer('total');
-            $table->enum('status', ['Pending', 'Cooking', 'Success']);
+            // $table->enum('status', ['Pending', 'Cooking', 'Success']);
             $table->timestamps();
         });
     }

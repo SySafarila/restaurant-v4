@@ -20,11 +20,10 @@
                             @endif
                         </div>
                         <div class="col">
-                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">It's {{ $time->diffForHumans() }}</span></p>
+                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">{{ $time->diffForHumans() }}</span></p>
                         </div>
                     </div>
                     <p class="text-muted" title="{{ $code }}">Code : {{ Str::limit($code, 30, ' . . .') }}</p>
-                    {{-- <button type="button" class="btn btn-sm btn-success mb-2" data-toggle="modal" data-target="#modalUnique">Show Unique Code</button> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -36,7 +35,12 @@
                             <tbody>
                                 @foreach ($invoices->invoices as $invoice)
                                 <tr>
-                                    <td>{{ $invoice->menu }} <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span></td>
+                                    <td>
+                                        {{ $invoice->menu }} 
+                                        <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span>
+                                        <br>
+                                        <span class="badge badge-pill badge-orange align-middle">{{ $invoice->status }}</span>
+                                    </td>
                                     <td class="text-center text-success">Rp. {{ number_format($invoice->total,0 ,0, '.') }}</td>
                                 </tr>
                                 @endforeach

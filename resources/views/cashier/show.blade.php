@@ -24,10 +24,10 @@
                     <span class="text-muted px-2">/</span>
                     <p class="text-muted m-0">Payment</p>
                 </div>
-                <div class="card border-0">
+                <div class="card border-0 bg-transparent">
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover shadow-sm">
+                            <table class="table table-bordered table-hover shadow-sm bg-white">
                                 <thead>
                                     <tr>
                                         <th colspan="3" class="text-center"><span class="text-success">{{ '@' . $user->username }}</span>'s Orders</th>

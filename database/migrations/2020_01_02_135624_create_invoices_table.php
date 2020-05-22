@@ -21,6 +21,8 @@ class CreateInvoicesTable extends Migration
             $table->string('total');
             $table->string('invoice_code_id');
             $table->string('code');
+            $table->enum('status', ['Pending', 'Cooking', 'Success', 'Out Of Stock']);
+            $table->string('chef')->nullable();
             $table->timestamps();
         });
     }

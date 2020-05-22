@@ -109,6 +109,18 @@ Route::post('/setting/admin/{id}', 'SetAdminController@deleteAdmin')->name('dele
 // Trashed Menus
 Route::get('/cover/{cover}', 'MenusController@getCover')->middleware('admin')->name('getCover');
 
+// Kitchen
+Route::get('/kitchen', 'ChefController@index')->name('kitchen.index');
+Route::post('/kitchen/{id}/cooking', 'ChefController@cooking')->name('kitchen.cooking');
+Route::post('/kitchen/{id}/success', 'ChefController@success')->name('kitchen.success');
+Route::redirect('/kitchen/*', 404);
+Route::post('/kitchen/{id}/out-of-stock', 'ChefController@outOfStock')->name('kitchen.outOfStock');
+
 // Setting
 Route::get('/settings', 'SettingController@overview')->name('setting.overview');
 Route::get('/setting/account', 'SettingController@index')->name('setting.account');
+
+// Refunds
+Route::get('/refunds', 'RefundsController@index');
+Route::get('/refund/{refund}', 'RefundsController@show');
+Route::post('/refund/{refund}', 'RefundsController@update');

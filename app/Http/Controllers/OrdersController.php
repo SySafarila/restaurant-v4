@@ -64,7 +64,7 @@ class OrdersController extends Controller
         $check = Order::where([
             'user_id' => $user_id,
             'menu_id' => $menu_id,
-            'status'  => 'Pending'
+            // 'status'  => 'Pending'
         ]);
 
         // Conditionals
@@ -72,17 +72,17 @@ class OrdersController extends Controller
             Order::where([
                 'user_id' => $user_id,
                 'menu_id' => $menu_id,
-                'status'  => 'Pending',
+                // 'status'  => 'Pending',
             ])->update([
                     'quantity' => Order::where([
                     'user_id'  => $user_id,
                     'menu_id'  => $menu_id,
-                    'status'   => 'Pending',
+                    // 'status'   => 'Pending',
                 ])->first('quantity')->quantity + $request['quantity'],
                     'total'   => Order::where([
                     'user_id' => $user_id,
                     'menu_id' => $menu_id,
-                    'status'  => 'Pending',
+                    // 'status'  => 'Pending',
                 ])->first('total')->total + $total,
             ]);
             return redirect()->route('menus.index')->with('status', 'Added to ');
@@ -118,8 +118,8 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        $user  = Auth::user()->id;
-        $order = Order::where('id', $id)->where('user_id', $user)->where('status', 'Pending')->firstOrFail();
+        $user  = Auth::user();
+        $order = Order::where(['id' => $id, 'user_id' => $user->id])->firstOrFail();
 
         return view('orders.edit', ['order' => $order]);
     }
@@ -158,7 +158,7 @@ class OrdersController extends Controller
     public function destroy()
     {
         $user   = Auth::user()->id;
-        $orders = Order::where('user_id', $user)->where('status', 'Pending')->delete();
+        $orders = Order::where('user_id', $user)->delete();
 
         return redirect()->route('orders.index')->with('status', 'Orders deleted');
     }
@@ -166,7 +166,7 @@ class OrdersController extends Controller
     public function destroyOne($id)
     {
         $user   = Auth::user()->id;
-        $orders = Order::where('user_id', $user)->where('status', 'Pending')->where('id', $id)->delete();
+        $orders = Order::where(['user_id' => $user, 'id' => $id])->delete();
 
         return redirect()->route('orders.index')->with('status', 'Order deleted');
     }
