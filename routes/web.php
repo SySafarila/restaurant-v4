@@ -114,6 +114,7 @@ Route::get('/kitchen', 'ChefController@index')->name('kitchen.index');
 Route::post('/kitchen/{id}/cooking', 'ChefController@cooking')->name('kitchen.cooking');
 Route::post('/kitchen/{id}/success', 'ChefController@success')->name('kitchen.success');
 Route::redirect('/kitchen/*', 404);
+Route::post('/kitchen/{id}/out-of-stock', 'ChefController@outOfStock')->name('kitchen.outOfStock');
 
 // Setting
 Route::get('/settings', 'SettingController@overview')->name('setting.overview');

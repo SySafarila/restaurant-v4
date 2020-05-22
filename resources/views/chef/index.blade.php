@@ -20,11 +20,14 @@
                                     <p class="m-0 text-muted">{{ $pending->code }} | {{ '@' . $pending->user->username }}</p>
                                     <div class="d-flex mt-1">
                                         <a href="{{ route('kitchen.cooking', $pending->id) }}" class="badge badge-success mr-1" onclick="event.preventDefault();document.getElementById('setCooking').submit();">Set to Cooking !</a>
-                                        <span class="badge badge-danger mr-1">Set to Out of stock !</span>
+                                        <a href="{{ route('kitchen.outOfStock', $pending->id) }}" class="badge badge-danger mr-1" onclick="event.preventDefault();document.getElementById('setOutOfStock').submit();">Set to Out Of Stock !</a>
                                     </div>
                                 </div>
                             </div>
                             <form action="{{ route('kitchen.cooking', $pending->id) }}" method="post" id="setCooking" class="d-none">
+                                @csrf
+                            </form>
+                            <form action="{{ route('kitchen.outOfStock', $pending->id) }}" method="post" id="setOutOfStock" class="d-none">
                                 @csrf
                             </form>
                         @endforeach

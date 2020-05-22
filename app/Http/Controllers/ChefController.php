@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use App\Notification;
+use App\Refund;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,8 +66,20 @@ class ChefController extends Controller
 
     public function outOfStock($id)
     {
-        Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
-            'status' => 'Out Of Stock'
+        // Invoice::where(['id' => $id, 'status' => 'Pending'])->update([
+        //     'status' => 'Out Of Stock'
+        // ]);
+
+        $invoice = Invoice::find($id);
+        return $invoice;
+
+        Refund::create([
+            'user_id' => $invoice->user->id,
+            'menu' => $invoice->menu,
+            'menu_price' => $invoice->total,
+            'menu_quantity' => $invoice->quantity,
+            'refund' => $invoice->total,
+            'status' => 'Pending'
         ]);
 
         return 'Updated to Out Of Stock !';
