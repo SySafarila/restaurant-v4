@@ -39,4 +39,12 @@
         </a>
     </div>
 </div>
+<div class="col-md-4 col-12 mb-4">
+    <div class="card shadow-sm">
+        <a href="{{ route('refunds.index') }}" class="card-body text-decoration-none">
+            <h5 class="card-title text-dark">Refunds</h5>
+            <h6 class="card-subtitle mb-0 text-muted">Refunds center</h6>
+        </a>
+    </div>
+</div>
 @endif
