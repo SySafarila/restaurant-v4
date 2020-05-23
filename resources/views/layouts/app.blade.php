@@ -87,7 +87,7 @@
                         </li>
                         @if (Auth::user()->level == 'Customer')
                         <li class="nav-item d-md-none">
-                            <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is(['orders', 'order/*']) ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->where('status', 'Pending')->count() }}</span></a>
+                            <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is(['orders', 'order/*']) ? 'active text-orange font-weight-bold' : '' }}">Orders <span class="badge badge-pill badge-success align-middle">{{ Auth::user()->orders->count() }}</span></a>
                         </li>
                         <li class="nav-item d-none d-md-block position-relative">
                             <a href="{{ route('orders.index') }}" class="nav-link material-icons {{ Request::is(['orders', 'order/*']) ? 'active text-orange' : '' }}">shopping_cart</a>

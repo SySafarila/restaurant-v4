@@ -16,6 +16,7 @@ class CreateRefundsTable extends Migration
         Schema::create('refunds', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('invoice_code');
             $table->string('menu');
             $table->string('menu_price');
             $table->integer('menu_quantity');

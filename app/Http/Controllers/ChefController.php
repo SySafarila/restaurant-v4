@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Invoice;
 use App\Notification;
 use App\Refund;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,6 +67,7 @@ class ChefController extends Controller
 
     public function outOfStock($id)
     {
+        $admins = User::where('level', 'Admin')->get();
         if (!Invoice::find($id)->status == 'Pending') {
             return redirect()->route('kitchen.index')->with('status-warning', 'Something error !');
         }
@@ -79,6 +81,7 @@ class ChefController extends Controller
 
         Refund::create([
             'user_id' => $invoice->user->id,
+            'invoice_code' => $invoice->invoice_code->code,
             'menu' => $invoice->menu,
             'menu_price' => $invoice->total,
             'menu_quantity' => $invoice->quantity,
@@ -91,6 +94,14 @@ class ChefController extends Controller
             'status' => false,
             'user_id' => $invoice->user_id
         ]);
+
+        foreach ($admins as $admin) {
+            Notification::create([
+                'message' => '1 refund for <b>@' . $invoice->user->username . '</b> is pending.',
+                'status' => false,
+                'user_id' => $admin->id
+            ]);
+        }
 
         return redirect()->route('kitchen.index')->with('status-warning', 'Menu set to Out Of Stock !');
     }

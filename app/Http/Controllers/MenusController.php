@@ -10,6 +10,7 @@ use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class MenusController extends Controller
 {
@@ -89,9 +90,10 @@ class MenusController extends Controller
             $lastImage = Menu_cover::orderBy('id', 'desc')->first()->id + 1;
         }
 
+        $strRandom5 = Str::random(5);
         $image1Ext = $request->file('cover_image')->getClientOriginalExtension();
         $getLastId = Menu::withTrashed()->orderBy('id', 'desc')->first()->id;
-        $image1Name = 'image-cover-' . $getLastId . '.' . $image1Ext;
+        $image1Name = 'image-cover-' . $strRandom5 . $getLastId . '.' . $image1Ext;
 
         Menu_cover::create([
             'name' => $image1Name,
@@ -108,7 +110,8 @@ class MenusController extends Controller
                 } else {
                     $imgOtherLastId = Menu_image::orderBy('id', 'desc')->first()->id + 1;
                 }
-                $imgOtherFileName = 'image-' . $imgOtherLastId . '.' . $image->getClientOriginalExtension();
+                $strRandom10 = Str::random(10);
+                $imgOtherFileName = 'image-' . $strRandom10 . $imgOtherLastId . '.' . $image->getClientOriginalExtension();
 
                 Menu_image::create([
                     'name' => $imgOtherFileName,
