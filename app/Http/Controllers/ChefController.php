@@ -81,6 +81,7 @@ class ChefController extends Controller
 
         Refund::create([
             'user_id' => $invoice->user->id,
+            'invoice_code' => $invoice->invoice_code->code,
             'menu' => $invoice->menu,
             'menu_price' => $invoice->total,
             'menu_quantity' => $invoice->quantity,
