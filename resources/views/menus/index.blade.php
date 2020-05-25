@@ -46,7 +46,7 @@
                             <img src="{{ $image }}" alt="{{ $image }}" class="menus-image">
                             {{-- <div style="background-image: url('{{ $image }}'); height:140px; width:100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div> --}}
                             <div class="card-body p-2">
-                                <h6 class="card-title"><a href="{{ route('menus.show', $menu->id) }}" class="stretched-link text-decoration-none text-success font-weight-bold">{{ Str::limit($menu->name, 29, '...') }}</a></h6>
+                                <h6 class="card-title menu-title-wrap"><a href="{{ route('menus.show', $menu->id) }}" class="stretched-link text-decoration-none text-success font-weight-bold">{{ $menu->name }}</a></h6>
                                 <h6 class="card-subtitle text-orange font-weight-bold">Rp {{ number_format($menu->price,0 ,0, '.') }}</h6>
                                 {{-- <p class="card-text">{{ Str::limit($menu->description, 50) }}</p> --}}
                             </div>

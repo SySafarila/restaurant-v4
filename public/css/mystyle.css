@@ -214,6 +214,12 @@ a.badge-orange.focus {
     color: black;
 }
 
+.menu-title-wrap {
+    max-height: 34.56px;
+    overflow: hidden;
+    word-break: break-all;
+}
+
 /* Responsive MD */
 @media (min-width: 768px) {
     .hr {
