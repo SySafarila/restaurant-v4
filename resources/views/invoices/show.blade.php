@@ -8,48 +8,45 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 col-12">
-            <div class="card shadow">
+            <div class="card shadow-sm">
                 <div class="card-body">
                     <h3 class="card-title text-success text-center">INVOICE</h3>
-                    <div class="row">
-                        <div class="col">
-                            <span class="font-weight-bold">Status :</span> <span class="badge badge-pill badge-success">Success</span>
-                            @if (Auth::user()->level == 'Admin' or Auth::user()->level == 'Owner')
-                            <br>
-                            <span class="font-weight-bold">Username :</span> <span class="badge badge-pill badge-orange">{{ '@' . $invoices->first()->user->username }}</span>
-                            @endif
-                        </div>
-                        <div class="col">
-                            <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span> <p><span class="font-weight-bold">{{ $time->diffForHumans() }}</span></p>
-                        </div>
+                    <div class="d-flex justify-content-between">
+                        <span>
+                            <span class="font-weight-bold">Payment :</span> <span class="badge badge-pill badge-success">Success</span>
+                        </span>
+                        <span class="text-muted">{{ $time->diffForHumans() }}</span>
                     </div>
-                    <p class="text-muted" title="{{ $code }}">Code : {{ Str::limit($code, 30, ' . . .') }}</p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th class="text-center">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($invoices->invoices as $invoice)
-                                <tr>
-                                    <td>
-                                        {{ $invoice->menu }} 
-                                        <span class="badge badge-pill badge-success align-middle">{{ $invoice->quantity }}</span>
-                                        <br>
-                                        <span class="badge badge-pill badge-orange align-middle">{{ $invoice->status }}</span>
-                                    </td>
-                                    <td class="text-center text-success">Rp. {{ number_format($invoice->total,0 ,0, '.') }}</td>
-                                </tr>
-                                @endforeach
-                                <tr>
-                                    <td class="text-right font-weight-bold text-success">Total </td>
-                                    <td class="text-center font-weight-bold text-orange">Rp. {{ number_format($invoices->invoices->sum('total'),0 ,0, '.') }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    @if (Auth::user()->level == 'Admin' or Auth::user()->level == 'Owner')
+                    <br>
+                    <span class="font-weight-bold">Username :</span> <span class="badge badge-pill badge-orange">{{ '@' . $invoices->first()->user->username }}</span>
+                    @endif
+                    <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span>
+                    <div class="d-flex mb-2" style="margin-left: -2px;">
+                        <span class="material-icons text-muted mr-1">receipt</span>
+                        <span class="text-muted">{{ $code }}</span>
+                    </div>
+                    <div class="row">
+                        @foreach ($invoices->invoices as $invoice)
+                        <div class="col-12">
+                            <div class="card border-0 shadow-sm mb-2">
+                                <div class="card-body">
+                                    <p class="m-0 font-weight-bold">{{ $invoice->menu }}</p>
+                                    <div class="d-flex justify-content-between">
+                                        <small class="text-muted">Price : <span class="text-success">Rp {{ number_format($invoice->total / $invoice->quantity,0 ,0, '.') }}</span></small>
+                                        <small class="text-muted">Quantity : <span class="text-success">{{ $invoice->quantity }}</span></small>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font-weight-bold text-muted m-0">Total : <span class="text-orange">Rp {{ number_format($invoice->total,0 ,0, '.') }}</span></p>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge badge-pill badge-orange">{{ $invoice->status }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
