@@ -90,7 +90,7 @@ class ChefController extends Controller
         ]);
 
         Notification::create([
-            'message' => 'Your order <b>' . $invoice->menu . ' | ' . $invoice->code . '</b> is out of stock, go to Admin"s for the refund.',
+            'message' => "Your order <b>' . $invoice->menu . ' | ' . $invoice->code . '</b> is out of stock, go to Admin's for your refund.",
             'status' => false,
             'user_id' => $invoice->user_id
         ]);
