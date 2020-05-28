@@ -30,7 +30,7 @@ class RefundsController extends Controller
         ]);
         
         Notification::create([
-            'message' => 'You got refund of <b>Rp ' . number_format($refund->refund,0 ,0, '.') . '</b>.',
+            'message' => 'You got refund of <b>Rp ' . number_format($refund->refund,0 ,0, '.') . '</b> with Invoice Code is <b>' . $refund->invoice_code . '</b>.',
             'status' => false,
             'user_id' => $refund->user_id
         ]);

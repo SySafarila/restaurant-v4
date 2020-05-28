@@ -134,6 +134,7 @@ class CashierController extends Controller
             $order = Order::where('id', $id)->first();
 
             $code = 'INV/U-' . $order->user_id . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
+            $code_slug = 'INV-U-' . $order->user_id . '-' . $day . '-' . $month . '-' . $year . '-' . $lastCode;
 
             $min = Menu::where('id', $order->menu_id)->first();
 
@@ -174,7 +175,8 @@ class CashierController extends Controller
 
         Invoice_code::create([
             'user_id' => $order->user_id,
-            'code' => $code
+            'code' => $code,
+            'code_slug' => $code_slug
         ]);
 
         Notification::create([

@@ -153,7 +153,7 @@
                             </div>
                             <div class="col-8">
                                 <div class="card-body px-1 pb-0 pt-1">
-                                <h6 class="card-title font-weight-bold">{{ Str::limit($other->name, 28, '...') }}</h6>
+                                <h6 class="card-title font-weight-bold menu-title-wrap">{{ $other->name }}</h6>
                                 <h6 class="card-subtitle m-0 text-orange font-weight-bold">Rp {{ number_format($other->price,0 ,0, '.') }}</h6>
                                 <span class="badge badge-pill badge-success align-middle" style="white-space: pre;">Stock : {{ $other->stock }}</span>
                                 </div>

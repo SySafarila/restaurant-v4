@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice_code extends Model
 {
     // protected $primaryKey = 'code';
-    protected $fillable = ['user_id', 'code'];
+    protected $fillable = ['user_id', 'code', 'code_slug'];
 
     // Relationship
     public function invoices()

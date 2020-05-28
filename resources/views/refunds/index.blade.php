@@ -54,6 +54,7 @@
                                         <div class="col">
                                             <p class="m-0 font-weight-bold">{{ '@' . $refund->user->username }}</p>
                                             <p class="m-0 text-muted">{{ $refund->menu }}</p>
+                                            <p class="m-0 text-muted">{{ $refund->invoice_code }}</p>
                                             <p class="m-0"><span class="text-success">Rp {{ number_format($refund->refund,0 ,0, '.') }}</span> <span class="text-muted">× {{ $refund->menu_quantity }}</span></p>
                                             <span class="badge badge-pill badge-orange">{{ $refund->status }}</span>
                                         </div>

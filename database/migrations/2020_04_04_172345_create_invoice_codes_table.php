@@ -17,6 +17,7 @@ class CreateInvoiceCodesTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('code');
+            $table->string('code_slug');
             $table->timestamps();
         });
     }
