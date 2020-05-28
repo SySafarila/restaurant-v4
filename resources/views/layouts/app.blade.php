@@ -73,7 +73,6 @@
         function menuButtonClick() {
             if (document.getElementById('menuButton').innerHTML == 'menu') {
                 document.getElementById('menuButton').innerHTML = 'menu_open';
-                // console.log('true');
             } else {
                 document.getElementById('menuButton').innerHTML = 'menu';
             }
