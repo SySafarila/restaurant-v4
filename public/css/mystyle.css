@@ -220,6 +220,20 @@ a.badge-orange.focus {
     word-break: break-all;
 }
 
+#refunds-pending-more-vert {
+    transition: transform 0.2s ease-in-out;
+    transform: scale(0);
+    cursor: pointer;
+}
+
+#refunds-pending-more-vert:hover, #refunds-pending-more-vert:focus {
+    color: black !important;
+}
+
+#refunds-pending-card:hover #refunds-pending-more-vert {
+    transform: scale(1);
+}
+
 /* Responsive MD */
 @media (min-width: 768px) {
     .hr {

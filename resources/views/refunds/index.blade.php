@@ -8,10 +8,35 @@
     <div class="container">
         <x-alert />
         <div class="row justify-content-center">
-            <div class="col-md-6 mb-3">
-                <div class="card shadow-sm">
+            <div class="col-6 mb-3 pr-2 pr-md-3">
+                <div class="card bg-success text-light shadow-sm border-0">
                     <div class="card-body">
-                        <h4>Pending</h4>
+                        <div class="d-flex justify-content-between">
+                            <h4 class="m-0">Success</h4>
+                            <h4 class="m-0 font-weight-bold">{{ $refunds->where('status', 'Success')->count() }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 mb-3 pl-2 pl-md-3">
+                <div class="card bg-danger text-light shadow-sm border-0">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="m-0">Pending</h4>
+                            <h4 class="m-0 font-weight-bold">{{ $refunds->where('status', 'Success')->count() }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm" id="refunds-pending-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="m-0">Pending</h4>
+                            <span class="material-icons text-muted" id="refunds-pending-more-vert">more_vert</span>
+                        </div>
                         <hr>
                         @foreach ($refunds->where('status', 'Pending') as $refund)
                             <div class="card mb-1">
@@ -42,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            {{-- <div class="col-md-6 mb-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h4>Success</h4>
@@ -70,7 +95,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
