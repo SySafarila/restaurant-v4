@@ -42,9 +42,9 @@
                 {{-- Carousel --}}
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="background-color: #38c172;"></li>
                         @foreach ($images as $item)
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $no }}"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $no }}" style="background-color: #38c172;"></li>
                         @endforeach
                     </ol>
                     <div class="carousel-inner">
@@ -66,11 +66,13 @@
                         @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
+                        <span class="material-icons text-success">arrow_back_ios</span>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
+                        <span class="material-icons text-success">arrow_forward_ios</span>
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
