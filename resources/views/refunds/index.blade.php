@@ -51,7 +51,6 @@
                                             <span class="text-muted"> | </span>
                                             <a href="{{ route('refunds.update', $refund->id) }}" class="badge badge-pill badge-success" onclick="event.preventDefault();document.getElementById('setSuccess').submit();">Set to Success</a>
                                         </div>
-                                        <hr>
                                         <div class="col d-flex align-items-center flex-row-reverse">
                                             <p class="m-0 text-muted text-right">{{ $refund->created_at->diffForHumans() }}</p>
                                         </div>
