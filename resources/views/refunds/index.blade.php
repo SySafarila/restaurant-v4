@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h4 class="m-0">Pending</h4>
-                            <h4 class="m-0 font-weight-bold">{{ $refunds->where('status', 'Success')->count() }}</h4>
+                            <h4 class="m-0 font-weight-bold">{{ $refunds->where('status', 'Pending')->count() }}</h4>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         </div>
                         <hr>
                         @foreach ($refunds->where('status', 'Pending') as $refund)
-                            <div class="card mb-1">
+                            <div class="card mb-3 shadow-sm border-0">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
@@ -51,6 +51,7 @@
                                             <span class="text-muted"> | </span>
                                             <a href="{{ route('refunds.update', $refund->id) }}" class="badge badge-pill badge-success" onclick="event.preventDefault();document.getElementById('setSuccess').submit();">Set to Success</a>
                                         </div>
+                                        <hr>
                                         <div class="col d-flex align-items-center flex-row-reverse">
                                             <p class="m-0 text-muted text-right">{{ $refund->created_at->diffForHumans() }}</p>
                                         </div>
