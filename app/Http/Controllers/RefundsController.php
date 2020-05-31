@@ -36,4 +36,10 @@ class RefundsController extends Controller
         ]);
         return redirect()->route('refunds.index')->with('status-success', 'Refund Success');
     }
+
+    public function success()
+    {
+        $refunds = Refund::where('status', 'Success')->latest()->paginate(1);
+        return view('refunds.success', ['refunds' => $refunds]);
+    }
 }

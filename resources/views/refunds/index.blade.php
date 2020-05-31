@@ -11,6 +11,7 @@
             <div class="col-6 mb-3 pr-2 pr-md-3">
                 <div class="card bg-success text-light shadow-sm border-0">
                     <div class="card-body">
+                        <a href="{{ route('refunds.success') }}" class="stretched-link"></a>
                         <div class="d-flex justify-content-between">
                             <h4 class="m-0">Success</h4>
                             <h4 class="m-0 font-weight-bold">{{ $refunds->where('status', 'Success')->count() }}</h4>
