@@ -39,7 +39,7 @@ class RefundsController extends Controller
 
     public function success()
     {
-        $refunds = Refund::where('status', 'Success')->latest()->paginate(1);
+        $refunds = Refund::where('status', 'Success')->latest()->paginate(10);
         return view('refunds.success', ['refunds' => $refunds]);
     }
 }
