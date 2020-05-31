@@ -33,8 +33,8 @@
                     <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none {{ Request::is('notifications') ? ' text-orange ' : 'text-muted' }}">notifications_none</a>
                 </button>
                 @else
-                <button class="navbar-toggler border-0" type="button">
-                    <a href="#" class="material-icons pt-1 text-decoration-none text-muted">notifications_none</a>
+                <button class="navbar-toggler border-0" type="button" data-toggle="tooltip" title="Login to see Notifications" id="notifUnAuth">
+                    <span class="material-icons pt-1 text-decoration-none text-muted">notifications_none</span>
                 </button>
                 @endauth
                 <a class="navbar-brand text-success my-font mx-auto" href="{{ url('/') }}">Restaurant v4</a>
@@ -69,6 +69,14 @@
             </div>
         </footer>
     </div>
+    @guest
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script>
+            $(function () {
+                $('#notifUnAuth').tooltip()
+            });
+        </script>
+    @endguest
     <script>
         function menuButtonClick() {
             if (document.getElementById('menuButton').innerHTML == 'menu') {
