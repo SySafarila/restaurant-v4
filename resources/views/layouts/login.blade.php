@@ -21,7 +21,7 @@
     <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/restaurantv4.css') }}" rel="stylesheet">
 </head>
-<body class="d-flex justify-content-center align-items-center" style="height: 80vh">
+<body class="bg-white d-flex justify-content-center align-items-center vh-100">
     @yield('content')
 </body>
 <!-- Build With <3 -->

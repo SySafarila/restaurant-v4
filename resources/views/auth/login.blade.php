@@ -4,38 +4,40 @@
 
 @section('content')
 <div class="container">
-    <x-alert />
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <h1 class="material-icons d-block text-center" style="font-size: 5rem; margin-block: 2rem;">face</h1>
-            <form action="{{ route('login') }}" method="post">
-                @csrf
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-transparent border-0 material-icons pl-0" id="email">email</span>
-                    </div>
-                    <input type="email" class="form-control bg-transparent border-0 px-0" placeholder="Email" name="email" value="{{ old('email') }}" style="box-shadow: none;" required autofocus>
+            <div class="card">
+                <div class="card-body p-5">
+                    <h5 class="text-center my-font text-success mb-4">Restaurant V4</h5>
+                    <h3 class="text-center">Sign in</h3>
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="modern-form" style="margin-bottom: 0.5rem;">
+                            <input type="text" class="form-control input-field" name="email" value="{{ old('email') }}" required>
+                            <label for="email" class="input-label">Email</label>
+                        </div>
+                        <div class="modern-form" style="margin-bottom: 0.5rem;">
+                            <input type="password" class="form-control input-field" name="password" value="{{ old('password') }}" required>
+                            <label for="password" class="input-label">Password</label>
+                        </div>
+                        <div class="custom-control custom-checkbox my-3">
+                            <input type="checkbox" class="custom-control-input" id="remember" name="remember">
+                            <label class="custom-control-label" for="remember">Remember me</label>
+                        </div>
+                        <a href="{{ route('password.request') }}" class="text-primary font-weight-bold text-decoration-none">Forgot password ?</a>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <a href="{{ route('register') }}" class="text-primary font-weight-bold text-decoration-none">Create Account</a>
+                            <button type="submit" class="btn btn-sm btn-success">Login</button>
+                        </div>
+                    </form>
+                    @foreach ($errors->all() as $error)
+                        <div class="d-flex align-items-center mt-3">
+                            <span class="material-icons text-danger">info</span>
+                            <span class="text-danger ml-2">{{ $error }}</span>
+                        </div>
+                    @endforeach
                 </div>
-                <hr style="margin-top: -0.6rem;">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-transparent border-0 material-icons pl-0" id="password">lock</span>
-                    </div>
-                    <input type="password" class="form-control bg-transparent border-0 px-0" placeholder="Password" name="password" style="box-shadow: none;" required>
-                </div>
-                <hr style="margin-top: -0.6rem;">
-                <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" id="remember_me" name="remember">
-                    <label class="custom-control-label" for="remember_me">Remember Me</label>
-                </div>
-                <button type="submit" class="btn btn-block btn-success">Login</button>
-            </form>
-            @foreach ($errors->all() as $error)
-                <div class="d-flex mt-3">
-                    <p class="material-icons text-danger">info</p>
-                    <p class="text-danger" style="margin-left: 0.5rem;">{{ $error }}</p>
-                </div>
-            @endforeach
+            </div>
         </div>
     </div>
 </div>
