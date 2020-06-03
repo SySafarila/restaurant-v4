@@ -22,7 +22,7 @@
                         </div>
                         <div class="custom-control custom-checkbox my-3">
                             <input type="checkbox" class="custom-control-input" id="remember" name="remember">
-                            <label class="custom-control-label" for="remember">Remember me</label>
+                            <label class="custom-control-label" for="remember" style="cursor: pointer; user-select: none;">Remember me</label>
                         </div>
                         <a href="{{ route('password.request') }}" class="text-primary font-weight-bold text-decoration-none">Forgot password ?</a>
                         <div class="d-flex justify-content-between align-items-center mt-3">
