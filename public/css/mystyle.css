@@ -253,10 +253,11 @@ a.badge-orange.focus {
 .input-field:focus {
     box-shadow: none;
 }
+
 .input-field:focus + .input-label,
 .input-field:valid + .input-label {
     top: 0rem;
-    font-size: 14px;
+    font-size: 12px;
     background-color: white;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
