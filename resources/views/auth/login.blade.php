@@ -13,11 +13,11 @@
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="modern-form" style="margin-bottom: 0.5rem;">
-                            <input type="text" class="form-control input-field" name="email" value="{{ old('email') }}" required>
+                            <input type="text" class="form-control input-field text-truncate" name="email" value="{{ old('email') }}" required>
                             <label for="email" class="input-label">Email</label>
                         </div>
                         <div class="modern-form" style="margin-bottom: 0.5rem;">
-                            <input type="password" class="form-control input-field" name="password" value="{{ old('password') }}" required>
+                            <input type="password" class="form-control input-field" name="password" required>
                             <label for="password" class="input-label">Password</label>
                         </div>
                         <div class="custom-control custom-checkbox my-3">
