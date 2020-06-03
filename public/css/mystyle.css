@@ -245,6 +245,7 @@ a.badge-orange.focus {
     top: 1.1rem;
     left: 0.8rem;
     color: #6c757d;
+    pointer-events: none;
     transition: all 0.2s ease-in-out;
 }
 
