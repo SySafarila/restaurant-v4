@@ -23,6 +23,7 @@
 </head>
 <body class="bg-white d-flex justify-content-center align-items-center vh-100">
     @yield('content')
+    @yield('script')
 </body>
 <!-- Build With <3 -->
 </html>

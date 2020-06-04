@@ -264,6 +264,10 @@ a.badge-orange.focus {
     left: 0.5rem;
 }
 
+button:disabled {
+    cursor: not-allowed;
+}
+
 .input-field:focus + .input-label {
     color: #80bdff;
 }
