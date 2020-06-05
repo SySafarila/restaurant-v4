@@ -125,3 +125,4 @@ Route::get('/refunds', 'RefundsController@index')->name('refunds.index');
 Route::get('/refund/{refund}', 'RefundsController@show')->name('refunds.show');
 Route::post('/refund/{refund}', 'RefundsController@update')->name('refunds.update');
 Route::get('/refunds/success', 'RefundsController@success')->name('refunds.success');
+Route::get('/refunds/search', 'RefundsController@search')->name('refunds.search');

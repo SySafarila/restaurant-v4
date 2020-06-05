@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notification;
 use App\Refund;
+use App\User;
 use Illuminate\Http\Request;
 
 class RefundsController extends Controller
@@ -41,5 +42,11 @@ class RefundsController extends Controller
     {
         $refunds = Refund::where('status', 'Success')->latest()->paginate(10);
         return view('refunds.success', ['refunds' => $refunds]);
+    }
+
+    public function search(Request $request)
+    {
+        $user = User::where('username', $request->username)->first();
+        return view('refunds.search', ['user' => $user]);
     }
 }
