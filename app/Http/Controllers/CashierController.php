@@ -138,8 +138,6 @@ class CashierController extends Controller
 
             $min = Menu::where('id', $order->menu_id)->first();
 
-            $image = $min->images->first()->name;
-
             if ($order->menu->stock == 0) {
                 return ('Out of stock');
             }
@@ -152,12 +150,16 @@ class CashierController extends Controller
                 'stock' => $min->stock - $order->quantity
             ]);
 
-            if ($min->stock - $order->quantity == 0) {
-                if (Storage::disk('local')->exists('public/menuImages/' . $image) == true) {
-                    Storage::move('public/menuImages/' . $image, 'menuImages/' . $image);
+            if ($min->images->count() > 0) {
+                $image = $min->images->first()->name;
+                if ($min->stock - $order->quantity == 0) {
+                    if (Storage::disk('local')->exists('public/menuImages/' . $image) == true) {
+                        Storage::move('public/menuImages/' . $image, 'menuImages/' . $image);
+                    }
+                    Menu::where('id', $order->menu_id)->delete();
                 }
-                Menu::where('id', $order->menu_id)->delete();
             }
+
 
             $invoice = Invoice::create([
                 'user_id' => $order->user_id,
