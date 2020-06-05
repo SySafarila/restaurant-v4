@@ -136,23 +136,23 @@ class CashierController extends Controller
             $code = 'INV/U-' . $order->user_id . '/' . $day . '/' . $month . '/' . $year . '/' . $lastCode;
             $code_slug = 'INV-U-' . $order->user_id . '-' . $day . '-' . $month . '-' . $year . '-' . $lastCode;
 
-            $min = Menu::where('id', $order->menu_id)->first();
+            $menu = Menu::where('id', $order->menu_id)->first();
 
             if ($order->menu->stock == 0) {
                 return ('Out of stock');
             }
             
-            if ($min->stock - $order->quantity < 0) {
+            if ($menu->stock - $order->quantity < 0) {
                 return ('quantity is not enough');
             }
 
-            $menu = Menu::where('id', $order->menu_id)->update([
-                'stock' => $min->stock - $order->quantity
+            Menu::where('id', $order->menu_id)->update([
+                'stock' => $menu->stock - $order->quantity
             ]);
 
-            if ($min->images->count() > 0) {
-                $image = $min->images->first()->name;
-                if ($min->stock - $order->quantity == 0) {
+            if ($menu->images->count() > 0) {
+                $image = $menu->images->first()->name;
+                if ($menu->stock - $order->quantity == 0) {
                     if (Storage::disk('local')->exists('public/menuImages/' . $image) == true) {
                         Storage::move('public/menuImages/' . $image, 'menuImages/' . $image);
                     }
@@ -160,8 +160,7 @@ class CashierController extends Controller
                 }
             }
 
-
-            $invoice = Invoice::create([
+            Invoice::create([
                 'user_id' => $order->user_id,
                 'menu' => $order->menu->name,
                 'quantity' => $order->quantity,
@@ -170,9 +169,8 @@ class CashierController extends Controller
                 'code' => $code,
                 'status' => 'Pending',
             ]);
-
             
-            $delete = Order::where('id', $id)->delete();
+            Order::where('id', $id)->delete();
         }
 
         Invoice_code::create([
