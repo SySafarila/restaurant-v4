@@ -18,6 +18,8 @@
                                 <div class="card-body">
                                     <p class="font-weight-bold m-0">{{ $pending->menu }}</p>
                                     <p class="m-0 text-muted">{{ $pending->code }} | {{ '@' . $pending->user->username }}</p>
+                                    <p class="m-0 text-muted">Quantity : {{ $pending->quantity }}</p>
+                                    <hr>
                                     <div class="d-flex mt-1">
                                         <a href="{{ route('kitchen.cooking', $pending->id) }}" class="badge badge-success mr-1" onclick="event.preventDefault();document.getElementById('setCooking').submit();">Set to Cooking !</a>
                                         <a href="{{ route('kitchen.outOfStock', $pending->id) }}" class="badge badge-danger mr-1" onclick="event.preventDefault();document.getElementById('setOutOfStock').submit();">Set to Out Of Stock !</a>
@@ -47,6 +49,8 @@
                             <div class="card-body">
                                 <p class="font-weight-bold m-0">{{ $order->menu }}</p>
                                 <p class="m-0 text-muted">{{ $order->code }} | {{ '@' . $order->user->username }}</p>
+                                <p class="m-0 text-muted">Quantity : {{ $order->quantity }}</p>
+                                <hr>
                                 <p class="m-0 text-muted">Chef : {{ $order->chef }}</p>
                                 <div class="d-flex mt-1">
                                     <a href="{{ route('kitchen.success', $order->id) }}" class="badge badge-success mr-1" onclick="event.preventDefault();document.getElementById('setSuccess').submit();">Set to Success !</a>
