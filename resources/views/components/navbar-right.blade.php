@@ -12,7 +12,7 @@
     @else
     <li class="nav-item d-none d-md-block position-relative">
         <a href="{{ route('notifications.index') }}" class="nav-link material-icons {{ Request::is(['notifications', 'notification/*']) ? 'active text-orange' : '' }}">notifications_none</a>
-        <small class="badge badge-pill badge-success position-absolute border border-white" style="left: 1.4rem;">{{ Auth::user()->notifications->where('status', false)->count() }}</small>
+        <small class="badge badge-pill badge-success position-absolute border border-white" style="left: 1.4rem; top: 0rem;">{{ Auth::user()->notifications->where('status', false)->count() }}</small>
     </li>
     @if (Auth::user()->level == 'Customer')
     <li class="nav-item d-md-none">
@@ -20,7 +20,7 @@
     </li>
     <li class="nav-item d-none d-md-block position-relative">
         <a href="{{ route('orders.index') }}" class="nav-link material-icons {{ Request::is(['orders', 'order/*']) ? 'active text-orange' : '' }}">shopping_cart</a>
-        <small class="badge badge-pill badge-success position-absolute border border-white" style="left: 1.5rem;">{{ Auth::user()->orders->count() }}</small>
+        <small class="badge badge-pill badge-success position-absolute border border-white" style="left: 1.5rem; top: 0rem;">{{ Auth::user()->orders->count() }}</small>
     </li>
     @endif
     @if (Auth::user()->level == 'Owner')

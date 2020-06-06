@@ -272,6 +272,10 @@ button:disabled {
     color: #80bdff;
 }
 
+.github {
+    width: 1.5rem;
+}
+
 /* Responsive MD */
 @media (min-width: 768px) {
     .hr {
