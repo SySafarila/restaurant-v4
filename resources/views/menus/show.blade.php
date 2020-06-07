@@ -28,9 +28,9 @@
         {{-- Breadcrumb --}}
         <div class="my-breadcrumb d-flex pb-3">
             <div class="container">
-                <a href="{{ route('dashboard') }}" class="text-decoration-none text-success">Dashboard</a>
-                <span class="text-muted px-2">/</span>
                 <a href="{{ route('menus.index') }}" class="text-decoration-none text-success">Menus</a>
+                <span class="text-muted px-2">/</span>
+                <a href="{{ route('menus.category', ['category' => $menu->category]) }}" class="text-decoration-none text-success">{{ $menu->category }}</a>
                 <span class="text-muted px-2">/</span>
                 <span class="text-decoration-none text-orange text-break">{{ $menu->name }}</span>
             </div>

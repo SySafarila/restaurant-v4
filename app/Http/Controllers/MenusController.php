@@ -390,4 +390,10 @@ class MenusController extends Controller
             return abort(404);
         }
     }
+
+    public function foods($category)
+    {
+        $menus = Menu::where('category', $category)->paginate(10);
+        return view('menus.index', ['menus' => $menus]);
+    }
 }

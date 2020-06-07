@@ -68,6 +68,7 @@ Route::post('/menu/{menu}/add-images', 'MenusController@addImages')->middleware(
 
 // Menus Search
 Route::get('menus/search', 'MenusController@search')->name('menus.search');
+Route::get('/menus/{category?}', 'MenusController@foods')->name('menus.category');
 
 // Orders ( Customer access only )
 Route::get('/orders', 'OrdersController@index')->name('orders.index');
