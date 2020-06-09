@@ -67,12 +67,12 @@
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
-                        <span class="material-icons text-success">arrow_back_ios</span>
+                        <span class="material-icons text-light bg-success rounded-pill">chevron_left</span>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                         {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
-                        <span class="material-icons text-success">arrow_forward_ios</span>
+                        <span class="material-icons text-light bg-success rounded-pill">chevron_right</span>
                         <span class="sr-only">Next</span>
                     </a>
                 </div>

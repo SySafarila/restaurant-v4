@@ -23,6 +23,7 @@
 </head>
 <body class="bg-light">
     <div id="app">
+        <x-mini-navbar />
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container-fluid">
                 @auth
