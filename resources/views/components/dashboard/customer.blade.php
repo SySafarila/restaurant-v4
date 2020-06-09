@@ -34,7 +34,7 @@
     </div>
 </div>
 <div class="col-md-4 col-12 mb-3">
-    <div class="card shadow-sm h-100">
+    <div class="card shadow-sm">
         <a href="{{ route('invoices.index') }}" class="card-body text-decoration-none">
             <h5 class="card-title text-dark">Invoices</h5>
             <h6 class="card-subtitle mb-0 text-muted">
