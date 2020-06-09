@@ -40,11 +40,11 @@
         <div class="col-md-6 col-sm-12">
             <div class="card mb-4 shadow">
                 {{-- Carousel --}}
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="images-navigation" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="background-color: #38c172;"></li>
+                        <li data-target="#images-navigation" data-slide-to="0" class="active" style="background-color: #38c172;"></li>
                         @foreach ($images as $item)
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $no }}" style="background-color: #38c172;"></li>
+                        <li data-target="#images-navigation" data-slide-to="{{ $no }}" style="background-color: #38c172;"></li>
                         @endforeach
                     </ol>
                     <div class="carousel-inner">
@@ -65,12 +65,12 @@
                         </div>
                         @endforeach
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#images-navigation" role="button" data-slide="prev">
                         {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
                         <span class="material-icons text-light bg-success rounded-pill">chevron_left</span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#images-navigation" role="button" data-slide="next">
                         {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
                         <span class="material-icons text-light bg-success rounded-pill">chevron_right</span>
                         <span class="sr-only">Next</span>
