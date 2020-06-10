@@ -99,8 +99,10 @@ class MenusController extends Controller
             'name' => $image1Name,
             'menu_id' => $getLastId
         ]);
-            
-        $upload = $request->file('cover_image')->storeAs('public/menuImages', $image1Name);
+           
+        $dir = 'public/menuImages';
+        // Upload
+        $request->file('cover_image')->storeAs($dir, $image1Name);
             
         // Other images
         if ($request->hasFile('images') == true) {
@@ -119,7 +121,7 @@ class MenusController extends Controller
                 ]);
 
                 // Upload
-                $image->storeAs('public/menuimages', $imgOtherFileName);
+                $image->storeAs($dir, $imgOtherFileName);
             }
         }
 
