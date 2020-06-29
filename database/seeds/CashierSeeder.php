@@ -22,7 +22,7 @@ class CashierSeeder extends Seeder
             'level' => 'Cashier',
             'status' => 'Active',
             'created_at' => Carbon::now(),
-            'password' => Hash::make('cashier'),
+            'password' => Hash::make('password'),
         ]);
         // php artisan db:seed --class=CashierSeeder
     }

@@ -23,7 +23,7 @@ class ChefSeeder extends Seeder
             'level' => 'Chef',
             'status' => 'Active',
             'created_at' => Carbon::now(),
-            'password' => Hash::make('chef'),
+            'password' => Hash::make('password'),
         ]);
         // php artisan db:seed --class=ChefSeeder
     }
