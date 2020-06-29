@@ -23,6 +23,7 @@
 </head>
 <body class="bg-light">
     <div id="app">
+        <x-mini-navbar />
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container-fluid">
                 @auth
@@ -33,8 +34,8 @@
                     <a href="{{ route('notifications.index') }}" class="material-icons pt-1 text-decoration-none {{ Request::is('notifications') ? ' text-orange ' : 'text-muted' }}">notifications_none</a>
                 </button>
                 @else
-                <button class="navbar-toggler border-0" type="button">
-                    <a href="#" class="material-icons pt-1 text-decoration-none text-muted">notifications_none</a>
+                <button class="navbar-toggler border-0" type="button" data-toggle="tooltip" title="Login to see Notifications" id="notifUnAuth">
+                    <span class="material-icons pt-1 text-decoration-none text-muted">notifications_none</span>
                 </button>
                 @endauth
                 <a class="navbar-brand text-success my-font mx-auto" href="{{ url('/') }}">Restaurant v4</a>
@@ -64,16 +65,23 @@
                 <hr>
                 <p class="text-muted text-center">&copy; 2020 <a href="https://instagram.com/sysafarila" target="_blank" class="text-decoration-none text-muted">SySafarila <i class="material-icons align-middle pb-1" style="font-size:1rem;">launch</i></a></p>
                 <p class="text-muted text-center">
-                    <a href="https://github.com/sysafarila/restaurant-v4" target="_blank"><img src="{{ asset('svg/github.svg') }}" alt="Github"></a>
+                    <a href="https://github.com/sysafarila/restaurant-v4" target="_blank"><img src="{{ asset('svg/github.svg') }}" alt="Github" class="github"></a>
                 </p>
             </div>
         </footer>
     </div>
+    @guest
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script>
+            $(function () {
+                $('#notifUnAuth').tooltip()
+            });
+        </script>
+    @endguest
     <script>
         function menuButtonClick() {
             if (document.getElementById('menuButton').innerHTML == 'menu') {
                 document.getElementById('menuButton').innerHTML = 'menu_open';
-                // console.log('true');
             } else {
                 document.getElementById('menuButton').innerHTML = 'menu';
             }

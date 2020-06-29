@@ -68,6 +68,7 @@ Route::post('/menu/{menu}/add-images', 'MenusController@addImages')->middleware(
 
 // Menus Search
 Route::get('menus/search', 'MenusController@search')->name('menus.search');
+Route::get('/menus/{category?}', 'MenusController@foods')->name('menus.category');
 
 // Orders ( Customer access only )
 Route::get('/orders', 'OrdersController@index')->name('orders.index');
@@ -124,3 +125,5 @@ Route::get('/setting/account', 'SettingController@index')->name('setting.account
 Route::get('/refunds', 'RefundsController@index')->name('refunds.index');
 Route::get('/refund/{refund}', 'RefundsController@show')->name('refunds.show');
 Route::post('/refund/{refund}', 'RefundsController@update')->name('refunds.update');
+Route::get('/refunds/success', 'RefundsController@success')->name('refunds.success');
+Route::get('/refunds/search', 'RefundsController@search')->name('refunds.search');

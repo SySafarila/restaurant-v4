@@ -6,102 +6,114 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-                <form action="{{ route('menus.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    @method('POST')
-                    <div class="form-group">
-                        <label for="product">Product Name</label>
-                        <input type="text" id="product" name="name" value="{{ old('name') }}" class="form-control form-control-sm mb-1 @error('name') is-invalid @enderror" placeholder="Product Name" required>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea rows="5" id="description" name="description" value="{{ old('description') }}" class="form-control form-control-sm mb-1 @error('description') is-invalid @enderror" placeholder="Description" required>{{ old('description') }}</textarea>
-                        @error('description')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <input type="number" id="price" name="price" value="{{ old('price') }}" class="form-control form-control-sm mb-1 @error('price') is-invalid @enderror" placeholder="Price" required>
-                        @error('price')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        {{-- <input type="text" id="category" name="img" value="{{ old('img') }}" class="form-control form-control-sm mb-1 @error('img') is-invalid @enderror" placeholder="Image *link"> --}}
-                        <select name="category" class="custom-select custom-select-sm" required>
-                            <option value="null">- Select Category</option>
-                            <option value="Foods">Food's</option>
-                            <option value="Drinks">Drink's</option>
-                        </select>
-                        @error('category')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-row mb-3">
-                        <div class="col">
-                            <label for="stock">Stock</label>
-                            <input type="number" id="stock" name="stock" value="{{ old('stock') }}" class="form-control form-control-sm @error('stock') is-invalid @enderror" placeholder="Stock" required>
-                            @error('stock')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-row mb-3">
-                        <div class="col">
-                            <label for="images">Images 
-                                {{-- <small class="text-danger">*First image is required</small> --}}
-                            </label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="cover_image" name="cover_image" required>
-                                <label class="custom-file-label text-truncate" for="cover_image">Choose Cover *</label>
-                                @error('cover_image')
-                                <span class="invalid-feedback">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{ route('menus.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                            <div class="form-group">
+                                <div class="modern-form" style="margin-bottom: 0.5rem;">
+                                    <input type="text" class="form-control input-field text-truncate" name="name" value="{{ old('name') }}" required>
+                                    <label for="name" class="input-label">Name</label>
+                                </div>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
-                            <div class="custom-file mt-2">
-                                <input type="file" class="custom-file-input" id="images" name="images[]" multiple>
-                                <label class="custom-file-label text-truncate" for="images">Choose Other Images</label>
-                                @error('images.*')
+                            <div class="form-group">
+                                <div class="modern-form" style="margin-bottom: 0.5rem;">
+                                    <textarea class="form-control input-field" rows="5" name="description" required>{{ old('description') }}</textarea>
+                                    <label for="name" class="input-label">Description</label>
+                                </div>
+                                @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                            {{-- <input type="number" id="stock" name="stock" value="{{ old('stock') }}" class="form-control form-control-sm @error('stock') is-invalid @enderror" placeholder="Stock" required> --}}
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
-                                    {{ $error }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                            <div class="form-group">
+                                <div class="modern-form" style="margin-bottom: 0.5rem;">
+                                    <input type="number" class="form-control input-field text-truncate" name="price" value="{{ old('price') }}" required>
+                                    <label for="price" class="input-label">Price</label>
                                 </div>
-                                @endforeach
-                            @endif
-                        </div>
+                                @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <div class="modern-form" style="margin-bottom: 0.5rem;">
+                                    <select name="category" class="form-control input-field">
+                                        <option value="">Select Category</option>
+                                        <option value="Foods">Food's</option>
+                                        <option value="Drinks">Drink's</option>
+                                    </select>
+                                    <label for="category" class="input-label">Category</label>
+                                </div>
+                                @error('category')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="modern-form" style="margin-bottom: 0.5rem;">
+                                    <input type="number" class="form-control input-field text-truncate" name="stock" value="{{ old('stock') }}" required>
+                                    <label for="stock" class="input-label">Stock</label>
+                                </div>
+                                @error('stock')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <hr>
+                            <div class="form-row mb-3">
+                                <div class="col">
+                                    <label for="images">Images</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="cover_image" name="cover_image" required>
+                                        <label class="custom-file-label text-truncate" for="cover_image">Choose Cover *</label>
+                                        @error('cover_image')
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="custom-file mt-2">
+                                        <input type="file" class="custom-file-input" id="images" name="images[]" multiple>
+                                        <label class="custom-file-label text-truncate" for="images">Choose Other Images</label>
+                                        @error('images.*')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    @if ($errors->any())
+                                        @foreach ($errors->all() as $error)
+                                        <div class="alert alert-warning alert-dismissible fade show mt-2 shadow-sm" role="alert">
+                                            <div class="d-flex">
+                                                <span class="material-icons mr-2">info</span>
+                                                <span>{{ $error }}</span>
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-sm btn-success mx-1 material-icons">add</button>
+                                <button type="reset" class="btn btn-sm btn-outline-danger mx-1 material-icons">delete</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-sm btn-success mx-1 material-icons">add</button>
-                        <button type="reset" class="btn btn-sm btn-outline-danger mx-1 material-icons">delete</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

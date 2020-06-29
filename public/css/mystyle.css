@@ -220,6 +220,62 @@ a.badge-orange.focus {
     word-break: break-all;
 }
 
+#refunds-pending-more-vert {
+    transition: transform 0.2s ease-in-out;
+    transform: scale(0);
+    cursor: pointer;
+}
+
+#refunds-pending-more-vert:hover, #refunds-pending-more-vert:focus {
+    color: black !important;
+}
+
+#refunds-pending-card:hover #refunds-pending-more-vert {
+    transform: scale(1);
+}
+
+/* Modern Form Below*/ 
+.modern-form {
+    position: relative;
+    padding-top: 0.7rem;
+}
+
+.input-label {
+    position: absolute;
+    top: 1.1rem;
+    left: 0.8rem;
+    color: #6c757d;
+    pointer-events: none;
+    user-select: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-field:focus {
+    box-shadow: none;
+}
+
+.input-field:focus + .input-label,
+.input-field:valid + .input-label {
+    top: 0rem;
+    font-size: 12px;
+    background-color: white;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    left: 0.5rem;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.input-field:focus + .input-label {
+    color: #80bdff;
+}
+
+.github {
+    width: 1.5rem;
+}
+
 /* Responsive MD */
 @media (min-width: 768px) {
     .hr {

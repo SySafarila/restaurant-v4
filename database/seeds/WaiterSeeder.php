@@ -22,7 +22,7 @@ class WaiterSeeder extends Seeder
             'level' => 'Waiter',
             'status' => 'Active',
             'created_at' => Carbon::now(),
-            'password' => Hash::make('waiter'),
+            'password' => Hash::make('password'),
         ]);
         //php artisan db:seed --class=WaiterSeeder
     }

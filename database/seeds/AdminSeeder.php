@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
             'level' => 'Admin',
             'status' => 'Active',
             'created_at' => Carbon::now(),
-            'password' => Hash::make('admin'),
+            'password' => Hash::make('password'),
         ]);
         //php artisan db:seed --class=AdminSeeder
     }

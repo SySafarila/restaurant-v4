@@ -89,8 +89,10 @@ class ChefController extends Controller
             'status' => 'Pending'
         ]);
 
+        $notifMenu = $invoice->menu;
+        $notifCode = $invoice->code;
         Notification::create([
-            'message' => "Your order <b>' . $invoice->menu . ' | ' . $invoice->code . '</b> is out of stock, go to Admin's for your refund.",
+            'message' => 'Your order ' . '<b>' . $notifMenu . ' | ' . $notifCode . '</b>' . ' Is out of stock, go to Admin for refund.',
             'status' => false,
             'user_id' => $invoice->user_id
         ]);

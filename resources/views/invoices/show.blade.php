@@ -17,11 +17,11 @@
                         </span>
                         <span class="text-muted">{{ $time->diffForHumans() }}</span>
                     </div>
+                    <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span>
                     @if (Auth::user()->level == 'Admin' or Auth::user()->level == 'Owner')
                     <br>
                     <span class="font-weight-bold">Username :</span> <span class="badge badge-pill badge-orange">{{ '@' . $invoices->first()->user->username }}</span>
                     @endif
-                    <span class="font-weight-bold">Date :</span> <span class="text-orange">{{ $invoices->created_at->format('d M Y, H:i') }}</span>
                     <div class="d-flex mb-2" style="margin-left: -2px;">
                         <span class="material-icons text-muted mr-1">receipt</span>
                         <span class="text-muted">{{ $code }}</span>

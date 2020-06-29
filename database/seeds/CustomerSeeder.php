@@ -22,7 +22,7 @@ class CustomerSeeder extends Seeder
             'level' => 'Customer',
             'status' => 'Active',
             'created_at' => Carbon::now(),
-            'password' => Hash::make('customer'),
+            'password' => Hash::make('password'),
         ]);
         //php artisan db:seed --class=CustomerSeeder
     }
