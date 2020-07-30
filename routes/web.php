@@ -1,6 +1,7 @@
 <?php
-    use Illuminate\Support\Facades\Route;
-    use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,8 +55,8 @@ Route::delete('/menu/{id}', 'MenusController@destroy')->middleware('admin')->nam
 Route::redirect('/menus/deleted/{id}', '/menus/deleted');
 Route::patch('/menus/deleted/{id}', 'MenusController@restore')->middleware('admin')->name('menus.restore');
 Route::get('/menus/create', 'MenusController@create')->middleware('admin')->name('menus.create');
-route::redirect('/menu/forceDelete/{id}', '/menus');
-route::post('/menu/forceDelete/{id}', 'MenusController@forceDelete')->middleware('admin')->name('menus.forceDelete');
+Route::redirect('/menu/forceDelete/{id}', '/menus');
+Route::post('/menu/forceDelete/{id}', 'MenusController@forceDelete')->middleware('admin')->name('menus.forceDelete');
 Route::get('/menu/{menu}/edit-cover', 'MenusController@editCover')->middleware('admin')->name('menus.editCover');
 Route::redirect('/menu/{menu}/cover', '/menu/{menu}');
 Route::post('/menu/{menu}/cover', 'MenusController@updateCover')->middleware('admin')->name('menus.updateCover');
