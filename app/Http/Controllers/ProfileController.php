@@ -91,13 +91,13 @@ class ProfileController extends Controller
         $user = Auth::user();
         $validate = $request->validate([
             'name'     => 'required|min:3|regex:/^[\pL\s\-]+$/u',
-            'username' => 'required|min:5|regex:[^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$]|'. Rule::unique('users')->ignore($user->id),
+            'username' => 'required|min:5|regex:[^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$]|' . Rule::unique('users')->ignore($user->id),
             'phone'    => 'required|digits_between:10,13|numeric|' . Rule::unique('users')->ignore($user->id),
             'address'  => 'required|min:7|string',
             'gender'   => 'required|in:Female,Male',
         ]);
-        $user = Auth::user();
-        $edit = User::where('id', $user->id)->update([
+        // $user = Auth::user();
+        User::where('id', $user->id)->update([
             'name'     => ucwords($request['name']), //uppercase for each word
             'username' => strtolower($request['username']), //lowercase for each word
             'phone'    => $request['phone'],
@@ -118,12 +118,12 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $validate = $request->validate([
-            'email'    => 'required|min:13|email|'. Rule::unique('users')->ignore($user->id),
+        $request->validate([
+            'email'    => 'required|min:13|email|' . Rule::unique('users')->ignore($user->id),
             'password' => 'required|string|min:8|confirmed'
         ]);
-        
-        $edit = User::where('id', $user->id)->update([
+
+        User::where('id', $user->id)->update([
             'email'    => strtolower($request['email']),
             'password' => Hash::make($request['password']),
         ]);
@@ -147,7 +147,7 @@ class ProfileController extends Controller
 
         $delete = User::find($user->id);
         $delete->delete();
-        
+
         return redirect()->route('login')->with('status', 'Profile deleted and unregistered !');
     }
 
@@ -156,7 +156,7 @@ class ProfileController extends Controller
         if (Auth::user()->img == null) {
             return view('profile.editAvatar');
         }
-        
+
         return redirect()->route('profile.index')->with('status-warning', 'Delete first your avatar');
     }
 
@@ -164,7 +164,7 @@ class ProfileController extends Controller
     {
         $validate = $request->validate(
             [
-                'avatar' => ['required' ,'mimes:jpg,jpeg,png', 'max:5120'],
+                'avatar' => ['required', 'mimes:jpg,jpeg,png', 'max:5120'],
             ],
             [
                 'avatar.max' => 'Maximum file size for avatar is 5MB.',
@@ -172,13 +172,13 @@ class ProfileController extends Controller
             ]
         );
         if ($request->user()->img == null) {
-            
+
             $fileName = $request->user()->id . '.' . $request->file('avatar')->getClientOriginalExtension();
             $avatar = $request->file('avatar')->storeAs('public/avatars/user', $fileName);
-            
+
             $update = User::where('id', $request->user()->id)->update([
                 'img' => $fileName,
-                ]);
+            ]);
             return redirect()->route('profile.index')->with('status', 'Avatar Updated !');
         } else {
             return redirect()->route('profile.index');
@@ -191,13 +191,15 @@ class ProfileController extends Controller
             return redirect()->route('profile.index');
         } else {
             $profile = Auth::user();
-            
-            $delete = Storage::delete('public/avatars/user/' . $profile->img);
-            $deleteImg = User::where('id', $profile->id)->update([
+
+            if (Storage::disk('local')->exists('public/avatars/user/' . $profile->img) == true) {
+                Storage::delete('public/avatars/user/' . $profile->img);
+            }
+            User::where('id', $profile->id)->update([
                 'img' => null,
-                ]);
-                
+            ]);
+
             return redirect()->route('profile.index')->with('status', 'Avatar Deleted !');
-        }        
+        }
     }
 }

@@ -14,7 +14,7 @@ class OrdersController extends Controller
     {
         $this->middleware(['auth', 'customer', 'checkUserStatus']);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +54,7 @@ class OrdersController extends Controller
         ]);
 
         // Parameter for input to database
-        $user_id  = Auth::user()->id;
+        $user_id  = $request->user()->id;
         $menu_id  = $request['menu'];
         $quantity = $request['quantity'];
         $price    = Menu::findOrFail($menu_id)->price;
@@ -64,7 +64,6 @@ class OrdersController extends Controller
         $check = Order::where([
             'user_id' => $user_id,
             'menu_id' => $menu_id,
-            // 'status'  => 'Pending'
         ]);
 
         // Conditionals
@@ -72,28 +71,30 @@ class OrdersController extends Controller
             Order::where([
                 'user_id' => $user_id,
                 'menu_id' => $menu_id,
-                // 'status'  => 'Pending',
             ])->update([
-                    'quantity' => Order::where([
+                'quantity' => Order::where([
                     'user_id'  => $user_id,
                     'menu_id'  => $menu_id,
-                    // 'status'   => 'Pending',
                 ])->first('quantity')->quantity + $request['quantity'],
-                    'total'   => Order::where([
+                'total'   => Order::where([
                     'user_id' => $user_id,
                     'menu_id' => $menu_id,
-                    // 'status'  => 'Pending',
                 ])->first('total')->total + $total,
             ]);
             return redirect()->route('menus.index')->with('status', 'Added to ');
         } else {
-            Order::create([
-                'user_id'  => $user_id,
+            // Order::create([
+            //     'user_id'  => $user_id,
+            //     'menu_id'  => $menu_id,
+            //     'quantity' => $quantity,
+            //     'price'    => $price,
+            //     'total'    => $total,
+            // ]);
+            User::find($user_id)->orders()->create([
                 'menu_id'  => $menu_id,
                 'quantity' => $quantity,
                 'price'    => $price,
                 'total'    => $total,
-                // 'status'   => $status,
             ]);
             return redirect()->route('menus.index')->with('status', 'Added to ');
         }
